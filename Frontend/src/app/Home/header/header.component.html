@@ -1,0 +1,33 @@
+<header>
+    <div class="Header">
+        <div class="Header-Wrapper">
+            <div class="Header-Logo">
+                <a href="/home"><img src="../../../assets/Images/LOGO.png"></a>
+            </div>
+            <div class="Header-Content">
+                <div class="Header-Content-Left Header-Content-LR">
+                    <div class="Header-Link">Categories</div>
+                    <div class="Header-Link"><input class="Header-Search-Top" type="input" name="search" placeholder="Search for Product, Brand and more"/><span style="margin-left: -2rem;font-size: 1.25rem;color:#31353D;"><i class="fa fa-search" aria-hidden="true"></i></span></div>
+                </div>
+                <div class="Header-Content-Right Header-Content-LR">
+                    <div class="Header-Link Header-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>Cart</div>
+                    <div class="Header-Link Header-Button" (click)="goToLogin()"><span style="margin-right: 0.5rem;"><i class="fa fa-user" aria-hidden="true"></i></span>Login</div>
+                </div>
+                <div class="Header-Hamburger">
+                    <div class="Header-Link"><input class="Header-Search-Top" type="input" name="search" placeholder="Search for Product, Brand and more"/><span style="margin-left: -2rem;font-size: 1.25rem;color:#31353D;"><i class="fa fa-search" aria-hidden="true"></i></span></div>
+                    <a href=""><span style="margin-right: 1rem;"><i class="Cart fa fa-shopping-cart" aria-hidden="true"></i></span></a>
+                    <span (click)="active=!active"><i class="Hamburger fa fa-bars" aria-hidden="true"></i></span>
+                </div>
+            </div>
+            <div [class.Sidebar-Open]="active" [class.Sidebar-Closed]="!active">
+                <a href="" class="Sidebar-Link"><div class="Sidebar-Link-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-tasks" aria-hidden="true"></i></span>All Categories</div></a>
+                <a href="" class="Sidebar-Link"><div class="Sidebar-Link-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-database" aria-hidden="true"></i></span>My Orders</div></a>
+                <a href="" class="Sidebar-Link"><div class="Sidebar-Link-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>My Cart</div></a>
+                <a href="" class="Sidebar-Link"><div class="Sidebar-Link-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-heart" aria-hidden="true"></i></span>My Wishlist</div></a>
+                <a href="" class="Sidebar-Link"><div class="Sidebar-Link-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-user" aria-hidden="true"></i></span>My Account</div></a>
+                <a href="/login" class="Sidebar-Link"><div class="Sidebar-Link-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></span>Sign-In</div></a>
+                <a href="" class="Sidebar-Link"><div class="Sidebar-Link-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></span>Sign-Out</div></a>
+            </div>
+        </div>
+    </div>
+</header>

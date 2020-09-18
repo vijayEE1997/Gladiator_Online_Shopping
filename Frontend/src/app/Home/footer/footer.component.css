@@ -1,0 +1,24 @@
+.Footer{
+    background-color: #31353D;
+}
+.Footer-Wrapper{
+    height: 135px;
+    margin:0 auto;
+}
+@media (min-width:1023px){
+    .Footer-Wrapper{
+        width: 974px;
+    }
+}
+@media (min-width:1300px){
+    .Footer-Wrapper{
+        width:1250px;
+    }
+}
+@media (max-width:1023px){
+    .Footer-Wrapper{
+        margin:0 1rem;
+    }
+}
+
+

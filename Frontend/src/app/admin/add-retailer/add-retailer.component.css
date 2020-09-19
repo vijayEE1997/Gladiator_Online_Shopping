@@ -1,0 +1,32 @@
+.Admin-Retailer{
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.Admin-Retailers,.Admin-Retailers-Action{
+    flex-grow: 1;
+    flex-shrink: 1;
+    width: 100%;
+    background-color:white;
+    border-radius: 0.25rem;
+}
+.Admin-Retailers-Button{
+    margin:1rem 0;
+    height: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Admin-Button{
+    background-color: #E35F21;
+    margin: 1rem 0;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.25rem;
+    color: rgba(0,0,0,0.85);
+    cursor: pointer;
+    margin: 0 1rem;
+}
+.Admin-Button:hover{
+    background-color: rgba(227,95,33,0.75);
+}

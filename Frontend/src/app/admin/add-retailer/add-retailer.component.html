@@ -1,0 +1,13 @@
+<div class="Admin-Retailer">
+    <div class="Admin-Retailers"></div>
+    <div class="Admin-Retailers-Button">
+        <div class="Admin-Button" (click)="addRetailerF()"><span style="margin-right: 0.5rem;"><i class="fa fa-user-plus" aria-hidden="true"></i></span>Add Retailer</div>
+        <div class="Admin-Button" (click)="removeRetailerF()"><span style="margin-right: 0.5rem;"><i class="fa fa-user-times" aria-hidden="true"></i></span>Remove Retailer</div>
+    </div>
+    <div *ngIf="addRetailer" class="Admin-Retailers-Action">
+
+    </div>
+    <div *ngIf="removeRetailer" class="Admin-Retailers-Action">
+        
+    </div>
+</div>

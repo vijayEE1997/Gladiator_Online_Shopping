@@ -1,0 +1,43 @@
+.Admin-Products{
+    width: 100%;
+    border-radius: 0.25rem;
+}
+.Admin-Products table{
+    width: 100%;
+}
+.Admin-Products th,.Admin-Products td{
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+}
+.Admin-Products th{
+    background-color: #31353D;
+    color: rgba(255,255,255,0.9);
+    font-size: 0.85rem;
+}
+.Admin-Products td{
+    color: rgba(0,0,0,0.9);
+    background-color: rgba(255,255,255,0.85);
+    font-size: 0.85rem;
+}
+#Admin-Button-td{
+    padding: 0;
+    text-align: center;
+}
+.Admin-Button{
+    background-color: #E35F21;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    color: rgba(0,0,0,0.85);
+    cursor: pointer;
+}
+.Admin-Button:hover{
+    background-color: rgba(227,95,33,0.75);
+}
+.Description{
+    position: absolute;
+    top:calc(50% - 200px);
+    left:calc(50% - 300px);
+    width:600px;
+    height: 400px;
+    background-color: rgba(255,255,255,0.9);
+}

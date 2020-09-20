@@ -20,184 +20,157 @@ import javax.persistence.Table;
 @Table(name="USER_TBL")
 public class User {
 	@Id
-	@Column(name="USER_ID")
+	@Column(name="U_ID")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int uId;
 	
-	@Column(name="USER_NAME")
+	@Column(name="U_NAME")
 	private String uName;
 	
-	@Column(name="USER_ADDRESS")
-	private String uAddress;
-	
-	@Column(name="USER_MOBILE")
-	private int uMobile;
-	
-	@Column(name="USER_EMAIL")
+	@Column(name="U_EMAIL")
 	private String uEmail;
 	
-	@Column(name="USER_PASSWORD")
+	@Column(name="U_PASSWORD")
 	private String uPassword;
 	
+	@Column(name="U_ADDRESS")
+	private String uAddress;
 	
-	/*//onetoone between user and cart
-		@OneToMany(mappedBy="user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-		private Set<Cart> carts;
-		
-		@OneToMany(mappedBy="user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-		private Set<WishList> wishlists;*/
-	
+	@Column(name="U_MOBILE")
+	private int uMobile;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="CART_TBL", 
 	joinColumns = {@JoinColumn(name="U_ID")},
-	inverseJoinColumns ={@JoinColumn(name="P_ID")}
-			)
-	private Set<Product> cproducts;
+	inverseJoinColumns ={@JoinColumn(name="P_ID")})
+	private Set<Product> cProducts;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="WISHLIST_TBL", 
 	joinColumns = {@JoinColumn(name="U_ID")},
-	inverseJoinColumns ={@JoinColumn(name="P_ID")}
-			)
-	private Set<Product> wproducts;
+	inverseJoinColumns ={@JoinColumn(name="P_ID")})
+	private Set<Product> wProducts;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="COMPARE_TBL", 
 	joinColumns = {@JoinColumn(name="U_ID")},
-	inverseJoinColumns ={@JoinColumn(name="P_ID")}
-			)
-	private Set<Product> comproducts;
+	inverseJoinColumns ={@JoinColumn(name="P_ID")})
+	private Set<Product> comProducts;
 	
-	
-	
-	
+	@OneToMany(mappedBy="user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	private Set<Payment> payments;
 		
-
-		@OneToMany(mappedBy="user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-		private Set<Payment> payments;
-		
-		@OneToMany(mappedBy="user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-		private Set<Payment> orders;
+	@OneToMany(mappedBy="user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	private Set<Payment> orders;
 	
-		public User() {
+	public User() {
 		
 	}
 		
-
-		public Set<Product> getCproducts() {
-			return cproducts;
-		}
-
-
-		public void setCproducts(Set<Product> cproducts) {
-			this.cproducts = cproducts;
-		}
-
-
-		public Set<Product> getWproducts() {
-			return wproducts;
-		}
+	public User(int uId, String uName, String uEmail, String uPassword, String uAddress, int uMobile) {
+		super();
+		this.uId = uId;
+		this.uName = uName;
+		this.uEmail = uEmail;
+		this.uPassword = uPassword;
+		this.uAddress = uAddress;
+		this.uMobile = uMobile;
+	}
 
 
-		public void setWproducts(Set<Product> wproducts) {
-			this.wproducts = wproducts;
-		}
+	public int getuId() {
+		return uId;
+	}
 
-		public Set<Product> getComproducts() {
-			return comproducts;
-		}
+	public void setuId(int uId) {
+		this.uId = uId;
+	}
 
+	public String getuName() {
+		return uName;
+	}
 
-		public void setComproducts(Set<Product> comproducts) {
-			this.comproducts = comproducts;
-		}
+	public void setuName(String uName) {
+		this.uName = uName;
+	}
 
-		public Set<Payment> getPayments() {
-			return payments;
-		}
+	public String getuAddress() {
+		return uAddress;
+	}
 
+	public void setuAddress(String uAddress) {
+		this.uAddress = uAddress;
+	}
 
-		public void setPayments(Set<Payment> payments) {
-			this.payments = payments;
-		}
+	public int getuMobile() {
+		return uMobile;
+	}
 
+	public void setuMobile(int uMobile) {
+		this.uMobile = uMobile;
+	}
 
-		public Set<Payment> getOrders() {
-			return orders;
-		}
+	public String getuEmail() {
+		return uEmail;
+	}
 
+	public void setuEmail(String uEmail) {
+		this.uEmail = uEmail;
+	}
 
-		public void setOrders(Set<Payment> orders) {
-			this.orders = orders;
-		}
+	public String getuPassword() {
+		return uPassword;
+	}
 
+	public void setuPassword(String uPassword) {
+		this.uPassword = uPassword;
+	}
 
-		@Override
-		public String toString() {
-			return "User [uId=" + uId + ", uName=" + uName + ", uAddress=" + uAddress + ", uMobile=" + uMobile
-					+ ", uEmail=" + uEmail + ", uPassword=" + uPassword + ", cproducts=" + cproducts + ", wproducts="
-					+ wproducts + ", payments=" + payments + ", orders=" + orders + "]";
-		}
+	public Set<Product> getcProducts() {
+		return cProducts;
+	}
 
-		public User(int uId, String uName, String uAddress, int uMobile, String uEmail, String uPassword) {
-			super();
-			this.uId = uId;
-			this.uName = uName;
-			this.uAddress = uAddress;
-			this.uMobile = uMobile;
-			this.uEmail = uEmail;
-			this.uPassword = uPassword;
-		}
+	public void setcProducts(Set<Product> cProducts) {
+		this.cProducts = cProducts;
+	}
 
-		public int getuId() {
-			return uId;
-		}
+	public Set<Product> getwProducts() {
+		return wProducts;
+	}
 
-		public void setuId(int uId) {
-			this.uId = uId;
-		}
+	public void setwProducts(Set<Product> wProducts) {
+		this.wProducts = wProducts;
+	}
 
-		public String getuName() {
-			return uName;
-		}
+	public Set<Product> getComProducts() {
+		return comProducts;
+	}
 
-		public void setuName(String uName) {
-			this.uName = uName;
-		}
+	public void setComProducts(Set<Product> comProducts) {
+		this.comProducts = comProducts;
+	}
 
-		public String getuAddress() {
-			return uAddress;
-		}
+	public Set<Payment> getPayments() {
+		return payments;
+	}
 
-		public void setuAddress(String uAddress) {
-			this.uAddress = uAddress;
-		}
+	public void setPayments(Set<Payment> payments) {
+		this.payments = payments;
+	}
 
-		public int getuMobile() {
-			return uMobile;
-		}
+	public Set<Payment> getOrders() {
+		return orders;
+	}
 
-		public void setuMobile(int uMobile) {
-			this.uMobile = uMobile;
-		}
+	public void setOrders(Set<Payment> orders) {
+		this.orders = orders;
+	}
 
-		public String getuEmail() {
-			return uEmail;
-		}
-
-		public void setuEmail(String uEmail) {
-			this.uEmail = uEmail;
-		}
-
-		public String getuPassword() {
-			return uPassword;
-		}
-
-		public void setuPassword(String uPassword) {
-			this.uPassword = uPassword;
-		}	
+	@Override
+	public String toString() {
+		return "User [uId=" + uId + ", uName=" + uName + ", uEmail=" + uEmail + ", uPassword=" + uPassword
+				+ ", uAddress=" + uAddress + ", uMobile=" + uMobile + "]";
+	}	
 		
 	
-
 }

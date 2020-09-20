@@ -25,23 +25,29 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name="ORDER_TBL")
 public class Order {
-	//order id added ---
+	
 	@Id
 	@GeneratedValue( strategy=GenerationType.AUTO)
 	@Column(name="O_ID")
 	private int oId;
+	
 	@Column(name="O_PRICE")
 	private double oPrice;
+	
 	@Column(name="O_QTY")
 	private int oQty;
+	
 	@Column(name="O_PURCHASE_DATE")
 	@Temporal(TemporalType.DATE)
 	private Date oPurchaseDate;
+	
 	@Column(name="O_DELIVERY_DATE")
 	@Temporal(TemporalType.DATE)
 	private Date oDeliveryDate;
+	
 	@Column(name="O_ADDRESS")
 	private String oAddress;
+	
 	@ManyToOne
 	@JoinColumn(name="U_ID")
 	private User user;
@@ -53,33 +59,12 @@ public class Order {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="ORDER_DETAIL_TBL", 
 	joinColumns = {@JoinColumn(name="O_ID")},
-	inverseJoinColumns ={@JoinColumn(name="P_ID")}
-			)
-	private Set<Product> porderdetails;
-	
-	
-	
-     public Order(){
-    	 
-     }
-     
-	public User getUser() {
-		return user;
+	inverseJoinColumns ={@JoinColumn(name="P_ID")})
+	private Set<Product> pOrderDetails;
+
+	public Order() {
+		super();
 	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public Payment getPayment() {
-		return payment;
-	}
-
-	public void setPayment(Payment payment) {
-		this.payment = payment;
-	}
-
-
 
 	public Order(int oId, double oPrice, int oQty, Date oPurchaseDate, Date oDeliveryDate, String oAddress) {
 		super();
@@ -137,6 +122,36 @@ public class Order {
 
 	public void setoAddress(String oAddress) {
 		this.oAddress = oAddress;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
+
+	public Set<Product> getpOrderDetails() {
+		return pOrderDetails;
+	}
+
+	public void setpOrderDetails(Set<Product> pOrderDetails) {
+		this.pOrderDetails = pOrderDetails;
+	}
+
+	@Override
+	public String toString() {
+		return "Order [oId=" + oId + ", oPrice=" + oPrice + ", oQty=" + oQty + ", oPurchaseDate=" + oPurchaseDate
+				+ ", oDeliveryDate=" + oDeliveryDate + ", oAddress=" + oAddress + "]";
 	}
 
 }

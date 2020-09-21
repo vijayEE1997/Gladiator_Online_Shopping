@@ -16,90 +16,100 @@ import javax.persistence.Table;
 @Entity
 @Table(name="ADMIN_TBL")
 public class Admin implements Serializable {
-	
 	@Id
 	@Column(name="A_ID")
 	@GeneratedValue( strategy=GenerationType.AUTO)
 	private int aId;
-	
 	@Column(name="A_NAME")
 	private String aName;
-	
 	@Column(name="A_EMAIL")
 	private String aEmail;
-	
 	@Column(name="A_PASSWORD")
 	private String aPassword;
 	
 	@OneToMany(mappedBy="admin",cascade=CascadeType.ALL)
-	private Set<ProductForApproval> productsFA;
+	private Set<ProductForApproval> products_f_a;
 	
 	@OneToMany(mappedBy="admin",cascade=CascadeType.ALL)
 	private Set<Product> products;
-
-	public Admin() {
-		super();
+	
+	/*//one to many relation between admin & retailer
+	@OneToMany(mappedBy="admin",cascade = CascadeType.ALL)
+	private Set<Retailer> retailers;*/
+	
+public Admin(){
+		
 	}
 
-	public Admin(int aId, String aName, String aEmail, String aPassword) {
-		super();
-		this.aId = aId;
-		this.aName = aName;
-		this.aEmail = aEmail;
-		this.aPassword = aPassword;
-	}
 
-	public int getaId() {
-		return aId;
-	}
+public Set<ProductForApproval> getProducts_f_a() {
+	return products_f_a;
+}
 
-	public void setaId(int aId) {
-		this.aId = aId;
-	}
 
-	public String getaName() {
-		return aName;
-	}
+public void setProducts_f_a(Set<ProductForApproval> products_f_a) {
+	this.products_f_a = products_f_a;
+}
 
-	public void setaName(String aName) {
-		this.aName = aName;
-	}
 
-	public String getaEmail() {
-		return aEmail;
-	}
+public Set<Product> getProducts() {
+	return products;
+}
 
-	public void setaEmail(String aEmail) {
-		this.aEmail = aEmail;
-	}
 
-	public String getaPassword() {
-		return aPassword;
-	}
+public void setProducts(Set<Product> products) {
+	this.products = products;
+}
 
-	public void setaPassword(String aPassword) {
-		this.aPassword = aPassword;
-	}
 
-	public Set<ProductForApproval> getProductsFA() {
-		return productsFA;
-	}
 
-	public void setProductsFA(Set<ProductForApproval> productsFA) {
-		this.productsFA = productsFA;
-	}
+@Override
+public String toString() {
+	return "Admin [aId=" + aId + ", aName=" + aName + ", aEmail=" + aEmail + ", aPassword=" + aPassword
+			+ ", products_f_a=" + products_f_a + ", products=" + products + "]";
+}
 
-	public Set<Product> getProducts() {
-		return products;
-	}
 
-	public void setProducts(Set<Product> products) {
-		this.products = products;
-	}
 
-	@Override
-	public String toString() {
-		return "Admin [aId=" + aId + ", aName=" + aName + ", aEmail=" + aEmail + ", aPassword=" + aPassword + "]";
-	}
+public Admin(int aId, String aName, String aEmail, String aPassword) {
+	super();
+	this.aId = aId;
+	this.aName = aName;
+	this.aEmail = aEmail;
+	this.aPassword = aPassword;
+}
+
+public int getaId() {
+	return aId;
+}
+
+public void setaId(int aId) {
+	this.aId = aId;
+}
+
+public String getaName() {
+	return aName;
+}
+
+public void setaName(String aName) {
+	this.aName = aName;
+}
+
+public String getaEmail() {
+	return aEmail;
+}
+
+public void setaEmail(String aEmail) {
+	this.aEmail = aEmail;
+}
+
+public String getaPassword() {
+	return aPassword;
+}
+
+public void setaPassword(String aPassword) {
+	this.aPassword = aPassword;
+}
+
 	
 }

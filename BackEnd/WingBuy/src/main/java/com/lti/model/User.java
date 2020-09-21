@@ -1,6 +1,5 @@
 package com.lti.model;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
 @Entity
 @Table(name="USER_TBL")
 public class User {
@@ -37,7 +35,7 @@ public class User {
 	private String uAddress;
 	
 	@Column(name="U_MOBILE")
-	private int uMobile;
+	private long uMobile;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="CART_TBL", 
@@ -59,23 +57,24 @@ public class User {
 	
 	@OneToMany(mappedBy="user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private Set<Payment> payments;
-		
+
 	@OneToMany(mappedBy="user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private Set<Order> orders;
+
 	
 	public void addProductToCart(Product product){
 		cProducts.add(product);
-		
-		
+
+
 	}
 	public void addPayment(Payment payment){
 		payments.add(payment);
 	}
 	public User() {
-		
+
 	}
 		
-	public User(int uId, String uName, String uEmail, String uPassword, String uAddress, int uMobile) {
+	public User(int uId, String uName, String uEmail, String uPassword, String uAddress, long uMobile) {
 		super();
 		this.uId = uId;
 		this.uName = uName;
@@ -84,101 +83,71 @@ public class User {
 		this.uAddress = uAddress;
 		this.uMobile = uMobile;
 	}
-
-
 	public int getuId() {
 		return uId;
 	}
-
 	public void setuId(int uId) {
 		this.uId = uId;
 	}
-
 	public String getuName() {
 		return uName;
 	}
-
 	public void setuName(String uName) {
 		this.uName = uName;
 	}
-
 	public String getuAddress() {
 		return uAddress;
 	}
-
 	public void setuAddress(String uAddress) {
 		this.uAddress = uAddress;
 	}
-
-	public int getuMobile() {
+	public long getuMobile() {
 		return uMobile;
 	}
-
-	public void setuMobile(int uMobile) {
+	public void setuMobile(long uMobile) {
 		this.uMobile = uMobile;
 	}
-
 	public String getuEmail() {
 		return uEmail;
 	}
-
 	public void setuEmail(String uEmail) {
 		this.uEmail = uEmail;
 	}
-
 	public String getuPassword() {
 		return uPassword;
 	}
-
 	public void setuPassword(String uPassword) {
 		this.uPassword = uPassword;
 	}
-
 	public Set<Product> getcProducts() {
 		return cProducts;
 	}
-
 	public void setcProducts(Set<Product> cProducts) {
 		this.cProducts = cProducts;
 	}
-
 	public Set<Product> getwProducts() {
 		return wProducts;
 	}
-
 	public void setwProducts(Set<Product> wProducts) {
 		this.wProducts = wProducts;
 	}
-
 	public Set<Product> getComProducts() {
 		return comProducts;
 	}
-
 	public void setComProducts(Set<Product> comProducts) {
 		this.comProducts = comProducts;
 	}
-
 	public Set<Payment> getPayments() {
 		return payments;
 	}
-
 	public void setPayments(Set<Payment> payments) {
 		this.payments = payments;
 	}
-
 	public Set<Order> getOrders() {
 		return orders;
 	}
-
 	public void setOrders(Set<Order> orders) {
 		this.orders = orders;
 	}
 
-	@Override
-	public String toString() {
-		return "User [uId=" + uId + ", uName=" + uName + ", uEmail=" + uEmail + ", uPassword=" + uPassword
-				+ ", uAddress=" + uAddress + ", uMobile=" + uMobile + "]";
-	}	
-		
-	
 }

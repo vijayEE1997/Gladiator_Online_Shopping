@@ -1,5 +1,4 @@
 package com.lti.model;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 @Entity
 @Table(name="PAYMENT_TBL")
 public class Payment {
@@ -31,13 +29,14 @@ public class Payment {
 		
 	@OneToOne(mappedBy="payment",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private Order order;
-
 	public Payment() {
 		super();
 	}
 
+	//public Payment(int payId, String payType) {
 	public Payment( String payType) {
 		super();
+		this.payId = payId;
 		//this.payId = payId;
 		this.payType = payType;
 	}
@@ -45,35 +44,27 @@ public class Payment {
 	public int getPayId() {
 		return payId;
 	}
-
 	public void setPayId(int payId) {
 		this.payId = payId;
 	}
-
 	public String getPayType() {
 		return payType;
 	}
-
 	public void setPayType(String payType) {
 		this.payType = payType;
 	}
-
 	public User getUser() {
 		return user;
 	}
-
 	public void setUser(User user) {
 		this.user = user;
 	}
-
 	public Order getOrder() {
 		return order;
 	}
-
 	public void setOrder(Order order) {
 		this.order = order;
 	}
-
 	@Override
 	public String toString() {
 		return "Payment [payId=" + payId + ", payType=" + payType + "]";

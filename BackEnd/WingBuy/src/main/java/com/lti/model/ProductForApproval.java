@@ -18,31 +18,22 @@ public class ProductForApproval {
 		@Column(name="P_REQ_ID")
 		@GeneratedValue( strategy=GenerationType.AUTO)
 		private int pReqId;
-		
 		@Column(name="P_CATEGORY")
 		private String pCategory;
-		
 		@Column(name="P_SUBCATEGORY")
 		private String pSubCategory;
-		
 		@Column(name="P_NAME")
 		private String pName;
-		
 		@Column(name="P_PRICE")
 		private int pPrice;
-		
 		@Column(name="P_DESC")
 		private String pDesc;
-		
 		@Column(name="P_BRAND")
 		private String pBrand;
-		
 		@Column(name="P_STOCK")
 		private int pStock;
-		
 		@Column(name="P_IMAGE")
 		private String pImage;
-		
 		@Column(name="P_STATUS")
 		private char pStatus;
 		
@@ -58,8 +49,16 @@ public class ProductForApproval {
 			
 		}
 
+		@Override
+		public String toString() {
+			return "ProductForApproval [pReqId=" + pReqId + ", pCategory=" + pCategory + ", pSubCategory="
+					+ pSubCategory + ", pName=" + pName + ", pPrice=" + pPrice + ", pDesc=" + pDesc + ", pBrand="
+					+ pBrand + ", pStock=" + pStock + ", pImage=" + pImage + ", pStatus=" + pStatus + ", admin=" + admin
+					+ ", retailer=" + retailer + "]";
+		}
+
 		public ProductForApproval(int pReqId, String pCategory, String pSubCategory, String pName, int pPrice,
-				String pDesc, String pBrand, int pStock, String pImage, char pStatus) {
+				String pDesc, String pBrand, int pStock, String pImage, char pStatus, Admin admin, Retailer retailer) {
 			super();
 			this.pReqId = pReqId;
 			this.pCategory = pCategory;
@@ -71,6 +70,8 @@ public class ProductForApproval {
 			this.pStock = pStock;
 			this.pImage = pImage;
 			this.pStatus = pStatus;
+			this.admin = admin;
+			this.retailer = retailer;
 		}
 
 		public int getpReqId() {
@@ -168,12 +169,8 @@ public class ProductForApproval {
 		public void setRetailer(Retailer retailer) {
 			this.retailer = retailer;
 		}
-
-		@Override
-		public String toString() {
-			return "ProductForApproval [pReqId=" + pReqId + ", pCategory=" + pCategory + ", pSubCategory="
-					+ pSubCategory + ", pName=" + pName + ", pPrice=" + pPrice + ", pDesc=" + pDesc + ", pBrand="
-					+ pBrand + ", pStock=" + pStock + ", pImage=" + pImage + ", pStatus=" + pStatus + "]";
-		}
 		
-}
+		
+		
+
+		}

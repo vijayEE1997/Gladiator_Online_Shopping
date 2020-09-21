@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="PRODUCT_TBL")
- class Product {
+public  class Product {
 	
 	@Id
 	@Column(name="P_ID")
@@ -52,9 +52,9 @@ import javax.persistence.Table;
 	@JoinColumn(name="A_ID")
 	private Admin admin;
 	
-	@ManyToOne
-	@JoinColumn(name="R_ID")
-	private Admin retailer;
+	//@ManyToOne
+	@Column(name="R_ID")
+	private int retailer;
 
 	@ManyToMany(mappedBy="wProducts",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private Set<User> wUsers;
@@ -165,12 +165,12 @@ import javax.persistence.Table;
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
 	}
-
-	public Admin getRetailer() {
+//
+	public int getRetailer() {
 		return retailer;
 	}
 
-	public void setRetailer(Admin retailer) {
+	public void setRetailer(int retailer) {
 		this.retailer = retailer;
 	}
 

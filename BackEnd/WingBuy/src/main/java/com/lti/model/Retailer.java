@@ -31,8 +31,8 @@ public class Retailer {
 		@Column(name = "R_MOBILE")
 		private int rMobile;
 		
-		@OneToMany(mappedBy="retailer",cascade=CascadeType.ALL)
-		private Set<Product> products;
+//		@OneToMany(mappedBy="retailer",cascade=CascadeType.ALL)
+//		private Set<Product> products;
 		
 		@OneToMany(mappedBy="retailer",cascade=CascadeType.ALL)
 		private Set<ProductForApproval> productsFA;
@@ -91,13 +91,13 @@ public class Retailer {
 			this.rMobile = rMobile;
 		}
 
-		public Set<Product> getProducts() {
-			return products;
-		}
-
-		public void setProducts(Set<Product> products) {
-			this.products = products;
-		}
+//		public Set<Product> getProducts() {
+//			return products;
+//		}
+//
+//		public void setProducts(Set<Product> products) {
+//			this.products = products;
+//		}
 
 		public Set<ProductForApproval> getProductsFA() {
 			return productsFA;

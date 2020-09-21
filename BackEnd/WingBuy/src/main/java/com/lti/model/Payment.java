@@ -36,9 +36,9 @@ public class Payment {
 		super();
 	}
 
-	public Payment(int payId, String payType) {
+	public Payment( String payType) {
 		super();
-		this.payId = payId;
+		//this.payId = payId;
 		this.payType = payType;
 	}
 

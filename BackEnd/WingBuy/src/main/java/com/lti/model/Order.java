@@ -61,6 +61,10 @@ public class Order {
 	joinColumns = {@JoinColumn(name="O_ID")},
 	inverseJoinColumns ={@JoinColumn(name="P_ID")})
 	private Set<Product> pOrderDetails;
+	
+	public void addProductToOrder(Product product){
+		pOrderDetails.add(product);
+	}
 
 	public Order() {
 		super();

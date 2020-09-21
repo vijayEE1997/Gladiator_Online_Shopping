@@ -61,8 +61,16 @@ public class User {
 	private Set<Payment> payments;
 		
 	@OneToMany(mappedBy="user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	private Set<Payment> orders;
+	private Set<Order> orders;
 	
+	public void addProductToCart(Product product){
+		cProducts.add(product);
+		
+		
+	}
+	public void addPayment(Payment payment){
+		payments.add(payment);
+	}
 	public User() {
 		
 	}
@@ -158,11 +166,11 @@ public class User {
 		this.payments = payments;
 	}
 
-	public Set<Payment> getOrders() {
+	public Set<Order> getOrders() {
 		return orders;
 	}
 
-	public void setOrders(Set<Payment> orders) {
+	public void setOrders(Set<Order> orders) {
 		this.orders = orders;
 	}
 

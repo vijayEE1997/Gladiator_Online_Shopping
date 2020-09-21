@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import com.lti.CSVReader;
+import com.lti.CSVReaderUser;
 import com.lti.model.Admin;
 import com.lti.model.Order;
 import com.lti.model.Payment;
@@ -31,7 +32,7 @@ public class Main {
 		admin2.setaEmail("gnapika.ankam@gmail.com");
 	      	admin2.setaPassword("g123456a");
 	      	
-	      	User user1 = new User();
+	      	/*User user1 = new User();
 	    	user1.setuName("Arijeet B");
 	    	user1.setuEmail("arijeet.b@gmail.com");
 	    	user1.setuPassword("a123456b");
@@ -47,7 +48,7 @@ public class Main {
 	    	user3.setuName("Mukul K");
 	    	user3.setuEmail("mukul.k@gmail.com");
 	    	user3.setuPassword("m123456k");
-	    	user3.setuMobile(78901234554L);
+	    	user3.setuMobile(78901234554L);*/
 	    	
 	   /* User user4 = new User();
 	    	user1.setuName("Deepak K");
@@ -116,19 +117,25 @@ public class Main {
 	    	 entityManager.getTransaction().begin();
 		        entityManager.persist(admin1);
 		        entityManager.persist(admin2);
-		        entityManager.persist(user1);
-		        entityManager.persist(user2);
-		        entityManager.persist(user3);
+		       // entityManager.persist(user1);
+		       // entityManager.persist(user2);
+		       // entityManager.persist(user3);
 		        entityManager.persist(retailer1);
 		        entityManager.persist(retailer2);
 		        entityManager.getTransaction().commit();
 	    	CSVReader csvreader = new CSVReader();
-	    	
+	    	CSVReaderUser csvreaderuser = new CSVReaderUser();
 	    		List<ProductForApproval> list=csvreader.load(admin1, admin2, retailer1, retailer2);
 	    		for(ProductForApproval p :list){
 	    			 entityManager.getTransaction().begin();
 	    		        entityManager.persist(p);
 	    		        entityManager.getTransaction().commit();	
+	    		}
+	    		List<User> ulist = csvreaderuser.load();
+	    		for(User u : ulist){
+	    			 entityManager.getTransaction().begin();
+	    		        entityManager.persist(u);
+	    		        entityManager.getTransaction().commit();
 	    		}
 
         

@@ -14,7 +14,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ADMIN_TBL")
+@Table(name="ADMIN")
 public class Admin implements Serializable {
 	@Id
 	@Column(name="A_ID")

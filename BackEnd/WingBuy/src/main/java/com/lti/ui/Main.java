@@ -10,6 +10,7 @@ import javax.persistence.Persistence;
 import com.lti.CSVReader;
 import com.lti.CSVReaderUser;
 import com.lti.model.Admin;
+import com.lti.model.Cart;
 import com.lti.model.Order;
 import com.lti.model.Payment;
 import com.lti.model.ProductForApproval;
@@ -92,64 +93,68 @@ public class Main {
 			entityManager.getTransaction().commit();
 		}
 
-		entityManager.getTransaction().begin();
-		User user1 = entityManager.find(User.class, 52);
-		Product product1 = entityManager.find(Product.class, 63);
-		Product product2 = entityManager.find(Product.class, 71);
-		Product product3 = entityManager.find(Product.class, 69);
-		user1.setcProducts(new HashSet<Product>());
-		user1.addProductToCart(product1);
-		user1.addProductToCart(product1);
-		user1.addProductToCart(product2);
-		user1.addProductToCart(product3);
-		entityManager.persist(user1);
-		entityManager.getTransaction().commit();
-
-		entityManager.getTransaction().begin();
-		user1.setwProducts(new HashSet<Product>());
-		user1.addProductToWishList(product1);
-		user1.addProductToWishList(product2);
-		user1.addProductToWishList(product3);
-		entityManager.persist(user1);
-		entityManager.getTransaction().commit();
-
-		entityManager.getTransaction().begin();
-		user1.setComProducts(new HashSet<Product>());
-		user1.addProductToCompare(product1);
-		user1.addProductToCompare(product2);
-		user1.addProductToCompare(product3);
-		entityManager.persist(user1);
-		entityManager.getTransaction().commit();
-
-		entityManager.getTransaction().begin();
-		Payment payment1 = new Payment();
-		payment1.setPayType("Cod");
-		payment1.setUser(user1);
-		user1.setPayments(new HashSet<Payment>());
-		user1.addPayment(payment1);
-		entityManager.persist(user1);
-		entityManager.getTransaction().commit();
+//		entityManager.getTransaction().begin();
+//		User user1 = entityManager.find(User.class, 52);
+//		Product product1 = entityManager.find(Product.class, 63);
+//		Product product2 = entityManager.find(Product.class, 71);
+//		Product product3 = entityManager.find(Product.class, 69);
+//		
 		
-		Order order1 = new Order();
-		int sum=0;
 		
-		order1.setPayment(payment1);
-		for (Product p : user1.getcProducts()) {
-			sum+=p.getpPrice();
-			
-		}
-	order1.setoPrice(sum);
-	order1.setoQty(user1.getcProducts().size());
-	order1.setoPurchaseDate(new Date());
-	//order1.setoDeliveryDate(new Date());
-	user1.setuAddress("BHOPAL");
-	order1.setUser(user1);
-	order1.setoAddress(user1.getuAddress());
-	entityManager.getTransaction().begin();
-	entityManager.persist(order1);
-	entityManager.getTransaction().commit();
-	
-		}
-	
-
-}
+		
+//		user1.setCarts(new HashSet<Cart>());
+//		user1.addProductToCart(new Cart(2,product1,user1));//likh
+//		user1.addProductToCart(new cart(3,product2,user2));
+//		user1.addProductToCart(product2);
+//		user1.addProductToCart(product3);
+//		entityManager.persist(user1);
+//		entityManager.getTransaction().commit();
+//
+//		entityManager.getTransaction().begin();
+//		user1.setwProducts(new HashSet<Product>());
+//		user1.addProductToWishList(product1);
+//		user1.addProductToWishList(product2);
+//		user1.addProductToWishList(product3);
+//		entityManager.persist(user1);
+//		entityManager.getTransaction().commit();
+//
+//		entityManager.getTransaction().begin();
+//		user1.setComProducts(new HashSet<Product>());
+//		user1.addProductToCompare(product1);
+//		user1.addProductToCompare(product2);
+//		user1.addProductToCompare(product3);
+//		entityManager.persist(user1);
+//		entityManager.getTransaction().commit();
+//
+//		entityManager.getTransaction().begin();
+//		Payment payment1 = new Payment();
+//		payment1.setPayType("Cod");
+//		payment1.setUser(user1);
+//		user1.setPayments(new HashSet<Payment>());
+//		user1.addPayment(payment1);
+//		entityManager.persist(user1);
+//		entityManager.getTransaction().commit();
+//		
+//		Order order1 = new Order();
+//		int sum=0;
+//		
+//		order1.setPayment(payment1);
+//		for (Product p : user1.getcProducts()) {
+//			sum+=p.getpPrice();
+//			
+//		}
+//	order1.setoPrice(sum);
+//	order1.setoQty(user1.getcProducts().size());
+//	order1.setoPurchaseDate(new Date());
+//	//order1.setoDeliveryDate(new Date());
+//	user1.setuAddress("BHOPAL");
+//	order1.setUser(user1);
+//	order1.setoAddress(user1.getuAddress());
+//	entityManager.getTransaction().begin();
+//	entityManager.persist(order1);
+//	entityManager.getTransaction().commit();
+//	
+//		
+//	
+//	}
+}}

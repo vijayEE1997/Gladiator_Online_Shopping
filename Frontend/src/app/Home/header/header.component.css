@@ -27,13 +27,15 @@
 .Header-Content-LR{
     display: flex;
     align-items: center;
+    font-size: 0.95rem;
+    font-weight: bolder;
 }
 .Header-Search-Top{
     padding:0.5rem 1rem;
     border-radius:0.25rem;
     border:none;
     outline: none;
-    width: 380px;
+    width: 350px;
 }
 .Header-Hamburger{
     display: none;
@@ -85,7 +87,7 @@
         width: 1250px;
     }
     .Header-Search-Top{
-        width: 620px;
+        width: 500px;
     }
 }
 @media (max-width:1023px){

@@ -1,3 +1,4 @@
+import { RetailerModule } from './retailer/retailer.module';
 import { AdminModule } from './admin/admin.module';
 import { AuthorizationModule } from './authorization/authorization.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,7 +23,8 @@ import { HomeComponent } from './Home/home/home.component';
     BrowserModule,
     AppRoutingModule,
     AuthorizationModule,
-    AdminModule
+    AdminModule,
+    RetailerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

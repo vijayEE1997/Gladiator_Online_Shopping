@@ -1,0 +1,47 @@
+aId,rId,pCategory,pSubCategory,pBrand,pName,pDesc,pImage,pPrice,pStock
+admin1,retailer1,Mobile,Android,Samsung,M21,desc01,image01,13999,12
+admin2,retailer2,Mobile,Android,Samsung,M31,desc02,image02,16499,8
+admin1,retailer1,Mobile,Android,Samsung,M11,desc03,image03,9999,18
+admin2,retailer1,Mobile,Android,Samsung,M01,desc04,image04,4999,21
+admin2,retailer1,Mobile,Android,Samsung,S20,desc05,image05,97999,2
+admin1,retailer2,Mobile,Android,MI,Redmi 8A Dual,desc06,image06,8999,4
+admin1,retailer1,Mobile,Android,MI,Redmi 9 Pro,desc07,image07,15799,12
+admin2,retailer2,Mobile,Android,MI,Redmi K20 Pro,desc08,image08,22999,11
+admin1,retailer1,Mobile,Android,Motorola,G9,desc09,image09,11499,3
+admin2,retailer1,Mobile,Android,Motorola,G6,desc10,image10,12999,13
+admin1,retailer2,Mobile,Android,Motorola,Edge+,desc11,image11,74999,3
+admin2,retailer1,Mobile,Ios,Apple,iPhone SE,desc12,image12,37999,2
+admin1,retailer2,Mobile,Ios,Apple,iPhone XR,desc13,image13,53599,5
+admin1,retailer1,Mobile,Ios,Apple,iPhone 11,desc14,image14,72399,7
+admin2,retailer1,Mobile,Ios,Apple,iPhone 11 Pro,desc15,image15,121999,2
+admin2,retailer2,Mobile,Keypad,Samsung,Guru 1200,desc16,image16,1499,8
+admin1,retailer1,Mobile,Keypad,Samsung,Metro 313,desc17,image17,2199,5
+admin2,retailer2,Mobile,Keypad,Nokia,105 SS,desc18,image18,1199,8
+admin1,retailer1,Mobile,Keypad,Nokia,3310 DS,desc19,image19,4399,8
+admin2,retailer2,Mobile,Keypad,Lava,A1,desc20,image20,897,2
+admin1,retailer1,Mobile,Keypad,Lava,Spark i8,desc21,image21,1599,8
+admin1,retailer2,Electronics,Laptop,Apple,MacBook pro,desc22,image22,195599,5
+admin1,retailer1,Electronics,Laptop,Apple,MacBook Air,desc23,image23,75599,3
+admin2,retailer2,Electronics,Laptop,Lenovo,Thinkpad E14,desc24,image24,41599,5
+admin1,retailer2,Electronics,Laptop,Lenovo,Ideapad L340,desc25,image25,74599,7
+admin1,retailer1,Electronics,Laptop,Dell,Vostro,desc26,image26,53599,5
+admin2,retailer2,Electronics,Laptop,Dell,G3,desc27,image27,73599,13
+admin1,retailer1,Electronics,Laptop,HP,15s,desc28,image28,48599,3
+admin2,retailer2,Electronics,Laptop,HP,Omen,desc29,image29,75599,5
+admin1,retailer1,Electronics,Laptop,Asus,VivoBook 15,desc30,image30,30599,7
+admin2,retailer2,Electronics,Laptop,Asus,VivoBook 14,desc31,image31,38199,3
+admin1,retailer2,Electronics,Tablet,Lenovo,Yoga Smart,desc32,image32,21599,7
+admin1,retailer1,Electronics,Tablet,Samsung,Galaxy A 8.0,desc33,image33,11999,5
+admin1,retailer1,Electronics,Tablet,Apple,iPad,desc34,image34,29999,2
+admin1,retailer2,Appliances,TV,MI,4A Pro,desc35,image35,12999,7
+admin1,retailer1,Appliances,TV,Toshiba,U50,desc36,image36,32599,5
+admin2,retailer2,Appliances,TV,LG,Full HD,desc37,image37,28999,13
+admin1,retailer1,Appliances,TV,Sony,Bravia,desc38,image38,48599,3
+admin2,retailer2,Appliances,TV,Samsung,Ultra HD,desc39,image39,36599,5
+admin1,retailer1,Appliances,Refrigerator,Samsung,192 L,desc40,image40,11999,7
+admin2,retailer2,Appliances,Refrigerator,Haier,258 L,desc41,image41,18999,4
+admin1,retailer2,Appliances,Refrigerator,LG,260 L,desc42,image42,24599,7
+admin1,retailer1,Appliances,Washing Machine,Samsung,7kg,desc43,image43,29499,5
+admin1,retailer1,Appliances,Washing Machine,LG,6.5kg,desc44,image44,15499,5
+admin1,retailer1,Appliances,Washing Machine,IFB,6kg,desc45,image45,20499,1
+admin1,retailer1,Appliances,Washing Machine,MarQ,6kg,desc46,image46,6299,15

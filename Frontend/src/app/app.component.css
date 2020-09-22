@@ -1,0 +1,12 @@
+.Admin-Button{
+    background-color: #E35F21;
+    margin: 1rem 0;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.25rem;
+    color: rgba(0,0,0,0.85);
+    cursor: pointer;
+}
+.Admin-Button:hover,.Admin-Button-click{
+    background-color: rgba(227,95,33,0.75);
+    color: rgba(255,255,255,0.9);
+}

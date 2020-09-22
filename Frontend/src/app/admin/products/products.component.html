@@ -1,0 +1,34 @@
+<div class="Admin-Products">
+    <table>
+        <thead>
+            <tr>
+                <th>PID</th>
+                <th>RID</th>
+                <th>Category</th>
+                <th>Sub-Category</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Stock</th>
+                <th>Price/Unit</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of products">
+                <td>{{p.pid}}</td>
+                <td>{{p.rid}}</td>
+                <td>{{p.category}}</td>
+                <td>{{p.subCategory}}</td>
+                <td>{{p.brand}}</td>
+                <td>{{p.model}}</td>
+                <td>{{p.stock}}</td>
+                <td>{{p.price}}</td>
+                <td id="Admin-Button-td"><div class="Admin-Button" (click)="viewDesc(p.desc)">View<span style="margin-left: 0.5rem;"><i class="fa fa-eye" aria-hidden="true"></i></span></div></td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="descOpen" class="Description">
+        <div class="Admin-Button" (click)="closeDesc()">Close</div>
+        {{desc}}
+    </div>
+</div>

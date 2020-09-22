@@ -26,14 +26,15 @@ public class Payment {
 	@ManyToOne
 	@JoinColumn(name="U_ID")
 	private User user;
+	
 		
 	@OneToOne(mappedBy="payment",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private Order order;
 	public Payment() {
 		super();
 	}
-
-	//public Payment(int payId, String payType) {
+	
+		//public Payment(int payId, String payType) {
 	public Payment( String payType) {
 		super();
 		this.payId = payId;

@@ -17,7 +17,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USER")
+@Table(name ="USER_T")
 public class User {
 	@Id
 	@Column(name = "U_ID")
@@ -160,4 +160,9 @@ public class User {
 		this.payments = payments;
 	}
 
+	public Cart addCart(Cart cart) {
+		carts.add(cart);
+		cart.setcUser(this);
+		return cart;
+	} 
 }

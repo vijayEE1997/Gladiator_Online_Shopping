@@ -214,5 +214,9 @@ public class Product {
 	public Product() {
 
 	}
-
+	public Cart addCart(Cart cart) {
+		carts.add(cart);
+		cart.setcProducts(this);
+		return cart;
+	} 
 }

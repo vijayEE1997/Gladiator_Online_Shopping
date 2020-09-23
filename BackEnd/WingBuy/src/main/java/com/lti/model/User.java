@@ -17,7 +17,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USER_TBL")
+@Table(name ="USER_T")
 public class User {
 	@Id
 	@Column(name = "U_ID")
@@ -39,54 +39,45 @@ public class User {
 	@Column(name = "U_MOBILE")
 	private long uMobile;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "CART_TBL", joinColumns = { @JoinColumn(name = "U_ID") }, inverseJoinColumns = {
-			@JoinColumn(name = "P_ID") })
-	private Set<Product> cProducts;
+	@OneToMany(mappedBy = "wUser", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<WishList> wishlists;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "WISHLIST_TBL", joinColumns = { @JoinColumn(name = "U_ID") }, inverseJoinColumns = {
-			@JoinColumn(name = "P_ID") })
-	private Set<Product> wProducts;
+	@OneToMany(mappedBy = "compUser", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<Compare> compares;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "COMPARE_TBL", joinColumns = { @JoinColumn(name = "U_ID") }, inverseJoinColumns = {
-			@JoinColumn(name = "P_ID") })
-	private Set<Product> comProducts;
+	@OneToMany(mappedBy = "cUser", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<Cart> carts;
 
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "pUser", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Payment> payments;
 
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<Order> orders;
-
-	public void addProductToCart(Product product) {
-		cProducts.add(product);
-	}
-
-	public void addProductToWishList(Product product) {
-		wProducts.add(product);
-	}
-	public void addProductToCompare(Product product) {
-		comProducts.add(product);
-	}
-
-	public void addPayment(Payment payment) {
-		payments.add(payment);
+	public void addProductToCart(Cart cart) {
+		carts.add(cart);
 	}
 
 	public User() {
 
 	}
 
-	public User(int uId, String uName, String uEmail, String uPassword, String uAddress, long uMobile) {
+	public User(String uName, String uEmail, String uPassword, String uAddress, long uMobile, Set<WishList> wishlists,
+			Set<Compare> compares, Set<Cart> carts, Set<Payment> payments) {
 		super();
-		this.uId = uId;
 		this.uName = uName;
 		this.uEmail = uEmail;
 		this.uPassword = uPassword;
 		this.uAddress = uAddress;
 		this.uMobile = uMobile;
+		this.wishlists = wishlists;
+		this.compares = compares;
+		this.carts = carts;
+		this.payments = payments;
+	}
+
+	@Override
+	public String toString() {
+		return "User [uId=" + uId + ", uName=" + uName + ", uEmail=" + uEmail + ", uPassword=" + uPassword
+				+ ", uAddress=" + uAddress + ", uMobile=" + uMobile + ", wishlists=" + wishlists + ", compares="
+				+ compares + ", carts=" + carts + ", payments=" + payments + "]";
 	}
 
 	public int getuId() {
@@ -105,22 +96,6 @@ public class User {
 		this.uName = uName;
 	}
 
-	public String getuAddress() {
-		return uAddress;
-	}
-
-	public void setuAddress(String uAddress) {
-		this.uAddress = uAddress;
-	}
-
-	public long getuMobile() {
-		return uMobile;
-	}
-
-	public void setuMobile(long uMobile) {
-		this.uMobile = uMobile;
-	}
-
 	public String getuEmail() {
 		return uEmail;
 	}
@@ -137,28 +112,44 @@ public class User {
 		this.uPassword = uPassword;
 	}
 
-	public Set<Product> getcProducts() {
-		return cProducts;
+	public String getuAddress() {
+		return uAddress;
 	}
 
-	public void setcProducts(Set<Product> cProducts) {
-		this.cProducts = cProducts;
+	public void setuAddress(String uAddress) {
+		this.uAddress = uAddress;
 	}
 
-	public Set<Product> getwProducts() {
-		return wProducts;
+	public long getuMobile() {
+		return uMobile;
 	}
 
-	public void setwProducts(Set<Product> wProducts) {
-		this.wProducts = wProducts;
+	public void setuMobile(long uMobile) {
+		this.uMobile = uMobile;
 	}
 
-	public Set<Product> getComProducts() {
-		return comProducts;
+	public Set<WishList> getWishlists() {
+		return wishlists;
 	}
 
-	public void setComProducts(Set<Product> comProducts) {
-		this.comProducts = comProducts;
+	public void setWishlists(Set<WishList> wishlists) {
+		this.wishlists = wishlists;
+	}
+
+	public Set<Compare> getCompares() {
+		return compares;
+	}
+
+	public void setCompares(Set<Compare> compares) {
+		this.compares = compares;
+	}
+
+	public Set<Cart> getCarts() {
+		return carts;
+	}
+
+	public void setCarts(Set<Cart> carts) {
+		this.carts = carts;
 	}
 
 	public Set<Payment> getPayments() {
@@ -169,12 +160,9 @@ public class User {
 		this.payments = payments;
 	}
 
-	public Set<Order> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(Set<Order> orders) {
-		this.orders = orders;
-	}
-
+	public Cart addCart(Cart cart) {
+		carts.add(cart);
+		cart.setcUser(this);
+		return cart;
+	} 
 }

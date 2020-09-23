@@ -9,15 +9,16 @@ import {Router} from '@angular/router'
 export class HeaderComponent implements OnInit {
   public active:boolean;
   public innerWidth:any;
-
-
+  public searchButton:boolean;
   constructor(private router:Router) { 
-    this.active=false;
   }
 
   ngOnInit(): void {
   }
   goToLogin(){
     this.router.navigate(['/login']);
+  }
+  searchButtonF(value:boolean){
+      this.searchButton=value;
   }
 }

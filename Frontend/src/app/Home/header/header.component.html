@@ -1,4 +1,4 @@
-<header>
+<!-- <header>
     <div class="Header">
         <div class="Header-Wrapper">
             <div class="Header-Logo">
@@ -28,6 +28,47 @@
                 <a href="/login" class="Sidebar-Link"><div class="Sidebar-Link-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></span>Sign-In</div></a>
                 <a href="" class="Sidebar-Link"><div class="Sidebar-Link-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></span>Sign-Out</div></a>
             </div>
+        </div>
+    </div>
+</header> -->
+<header>
+    <div class="Header">
+        <div class="Header-Wrapper">
+            <div class="Header-Logo">
+                <a href="/home"><img src="../../../assets/Images/LOGO.png"></a>
+            </div>
+            <div class="Header-Content">
+                <div class="Header-Content-Left Header-Content-LR">
+                </div>
+                <div class="Header-Content-Right Header-Content-LR">
+                    <div class="Header-Link" (click)="searchButtonF(true)"><span style="margin-right: 0.5rem;"><i class="fa fa-search" aria-hidden="true"></i></span>Search</div>
+                    <div class="Header-Link" ><span style="margin-right: 0.5rem;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>Cart</div>
+                    <div class="Header-Link Header-Button" (click)="goToLogin()"><span style="margin-right: 0.5rem;"><i class="fa fa-user" aria-hidden="true"></i></span>Login</div>
+                </div>
+                <div class="Header-Hamburger">
+                    <span (click)="searchButtonF(true)" style="margin-right: 1rem;"><i class="Search fa fa-search" aria-hidden="true"></i></span>
+                    <a href=""><span style="margin-right: 1rem;"><i class="Cart fa fa-shopping-cart" aria-hidden="true"></i></span></a>
+                    <span (click)="active=!active"><i class="Hamburger fa fa-bars" aria-hidden="true"></i></span>
+                </div>
+                <div *ngIf="searchButton" class="Header-Search-Top-Container Header-Search-Top-Container-Small">
+                    <input class="Header-Search-Top" type="input" name="search" placeholder="Search for Product, Brand and more"/>
+                    <span (click)="searchButtonF(false)" style="font-size: 2rem;width:2.5rem;cursor: pointer;text-align: right;"><i class="fa fa-times" aria-hidden="true"></i></span>
+                </div>
+            </div>
+            <div [class.Sidebar-Open]="active" [class.Sidebar-Closed]="!active">
+                <a href="" class="Sidebar-Link"><div class="Sidebar-Link-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-th-large" aria-hidden="true"></i></span>All Categories</div></a>
+                <a href="" class="Sidebar-Link"><div class="Sidebar-Link-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-database" aria-hidden="true"></i></span>My Orders</div></a>
+                <a href="" class="Sidebar-Link"><div class="Sidebar-Link-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>My Cart</div></a>
+                <a href="" class="Sidebar-Link"><div class="Sidebar-Link-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-heart" aria-hidden="true"></i></span>My Wishlist</div></a>
+                <a href="" class="Sidebar-Link"><div class="Sidebar-Link-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-user" aria-hidden="true"></i></span>My Account</div></a>
+                <a href="/login" class="Sidebar-Link"><div class="Sidebar-Link-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></span>Sign-In</div></a>
+                <a href="" class="Sidebar-Link"><div class="Sidebar-Link-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></span>Sign-Out</div></a>
+            </div>
+        </div>
+    </div>
+    <div class="Sub-Header">
+        <div class="Header-Wrapper Sub-Header-Wrapper">
+
         </div>
     </div>
 </header>

@@ -9,6 +9,7 @@
 @media (min-width:1023px){
     .Container{
         width: 974px;
+        margin-top: 105px;
     }
 }
 @media (min-width:1300px){

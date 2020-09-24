@@ -43,6 +43,9 @@ public class Product {
 	@ManyToOne
 	@JoinColumn(name = "A_ID")
 	private Admin admin;
+    
+	
+	
 
 	private int retailer;
 

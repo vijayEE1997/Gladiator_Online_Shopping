@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -48,17 +49,17 @@ public class Order {
 	@JoinColumn(name = "PAY_ID")
 	private Payment payment;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "ORDER_DETAIL_TBL", joinColumns = { @JoinColumn(name = "O_ID") }, inverseJoinColumns = {
-			@JoinColumn(name = "P_ID") })
-	private Set<Product> pOrderDetails;
-
+//	@ManyToMany(cascade = CascadeType.ALL)
+//	@JoinTable(name = "ORDER_DETAIL_TBL", joinColumns = { @JoinColumn(name = "O_ID") }, inverseJoinColumns = {
+//			@JoinColumn(name = "P_ID") })
+//	private Set<Product> pOrderDetails;
+	@OneToMany(mappedBy="odOrders")
+	private Set<OrderDetail> oOrderdetails;
 	public Order() {
 
 	}
-
 	public Order(double oPrice, int oQty, Date oPurchaseDate, Date oDeliveryDate, String oAddress, Payment payment,
-			Set<Product> pOrderDetails) {
+			Set<OrderDetail> oOrderdetails) {
 		super();
 		this.oPrice = oPrice;
 		this.oQty = oQty;
@@ -66,78 +67,63 @@ public class Order {
 		this.oDeliveryDate = oDeliveryDate;
 		this.oAddress = oAddress;
 		this.payment = payment;
-		this.pOrderDetails = pOrderDetails;
+		this.oOrderdetails = oOrderdetails;
 	}
-
-	@Override
-	public String toString() {
-		return "Order [oId=" + oId + ", oPrice=" + oPrice + ", oQty=" + oQty + ", oPurchaseDate=" + oPurchaseDate
-				+ ", oDeliveryDate=" + oDeliveryDate + ", oAddress=" + oAddress + ", payment=" + payment
-				+ ", pOrderDetails=" + pOrderDetails + "]";
-	}
-
 	public int getoId() {
 		return oId;
 	}
-
 	public void setoId(int oId) {
 		this.oId = oId;
 	}
-
 	public double getoPrice() {
 		return oPrice;
 	}
-
 	public void setoPrice(double oPrice) {
 		this.oPrice = oPrice;
 	}
-
 	public int getoQty() {
 		return oQty;
 	}
-
 	public void setoQty(int oQty) {
 		this.oQty = oQty;
 	}
-
 	public Date getoPurchaseDate() {
 		return oPurchaseDate;
 	}
-
 	public void setoPurchaseDate(Date oPurchaseDate) {
 		this.oPurchaseDate = oPurchaseDate;
 	}
-
 	public Date getoDeliveryDate() {
 		return oDeliveryDate;
 	}
-
 	public void setoDeliveryDate(Date oDeliveryDate) {
 		this.oDeliveryDate = oDeliveryDate;
 	}
-
 	public String getoAddress() {
 		return oAddress;
 	}
-
 	public void setoAddress(String oAddress) {
 		this.oAddress = oAddress;
 	}
-
 	public Payment getPayment() {
 		return payment;
 	}
-
 	public void setPayment(Payment payment) {
 		this.payment = payment;
 	}
-
-	public Set<Product> getpOrderDetails() {
-		return pOrderDetails;
+	public Set<OrderDetail> getoOrderdetails() {
+		return oOrderdetails;
 	}
-
-	public void setpOrderDetails(Set<Product> pOrderDetails) {
-		this.pOrderDetails = pOrderDetails;
+	public void setoOrderdetails(Set<OrderDetail> oOrderdetails) {
+		this.oOrderdetails = oOrderdetails;
 	}
+	@Override
+	public String toString() {
+		return "Order [oId=" + oId + ", oPrice=" + oPrice + ", oQty=" + oQty + ", oPurchaseDate=" + oPurchaseDate
+				+ ", oDeliveryDate=" + oDeliveryDate + ", oAddress=" + oAddress + "]";
+	}
+	
+	
 
+	
 }

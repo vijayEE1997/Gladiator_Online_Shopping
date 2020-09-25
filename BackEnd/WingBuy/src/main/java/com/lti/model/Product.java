@@ -39,16 +39,12 @@ public class Product {
 	private int pStock;
 	@Column(name = "P_IMAGE")
 	private String pImage;
-
+	@Column(name="R_ID")
+	private int rId;
 	@ManyToOne
 	@JoinColumn(name = "A_ID")
 	private Admin admin;
     
-	
-	
-
-	private int retailer;
-
 	@OneToMany(mappedBy = "wProducts", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<WishList> wishlists;
 
@@ -77,7 +73,7 @@ public class Product {
 		this.pStock = pStock;
 		this.pImage = pImage;
 		this.admin = admin;
-		this.retailer = retailer;
+		this.rId = retailer;
 	}
 
 	public int getpId() {
@@ -161,11 +157,11 @@ public class Product {
 	}
 
 	public int getRetailer() {
-		return retailer;
+		return rId;
 	}
 
 	public void setRetailer(int retailer) {
-		this.retailer = retailer;
+		this.rId = retailer;
 	}
 
 	public Set<WishList> getWishlists() {
@@ -204,7 +200,7 @@ public class Product {
 	public String toString() {
 		return "Product [pId=" + pId + ", pCategory=" + pCategory + ", pSubCategory=" + pSubCategory + ", pName="
 				+ pName + ", pPrice=" + pPrice + ", pDesc=" + pDesc + ", pBrand=" + pBrand + ", pStock=" + pStock
-				+ ", pImage=" + pImage + ", admin=" + admin + ", retailer=" + retailer + "]";
+				+ ", pImage=" + pImage + ", admin=" + admin + ", retailer=" + rId + "]";
 	}
 	
 	

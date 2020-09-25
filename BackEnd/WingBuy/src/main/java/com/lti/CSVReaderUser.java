@@ -12,7 +12,7 @@ public class CSVReaderUser {
 
 	public static List<User> load() {
 
-		String csvFile = "C:/Users/hp world/Downloads/user_csv.csv";
+		String csvFile = "C:/Users/GNAPIKA/Downloads/user_csv.csv";
 		String line = "";
 		String cvsSplitBy = ",";
 		List<User> ulist = new ArrayList<>();

@@ -39,28 +39,59 @@ public class RetailerDaoImpl implements RetailerDao{
 	}
 
 	@Override
-	public int getRetailerByEmailAndPassword(String eail, String password) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getRetailerByEmailAndPassword(String email, String password) {
+		
+		String query="SELECT E FROM Retailer E WHERE E.rEmail=:email AND E.rPassword=:password";
+		int rId=-1;
+		TypedQuery<Retailer> tquery=null;
+		try {
+			tquery=entityManager.createQuery(query,Retailer.class);
+			tquery.setParameter("email",email);
+			tquery.setParameter("password",password);
+			rId=tquery.getResultList().get(0).getrId();
+		}
+		catch(Exception e)
+		{
+			System.out.println("Retailer not exists.");
+		}
+		return rId ;
 	}
 
 	@Override
 	public Retailer getRetailerByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		String query="SELECT E FROM Retailer E WHERE E.rEmail=:email";
+		Retailer retailer = null;
+		TypedQuery<Retailer> tquery=null;
+		try {
+			tquery=entityManager.createQuery(query,Retailer.class);
+			tquery.setParameter("email",email);
+			retailer=tquery.getResultList().get(0);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Retailer not exists.");
+		}
+		return retailer ;
 	}
 
-	@Override
-	public int addRetalier(Retailer newRetailer) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+/*	@Override
+	public boolean addRetalier(Retailer newRetailer) {
+		
+		begin();
+		entityManager.persist(newRetailer);
+		commit();
+		return true;		
+		
+	}*/
 
-	@Override
+	/*@Override
 	public boolean addProductForApproval(ProductForApproval product) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+		
+		Retailer retailer = null;
+		begin();
+		
+		return retailer ;
+	}*/
 
 	@Override
 	public List<Product> showMyApprovedProducts(int rId) {
@@ -91,6 +122,22 @@ public class RetailerDaoImpl implements RetailerDao{
 			System.out.println("Retailers not exists.");
 		}
 		return retailer;
+	}
+	
+	@Override
+	public List<ProductForApproval> showMyRejectedProducts(int rId) {
+		String query="SELECT E FROM ProductForApproval E WHERE E.retailer.rId=:rId AND E.pStatus='R'";
+		List<ProductForApproval> product=null;
+		TypedQuery<ProductForApproval> tquery=null;
+		try {
+			tquery=entityManager.createQuery(query,ProductForApproval.class);
+			tquery.setParameter("rId",rId);
+			product=tquery.getResultList();
+		}catch(Exception e)
+		{
+			System.out.println("Either approved or not requested");
+		}
+		return product;
 	}
 
 }

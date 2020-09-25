@@ -8,8 +8,12 @@ import javax.persistence.Persistence;
 
 import com.lti.CSVReader;
 import com.lti.CSVReaderUser;
+import com.lti.dao.AdminDao;
+import com.lti.dao.AdminDaoImpl;
 import com.lti.dao.RetailerDao;
 import com.lti.dao.RetailerDaoImpl;
+import com.lti.dao.UserDao;
+import com.lti.dao.UserDaoImpl;
 import com.lti.model.Admin;
 import com.lti.model.Cart;
 import com.lti.model.ProductForApproval;
@@ -24,7 +28,7 @@ public class Main {
 	public static void main(String[] args) throws MessagingException {
 		
 		
-		RetailerDao dao=new RetailerDaoImpl();
+		/*RetailerDao dao=new RetailerDaoImpl();
 		List<Retailer> list=dao.showAllRetailers();
 		for(Retailer retailer:list)
 			System.out.println(retailer);
@@ -32,6 +36,21 @@ public class Main {
 		List<Product> product=dao.showMyApprovedProducts(3);
 		for(Product p:product)
 			System.out.println(p);
+		List<ProductForApproval> product=dao.showMyRejectedProducts(4);
+		for(ProductForApproval p:product)
+			System.out.println(p);*/
+		AdminDao dao1 = new AdminDaoImpl();
+		System.out.println(dao1.getAdminById(1));
+		System.out.println(dao1.getAdminByEmail("vijay.dhakad@gmail.com"));
+		System.out.println(dao1.getAdminByEmailAndPassword("gnapika.ankam@gmail.com","g123456a"));
+		
+		UserDao dao2 = new UserDaoImpl();
+		System.out.println(dao2.getUserById(52));
+		System.out.println(dao2.getUserByEmail("ridhi.a@gmail.com"));
+		System.out.println(dao2.getUserByEmailAndPassword("ridhi.a@gmail.com","r123456a"));
+		System.out.println(dao2.addAddress(52, "xyzabc"));
+		System.out.println(dao2.getCartOfUser(52));
+		System.out.println(dao2.getWishlistOfUser(52));
 //		JavaMailUtil.sendMail("ANKAMGNAPIKA@gmail.com");
 //		JavaMailUtil.sendMail("vishalkumarsingh1010@gmail.com");
 //		JavaMailUtil.sendMail("www.rajfrostbhagat@gmail.com");

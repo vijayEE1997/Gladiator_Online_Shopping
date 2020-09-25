@@ -16,9 +16,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name ="USER_T")
 public class User {
+	
 	@Id
 	@Column(name = "U_ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -59,25 +62,13 @@ public class User {
 
 	}
 
-	public User(String uName, String uEmail, String uPassword, String uAddress, long uMobile, Set<WishList> wishlists,
-			Set<Compare> compares, Set<Cart> carts, Set<Payment> payments) {
+	public User(String uName, String uEmail, String uPassword, String uAddress, long uMobile) {
 		super();
 		this.uName = uName;
 		this.uEmail = uEmail;
 		this.uPassword = uPassword;
 		this.uAddress = uAddress;
 		this.uMobile = uMobile;
-		this.wishlists = wishlists;
-		this.compares = compares;
-		this.carts = carts;
-		this.payments = payments;
-	}
-
-	@Override
-	public String toString() {
-		return "User [uId=" + uId + ", uName=" + uName + ", uEmail=" + uEmail + ", uPassword=" + uPassword
-				+ ", uAddress=" + uAddress + ", uMobile=" + uMobile + ", wishlists=" + wishlists + ", compares="
-				+ compares + ", carts=" + carts + ", payments=" + payments + "]";
 	}
 
 	public int getuId() {
@@ -160,9 +151,11 @@ public class User {
 		this.payments = payments;
 	}
 
-	public Cart addCart(Cart cart) {
-		carts.add(cart);
-		cart.setcUser(this);
-		return cart;
-	} 
+	@Override
+	public String toString() {
+		return "User [uId=" + uId + ", uName=" + uName + ", uEmail=" + uEmail + ", uPassword=" + uPassword
+				+ ", uAddress=" + uAddress + ", uMobile=" + uMobile + "]";
+	}
+	
+	
 }

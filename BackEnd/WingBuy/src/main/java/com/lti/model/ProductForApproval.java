@@ -48,18 +48,9 @@ public class ProductForApproval {
 
 	}
 
-	@Override
-	public String toString() {
-		return "ProductForApproval [pReqId=" + pReqId + ", pCategory=" + pCategory + ", pSubCategory=" + pSubCategory
-				+ ", pName=" + pName + ", pPrice=" + pPrice + ", pDesc=" + pDesc + ", pBrand=" + pBrand + ", pStock="
-				+ pStock + ", pImage=" + pImage + ", pStatus=" + pStatus + ", admin=" + admin + ", retailer=" + retailer
-				+ "]";
-	}
-
-	public ProductForApproval(int pReqId, String pCategory, String pSubCategory, String pName, int pPrice, String pDesc,
+	public ProductForApproval(String pCategory, String pSubCategory, String pName, double pPrice, String pDesc,
 			String pBrand, int pStock, String pImage, char pStatus, Admin admin, Retailer retailer) {
 		super();
-		this.pReqId = pReqId;
 		this.pCategory = pCategory;
 		this.pSubCategory = pSubCategory;
 		this.pName = pName;
@@ -169,4 +160,12 @@ public class ProductForApproval {
 		this.retailer = retailer;
 	}
 
+	@Override
+	public String toString() {
+		return "ProductForApproval [pReqId=" + pReqId + ", pCategory=" + pCategory + ", pSubCategory=" + pSubCategory
+				+ ", pName=" + pName + ", pPrice=" + pPrice + ", pDesc=" + pDesc + ", pBrand=" + pBrand + ", pStock="
+				+ pStock + ", pImage=" + pImage + ", pStatus=" + pStatus + "]";
+	}
+	
+	
 }

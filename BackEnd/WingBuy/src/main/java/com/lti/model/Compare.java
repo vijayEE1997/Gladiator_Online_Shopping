@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,6 +16,7 @@ import javax.persistence.Table;
 public class Compare implements Serializable {
 	@Id
 	@Column(name = "COMP_ID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int compId;
 
 	@Column(name = "P_ID_QTY")
@@ -40,12 +43,6 @@ public class Compare implements Serializable {
 		this.pIdQty = pIdQty;
 		this.compProducts = compProducts;
 		this.compUser = compUser;
-	}
-
-	@Override
-	public String toString() {
-		return "Compare [compId=" + compId + ", pIdQty=" + pIdQty + ", compProducts=" + compProducts + ", compUser="
-				+ compUser + "]";
 	}
 
 	public int getCompId() {
@@ -80,4 +77,11 @@ public class Compare implements Serializable {
 		this.compUser = compUser;
 	}
 
+	@Override
+	public String toString() {
+		return "Compare [compId=" + compId + ", pIdQty=" + pIdQty + ", compProducts=" + compProducts + ", compUser="
+				+ compUser + "]";
+	}
+
+	
 }

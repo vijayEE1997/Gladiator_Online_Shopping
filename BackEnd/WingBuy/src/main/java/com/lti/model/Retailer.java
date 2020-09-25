@@ -13,108 +13,96 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 @Entity
 @Table(name = "RETAILER")
 public class Retailer {
 
-		@Id
-		@GeneratedValue(strategy = GenerationType.AUTO)
-		@Column(name = "R_ID")
-		private int rId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "R_ID")
+	private int rId;
 
-		@Column(name = "R_EMAIL")
-		private String rEmail;
+	@Column(name = "R_EMAIL")
+	private String rEmail;
 
-		@Column(name = "R_MOBILE")
-		private long rMobile;
+	@Column(name = "R_MOBILE")
+	private long rMobile;
 
-		@Column(name = "R_NAME")
-		private String rName;
+	@Column(name = "R_NAME")
+	private String rName;
 
-		@Column(name = "R_PASSWORD")
-		private String rPassword;
-		
-		/*//many to one between retailer and admin
-		@ManyToOne
-		@JoinColumn(name="A_ID")
-		private Admin admin;*/
-		
-	//	@OneToMany(mappedBy="retailer",cascade=CascadeType.ALL)
-	//	private Set<Product> products;
-		
-		@OneToMany(mappedBy="retailer",cascade=CascadeType.ALL)
-		private Set<ProductForApproval> products_f_a;
-		
-public Retailer(){
-			
-		}
+	@Column(name = "R_PASSWORD")
+	private String rPassword;
 
+	@OneToMany(mappedBy = "retailer", cascade = CascadeType.ALL)
+	private Set<ProductForApproval> products_f_a;
 
+	public Retailer() {
 
-public Set<ProductForApproval> getProducts_f_a() {
-	return products_f_a;
-}
+	}
 
+	public Retailer(String rEmail, long rMobile, String rName, String rPassword) {
+		super();
+		this.rEmail = rEmail;
+		this.rMobile = rMobile;
+		this.rName = rName;
+		this.rPassword = rPassword;
+	}
 
-public void setProducts_f_a(Set<ProductForApproval> products_f_a) {
-	this.products_f_a = products_f_a;
-}
+	public int getrId() {
+		return rId;
+	}
 
+	public void setrId(int rId) {
+		this.rId = rId;
+	}
 
-@Override
-public String toString() {
-	return "Retailer [rId=" + rId + ", rEmail=" + rEmail + ", rMobile=" + rMobile + ", rName=" + rName + ", rPassword="
-			+ rPassword + ", products_f_a=" + products_f_a + "]";
-}
+	public String getrEmail() {
+		return rEmail;
+	}
 
-public Retailer(int rId, String rEmail, long rMobile, String rName, String rPassword) {
-	super();
-	this.rId = rId;
-	this.rEmail = rEmail;
-	this.rMobile = rMobile;
-	this.rName = rName;
-	this.rPassword = rPassword;
-}
+	public void setrEmail(String rEmail) {
+		this.rEmail = rEmail;
+	}
 
-public int getrId() {
-	return rId;
-}
+	public long getrMobile() {
+		return rMobile;
+	}
 
-public void setrId(int rId) {
-	this.rId = rId;
-}
+	public void setrMobile(long rMobile) {
+		this.rMobile = rMobile;
+	}
 
-public String getrEmail() {
-	return rEmail;
-}
+	public String getrName() {
+		return rName;
+	}
 
-public void setrEmail(String rEmail) {
-	this.rEmail = rEmail;
-}
+	public void setrName(String rName) {
+		this.rName = rName;
+	}
 
-public long getrMobile() {
-	return rMobile;
-}
+	public String getrPassword() {
+		return rPassword;
+	}
 
-public void setrMobile(long rMobile) {
-	this.rMobile = rMobile;
-}
+	public void setrPassword(String rPassword) {
+		this.rPassword = rPassword;
+	}
 
-public String getrName() {
-	return rName;
-}
+	public Set<ProductForApproval> getProducts_f_a() {
+		return products_f_a;
+	}
 
-public void setrName(String rName) {
-	this.rName = rName;
-}
+	public void setProducts_f_a(Set<ProductForApproval> products_f_a) {
+		this.products_f_a = products_f_a;
+	}
 
-public String getrPassword() {
-	return rPassword;
-}
+	@Override
+	public String toString() {
+		return "Retailer [rId=" + rId + ", rEmail=" + rEmail + ", rMobile=" + rMobile + ", rName=" + rName
+				+ ", rPassword=" + rPassword + "]";
+	}
 
-public void setrPassword(String rPassword) {
-	this.rPassword = rPassword;
-}
-
-		
+	
 }

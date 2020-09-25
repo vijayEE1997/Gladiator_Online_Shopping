@@ -28,19 +28,16 @@ public class Payment {
 	@JoinColumn(name = "U_ID")
 	private User pUser;
 
-	@OneToOne(mappedBy = "payment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "payment")
 	private Order order;
 
 	public Payment() {
-		super();
 	}
 
-	// public Payment(int payId, String payType) {
-	public Payment(String payType) {
+	public Payment(String payType, User pUser) {
 		super();
-		this.payId = payId;
-		// this.payId = payId;
 		this.payType = payType;
+		this.pUser = pUser;
 	}
 
 	public int getPayId() {
@@ -59,12 +56,12 @@ public class Payment {
 		this.payType = payType;
 	}
 
-	public User getUser() {
+	public User getpUser() {
 		return pUser;
 	}
 
-	public void setUser(User user) {
-		this.pUser = user;
+	public void setpUser(User pUser) {
+		this.pUser = pUser;
 	}
 
 	public Order getOrder() {
@@ -77,7 +74,9 @@ public class Payment {
 
 	@Override
 	public String toString() {
-		return "Payment [payId=" + payId + ", payType=" + payType + "]";
+		return "Payment [payId=" + payId + ", payType=" + payType + ", pUser=" + pUser + "]";
 	}
 
+	
+	
 }

@@ -57,10 +57,24 @@ public class Product {
 
 	@OneToMany(mappedBy = "odProducts", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<OrderDetail> orderDetails;
-	
-	public void addProductToCart(Cart cart){
-		carts.add(cart);
-		
+
+	public Product() {
+		super();
+	}
+
+	public Product(String pCategory, String pSubCategory, String pName, double pPrice, String pDesc, String pBrand,
+			int pStock, String pImage, Admin admin, int retailer) {
+		super();
+		this.pCategory = pCategory;
+		this.pSubCategory = pSubCategory;
+		this.pName = pName;
+		this.pPrice = pPrice;
+		this.pDesc = pDesc;
+		this.pBrand = pBrand;
+		this.pStock = pStock;
+		this.pImage = pImage;
+		this.admin = admin;
+		this.retailer = retailer;
 	}
 
 	public int getpId() {
@@ -187,36 +201,8 @@ public class Product {
 	public String toString() {
 		return "Product [pId=" + pId + ", pCategory=" + pCategory + ", pSubCategory=" + pSubCategory + ", pName="
 				+ pName + ", pPrice=" + pPrice + ", pDesc=" + pDesc + ", pBrand=" + pBrand + ", pStock=" + pStock
-				+ ", pImage=" + pImage + ", admin=" + admin + ", retailer=" + retailer + ", wishlists=" + wishlists
-				+ ", compares=" + compares + ", carts=" + carts + ", orderDetails=" + orderDetails + "]";
+				+ ", pImage=" + pImage + ", admin=" + admin + ", retailer=" + retailer + "]";
 	}
-
-	public Product(String pCategory, String pSubCategory, String pName, double pPrice, String pDesc, String pBrand,
-			int pStock, String pImage, Admin admin, int retailer, Set<WishList> wishlists, Set<Compare> compares,
-			Set<Cart> carts, Set<OrderDetail> orderDetails) {
-		super();
-		this.pCategory = pCategory;
-		this.pSubCategory = pSubCategory;
-		this.pName = pName;
-		this.pPrice = pPrice;
-		this.pDesc = pDesc;
-		this.pBrand = pBrand;
-		this.pStock = pStock;
-		this.pImage = pImage;
-		this.admin = admin;
-		this.retailer = retailer;
-		this.wishlists = wishlists;
-		this.compares = compares;
-		this.carts = carts;
-		this.orderDetails = orderDetails;
-	}
-
-	public Product() {
-
-	}
-	public Cart addCart(Cart cart) {
-		carts.add(cart);
-		cart.setcProducts(this);
-		return cart;
-	} 
+	
+	
 }

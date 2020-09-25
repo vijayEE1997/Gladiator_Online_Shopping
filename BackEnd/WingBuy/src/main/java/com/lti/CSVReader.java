@@ -14,7 +14,7 @@ import com.lti.model.Retailer;
 
 	    public static List<ProductForApproval> load(Admin admin1,Admin admin2,Retailer retailer1, Retailer retailer2) {
 
-	        String csvFile = "C:/Users/vishal utpal/Desktop/Gladiator/Backend/v.csv";///likh bhai
+	        String csvFile = "C:/Users/hp world/Downloads/v.csv";///likh bhai
 	        String line = "";
 	        String cvsSplitBy = ",";
 List<ProductForApproval> list = new ArrayList<>();

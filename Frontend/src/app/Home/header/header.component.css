@@ -5,6 +5,207 @@
     top:0;
     z-index: 150;
 }
+.Sub-Header{
+    position: fixed;
+    background-color: #EEF8F7;
+    width:100%;
+    top:65px;
+    z-index: 150;
+}
+.Header-Wrapper{
+    display: flex;
+    height:65px;
+    margin:0 auto;
+    color: rgba(255,255,255,0.85);
+}
+.Sub-Header-Wrapper{
+    height: 40px;
+}
+.Header-Logo{
+    width:200px;
+}
+.Header-Logo img{
+    height: 65px;
+    object-fit: cover;
+}
+.Header-Content{
+    width:calc(100% - 200px);
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.Header-Content-LR{
+    display: flex;
+    align-items: center;
+    font-size: 0.95rem;
+    font-weight: bolder;
+}
+.Header-Search-Top-Container{
+    position: absolute;
+    background-color: #31353D;
+    display: flex;
+    padding: 0 1rem;
+    top:-100%;
+    height: 65px;
+    align-items: center;
+    animation: slide-open-down 200ms forwards;
+}
+@keyframes slide-open-down{
+    100% {top:0;}
+}
+
+.Header-Search-Top{
+    width:calc(100% - 6.5rem);
+    padding:0.7rem 1rem;
+    border-radius:1.25rem;
+    border:none;
+    outline: none;
+}
+.Header-Hamburger{
+    display: none;
+}
+.Header-Hamburger a{
+    color: rgba(255,255,255,0.85);
+}
+.Header-Link{
+    padding:0.5rem 1rem;
+    cursor: pointer;
+}
+.Header-Button{
+    background-color: #E35F21;
+    margin-left: 0.5rem;
+    border-radius: 0.25rem;
+    color: rgba(0,0,0,0.85);
+    cursor: pointer;
+}
+.Header-Button:hover{
+    background-color: rgba(227,95,33,0.75);
+}
+.Sidebar-Open,.Sidebar-Closed{
+    display: none;
+}
+.Sidebar-Link{
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+.Sidebar-Link:hover{
+    color: rgba(227,95,33,0.75);
+}
+.Sidebar-Link-Button{
+    padding:0.5rem 1rem;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: rgba(255,255,255,0.05);
+}
+.Sidebar-Link-Button:hover,.Sidebar-Link-Button:focus{
+    color: rgba(255,255,255,1);
+    background-color: rgba(0,0,0,0.25);
+}
+@media (min-width:1023px){
+    .Header-Wrapper{
+        width: 974px;
+    }
+    .Header-Search-Top-Container{
+        width: 774px;
+    }
+}
+@media (min-width:1300px){
+    .Header-Wrapper{
+        width: 1250px;
+    }
+    .Header-Search-Top-Container{
+        width: 1050px;
+    }
+}
+@media (max-width:1023px){
+    .Header-Wrapper{
+        width: calc(100% - 2rem);
+    }
+    .Sub-Header{
+        display: none;
+    }
+    .Header-Content{
+        justify-content: flex-end;
+    }
+    .Header-Content-LR{
+        display:none;
+    }
+    .Header-Search-Top-Container-Small{
+        top:0;
+        width:100vw;
+        left:0;
+        height: 50px;
+        animation: slide-open-down-s 200ms forwards;
+    }
+    @keyframes slide-open-down-s {
+        100% {top:65px}
+    }
+    .Header-Hamburger{
+        display: flex;
+        align-items: center;
+        margin-left:1rem;
+    }
+    .Header-Link{
+        margin-right: 2rem;
+    }
+    .Hamburger,.Cart,.Search{
+        font-size: 1.75rem;
+    }
+    .Sidebar-Open{
+        position: absolute;
+        top:65px;
+        width:250px;
+        height: 100vh;
+        background-color: #31353D;
+        display: flex;
+        flex-direction: column;
+        border-style: solid;
+        border-width: 1px 0 0 0;
+        border-color: rgba(255,255,255,0.25);
+        right:-100%;
+        animation:slide-open 200ms forwards;
+    }
+    @keyframes slide-open{
+        100%{ right: 0;}
+    }
+}
+@media (max-width:450px){
+    .Header-Wrapper{
+        height:60px;
+        width: calc(100% - 2rem);
+    }
+    .Header-Logo{
+        width:180px;
+    }
+    .Header-Logo img{
+        height: 60px;
+        object-fit: cover;
+    }
+    .Header-Content{
+        width:calc(100% - 180px);
+    }
+    .Header-Hamburger{
+        margin-left:0.5rem;
+    }
+    .Hamburger,.Cart,.Search{
+        font-size: 1.5rem;
+    }
+    .Sidebar-Open{
+        top:60px;
+    }
+    @keyframes slide-open-down-s {
+        100% {top:60px}
+    }
+     
+}
+/* .Header{
+    background-color: #31353D;
+    position: fixed;
+    width:100%;
+    top:0;
+    z-index: 150;
+}
 .Header-Wrapper{
     display: flex;
     height:65px;
@@ -31,7 +232,7 @@
     font-weight: bolder;
 }
 .Header-Search-Top{
-    padding:0.5rem 1rem;
+    padding:0.7rem 1rem;
     border-radius:0.25rem;
     border:none;
     outline: none;
@@ -153,4 +354,4 @@
     .Sidebar-Open{
         top:60px;
     }
-}
+} */

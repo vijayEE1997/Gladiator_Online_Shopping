@@ -11,9 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -65,59 +62,45 @@ public class Order {
 		this.oDeliveryDate = oDeliveryDate;
 		this.oAddress = oAddress;
 	}
-
 	public int getoId() {
 		return oId;
 	}
-
 	public void setoId(int oId) {
 		this.oId = oId;
 	}
-
 	public double getoPrice() {
 		return oPrice;
 	}
-
 	public void setoPrice(double oPrice) {
 		this.oPrice = oPrice;
 	}
-
 	public int getoQty() {
 		return oQty;
 	}
-
 	public void setoQty(int oQty) {
 		this.oQty = oQty;
 	}
-
 	public Date getoPurchaseDate() {
 		return oPurchaseDate;
 	}
-
 	public void setoPurchaseDate(Date oPurchaseDate) {
 		this.oPurchaseDate = oPurchaseDate;
 	}
-
 	public Date getoDeliveryDate() {
 		return oDeliveryDate;
 	}
-
 	public void setoDeliveryDate(Date oDeliveryDate) {
 		this.oDeliveryDate = oDeliveryDate;
 	}
-
 	public String getoAddress() {
 		return oAddress;
 	}
-
 	public void setoAddress(String oAddress) {
 		this.oAddress = oAddress;
 	}
-
 	public Payment getPayment() {
 		return payment;
 	}
-
 	public void setPayment(Payment payment) {
 		this.payment = payment;
 	}
@@ -136,5 +119,5 @@ public class Order {
 				+ ", oDeliveryDate=" + oDeliveryDate + ", oAddress=" + oAddress + "]";
 	}
 
-	
+
 }

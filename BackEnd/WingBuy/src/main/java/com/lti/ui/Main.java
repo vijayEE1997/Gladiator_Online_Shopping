@@ -1,7 +1,5 @@
 package com.lti.ui;
 
-import java.util.Date;
-import java.util.HashSet;
 
 import javax.mail.MessagingException;
 import javax.persistence.EntityManager;
@@ -12,12 +10,9 @@ import com.lti.CSVReader;
 import com.lti.CSVReaderUser;
 import com.lti.model.Admin;
 import com.lti.model.Cart;
-import com.lti.model.Order;
-import com.lti.model.Payment;
 import com.lti.model.ProductForApproval;
 import com.lti.model.Retailer;
 import com.lti.model.User;
-import com.lti.utility.JavaMailUtil;
 
 import java.util.List;
 
@@ -68,7 +63,6 @@ public class Main {
 		}
 		List<User> ulist = csvreaderuser.load();
 		for (User u : ulist) {
-			System.out.println(u);
 			entityManager.getTransaction().begin();
 			entityManager.persist(u);
 			entityManager.getTransaction().commit();

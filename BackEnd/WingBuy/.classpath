@@ -23,6 +23,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="oracle_driver/ojdbc6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/GNAPIKA/Downloads/javax.mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/KIRITIRAJ/Downloads/javax.mail.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

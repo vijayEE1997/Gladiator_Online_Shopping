@@ -1,11 +1,7 @@
 package com.lti.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -17,9 +13,8 @@ import javax.persistence.Table;
 public class Payment {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "PAY_ID")
-	private int payId;
+	private long payId;
 
 	@Column(name = "PAY_TYPE")
 	private String payType;
@@ -40,11 +35,11 @@ public class Payment {
 		this.pUser = pUser;
 	}
 
-	public int getPayId() {
+	public long getPayId() {
 		return payId;
 	}
 
-	public void setPayId(int payId) {
+	public void setPayId(long payId) {
 		this.payId = payId;
 	}
 

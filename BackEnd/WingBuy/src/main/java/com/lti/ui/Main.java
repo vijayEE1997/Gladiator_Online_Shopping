@@ -10,6 +10,8 @@ import com.lti.CSVReader;
 import com.lti.CSVReaderUser;
 import com.lti.dao.AdminDao;
 import com.lti.dao.AdminDaoImpl;
+import com.lti.dao.CartDao;
+import com.lti.dao.CartDaoImpl;
 import com.lti.dao.RetailerDao;
 import com.lti.dao.RetailerDaoImpl;
 import com.lti.dao.UserDao;
@@ -20,6 +22,7 @@ import com.lti.model.ProductForApproval;
 import com.lti.model.Retailer;
 import com.lti.model.User;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.lti.model.Product;
@@ -39,18 +42,21 @@ public class Main {
 		List<ProductForApproval> product=dao.showMyRejectedProducts(4);
 		for(ProductForApproval p:product)
 			System.out.println(p);*/
-		AdminDao dao1 = new AdminDaoImpl();
-		System.out.println(dao1.getAdminById(1));
-		System.out.println(dao1.getAdminByEmail("vijay.dhakad@gmail.com"));
-		System.out.println(dao1.getAdminByEmailAndPassword("gnapika.ankam@gmail.com","g123456a"));
+//		AdminDao dao1 = new AdminDaoImpl();
+//		System.out.println(dao1.getAdminById(1));
+//		System.out.println(dao1.getAdminByEmail("vijay.dhakad@gmail.com"));
+//		System.out.println(dao1.getAdminByEmailAndPassword("gnapika.ankam@gmail.com","g123456a"));
+//		
+//		UserDao dao2 = new UserDaoImpl();
+//		System.out.println(dao2.getUserById(52));
+//		System.out.println(dao2.getUserByEmail("ridhi.a@gmail.com"));
+//		System.out.println(dao2.getUserByEmailAndPassword("ridhi.a@gmail.com","r123456a"));
+//		System.out.println(dao2.addAddress(52, "xyzabc"));
+//		System.out.println(dao2.getCartOfUser(52));
+//		System.out.println(dao2.getWishlistOfUser(52));
+//		
 		
-		UserDao dao2 = new UserDaoImpl();
-		System.out.println(dao2.getUserById(52));
-		System.out.println(dao2.getUserByEmail("ridhi.a@gmail.com"));
-		System.out.println(dao2.getUserByEmailAndPassword("ridhi.a@gmail.com","r123456a"));
-		System.out.println(dao2.addAddress(52, "xyzabc"));
-		System.out.println(dao2.getCartOfUser(52));
-		System.out.println(dao2.getWishlistOfUser(52));
+		
 //		JavaMailUtil.sendMail("ANKAMGNAPIKA@gmail.com");
 //		JavaMailUtil.sendMail("vishalkumarsingh1010@gmail.com");
 //		JavaMailUtil.sendMail("www.rajfrostbhagat@gmail.com");
@@ -123,6 +129,13 @@ public class Main {
 //			entityManager.remove(pfa);
 //			entityManager.getTransaction().commit();
 //		}
+//		
+//		//Product product=entityManager.find(Product.class, 69);
+//		CartDao cart= new CartDaoImpl(); 
+//		System.out.println(cart.addToCart(52, 69));
+//		//System.out.println(cart.updateCart(cId, addOrMinus));
+//		
+//		
 //			entityManager.getTransaction().begin();
 //			User user1=entityManager.find(User.class,52);
 //			Product product1=entityManager.find(Product.class,63);

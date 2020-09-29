@@ -39,6 +39,15 @@ public class PaymentDaoImpl implements PaymentDao{
 		
 		return payment.getPayId();
 	}
+
+	@Override
+	public Payment getPaymentById(long pay_Id) {
+		begin();
+		Payment payment=entityManager.find(Payment.class, pay_Id);
+		commit();
+		
+		return payment;
+	}
 	
 	
 }

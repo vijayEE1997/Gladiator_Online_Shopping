@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.lti.dao.AdminDao;
 import com.lti.dao.RetailerDao;
+import com.lti.dto.RetailerSignUp;
 import com.lti.model.Product;
 import com.lti.model.ProductForApproval;
 import com.lti.model.Retailer;
@@ -22,6 +23,26 @@ public class RetailerServiceImpl implements RetailerService{
 		return this.retailerdao.getRetailerByEmailAndPassword(rEmail, rPassword);
 	}
 
+	@Override
+	public int addRetailer(RetailerSignUp newRetailer) {
+		int id = 0;
+		try
+		{
+			Retailer retailer = this.retailerdao.getRetailerByEmail(newRetailer.getrEmail());
+			return -100;
+		}
+		catch(NullPointerException e)
+		{
+			return -100;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+			id = this.retailerdao.addRetailer(newRetailer);
+		}
+		return id;
+	}
+	
 	@Override
 	public Retailer findgetRetailerById(int rId) {
 		return retailerdao.getRetailerById(rId);
@@ -51,6 +72,8 @@ public class RetailerServiceImpl implements RetailerService{
 	public List<ProductForApproval> findshowMyRejectedProducts(int rId) {
 		return retailerdao.showMyRejectedProducts(rId);
 	}
+
+	
 
 	
 

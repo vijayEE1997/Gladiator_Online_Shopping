@@ -1,3 +1,6 @@
+import { ProductForApproval } from '../../DTO/ProductForApproval';
+import { AdminService } from './../../Service/admin.service';
+import { RetailerService } from './../../Service/retailer.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,32 +11,17 @@ import { Component, OnInit } from '@angular/core';
 export class RequestsComponent implements OnInit {
   desc:any;
   descOpen:boolean=false;
-products:any=[{"rqid":"123",
-               "rid":"235",
-              "category":"Mobile",
-              "subCategory":"Android",
-              "brand":"Samsung",
-              "model":"M31",
-              "stock":"11",
-              "price":"13000",
-              "desc":"huhuh",
-              "status":"P"},
-              {"rqid":"123",
-              "rid":"235",
-             "category":"Mobile",
-             "subCategory":"Android",
-             "brand":"Samsung",
-             "model":"M31",
-             "stock":"11",
-             "price":"13000",
-             "desc":"puuuh",
-             "status":"P"}]
+  productsforApproval:ProductForApproval[]=[];
 
-  constructor() { }
+  constructor(private adminService:AdminService) {  }
 
   ngOnInit(): void {
+   this.adminService.getProductForApproval()
+    .subscribe((data: ProductForApproval[]) => { console.log(data); this.productsforApproval = data });
+
   }
 
+  //for description
   viewDesc(desc:any)
   {
     this.desc=desc;

@@ -35,5 +35,6 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>4.2.8.Final</version>
 		</dependency>
+		
 	</dependencies>
 </project>

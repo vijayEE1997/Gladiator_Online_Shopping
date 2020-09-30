@@ -1,0 +1,157 @@
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h3>Login Here</h3>
+                <form [formGroup]="addProductForm" (ngSubmit)="addProduct()">
+
+                    <!-- <div class="form-group">
+                        <label>Category</label>
+                        <input type="text" formControlName="pCategory" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.pCategory.errors }" [(ngModel)]="pCategory"
+                            name="email" />
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email is required</div>
+                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                        </div>
+                    </div> -->
+
+                    <div class="form-group">
+                        <label for="pCategory">Category</label>
+                        <input type="text" class="form-control" formControlName="pCategory" id="pCategory"
+                            [(ngModel)]=product.pCategory>
+
+                        <div *ngIf="submitted && loginForm.controls.pCategory.errors" class="error">
+                            <div class="text-danger" *ngIf="loginForm.controls.pCategory.errors.required">Email is
+                                required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pSubCategory">SubCategory</label>
+                        <input type="text" class="form-control" formControlName="pSubCategory" id="pSubCategory"
+                            [(ngModel)]=product.pSubCategory>
+
+                        <div *ngIf="submitted && loginForm.controls.pSubCategory.errors" class="error">
+                            <div class="text-danger" *ngIf="loginForm.controls.pSubCategory.errors.required">SubCategory
+                                is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pName">Name</label>
+                        <input type="text" class="form-control" formControlName="pName" id="pName"
+                            [(ngModel)]=product.pName>
+
+                        <div *ngIf="submitted && loginForm.controls.pName.errors" class="error">
+                            <div class="text-danger" *ngIf="loginForm.controls.pName.errors.required">Name is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pPrice">Price</label>
+                        <input type="text" class="form-control" formControlName="pPrice" id="pPrice"
+                            [(ngModel)]=product.pPrice>
+
+                        <div *ngIf="submitted && loginForm.controls.pPrice.errors" class="error">
+                            <div class="text-danger" *ngIf="loginForm.controls.pPrice.errors.required">Price is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pBrand">Brand</label>
+                        <input type="text" class="form-control" formControlName="pBrand" id="pBrand"
+                            [(ngModel)]=product.pBrand>
+
+                        <div *ngIf="submitted && loginForm.controls.pBrand.errors" class="error">
+                            <div class="text-danger" *ngIf="loginForm.controls.pBrand.errors.required">Brand is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pImage">Image</label>
+                        <input type="text" class="form-control" formControlName="pImage" id="pImage"
+                            [(ngModel)]=product.pImage>
+
+                        <div *ngIf="submitted && loginForm.controls.pImage.errors" class="error">
+                            <div class="text-danger" *ngIf="loginForm.controls.pImage.errors.required">Image is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pDesc">Description</label>
+                        <input type="text" class="form-control" formControlName="pDesc" id="pDesc"
+                            [(ngModel)]=product.pDesc>
+
+                        <div *ngIf="submitted && loginForm.controls.pDesc.errors" class="error">
+                            <div class="text-danger" *ngIf="loginForm.controls.pDesc.errors.required">Description is
+                                required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pStatus">Status</label>
+                        <input type="text" class="form-control" formControlName="pStatus" id="pStatus"
+                            [(ngModel)]=product.pStatus>
+
+                        <div *ngIf="submitted && loginForm.controls.pStatus.errors" class="error">
+                            <div class="text-danger" *ngIf="loginForm.controls.pStatus.errors.required">Status is
+                                required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pStock">Stock</label>
+                        <input type="text" class="form-control" formControlName="pStock" id="pStock"
+                            [(ngModel)]=product.pStock>
+
+                        <div *ngIf="submitted && loginForm.controls.pStock.errors" class="error">
+                            <div class="text-danger" *ngIf="loginForm.controls.pStock.errors.required">Stock is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pModel">Description</label>
+                        <input type="text" class="form-control" formControlName="pModel" id="pModel"
+                            [(ngModel)]=product.pModel>
+
+                        <div *ngIf="submitted && loginForm.controls.pModel.errors" class="error">
+                            <div class="text-danger" *ngIf="loginForm.controls.pModel.errors.required">Model is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group"><button class="btn btn-lg btn-primary btn-block" (click)="addProduct()"> +
+                            Product </button> </div>
+
+                </form>
+
+                <div class="col-7">
+                    <div class="container py-5">
+                        <h2></h2>
+                        <h4>Retailer Name :<b>{{retailer.uName}}</b><br></h4>
+                        <h4>Retailer Email :<b>{{retailer.uEmail}}</b><br></h4>
+                        <h4>Retailer Mobile No :<b>{{retailer.uPhone}}</b><br></h4>
+                    </div>
+
+                    <div class="container border border-dark py-5">
+                        <div class="col-2 my-2 text-center">
+                            <img [src]="product.pImage" alt="pImage" style="width: 100px; height: 200px;">
+                        </div>
+                        <div class="col-10 my-2 mr-10 ">
+                            <strong>{{product.pBrand}} {{product.pName}}</strong> <br>
+                            <strong>{{product.pPrice}}</strong> <br>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+            </div>
+        </div>
+    </div>

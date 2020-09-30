@@ -8,6 +8,9 @@ public class UserSignUp {
 	private String uAddress;
 	private long uMobile;
 	
+	public UserSignUp(){
+		
+	}
 	@Override
 	public String toString() {
 		return "UserSignUp [uName=" + uName + ", uEmail=" + uEmail + ", uPassword=" + uPassword + ", uAddress="

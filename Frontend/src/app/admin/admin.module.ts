@@ -1,20 +1,24 @@
+import { AdminService } from './../Service/admin.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddRetailerComponent } from './add-retailer/add-retailer.component';
 import { ProfileAdminComponent } from './profile-admin/profile-admin.component';
 import { RequestsComponent } from './requests/requests.component';
 import { ProductsComponent } from './products/products.component';
+import { VerifyProductsComponent } from './verify-products/verify-products.component';
 
 
 
 @NgModule({
-  declarations: [AddRetailerComponent, ProfileAdminComponent, RequestsComponent, ProductsComponent],
+  declarations: [AddRetailerComponent, ProfileAdminComponent, RequestsComponent, ProductsComponent, VerifyProductsComponent],
   imports: [
     CommonModule
   ],
   exports:[
     AddRetailerComponent,
-    ProfileAdminComponent
-  ]
+    ProfileAdminComponent,
+    VerifyProductsComponent
+  ],
+  providers:[AdminService]
 })
 export class AdminModule { }

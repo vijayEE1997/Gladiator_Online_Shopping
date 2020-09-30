@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import com.lti.dto.UserSignUp;
 import com.lti.model.Cart;
 import com.lti.model.Retailer;
 import com.lti.model.User;
@@ -15,12 +16,34 @@ import com.lti.model.WishList;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.hibernate.query.Query;
 
 @Repository("userdao")
 public class UserDaoImpl implements UserDao {
+	
+	
 
 	@PersistenceContext
 	private EntityManager entityManager;
+	
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public int addUser(UserSignUp newUser) {
+
+		User user = new User();
+		user.setuName(newUser.getuName());
+		user.setuPassword(newUser.getuPassword());
+		user.setuAddress(newUser.getuAddress());
+		user.setuEmail(newUser.getuEmail());
+		user.setuMobile(newUser.getuMobile());
+		this.entityManager.persist(user);
+		String q1 = "select max(uid) from user_t";
+		Query query1 = (Query) this.entityManager.createNativeQuery(q1);
+		Number id = (Number) query1.getSingleResult();
+		int uId = id.intValue();
+		return uId;
+	}
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
@@ -89,11 +112,12 @@ public class UserDaoImpl implements UserDao {
 		return true;
 	}
 
-	/*
-	 * @Override public User updateUser(int uId, User user) {
-	 * 
-	 * return null; }
-	 */
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	 public User updateUser(int uId, User user) {	  
+	  return null; 
+	  }
+	 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<Cart> getCartOfUser(int uId) {
@@ -132,15 +156,8 @@ public class UserDaoImpl implements UserDao {
 
 	}
 
-	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
-	public User updateUser(int uId, User user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
-	/*
-	 * @Override public User updateUser(int uId, User user) { // TODO
-	 * Auto-generated method stub return null; }
-	 */
+	
+
 }

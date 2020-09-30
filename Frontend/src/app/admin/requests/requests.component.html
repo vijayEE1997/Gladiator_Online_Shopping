@@ -15,17 +15,17 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let p of products">
-                <td>{{p.rqid}}</td>
-                <td>{{p.rid}}</td>
-                <td>{{p.category}}</td>
-                <td>{{p.subCategory}}</td>
-                <td>{{p.brand}}</td>
-                <td>{{p.model}}</td>
-                <td>{{p.stock}}</td>
-                <td>{{p.price}}</td>
-                <td>{{p.status}}</td>
-                <td id="Admin-Button-td"><div class="Admin-Button" (click)="viewDesc(p.desc)"><span style="margin-right: 0.5rem;"><i class="fa fa-eye" aria-hidden="true"></i></span>View</div></td>
+            <tr *ngFor="let p of productsForApproval">
+                <td>{{p.pReqId}}</td>
+                <td>{{p.prId}}</td>
+                <td>{{p.pCategory}}</td>
+                <td>{{p.pSubCategory}}</td>
+                <td>{{p.pBrand}}</td>
+                <td>{{p.pModel}}</td>
+                <td>{{p.pStock}}</td>
+                <td>{{p.pPrice}}</td>
+                <td>{{p.pStatus}}</td>
+                <td id="Admin-Button-td"><div class="Admin-Button" (click)="viewDesc(p.pDesc)"><span style="margin-right: 0.5rem;"><i class="fa fa-eye" aria-hidden="true"></i></span>View</div></td>
             </tr>
         </tbody>
     </table>

@@ -28,9 +28,12 @@ import com.lti.service.RetailerService;
 import com.lti.service.UserService;
 import com.lti.service.WishListService;
 import com.lti.dto.Login;
+import com.lti.dto.ProductForApprovalDTO;
+import com.lti.dto.RetailerSignUp;
+import com.lti.dto.UserSignUp;
 
 @RestController
-@RequestMapping(path = "/")
+@RequestMapping(path = "buy")
 @CrossOrigin
 public class MainController {
 	
@@ -49,19 +52,19 @@ public class MainController {
 	@Autowired
 	private OrderService orderservice;
 	
-	@PostMapping(path = "/login")
-	public int login(@RequestBody Login login)
+	@PostMapping(path = "/userlogin")
+	public int userlogin(@RequestBody Login login)
 	{
 		// {
-			return this.userservice.login(login);
+			return this.userservice.loginuser(login);
 		} /*catch (CustomerException e) {
 			
 			e.printStackTrace();
 			return -100;
 		}*/
 	
-	@PostMapping(path = "/retailerLogin") 
-	public int retailerLogin(@RequestBody Login login)
+	@PostMapping(path = "/retailerlogin") 
+	public int retailerlogin(@RequestBody Login login)
 	{
 			return this.retailerservice.loginRetailer(login.getEmail(), login.getPassword());
 		} /*catch (CustomerException e) {
@@ -69,7 +72,45 @@ public class MainController {
 			e.printStackTrace();
 			return -100;
 		}*/
-
+		
+	
+	@PostMapping(path = "/adminlogin") 
+	public int adminlogin(@RequestBody Login login)
+	{
+			return this.adminservice.loginadmin(login.getEmail(), login.getPassword());
+		} /*catch (CustomerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return -100;
+		}*/
+	
+		@PostMapping(path = "/addNewUser")
+	public int addNewUser(@RequestBody UserSignUp newUser)
+	{
+		return this.userservice.addUser(newUser);
+	}
+		
+		@PostMapping(path = "/addNewRetailer") 
+		public int addNewRetailer(@RequestBody RetailerSignUp newRetailer)
+		{
+			return this.retailerservice.addRetailer(newRetailer);
+		}
+		
+		@GetMapping(path = "{aId}")
+		public List<ProductForApprovalDTO> cviewProductstobeApproved(@PathVariable("aId") int aId){
+			List<ProductForApproval> prodforapps =adminservice.viewProductstobeApproved(aId);
+			
+			List<ProductForApprovalDTO> dto = null;
+			for(ProductForApproval p:prodforapps)
+			{
+				ProductForApprovalDTO prod_dto1 = new ProductForApprovalDTO();
+				prod_dto1=p;
+			}
+			return dto;
+		}
+		
+		
+/*
 	@GetMapping(path = "{aId}")
 	public Admin cgetAdminById(@PathVariable("aId") int aId) {
 		Admin admin = adminservice.findAdminById(aId);
@@ -212,5 +253,5 @@ public class MainController {
 	public List<OrderDetail> cfindgetOrderDetailById(@PathVariable("odId")int odId) {
 	List<OrderDetail> orderdetails=	orderservice.findgetOrderDetailById(odId);
 	return orderdetails;
-	}
+	}*/
 }

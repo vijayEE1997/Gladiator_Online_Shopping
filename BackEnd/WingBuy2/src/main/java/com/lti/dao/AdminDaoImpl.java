@@ -1,5 +1,7 @@
 package com.lti.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -11,6 +13,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.model.Admin;
+import com.lti.model.ProductForApproval;
 import com.lti.model.Retailer;
 
 @Repository("admindao")
@@ -69,6 +72,24 @@ public class AdminDaoImpl implements AdminDao {
 			System.out.println("Admin not exists.");
 		}
 		return admin;
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public List<ProductForApproval> getProductstobeApproved(int aId) {
+		
+			String query = "SELECT E FROM ProductForApproval E WHERE E.admin.aId=:aId AND E.pStatus='P'";
+			List<ProductForApproval> product = null;
+			TypedQuery<ProductForApproval> tquery = null;
+			try {
+				tquery = entityManager.createQuery(query, ProductForApproval.class);
+				tquery.setParameter("aId", aId);
+				product = tquery.getResultList();
+			} catch (Exception e) {
+				System.out.println("No pending requests or some error");
+			}
+			return product;
+		
 	}
 
 }

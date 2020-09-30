@@ -8,9 +8,13 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import com.lti.dto.RetailerSignUp;
 import com.lti.model.Product;
 import com.lti.model.ProductForApproval;
 import com.lti.model.Retailer;
+import com.lti.model.User;
+
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +24,22 @@ public class RetailerDaoImpl implements RetailerDao {
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	
+	@Override
+	public int addRetailer(RetailerSignUp newRetailer) {
+		Retailer retailer = new Retailer();
+		retailer.setrName(newRetailer.getrName());
+		retailer.setrMobile(newRetailer.getrMobile());
+		retailer.setrEmail(newRetailer.getrEmail());
+		retailer.setrPassword(newRetailer.getrPassword());		
+		this.entityManager.persist(retailer);
+		String q1 = "select max(rId) from retailer";
+		Query query1 = (Query) this.entityManager.createNativeQuery(q1);
+		Number id = (Number) query1.getSingleResult();
+		int rId = id.intValue();
+		return rId;
+	}
+	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public Retailer getRetailerById(int rId) {
@@ -133,5 +153,7 @@ public class RetailerDaoImpl implements RetailerDao {
 		}
 		return product;
 	}
+
+	
 
 }

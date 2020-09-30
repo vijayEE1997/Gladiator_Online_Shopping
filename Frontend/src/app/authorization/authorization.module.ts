@@ -5,7 +5,7 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerService } from '../Service/customer.service'
-
+import { EncrDecrService } from '../Service/encr-decr.service'
 
 
 @NgModule({
@@ -13,7 +13,7 @@ import { CustomerService } from '../Service/customer.service'
   imports: [
     CommonModule,ReactiveFormsModule,FormsModule
   ],
-  providers:[CustomerService],
+  providers:[CustomerService,EncrDecrService],
   exports:[
     LoginComponent, RegisterComponent, ForgotPasswordComponent
   ]

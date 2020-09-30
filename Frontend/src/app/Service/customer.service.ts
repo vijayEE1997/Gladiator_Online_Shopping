@@ -8,15 +8,17 @@ import { HttpClient, HttpHeaderResponse, HttpErrorResponse } from '@angular/comm
 })
 export class CustomerService {
 
-  private _tempurl =  'http://localhost:3000/';
-  private _url =      'http://localhost:3000/';
+  private tempurl =  'http://localhost:8080/WingBuy/buy/';
+  private url ='';
 
-  constructor(private _http : HttpClient) { }
+  constructor(private http : HttpClient) { }
 
-  login(login : Login) : Observable<number>
+  login(login : Login) :Observable<number>
   {
-    this._url = this._tempurl;
-    this._url += 'login';
-    return this._http.post<number>(this._url,login);
+    console.log(login)
+    this.url = this.tempurl;
+    this.url += 'login';
+    console.log(this.url)
+    return  this.http.post<number>(this.url,login);
   }
 }

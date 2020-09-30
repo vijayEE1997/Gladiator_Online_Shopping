@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int login(Login login){//throws CustomerException {
+		System.out.println(login.getEmail());
 			int id = this.userdao.getUserByEmailAndPassword(login.getEmail(),login.getPassword());
 			return id;
 		}

@@ -3,6 +3,11 @@ package com.lti.dto;
 public class Login {
 	private String email;
 	private String password;
+	
+	
+	public Login() {
+		super();
+	}
 	public String getEmail() {
 		return email;
 	}

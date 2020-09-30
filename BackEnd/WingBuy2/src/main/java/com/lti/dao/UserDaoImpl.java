@@ -89,11 +89,12 @@ public class UserDaoImpl implements UserDao {
 		return true;
 	}
 
-	/*
-	 * @Override public User updateUser(int uId, User user) {
-	 * 
-	 * return null; }
-	 */
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	 public User updateUser(int uId, User user) {	  
+	  return null; 
+	  }
+	 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<Cart> getCartOfUser(int uId) {
@@ -132,15 +133,6 @@ public class UserDaoImpl implements UserDao {
 
 	}
 
-	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
-	public User updateUser(int uId, User user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
-	/*
-	 * @Override public User updateUser(int uId, User user) { // TODO
-	 * Auto-generated method stub return null; }
-	 */
 }

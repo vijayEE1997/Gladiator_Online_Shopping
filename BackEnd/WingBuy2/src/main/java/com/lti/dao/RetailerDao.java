@@ -8,7 +8,7 @@ import com.lti.model.Retailer;
 
 public interface RetailerDao {
 	public Retailer getRetailerById(int rId);//return Retailer
-	public int getRetailerByEmailAndPassword(String eail,String password);//return rId
+	public int getRetailerByEmailAndPassword(String email,String password);//return rId
 	public Retailer getRetailerByEmail(String email);//return Retailer
 	//public int addRetalier(Retailer newRetailer);//return rId after adding
 //	public boolean addProductForApproval(ProductForApproval product);

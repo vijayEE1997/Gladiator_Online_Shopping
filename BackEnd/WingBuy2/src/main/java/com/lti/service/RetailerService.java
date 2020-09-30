@@ -7,8 +7,9 @@ import com.lti.model.ProductForApproval;
 import com.lti.model.Retailer;
 
 public interface RetailerService {
+	public int loginRetailer(String rEmail, String rPassword); //throws CustomerException;
 	public Retailer findgetRetailerById(int rId);//return Retailer
-	public int findgetRetailerByEmailAndPassword(String eail,String password);//return rId
+	public int findgetRetailerByEmailAndPassword(String email,String password);//return rId
 	public Retailer findgetRetailerByEmail(String email);//return Retailer
 	//public int addRetalier(Retailer newRetailer);//return rId after adding
 //	public boolean addProductForApproval(ProductForApproval product);

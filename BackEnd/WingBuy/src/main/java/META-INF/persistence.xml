@@ -12,7 +12,7 @@
             <property name="javax.persistence.jdbc.password" value="shopping" />
             <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver" />
         <property name ="hibernate.show_sql" value="true"/>
-        <property name ="hibernate.hbm2ddl.auto" value ="create"/>
+        <property name ="hibernate.hbm2ddl.auto" value ="update"/>
         </properties>
     </persistence-unit>
 </persistence>

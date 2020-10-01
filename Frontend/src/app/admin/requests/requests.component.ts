@@ -16,8 +16,9 @@ export class RequestsComponent implements OnInit {
   constructor(private adminService:AdminService) {  }
 
   ngOnInit(): void {
-   this.adminService.getProductForApproval()
-    .subscribe((data: ProductForApproval[]) => { console.log(data); this.productsforApproval = data });
+   this.adminService.getProductForApproval().subscribe(data => { 
+      this.productsforApproval = data 
+    });
 
   }
 

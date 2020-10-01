@@ -12,7 +12,7 @@ export class AdminService {
   url='';
   
   constructor(private http:HttpClient) { }
-
+  
   getProductForApproval(){
     this.url=this.baseurl+'requests/1';
     return this.http.get<ProductForApproval[]>(this.url);
@@ -20,6 +20,14 @@ export class AdminService {
   getProducts(){
     this.url=this.baseurl+'allProducts/1';
     return this.http.get<Product[]>(this.url);
+  }
+  getAllRetailers(){
+    this.url=this.baseurl+'getAllRetailers';
+    return this.http.get<any[]>(this.url);
+  }
+  deleteRetailer(rId:number){
+    this.url=this.baseurl+'deleteRetailer/'+rId;
+    return this.http.get<any[]>(this.url);
   }
 
 

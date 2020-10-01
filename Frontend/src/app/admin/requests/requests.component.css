@@ -1,4 +1,5 @@
 .Admin-Requests{
+    position: relative;
     width: 100%;
     height:calc(100% - 2rem);
     border-radius: 0.25rem;
@@ -37,9 +38,10 @@
 }
 .Description{
     position: absolute;
-    top:calc(50% - 200px);
-    left:calc(50% - 300px);
-    width:600px;
-    height: 400px;
+    top:0;
+    left:0;
+    height: 100%;
+    width: 100%;
+    z-index: 200;
     background-color: rgba(255,255,255,0.9);
 }

@@ -37,7 +37,7 @@ import com.lti.dto.UserSignUp;
 @RestController
 @RequestMapping(path = "buy")
 @CrossOrigin
-public class MainController {
+public class AdminController {
 
 	@Autowired
 	private AdminService adminservice;
@@ -132,6 +132,17 @@ public class MainController {
 	@PostMapping(path = "rejectProduct/{aId}/{rqId}")
 	public boolean rejectProduct(@PathVariable("aId") int aId,@PathVariable("rqId") int rqId){
 			return adminservice.rejectProductByrqID(aId,rqId);
+	}
+	
+	@GetMapping(path = "getAllRetailers")
+	public List<Retailer> getAllRetailers(){
+		List<Retailer> dto=adminservice.viewAllRetailers();
+		return dto;
+	}
+	@GetMapping(path = "deleteRetailer/{rId}")
+	public List<Retailer> deleteRetailer(@PathVariable("rId") int rId){
+		List<Retailer> dto=adminservice.deleteRetailer(rId);
+		return dto;
 	}
 	/*
 	 * @GetMapping(path = "{aId}") public Admin cgetAdminById(@PathVariable("aId")

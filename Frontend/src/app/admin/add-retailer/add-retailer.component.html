@@ -1,13 +1,34 @@
 <div class="Admin-Retailer">
-    <div class="Admin-Retailers"></div>
-    <div class="Admin-Retailers-Button">
-        <div class="Admin-Button" (click)="addRetailerF()"><span style="margin-right: 0.5rem;"><i class="fa fa-user-plus" aria-hidden="true"></i></span>Add Retailer</div>
-        <div class="Admin-Button" (click)="removeRetailerF()"><span style="margin-right: 0.5rem;"><i class="fa fa-user-times" aria-hidden="true"></i></span>Remove Retailer</div>
+    <div class="Admin-Retailers">
+        <table>
+            <thead>
+                <tr>
+                    <th>RID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of retailers">
+                    <td>{{p.rId}}</td>
+                    <td>{{p.rName}}</td>
+                    <td>{{p.rEmail}}</td>
+                    <td>{{p.rMobile}}</td>
+                    <td id="Admin-Button-td"><div class="Admin-Button" (click)="removeRetailerF(p)"><span style="margin-left: 0.5rem;"><i class="fa fa-user-times" aria-hidden="true"></i></span></div></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <div *ngIf="addRetailer" class="Admin-Retailers-Action">
+    <!-- <div class="Admin-Retailers-Button"> -->
+        <!-- <div class="Admin-Button" (click)="addRetailerF()"><span style="margin-right: 0.5rem;"><i class="fa fa-user-plus" aria-hidden="true"></i></span>Add Retailer</div> -->
+        <!-- <div class="Admin-Button" (click)="removeRetailerF()"><span style="margin-right: 0.5rem;"><i class="fa fa-user-times" aria-hidden="true"></i></span>Remove Retailer</div> -->
+    <!-- </div> -->
+    <!-- <div *ngIf="addRetailer" class="Admin-Retailers-Action">
 
-    </div>
-    <div *ngIf="removeRetailer" class="Admin-Retailers-Action">
+    </div> -->
+    <!-- <div *ngIf="removeRetailer" class="Admin-Retailers-Action">
         
-    </div>
+    </div> -->
 </div>

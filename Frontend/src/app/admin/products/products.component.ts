@@ -17,9 +17,8 @@ products:Product[]=[];
 constructor(private adminService:AdminService) {  }
 
 ngOnInit(): void {
- this.adminService.getProducts()
-  .subscribe((data: Product[]) => { console.log(data); this.products = data 
-    console.log(this.products)
+ this.adminService.getProducts().subscribe(data => {
+    this.products = data 
  });
 
 }

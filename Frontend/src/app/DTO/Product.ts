@@ -1,5 +1,7 @@
 export class Product
 {
+    pId:number;
+    rId:number;
     pBrand:string;
     pCategory:string;
     pSubCategory:string;

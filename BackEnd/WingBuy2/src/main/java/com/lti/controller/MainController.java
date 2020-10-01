@@ -1,5 +1,6 @@
 package com.lti.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ import com.lti.service.RetailerService;
 import com.lti.service.UserService;
 import com.lti.service.WishListService;
 import com.lti.dto.Login;
+import com.lti.dto.ProductDTO;
 import com.lti.dto.ProductForApprovalDTO;
 import com.lti.dto.RetailerSignUp;
 import com.lti.dto.UserSignUp;
@@ -78,16 +80,16 @@ public class MainController {
 		return this.retailerservice.addRetailer(newRetailer);
 	}
 
-	@GetMapping(path = "/{aId}")
+	@GetMapping(path = "/requests/{aId}")
 	public List<ProductForApprovalDTO> cviewProductstobeApproved(@PathVariable("aId") int aId)
 	{
 			List<ProductForApproval> prodforapps =adminservice.viewProductstobeApproved(aId);	
-			List<ProductForApprovalDTO> dto = null;
+			List<ProductForApprovalDTO> dto = new ArrayList<ProductForApprovalDTO>();
 			for(ProductForApproval p:prodforapps)
 			{
 				ProductForApprovalDTO prod_dto1 = new ProductForApprovalDTO();
 				prod_dto1.setpReqId(p.getpReqId());
-				prod_dto1.setpName(p.getpImage());
+				prod_dto1.setpName(p.getpName());
 				prod_dto1.setpCategory(p.getpCategory());
 				prod_dto1.setpBrand(p.getpBrand());
 				prod_dto1.setpDesc(p.getpDesc());
@@ -97,10 +99,40 @@ public class MainController {
 				prod_dto1.setpStatus(p.getpStatus());
 				prod_dto1.setpStock(p.getpStock());
 				prod_dto1.setrId(p.getRetailer().getrId());
+				dto.add(prod_dto1);
 			}
 			return dto;
 		}
-
+	@GetMapping(path = "allProducts/{aId}")
+	public List<ProductDTO> cviewProducts(@PathVariable("aId") int aId){
+		List<Product> prods =adminservice.viewProducts(aId);
+		
+		List<ProductDTO> dto = new ArrayList<>();
+		for(Product p:prods)
+		{
+			ProductDTO prod_dto1 = new ProductDTO();
+			prod_dto1.setrId(p.getRetailer());
+			prod_dto1.setpId(p.getpId());
+			prod_dto1.setpName(p.getpName());
+			prod_dto1.setpCategory(p.getpCategory());
+			prod_dto1.setpBrand(p.getpBrand());
+			prod_dto1.setpDesc(p.getpDesc());
+			prod_dto1.setpPrice(p.getpPrice());
+			prod_dto1.setpSubCategory(p.getpSubCategory());
+			prod_dto1.setpImage(p.getpImage());
+			prod_dto1.setpStock(p.getpStock());
+			dto.add(prod_dto1);	
+		}
+		return dto;
+	}
+	@PostMapping(path = "approveProduct/{aId}/{rqId}")
+	public boolean approveProduct(@PathVariable("aId") int aId,@PathVariable("rqId") int rqId){
+			return adminservice.approveProductByrqID(aId,rqId);
+	}
+	@PostMapping(path = "rejectProduct/{aId}/{rqId}")
+	public boolean rejectProduct(@PathVariable("aId") int aId,@PathVariable("rqId") int rqId){
+			return adminservice.rejectProductByrqID(aId,rqId);
+	}
 	/*
 	 * @GetMapping(path = "{aId}") public Admin cgetAdminById(@PathVariable("aId")
 	 * int aId) { Admin admin = adminservice.findAdminById(aId); return admin; }

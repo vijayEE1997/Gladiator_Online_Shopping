@@ -1,102 +1,27 @@
 package com.lti.dto;
 
-public class ProductForApprovalDTO {
-	private int pReqId;
+public class ProductDTO {
+
 	private String pCategory;
 	private String pSubCategory;
-	private String pImage;
 	private String pName;
 	private double pPrice;
 	private String pDesc;
 	private String pBrand;
 	private int pStock;
-	private char pStatus;
+	private String pImage;
 	private int rId;
-
-	public ProductForApprovalDTO() {
-
+	private int pId;
+	
+public int getpId() {
+		return pId;
 	}
-
-	public int getpReqId() {
-		return pReqId;
+	public void setpId(int pId) {
+		this.pId = pId;
 	}
-
-	public void setpReqId(int pReqId) {
-		this.pReqId = pReqId;
+public ProductDTO(){
+		
 	}
-
-	public String getpCategory() {
-		return pCategory;
-	}
-
-	public void setpCategory(String pCategory) {
-		this.pCategory = pCategory;
-	}
-
-	public String getpSubCategory() {
-		return pSubCategory;
-	}
-
-	public void setpSubCategory(String pSubCategory) {
-		this.pSubCategory = pSubCategory;
-	}
-
-	public String getpImage() {
-		return pImage;
-	}
-
-	public void setpImage(String pImage) {
-		this.pImage = pImage;
-	}
-
-	public String getpName() {
-		return pName;
-	}
-
-	public void setpName(String pName) {
-		this.pName = pName;
-	}
-
-	public double getpPrice() {
-		return pPrice;
-	}
-
-	public void setpPrice(double pPrice) {
-		this.pPrice = pPrice;
-	}
-
-	public String getpDesc() {
-		return pDesc;
-	}
-
-	public void setpDesc(String pDesc) {
-		this.pDesc = pDesc;
-	}
-
-	public String getpBrand() {
-		return pBrand;
-	}
-
-	public void setpBrand(String pBrand) {
-		this.pBrand = pBrand;
-	}
-
-	public int getpStock() {
-		return pStock;
-	}
-
-	public void setpStock(int pStock) {
-		this.pStock = pStock;
-	}
-
-	public char getpStatus() {
-		return pStatus;
-	}
-
-	public void setpStatus(char pStatus) {
-		this.pStatus = pStatus;
-	}
-
 	public int getrId() {
 		return rId;
 	}
@@ -105,27 +30,77 @@ public class ProductForApprovalDTO {
 		this.rId = rId;
 	}
 
-	public ProductForApprovalDTO(int pReqId, String pCategory, String pSubCategory, String pImage, String pName,
-			double pPrice, String pDesc, String pBrand, int pStock, char pStatus, int rId) {
+	
+	
+	public String getpCategory() {
+		return pCategory;
+	}
+	public void setpCategory(String pCategory) {
+		this.pCategory = pCategory;
+	}
+	public String getpSubCategory() {
+		return pSubCategory;
+	}
+	public void setpSubCategory(String pSubCategory) {
+		this.pSubCategory = pSubCategory;
+	}
+	public String getpName() {
+		return pName;
+	}
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
+	public double getpPrice() {
+		return pPrice;
+	}
+	public void setpPrice(double pPrice) {
+		this.pPrice = pPrice;
+	}
+	public String getpDesc() {
+		return pDesc;
+	}
+	public void setpDesc(String pDesc) {
+		this.pDesc = pDesc;
+	}
+	public String getpBrand() {
+		return pBrand;
+	}
+	public void setpBrand(String pBrand) {
+		this.pBrand = pBrand;
+	}
+	public int getpStock() {
+		return pStock;
+	}
+	public void setpStock(int pStock) {
+		this.pStock = pStock;
+	}
+	public String getpImage() {
+		return pImage;
+	}
+	public void setpImage(String pImage) {
+		this.pImage = pImage;
+	}
+	public ProductDTO(String pCategory, String pSubCategory, String pName, double pPrice, String pDesc, String pBrand,
+			int pStock, String pImage, int rId, int pId) {
 		super();
-		this.pReqId = pReqId;
 		this.pCategory = pCategory;
 		this.pSubCategory = pSubCategory;
-		this.pImage = pImage;
 		this.pName = pName;
 		this.pPrice = pPrice;
 		this.pDesc = pDesc;
 		this.pBrand = pBrand;
 		this.pStock = pStock;
-		this.pStatus = pStatus;
+		this.pImage = pImage;
 		this.rId = rId;
+		this.pId = pId;
 	}
-
 	@Override
 	public String toString() {
-		return "ProductForApproval [pReqId=" + pReqId + ", pCategory=" + pCategory + ", pSubCategory=" + pSubCategory
-				+ ", pImage=" + pImage + ", pName=" + pName + ", pPrice=" + pPrice + ", pDesc=" + pDesc + ", pBrand="
-				+ pBrand + ", pStock=" + pStock + ", pStatus=" + pStatus + ", rId=" + rId + "]";
+		return "ProductDTO [pCategory=" + pCategory + ", pSubCategory=" + pSubCategory + ", pName=" + pName
+				+ ", pPrice=" + pPrice + ", pDesc=" + pDesc + ", pBrand=" + pBrand + ", pStock=" + pStock + ", pImage="
+				+ pImage + ", rId=" + rId + ", pId=" + pId + "]";
 	}
-
+	
+	
+	
 }

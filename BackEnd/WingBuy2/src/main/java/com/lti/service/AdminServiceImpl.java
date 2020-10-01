@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.lti.dao.AdminDao;
 import com.lti.model.Admin;
+import com.lti.model.Product;
 import com.lti.model.ProductForApproval;
 @Service("adminservice")
 @Scope(scopeName="singleton")
@@ -39,6 +40,21 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public List<ProductForApproval> viewProductstobeApproved(int aId) {
 		return admindao.getProductstobeApproved(aId);
+	}
+
+	@Override
+	public List<Product> viewProducts(int aId) {
+		return admindao.getProducts(aId);
+	}
+
+	@Override
+	public boolean approveProductByrqID(int aId, int rqId) {
+		return admindao.addProductByrqID(aId,rqId);
+	}
+
+	@Override
+	public boolean rejectProductByrqID(int aId, int rqId) {
+		return admindao.rejectProductByrqIdd(aId,rqId);
 	}
 
 	

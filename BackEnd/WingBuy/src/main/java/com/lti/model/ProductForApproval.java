@@ -164,8 +164,10 @@ public class ProductForApproval {
 	public String toString() {
 		return "ProductForApproval [pReqId=" + pReqId + ", pCategory=" + pCategory + ", pSubCategory=" + pSubCategory
 				+ ", pName=" + pName + ", pPrice=" + pPrice + ", pDesc=" + pDesc + ", pBrand=" + pBrand + ", pStock="
-				+ pStock + ", pImage=" + pImage + ", pStatus=" + pStatus + "]";
+				+ pStock + ", pImage=" + pImage + ", pStatus=" + pStatus + ", admin=" + admin + ", retailer=" + retailer
+				+ "]";
 	}
+
 	
-	
+
 }

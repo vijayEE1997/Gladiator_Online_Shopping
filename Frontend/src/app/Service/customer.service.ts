@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Login } from '../DTO/Login';
+import { Registration } from '../DTO/Registration';
 import { HttpClient, HttpHeaderResponse, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
@@ -15,10 +16,15 @@ export class CustomerService {
 
   login(login : Login) :Observable<number>
   {
-    console.log(login)
     this.url = this.tempurl;
-    this.url += 'login';
-    console.log(this.url)
+    this.url += 'userlogin';
     return  this.http.post<number>(this.url,login);
+  }
+  register(register:Registration)
+  {
+    console.log(register)
+    this.url = this.tempurl;
+    this.url += 'addNewUser';
+    return  this.http.post<number>(this.url,register);
   }
 }

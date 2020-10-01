@@ -17,8 +17,9 @@ import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
 @Component
-@Scope(scopeName="prototype")
+@Scope(scopeName = "prototype")
 @Entity
 @Table(name = "PRODUCT")
 public class Product {
@@ -27,28 +28,38 @@ public class Product {
 	@Column(name = "P_ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int pId;
+	
 	@Column(name = "P_CATEGORY")
 	private String pCategory;
+	
 	@Column(name = "P_SUBCATEGORY")
 	private String pSubCategory;
+	
 	@Column(name = "P_NAME")
 	private String pName;
+	
 	@Column(name = "P_PRICE")
 	private double pPrice;
+	
 	@Column(name = "P_DESC")
 	private String pDesc;
+	
 	@Column(name = "P_BRAND")
 	private String pBrand;
+	
 	@Column(name = "P_STOCK")
 	private int pStock;
+	
 	@Column(name = "P_IMAGE")
 	private String pImage;
-	@Column(name="R_ID")
+	
+	@Column(name = "R_ID")
 	private int rId;
+	
 	@ManyToOne
 	@JoinColumn(name = "A_ID")
 	private Admin admin;
-    
+
 	@OneToMany(mappedBy = "wProducts", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<WishList> wishlists;
 
@@ -206,6 +217,5 @@ public class Product {
 				+ pName + ", pPrice=" + pPrice + ", pDesc=" + pDesc + ", pBrand=" + pBrand + ", pStock=" + pStock
 				+ ", pImage=" + pImage + ", admin=" + admin + ", retailer=" + rId + "]";
 	}
-	
-	
+
 }

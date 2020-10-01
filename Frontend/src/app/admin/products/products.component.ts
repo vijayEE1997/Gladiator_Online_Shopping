@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/DTO/Product';
+import { AdminService } from 'src/app/Service/admin.service';
 
 @Component({
   selector: 'products',
@@ -8,28 +10,16 @@ import { Component, OnInit } from '@angular/core';
 export class ProductsComponent implements OnInit {
 desc:any;
 descOpen:boolean=false;
-products:any=[{"pid":"123",
-               "rid":"235",
-              "category":"Mobile",
-              "subCategory":"Android",
-              "brand":"Samsung",
-              "model":"M31",
-              "stock":"11",
-              "price":"13000",
-              "desc":"huhuh"},
-              {"pid":"123",
-              "rid":"235",
-             "category":"Mobile",
-             "subCategory":"Android",
-             "brand":"Samsung",
-             "model":"M31",
-             "stock":"11",
-             "price":"13000",
-             "desc":"puuuh"}]
-  constructor() { }
+products:Product[]=[];
+constructor(private adminService:AdminService) {  }
 
-  ngOnInit(): void {
-  }
+ngOnInit(): void {
+ this.adminService.getProducts()
+  .subscribe((data: Product[]) => { console.log(data); this.products = data 
+    console.log(this.products)
+ });
+
+}
   viewDesc(desc:any)
   {
     this.desc=desc;

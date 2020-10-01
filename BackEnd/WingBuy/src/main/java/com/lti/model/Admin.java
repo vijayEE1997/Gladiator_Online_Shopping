@@ -1,6 +1,7 @@
 package com.lti.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,7 +17,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ADMIN_T")
 public class Admin implements Serializable {
-	
+
 	@Id
 	@Column(name = "A_ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,7 +44,11 @@ public class Admin implements Serializable {
 		this.aEmail = aEmail;
 		this.aPassword = aPassword;
 	}
-
+	
+	public void addProductForA(ProductForApproval pfa) {
+		this.products_f_a.add(pfa);
+	}
+	
 	public int getaId() {
 		return aId;
 	}
@@ -97,6 +102,4 @@ public class Admin implements Serializable {
 		return "Admin [aId=" + aId + ", aName=" + aName + ", aEmail=" + aEmail + ", aPassword=" + aPassword + "]";
 	}
 
-	
-	
 }

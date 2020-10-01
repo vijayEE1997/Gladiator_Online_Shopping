@@ -38,10 +38,10 @@ export class AddProductComponent implements OnInit {
   }
   onAddProduct()
   {
-    this.retailerService.addProduct(this.product,this.rId.toString())
-    .subscribe(data=>{
-      alert(data);
-    })
+    // this.retailerService.addProduct(this.product,this.rI
+    // .subscrd.toString())ibe(data=>{
+    //   alert(data);
+    // })
   }
 
 

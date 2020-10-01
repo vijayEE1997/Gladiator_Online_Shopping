@@ -1,6 +1,7 @@
 package com.lti.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -15,12 +16,18 @@ import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Component
-@Scope(scopeName="prototype")
+@Scope(scopeName = "prototype")
 @Entity
 @Table(name = "ADMIN_T")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","products_f_a","products"})
 public class Admin implements Serializable {
-	
+
 	@Id
 	@Column(name = "A_ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,6 +39,7 @@ public class Admin implements Serializable {
 	@Column(name = "A_PASSWORD")
 	private String aPassword;
 
+//	@JsonManagedReference
 	@OneToMany(mappedBy = "admin", cascade = CascadeType.ALL)
 	private Set<ProductForApproval> products_f_a;
 
@@ -47,7 +55,26 @@ public class Admin implements Serializable {
 		this.aEmail = aEmail;
 		this.aPassword = aPassword;
 	}
+	
+	public void addProductForA(ProductForApproval pfa) {
+		if(this.products_f_a==null)
+			this.products_f_a=new HashSet<>();
+		this.products_f_a.add(pfa);
+	}
+	public void removeProductFromApproval(ProductForApproval pfa) {
+		System.out.println(this.products_f_a.size());
+		this.products_f_a.remove(pfa);
+		System.out.println(this.products_f_a.size());
+		if(this.products_f_a.size()==0)
+			this.products_f_a=null;
+	}
 
+	public void addProduct(Product p) {
+		if(this.products==null)
+			this.products=new HashSet<>();
+		this.products.add(p);
+	}
+	
 	public int getaId() {
 		return aId;
 	}
@@ -101,6 +128,4 @@ public class Admin implements Serializable {
 		return "Admin [aId=" + aId + ", aName=" + aName + ", aEmail=" + aEmail + ", aPassword=" + aPassword + "]";
 	}
 
-	
-	
 }

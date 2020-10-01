@@ -9,6 +9,5 @@ export class ProductForApproval {
     pBrand: string;
     pStock: number;
     pStatus: string;
-    pModel:string;
     prId:number;
 }

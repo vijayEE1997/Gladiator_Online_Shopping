@@ -8,16 +8,6 @@ import javax.persistence.Persistence;
 
 import com.lti.CSVReader;
 import com.lti.CSVReaderUser;
-import com.lti.dao.AdminDao;
-import com.lti.dao.AdminDaoImpl;
-import com.lti.dao.CartDao;
-import com.lti.dao.CartDaoImpl;
-import com.lti.dao.PaymentDao;
-import com.lti.dao.PaymentDaoImpl;
-import com.lti.dao.RetailerDao;
-import com.lti.dao.RetailerDaoImpl;
-import com.lti.dao.UserDao;
-import com.lti.dao.UserDaoImpl;
 import com.lti.model.Admin;
 import com.lti.model.Cart;
 import com.lti.model.ProductForApproval;
@@ -62,7 +52,7 @@ public class Main {
 //		JavaMailUtil.sendMail("ANKAMGNAPIKA@gmail.com");
 //		JavaMailUtil.sendMail("vishalkumarsingh1010@gmail.com");
 //		JavaMailUtil.sendMail("www.rajfrostbhagat@gmail.com");
-		/*EntityManagerFactory factory = Persistence.createEntityManagerFactory("JPA-PU");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("JPA-PU");
 		EntityManager entityManager = factory.createEntityManager();
 		Admin admin1 = new Admin();
 		admin1.setaName("Vijay Dhakad");
@@ -93,44 +83,41 @@ public class Main {
 		entityManager.getTransaction().commit();
 		CSVReader csvreader = new CSVReader();
 		CSVReaderUser csvreaderuser = new CSVReaderUser();
-		List<ProductForApproval> list = csvreader.load(admin1, admin2, retailer1, retailer2);
-		for (ProductForApproval p : list) {
-			entityManager.getTransaction().begin();
-			entityManager.persist(p);
-			entityManager.getTransaction().commit();
-		}
+		csvreader.load(admin1, admin2, retailer1, retailer2,entityManager);
+	
+
 		List<User> ulist = csvreaderuser.load();
 		for (User u : ulist) {
 			entityManager.getTransaction().begin();
 			entityManager.persist(u);
 			entityManager.getTransaction().commit();
 		}
-		int i = 0;
-		for (ProductForApproval p : list) {
-			i++;
-			if (i % 3 == 0) {
-				p.setpStatus('R');
-				continue;
-			}
-			Product product1 = new Product();
-			product1.setAdmin(p.getAdmin());
-			product1.setRetailer(p.getRetailer().getrId());
-			product1.setpCategory(p.getpCategory());
-			product1.setpSubCategory(p.getpSubCategory());
-			product1.setpName(p.getpName());
-			product1.setpPrice(p.getpPrice());
-			product1.setpDesc(p.getpDesc());
-			product1.setpBrand(p.getpBrand());
-			product1.setpImage(p.getpImage());
-			product1.setpStock(p.getpStock());
-			entityManager.getTransaction().begin();
-			entityManager.persist(product1);
-			entityManager.getTransaction().commit();
-			entityManager.getTransaction().begin();
-			ProductForApproval pfa = entityManager.find(ProductForApproval.class, p.getpReqId());
-			entityManager.remove(pfa);
-			entityManager.getTransaction().commit();
-		}*/
+//		int i = 0;
+//		for (ProductForApproval p : list) {
+//			i++;
+//			if (i % 3 == 0) {
+//				p.setpStatus('R');
+//				continue;
+//			}
+//			Product product1 = new Product();
+//			product1.setAdmin(p.getAdmin());
+//			product1.setRetailer(p.getRetailer().getrId());
+//			product1.setpCategory(p.getpCategory());
+//			product1.setpSubCategory(p.getpSubCategory());
+//			product1.setpName(p.getpName());
+//			product1.setpPrice(p.getpPrice());
+//			product1.setpDesc(p.getpDesc());
+//			product1.setpBrand(p.getpBrand());
+//			product1.setpImage(p.getpImage());
+//			product1.setpStock(p.getpStock());
+//			entityManager.getTransaction().begin();
+//			entityManager.persist(product1);
+//			entityManager.getTransaction().commit();
+//			entityManager.getTransaction().begin();
+//			ProductForApproval pfa = entityManager.find(ProductForApproval.class, p.getpReqId());
+//			entityManager.remove(pfa);
+//			entityManager.getTransaction().commit();
+//		}
 //		
 //		//Product product=entityManager.find(Product.class, 69);
 //		CartDao cart= new CartDaoImpl(); 
@@ -218,13 +205,6 @@ public class Main {
 		}*/	
 		
 		
-		CartDao cart1 = new CartDaoImpl();
-		CartDao cart2 = new CartDaoImpl();
-		cart1.addToCart(52,69);
-		cart2.addToCart(52,68);		
-		System.out.println(cart1);
-		System.out.println(cart2);
-		
-		
+
 		
 }}

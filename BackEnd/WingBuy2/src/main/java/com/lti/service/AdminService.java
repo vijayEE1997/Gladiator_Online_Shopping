@@ -3,6 +3,7 @@ package com.lti.service;
 import java.util.List;
 
 import com.lti.model.Admin;
+import com.lti.model.Product;
 import com.lti.model.ProductForApproval;
 
 public interface AdminService {
@@ -11,4 +12,7 @@ public interface AdminService {
 	public int findAdminByEmailAndPassword(String email,String password);//return rId
 	public Admin findAdminByEmail(String email);
 	public List<ProductForApproval> viewProductstobeApproved(int aId);
+	public List<Product> viewProducts(int aId);
+	public boolean approveProductByrqID(int aId, int rqId);
+	public boolean rejectProductByrqID(int aId, int rqId);
 }

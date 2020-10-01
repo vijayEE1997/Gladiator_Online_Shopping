@@ -39,12 +39,12 @@ public class Product {
 	private int pStock;
 	@Column(name = "P_IMAGE")
 	private String pImage;
-	@Column(name="R_ID")
+	@Column(name = "R_ID")
 	private int rId;
 	@ManyToOne
 	@JoinColumn(name = "A_ID")
 	private Admin admin;
-    
+
 	@OneToMany(mappedBy = "wProducts", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<WishList> wishlists;
 
@@ -202,6 +202,5 @@ public class Product {
 				+ pName + ", pPrice=" + pPrice + ", pDesc=" + pDesc + ", pBrand=" + pBrand + ", pStock=" + pStock
 				+ ", pImage=" + pImage + ", admin=" + admin + ", retailer=" + rId + "]";
 	}
-	
-	
+
 }

@@ -15,6 +15,7 @@ const routes: Routes = [
   {path : 'forgotpassword', component : ForgotPasswordComponent},
   {path : 'profile-admin', component : ProfileAdminComponent},
   {path : 'profile-retailer', component : ProfileComponent}
+  
 ];
 
 @NgModule({

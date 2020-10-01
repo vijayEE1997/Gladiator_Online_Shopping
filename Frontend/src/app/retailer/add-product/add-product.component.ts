@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Retailer } from 'src/app/DTO/Retailer';
 import { RetailerService } from 'src/app/Service/retailer.service';
+import { Product } from 'src/app/DTO/Product';
 
 @Component({
   selector: 'add-product',
@@ -33,7 +34,7 @@ export class AddProductComponent implements OnInit {
     else
     {
       alert("Retaier Not Logged In");
-     // this.router.navigate(['home']);
+      this.router.navigate(['home']);
     }
   }
   onAddProduct()
@@ -44,5 +45,13 @@ export class AddProductComponent implements OnInit {
     })
   }
 
+  prods:Product[]=[];
+  showApprovedProducts(){
+    this.retailerService.getMyProduct(this.rId.toString())
+    .subscribe((data:Product[])=>{
+      console.log(data);
+      this.prods=data;
+    });
+  }
 
 }

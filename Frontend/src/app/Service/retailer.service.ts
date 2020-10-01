@@ -60,5 +60,26 @@ export class RetailerService {
     return this._http.get<Retailer[]>(this._url);
   }
   
+    // backend me ni bna ye wala
+  getRejectedProduct(rId: string) : Observable<Product[]>
+  {
+    this._url = this._tempurl;
+    this._url += 'getRejectedProduct/' + rId;
+    return this._http.get<Product[]>(this._url);
+  }
+   // backend me ni bna ye wala
+   getPendingProduct(rId: string) : Observable<Product[]>
+   {
+     this._url = this._tempurl;
+     this._url += 'getPendingProduct/' + rId;
+     return this._http.get<Product[]>(this._url);
+   }
+    // backend me ni bna ye wala
+  getApprovedProduct(rId: string) : Observable<Product[]>
+  {
+    this._url = this._tempurl;
+    this._url += 'getApprovedProduct/' + rId;
+    return this._http.get<Product[]>(this._url);
+  }
 
 }

@@ -1,0 +1,22 @@
+<p>user-edit-profile works!</p>
+
+<div class="container py-5">
+    <form>
+      Name:<br> 
+      <input type="text" class="form-control" name="uName" placeholder="{{oldUser.uname}}"
+      [(ngModel)]=updateUser.uName /><br />
+      Password:<br>
+      <input type="password" class="form-control" name="uPassword" placeholder="{{oldUser.upassword}}"
+      [(ngModel)]=updateUser.uPassword /><br />
+      Email:<br>
+      <input type="text" class="form-control" name="uEmail" placeholder="{{oldUser.uemail}}"
+      [(ngModel)]=updateUser.uEmail /><br />
+      Mobile:<br>
+      <input type="text" class="form-control" name="uPhone" placeholder="{{oldUser.umobile}}"
+      [(ngModel)]=updateUser.uPhone /><br />
+      Address:<br>
+      <input type="text" class="form-control" name="uAddress" placeholder="{{oldUser.uaddress}}"
+      [(ngModel)]=updateUser.uAddress /><br /> 
+      <button type="submit" class="btn btn-success" (click)="onUpdateUserClick()"> Update </button> 
+    </form>
+</div>

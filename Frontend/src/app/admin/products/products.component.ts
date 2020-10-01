@@ -1,4 +1,8 @@
+import { ProductForApproval } from './../../DTO/ProductForApproval';
+import { AdminService } from './../../Service/admin.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Product } from 'src/app/DTO/Product';
 
 @Component({
   selector: 'products',
@@ -26,10 +30,19 @@ products:any=[{"pid":"123",
              "stock":"11",
              "price":"13000",
              "desc":"puuuh"}]
-  constructor() { }
+  constructor(private adminService:AdminService, private router : Router) { }
 
+  prodsForApproval:ProductForApproval[]=[];
+  prods:Product[]=[];
+  
   ngOnInit(): void {
+    this.adminService.getProductForApproval()
+    .subscribe((data: ProductForApproval[]) => { console.log(data); this.prodsForApproval = data ;
+    });
   }
+
+
+
   viewDesc(desc:any)
   {
     this.desc=desc;

@@ -1,6 +1,7 @@
 package com.lti.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,10 +17,13 @@ import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Component
 @Scope(scopeName="prototype")
 @Entity
 @Table(name = "RETAILER")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","products_f_a"})
 public class Retailer {
 
 	@Id
@@ -53,7 +57,11 @@ public class Retailer {
 		this.rName = rName;
 		this.rPassword = rPassword;
 	}
-
+	public void addProductForA(ProductForApproval pfa) {
+		if(this.products_f_a==null)
+			this.products_f_a=new HashSet<>();
+		this.products_f_a.add(pfa);
+	}
 	public int getrId() {
 		return rId;
 	}

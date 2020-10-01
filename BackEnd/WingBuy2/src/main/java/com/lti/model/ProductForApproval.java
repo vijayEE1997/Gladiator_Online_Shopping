@@ -2,6 +2,7 @@ package com.lti.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,8 +12,12 @@ import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Component
-@Scope(scopeName="prototype")
+@Scope(scopeName = "prototype")
 @Entity
 @Table(name = "PRODUCT_F_A")
 public class ProductForApproval {
@@ -40,7 +45,8 @@ public class ProductForApproval {
 	@Column(name = "P_STATUS")
 	private char pStatus;
 
-	@ManyToOne
+//	@JsonBackReference
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "A_ID")
 	private Admin admin;
 
@@ -168,8 +174,10 @@ public class ProductForApproval {
 	public String toString() {
 		return "ProductForApproval [pReqId=" + pReqId + ", pCategory=" + pCategory + ", pSubCategory=" + pSubCategory
 				+ ", pName=" + pName + ", pPrice=" + pPrice + ", pDesc=" + pDesc + ", pBrand=" + pBrand + ", pStock="
-				+ pStock + ", pImage=" + pImage + ", pStatus=" + pStatus + "]";
+				+ pStock + ", pImage=" + pImage + ", pStatus=" + pStatus + ", admin=" + admin + ", retailer=" + retailer
+				+ "]";
 	}
+
 	
-	
+
 }

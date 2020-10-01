@@ -5,7 +5,7 @@
        <div class="Admin-Button" (click)="requestsF()" [class.Admin-Button-click]="requests"><span style="margin-right: 0.5rem;"><i class="fa fa-file" aria-hidden="true"></i></span>Requests</div>
        <div class="Admin-Button" (click)="retailersF()" [class.Admin-Button-click]="retailers"><span style="margin-right: 0.5rem;"><i class="fa fa-user" aria-hidden="true"></i></span>Retailers</div>
    </div> 
-   <div class="Admin-Container">
+   <div class="Admin-Container" >
        <h3 *ngIf="products" style="margin-bottom: 0.5rem;">Products<span style="margin-left: 0.5rem;"><i class="fa fa-caret-right" aria-hidden="true"></i></span></h3>
        <h3 *ngIf="requests" style="margin-bottom: 0.5rem;">Requests<span style="margin-left: 0.5rem;"><i class="fa fa-caret-right" aria-hidden="true"></i></span></h3>
        <h3 *ngIf="retailers" style="margin-bottom: 0.5rem;">Retailers<span style="margin-left: 0.5rem;"><i class="fa fa-caret-right" aria-hidden="true"></i></span></h3>

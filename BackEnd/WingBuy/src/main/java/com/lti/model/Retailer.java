@@ -1,6 +1,7 @@
 package com.lti.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -49,7 +50,11 @@ public class Retailer {
 		this.rName = rName;
 		this.rPassword = rPassword;
 	}
-
+	public void addProductForA(ProductForApproval pfa) {
+		if(this.products_f_a==null)
+			this.products_f_a=new HashSet<>();
+		this.products_f_a.add(pfa);
+	}
 	public int getrId() {
 		return rId;
 	}

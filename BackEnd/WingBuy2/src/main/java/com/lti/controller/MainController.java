@@ -1,5 +1,6 @@
 package com.lti.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ import com.lti.service.RetailerService;
 import com.lti.service.UserService;
 import com.lti.service.WishListService;
 import com.lti.dto.Login;
+import com.lti.dto.ProductDTO;
 import com.lti.dto.ProductForApprovalDTO;
 import com.lti.dto.RetailerSignUp;
 import com.lti.dto.UserSignUp;
@@ -36,7 +38,7 @@ import com.lti.dto.UserSignUp;
 @RequestMapping(path = "buy")
 @CrossOrigin
 public class MainController {
-	
+
 	@Autowired
 	private AdminService adminservice;
 	@Autowired
@@ -51,207 +53,193 @@ public class MainController {
 	private PaymentService paymentservice;
 	@Autowired
 	private OrderService orderservice;
-	
+
 	@PostMapping(path = "/userlogin")
-	public int userlogin(@RequestBody Login login)
-	{
-		// {
-			return this.userservice.loginuser(login);
-		} /*catch (CustomerException e) {
-			
-			e.printStackTrace();
-			return -100;
-		}*/
-	
-	@PostMapping(path = "/retailerlogin") 
-	public int retailerlogin(@RequestBody Login login)
-	{
-			return this.retailerservice.loginRetailer(login.getEmail(), login.getPassword());
-		} /*catch (CustomerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return -100;
-		}*/
-		
-	
-	@PostMapping(path = "/adminlogin") 
-	public int adminlogin(@RequestBody Login login)
-	{
-			return this.adminservice.loginadmin(login.getEmail(), login.getPassword());
-		} /*catch (CustomerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return -100;
-		}*/
-	
-		@PostMapping(path = "/addNewUser")
-	public int addNewUser(@RequestBody UserSignUp newUser)
-	{
+	public int userlogin(@RequestBody Login login) {
+		return this.userservice.loginuser(login);
+	} 
+
+	@PostMapping(path = "/retailerlogin")
+	public int retailerlogin(@RequestBody Login login) {
+		return this.retailerservice.loginRetailer(login.getEmail(), login.getPassword());
+
+	}
+
+	@PostMapping(path = "/adminlogin")
+	public int adminlogin(@RequestBody Login login) {
+		return this.adminservice.loginadmin(login.getEmail(), login.getPassword());
+	}
+
+	@PostMapping(path = "/addNewUser")
+	public int addNewUser(@RequestBody UserSignUp newUser) {
 		return this.userservice.addUser(newUser);
 	}
-		
-		@PostMapping(path = "/addNewRetailer") 
-		public int addNewRetailer(@RequestBody RetailerSignUp newRetailer)
-		{
-			return this.retailerservice.addRetailer(newRetailer);
-		}
-		
-		@GetMapping(path = "{aId}")
-		public List<ProductForApprovalDTO> cviewProductstobeApproved(@PathVariable("aId") int aId){
-			List<ProductForApproval> prodforapps =adminservice.viewProductstobeApproved(aId);
-			
-			List<ProductForApprovalDTO> dto = null;
+
+	@PostMapping(path = "/addNewRetailer")
+	public int addNewRetailer(@RequestBody RetailerSignUp newRetailer) {
+		return this.retailerservice.addRetailer(newRetailer);
+	}
+
+	@GetMapping(path = "/requests/{aId}")
+	public List<ProductForApprovalDTO> cviewProductstobeApproved(@PathVariable("aId") int aId)
+	{
+			List<ProductForApproval> prodforapps =adminservice.viewProductstobeApproved(aId);	
+			List<ProductForApprovalDTO> dto = new ArrayList<ProductForApprovalDTO>();
 			for(ProductForApproval p:prodforapps)
 			{
 				ProductForApprovalDTO prod_dto1 = new ProductForApprovalDTO();
-				prod_dto1=p;
+				prod_dto1.setpReqId(p.getpReqId());
+				prod_dto1.setpName(p.getpName());
+				prod_dto1.setpCategory(p.getpCategory());
+				prod_dto1.setpBrand(p.getpBrand());
+				prod_dto1.setpDesc(p.getpDesc());
+				prod_dto1.setpPrice(p.getpPrice());
+				prod_dto1.setpSubCategory(p.getpSubCategory());
+				prod_dto1.setpImage(p.getpImage());
+				prod_dto1.setpStatus(p.getpStatus());
+				prod_dto1.setpStock(p.getpStock());
+				prod_dto1.setrId(p.getRetailer().getrId());
+				dto.add(prod_dto1);
 			}
 			return dto;
 		}
+	@GetMapping(path = "allProducts/{aId}")
+	public List<ProductDTO> cviewProducts(@PathVariable("aId") int aId){
+		List<Product> prods =adminservice.viewProducts(aId);
 		
-		
-/*
-	@GetMapping(path = "{aId}")
-	public Admin cgetAdminById(@PathVariable("aId") int aId) {
-		Admin admin = adminservice.findAdminById(aId);
-		return admin;
+		List<ProductDTO> dto = new ArrayList<>();
+		for(Product p:prods)
+		{
+			ProductDTO prod_dto1 = new ProductDTO();
+			prod_dto1.setrId(p.getRetailer());
+			prod_dto1.setpId(p.getpId());
+			prod_dto1.setpName(p.getpName());
+			prod_dto1.setpCategory(p.getpCategory());
+			prod_dto1.setpBrand(p.getpBrand());
+			prod_dto1.setpDesc(p.getpDesc());
+			prod_dto1.setpPrice(p.getpPrice());
+			prod_dto1.setpSubCategory(p.getpSubCategory());
+			prod_dto1.setpImage(p.getpImage());
+			prod_dto1.setpStock(p.getpStock());
+			dto.add(prod_dto1);	
+		}
+		return dto;
 	}
-
-	@GetMapping(path = "{aEmail,aPassword}")
-	public int cfindAdminByEmailAndPassword(@PathVariable("aEmail") String email,
-			@PathVariable("aPassword") String password) {
-		return (adminservice.findAdminByEmailAndPassword(email, password));
-
+	@PostMapping(path = "approveProduct/{aId}/{rqId}")
+	public boolean approveProduct(@PathVariable("aId") int aId,@PathVariable("rqId") int rqId){
+			return adminservice.approveProductByrqID(aId,rqId);
 	}
-
-	@GetMapping(path = "{aEmail}")
-	public Admin cfindAdminByEmail(@PathVariable("aId") String email) {
-		Admin admin = adminservice.findAdminByEmail(email);
-		return admin;
+	@PostMapping(path = "rejectProduct/{aId}/{rqId}")
+	public boolean rejectProduct(@PathVariable("aId") int aId,@PathVariable("rqId") int rqId){
+			return adminservice.rejectProductByrqID(aId,rqId);
 	}
-	
-	@GetMapping(path = "{rId}")
-	public Retailer cfindgetRetailerById(@PathVariable("aId") int rId){
-		Retailer retailer = retailerservice.findgetRetailerById(rId);
-		return retailer;
-	}
-
-	@GetMapping(path = "{rEmail,rPassword}")
-	public int cfindgetRetailerByEmailAndPassword(String email, String password){
-		return (retailerservice.findgetRetailerByEmailAndPassword(email, password));
-	}
-	
-	@GetMapping(path = "{rEmail}")
-	public Retailer cfindgetRetailerByEmail(@PathVariable("rId")String email) {
-		Retailer retailer = retailerservice.findgetRetailerByEmail(email);
-		return retailer;
-	}
-	@GetMapping(path="/")// doubt
-	public List<Product> cfindshowMyApprovedProducts(int rId) {
-		List<Product> approvedProd = retailerservice.findshowMyApprovedProducts(rId);
-		return approvedProd;
-	}
-	
-	@GetMapping(path="/")//doubt
-	public List<Retailer> cfindshowAllRetailers() {
-		List<Retailer> retailers = retailerservice.findshowAllRetailers();
-		return retailers;
-}
-	@GetMapping(path="/")//doubt
-	public List<ProductForApproval> cfindshowMyRejectedProducts(int rId) {
-		List<ProductForApproval> rejectedProd = retailerservice.findshowMyRejectedProducts(rId);
-		return rejectedProd;
-	}
-	
-	@GetMapping(path = "{uId}")
-	public User cfindgetUserById(@PathVariable("uId") int uId) {
-		User user = userservice.findgetUserById(uId);
-		return user;
-	}
-	
-	@GetMapping(path = "{uEmail,uPassword}")
-	public int ufindgetUserByEmailAndPassword(@PathVariable("uEmail")String email, @PathVariable("uPassword")String password) {
-		return (userservice.findgetUserByEmailAndPassword(email, password));
-	}
-	
-	@GetMapping(path = "{uEmail}")
-	public User cfindgetUserByEmail(@PathVariable("uEmail") String email) {
-		User user = userservice.findgetUserByEmail(email);
-		return user;
-	}
-	
-	@GetMapping(path = "{uId,uAddress}")
-	public boolean findaddAddress(@PathVariable("uId") int uId, @PathVariable("uAddress") String address) {
-		return (userservice.findaddAddress(uId, address));
-	}
-	
-	@GetMapping(path = "{uId}")
-	public List<Cart> cfindgetCartOfUser(@PathVariable("uId") int uId) {
-		List<Cart> carts = userservice.findgetCartOfUser(uId);
-		return carts;
-	}
-	
-	@GetMapping(path = "{uId}")
-	public List<WishList> cfindgetWishlistOfUser(@PathVariable("uId") int uId) {
-		List<WishList> wishlists = userservice.findgetWishlistOfUser(uId);
-		return wishlists;
-	}
-	
-	@GetMapping(path = "{uId,pId}")
-	public boolean cfindaddToCart(@PathVariable("uId") int uId, @PathVariable("pId")int pId) {
-		return cartservice.findaddToCart(uId, pId);
-	}
-	
-	@GetMapping(path = "{cId,addOrMinus}")
-	public boolean cfindupdateCart(@PathVariable("cId")int cId, @PathVariable("addOrMinus")int addOrMinus) {
-		return cartservice.findupdateCart(cId, addOrMinus);
-	}
-	
-	@GetMapping(path = "{cId}")
-	public boolean cfinddeleteCartBycId(@PathVariable("cId") int cId) {
-	return cartservice.finddeleteCartBycId(cId);
-	}
-	
-	@GetMapping(path = "{uId}")
-	public boolean cfinddeleteCartByuId(@PathVariable("uId") int uId) {
-	return cartservice.finddeleteCartByuId(uId);
-	}
-	
-	@GetMapping(path = "{uId}")
-	public List<Cart> cfindviewCart(@PathVariable("uId") int uId) {
-	List<Cart> carts = cartservice.findviewCart(uId);
-	return carts;
-}
-	@GetMapping(path = "{uId,pId}")
-	public boolean cfindaddToWishList(@PathVariable("uId")int uId, @PathVariable("pId")int pId) {
-		return wishlistservice.findaddToWishList(uId, pId);
-	}
-
-	@GetMapping(path = "{wId}")
-	public boolean cfinddeleteWishList(@PathVariable("wId") int wId) {
-		return wishlistservice.finddeleteWishList(wId);
-	}
-
-	@GetMapping(path = "{wId}")
-	public List<WishList> cfindviewWishList(@PathVariable("uId")int uId) {
-		List<WishList> wishlists= wishlistservice.findviewWishList(uId);
-		return wishlists;
-	}
-	
-	@GetMapping(path = "{uId,payType}")
-	public long cfindmakePayment(@PathVariable("uId")int uId,@PathVariable("payType")String payType) {
-		return paymentservice.findmakePayment(uId, payType);
-			}
-	
-	@GetMapping(path = "{pay_Id}")
-	public Payment cfindgetPaymentById(@PathVariable("pay_Id") long pay_Id) {
-		Payment payment = paymentservice.findgetPaymentById(pay_Id);
-		return payment;
-	}
-	
-	@GetMapping(path = "{odId}")
-	public List<OrderDetail> cfindgetOrderDetailById(@PathVariable("odId")int odId) {
-	List<OrderDetail> orderdetails=	orderservice.findgetOrderDetailById(odId);
-	return orderdetails;
-	}*/
+	/*
+	 * @GetMapping(path = "{aId}") public Admin cgetAdminById(@PathVariable("aId")
+	 * int aId) { Admin admin = adminservice.findAdminById(aId); return admin; }
+	 * 
+	 * @GetMapping(path = "{aEmail,aPassword}") public int
+	 * cfindAdminByEmailAndPassword(@PathVariable("aEmail") String email,
+	 * 
+	 * @PathVariable("aPassword") String password) { return
+	 * (adminservice.findAdminByEmailAndPassword(email, password));
+	 * 
+	 * }
+	 * 
+	 * @GetMapping(path = "{aEmail}") public Admin
+	 * cfindAdminByEmail(@PathVariable("aId") String email) { Admin admin =
+	 * adminservice.findAdminByEmail(email); return admin; }
+	 * 
+	 * @GetMapping(path = "{rId}") public Retailer
+	 * cfindgetRetailerById(@PathVariable("aId") int rId){ Retailer retailer =
+	 * retailerservice.findgetRetailerById(rId); return retailer; }
+	 * 
+	 * @GetMapping(path = "{rEmail,rPassword}") public int
+	 * cfindgetRetailerByEmailAndPassword(String email, String password){ return
+	 * (retailerservice.findgetRetailerByEmailAndPassword(email, password)); }
+	 * 
+	 * @GetMapping(path = "{rEmail}") public Retailer
+	 * cfindgetRetailerByEmail(@PathVariable("rId")String email) { Retailer retailer
+	 * = retailerservice.findgetRetailerByEmail(email); return retailer; }
+	 * 
+	 * @GetMapping(path="/")// doubt public List<Product>
+	 * cfindshowMyApprovedProducts(int rId) { List<Product> approvedProd =
+	 * retailerservice.findshowMyApprovedProducts(rId); return approvedProd; }
+	 * 
+	 * @GetMapping(path="/")//doubt public List<Retailer> cfindshowAllRetailers() {
+	 * List<Retailer> retailers = retailerservice.findshowAllRetailers(); return
+	 * retailers; }
+	 * 
+	 * @GetMapping(path="/")//doubt public List<ProductForApproval>
+	 * cfindshowMyRejectedProducts(int rId) { List<ProductForApproval> rejectedProd
+	 * = retailerservice.findshowMyRejectedProducts(rId); return rejectedProd; }
+	 * 
+	 * @GetMapping(path = "{uId}") public User cfindgetUserById(@PathVariable("uId")
+	 * int uId) { User user = userservice.findgetUserById(uId); return user; }
+	 * 
+	 * @GetMapping(path = "{uEmail,uPassword}") public int
+	 * ufindgetUserByEmailAndPassword(@PathVariable("uEmail")String
+	 * email, @PathVariable("uPassword")String password) { return
+	 * (userservice.findgetUserByEmailAndPassword(email, password)); }
+	 * 
+	 * @GetMapping(path = "{uEmail}") public User
+	 * cfindgetUserByEmail(@PathVariable("uEmail") String email) { User user =
+	 * userservice.findgetUserByEmail(email); return user; }
+	 * 
+	 * @GetMapping(path = "{uId,uAddress}") public boolean
+	 * findaddAddress(@PathVariable("uId") int uId, @PathVariable("uAddress") String
+	 * address) { return (userservice.findaddAddress(uId, address)); }
+	 * 
+	 * @GetMapping(path = "{uId}") public List<Cart>
+	 * cfindgetCartOfUser(@PathVariable("uId") int uId) { List<Cart> carts =
+	 * userservice.findgetCartOfUser(uId); return carts; }
+	 * 
+	 * @GetMapping(path = "{uId}") public List<WishList>
+	 * cfindgetWishlistOfUser(@PathVariable("uId") int uId) { List<WishList>
+	 * wishlists = userservice.findgetWishlistOfUser(uId); return wishlists; }
+	 * 
+	 * @GetMapping(path = "{uId,pId}") public boolean
+	 * cfindaddToCart(@PathVariable("uId") int uId, @PathVariable("pId")int pId) {
+	 * return cartservice.findaddToCart(uId, pId); }
+	 * 
+	 * @GetMapping(path = "{cId,addOrMinus}") public boolean
+	 * cfindupdateCart(@PathVariable("cId")int cId, @PathVariable("addOrMinus")int
+	 * addOrMinus) { return cartservice.findupdateCart(cId, addOrMinus); }
+	 * 
+	 * @GetMapping(path = "{cId}") public boolean
+	 * cfinddeleteCartBycId(@PathVariable("cId") int cId) { return
+	 * cartservice.finddeleteCartBycId(cId); }
+	 * 
+	 * @GetMapping(path = "{uId}") public boolean
+	 * cfinddeleteCartByuId(@PathVariable("uId") int uId) { return
+	 * cartservice.finddeleteCartByuId(uId); }
+	 * 
+	 * @GetMapping(path = "{uId}") public List<Cart>
+	 * cfindviewCart(@PathVariable("uId") int uId) { List<Cart> carts =
+	 * cartservice.findviewCart(uId); return carts; }
+	 * 
+	 * @GetMapping(path = "{uId,pId}") public boolean
+	 * cfindaddToWishList(@PathVariable("uId")int uId, @PathVariable("pId")int pId)
+	 * { return wishlistservice.findaddToWishList(uId, pId); }
+	 * 
+	 * @GetMapping(path = "{wId}") public boolean
+	 * cfinddeleteWishList(@PathVariable("wId") int wId) { return
+	 * wishlistservice.finddeleteWishList(wId); }
+	 * 
+	 * @GetMapping(path = "{wId}") public List<WishList>
+	 * cfindviewWishList(@PathVariable("uId")int uId) { List<WishList> wishlists=
+	 * wishlistservice.findviewWishList(uId); return wishlists; }
+	 * 
+	 * @GetMapping(path = "{uId,payType}") public long
+	 * cfindmakePayment(@PathVariable("uId")int uId,@PathVariable("payType")String
+	 * payType) { return paymentservice.findmakePayment(uId, payType); }
+	 * 
+	 * @GetMapping(path = "{pay_Id}") public Payment
+	 * cfindgetPaymentById(@PathVariable("pay_Id") long pay_Id) { Payment payment =
+	 * paymentservice.findgetPaymentById(pay_Id); return payment; }
+	 * 
+	 * @GetMapping(path = "{odId}") public List<OrderDetail>
+	 * cfindgetOrderDetailById(@PathVariable("odId")int odId) { List<OrderDetail>
+	 * orderdetails= orderservice.findgetOrderDetailById(odId); return orderdetails;
+	 * }
+	 */
 }

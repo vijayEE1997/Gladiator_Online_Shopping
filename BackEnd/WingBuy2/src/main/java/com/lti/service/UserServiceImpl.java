@@ -13,6 +13,7 @@ import com.lti.dto.UserSignUp;
 import com.lti.model.Cart;
 import com.lti.model.User;
 import com.lti.model.WishList;
+
 @Service("userservice")
 @Scope(scopeName="singleton")
 public class UserServiceImpl implements UserService {
@@ -22,7 +23,7 @@ public class UserServiceImpl implements UserService {
 	
 
 	@Override
-	public int loginuser(Login login){//throws CustomerException {
+	public int loginuser(Login login){
 			int id = this.userdao.getUserByEmailAndPassword(login.getEmail(),login.getPassword());
 			return id;
 		}
@@ -34,18 +35,15 @@ public class UserServiceImpl implements UserService {
 				try
 				{
 					User user = this.userdao.getUserByEmail(newUser.getuEmail());
-					return -100;
-				}
-				catch(NullPointerException e)
-				{
-					return -100;
+					System.out.println(user);
+					if(user==null)
+						return this.userdao.addUser(newUser);
 				}
 				catch(Exception e)
 				{
 					System.out.println(e.getMessage());
-					id = this.userdao.addUser(newUser);
 				}
-				return id;
+				return -100;
 	}
 
 	@Override

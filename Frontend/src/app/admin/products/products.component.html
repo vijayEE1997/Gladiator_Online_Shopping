@@ -15,14 +15,14 @@
         </thead>
         <tbody>
             <tr *ngFor="let p of products">
-                <td>{{p.pid}}</td>
-                <td>{{p.rid}}</td>
-                <td>{{p.category}}</td>
-                <td>{{p.subCategory}}</td>
-                <td>{{p.brand}}</td>
-                <td>{{p.model}}</td>
-                <td>{{p.stock}}</td>
-                <td>{{p.price}}</td>
+                <td>{{p.pId}}</td>
+                <td>{{p.rId}}</td>
+                <td>{{p.pCategory}}</td>
+                <td>{{p.pSubCategory}}</td>
+                <td>{{p.pBrand}}</td>
+                <td>{{p.pName}}</td>
+                <td>{{p.pStock}}</td>
+                <td>{{p.pPrice}}</td>
                 <td id="Admin-Button-td"><div class="Admin-Button" (click)="viewDesc(p.desc)">View<span style="margin-left: 0.5rem;"><i class="fa fa-eye" aria-hidden="true"></i></span></div></td>
             </tr>
         </tbody>

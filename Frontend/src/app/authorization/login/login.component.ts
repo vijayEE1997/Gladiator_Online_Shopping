@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Login } from '../../DTO/Login'
 import { Observable } from 'rxjs';
 import { CustomerService } from 'src/app/Service/customer.service';
+import { EncrDecrService } from 'src/app/Service/encr-decr.service';
 
 
 @Component({
@@ -19,11 +20,19 @@ invalidLogin: boolean = false;
   login: Login;
   email: string = "";
   password: string = "";
-  uId$ : Observable<number>;
+  uId : number=-1;
 
-  constructor(private formBuilder: FormBuilder,private router:Router,private customerService:CustomerService) { }
+  constructor(private formBuilder: FormBuilder,
+              private router:Router,
+              private customerService:CustomerService,
+              private EncrDecr: EncrDecrService) { }
 
   ngOnInit(): void {
+    if(sessionStorage.getItem('user')!=null)
+    {
+      alert("Already Logged In");
+      this.router.navigate(['home']);
+    }
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
@@ -39,11 +48,23 @@ invalidLogin: boolean = false;
         return;
       }
       else{
-            this.login = new Login();
-            this.login.email = this.email;
-            this.login.password = this.password;
-            this.uId$ = this.customerService.login(this.login);
-    //alert(this.login.email);
+            this.customerService.login(this.loginForm.value).subscribe(data=>{
+              this.uId=data;
+              this.createSession()
+            });
+      }
   }
-}
+  createSession(){
+    if(this.uId!=-1)
+    {
+      /*Encription*/
+      let encr=this.EncrDecr.set('123456$#@$^@1ERF',this.uId.toString())
+      /*Encription*/
+      /*Decription*/
+      let decr=this.EncrDecr.get('123456$#@$^@1ERF',encr)
+      /*Decription*/
+      sessionStorage.setItem('user',encr);
+      this.router.navigate(['home']);
+    }
+  }
 }

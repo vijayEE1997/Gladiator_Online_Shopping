@@ -23,7 +23,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="oracle_driver/ojdbc6.jar"/>
-	<classpathentry kind="lib" path="oracle_driver/javax.mail.jar"/>
+	<classpathentry kind="lib" path="drivers/javax.mail.jar"/>
+	<classpathentry kind="lib" path="drivers/ojdbc6.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

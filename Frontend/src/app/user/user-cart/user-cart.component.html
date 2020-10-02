@@ -1,0 +1,20 @@
+<p>user-cart works!</p>
+<div class="container py-5">
+    <table border="2px">
+        <tr *ngFor =" let cart of userCart">
+            
+            <td>{{cart.pName}}</td>
+            <td>{{cart.pBrand}}</td>
+            <td>{{cart.pPrice}}</td>
+            <td>
+                <button class="btn-warning" (click)="onMinusUpdateClick(cart.cId)">-</button> 
+                <button >{{cart.qty}}</button>
+                <button  class="btn-warning"(click)="onAddUpdateClick(cart.cId)">+</button></td>
+            <br>
+            <!-- <td>{{getTotalValue(cart.pPrice,cart.qty)}}</td>
+            <td><button class="btn btn-danger" (click)="onDeleteCartProductClick(cart.cId)">Delete item</button></td> -->
+        </tr>
+    </table>
+    <button class="btn btn-warning my-2" [disabled]="buyProductButton" [routerLink]="['/user-placeorder']">Buy Products</button> &nbsp;
+    <strong>Your Total Cart Value is {{totalPrice}}</strong>
+</div>

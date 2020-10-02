@@ -32,23 +32,50 @@ export class CustomerService {
     this.url += 'addNewUser';
     return  this.http.post<number>(this.url,register);
   }
-  generateOTP() : Observable<number>
-  {
+  // generateOTP() : Observable<number>
+  // {
+  //   this.url = this.tempurl;
+  //   this.url += 'generateOTP';
+  //   return this.http.get<number>(this.url);
+  // }
+  // forgotPassword(forgotPassword : ForgotPassword)
+  // {
+  //   this.url = this.tempurl;
+  //   this.url += 'forgotPassword';
+  //   return this.http.post(this.url,forgotPassword,{responseType:'text'});
+  // } 
+   getMyCart(uId : number) : Observable<Cart[]>
+   {
+     this.url = this.tempurl;
+     this.url += 'MyCart/' + uId;
+     return this.http.get<Cart[]>(this.url);
+   }
+   updateMyCart(cId:number, addOrMinus: number)
+   {
     this.url = this.tempurl;
-    this.url += 'generateOTP';
-    return this.http.get<number>(this.url);
-  }
-  forgotPassword(forgotPassword : ForgotPassword)
-  {
-    this.url = this.tempurl;
-    this.url += 'forgotPassword';
-    return this.http.post(this.url,forgotPassword,{responseType:'text'});
-  } 
-//   getMyCart(uId : string) : Observable<Cart[]>
+     this.url += 'updateMyCart/' + cId;
+     if(addOrMinus==1)
+     {
+       this.url += '/' + 1;
+       return this.http.get(this.url,{responseType:'text'});
+     }
+     else
+     {
+       this.url += '/' + 0;
+       return this.http.get(this.url,{responseType:'text'});
+     }
+   }
+//   deleteMyCart(cId: string)
 //   {
-//     this.url = this._tempurl;
-//     this.url += 'getMyCart/' + uId;
-//     return this.http.get<Cart[]>(this.url);
+//     this._url = this._tempurl;
+//     this._url += 'deleteMyCart/' + cId;
+//     return this._http.delete(this._url,{responseType:'text'});
+//   }
+//   addToMyCart(uId: string, pId: string)
+//   {
+//     this._url = this._tempurl;
+//     this._url += 'addToMyCart/' + uId + '/' + pId;
+//     return this._http.get(this._url,{responseType:'text'});
 //   }
 //   addNewUser(newUser:User)
 //   {

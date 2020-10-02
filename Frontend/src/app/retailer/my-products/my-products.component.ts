@@ -25,26 +25,26 @@ export class MyProductsComponent implements OnInit {
     }
   }
 
-  getRejectedProducts() {
-    let rId = sessionStorage.getItem('retailer');
-    if (rId != "null") {
-      this.retailerService.getRejectedProduct(rId)
-        .subscribe((data: ProductForApproval[]) => { console.log(data); this.productsRejected = data });
-    }
-  }
-  getApprovedProducts() {
-    let rId = sessionStorage.getItem('retailer');
-    if (rId != "null") {
-      this.retailerService.getApprovedProduct(rId)
-        .subscribe((data: ProductForApproval[]) => { console.log(data); this.productsApproved = data });
-    }
-  }
-  getPendingProducts() {
-    let rId = sessionStorage.getItem('retailer');
-    if (rId != "null") {
-      this.retailerService.getPendingProduct(rId)
-        .subscribe((data: ProductForApproval[]) => { console.log(data); this.productsPending = data });
-    }
-  }
+  // getRejectedProducts() {
+  //   let rId = sessionStorage.getItem('retailer');
+  //   if (rId != "null") {
+  //     this.retailerService.getRejectedProduct(rId)
+  //       .subscribe((data: ProductForApproval[]) => { console.log(data); this.productsRejected = data });
+  //   }
+  // }
+  // getApprovedProducts() {
+  //   let rId = sessionStorage.getItem('retailer');
+  //   if (rId != "null") {
+  //     this.retailerService.getApprovedProduct(rId)
+  //       .subscribe((data: ProductForApproval[]) => { console.log(data); this.productsApproved = data });
+  //   }
+  // }
+  // getPendingProducts() {
+  //   let rId = sessionStorage.getItem('retailer');
+  //   if (rId != "null") {
+  //     this.retailerService.getPendingProduct(rId)
+  //       .subscribe((data: ProductForApproval[]) => { console.log(data); this.productsPending = data });
+  //   }
+  // }
 
 }

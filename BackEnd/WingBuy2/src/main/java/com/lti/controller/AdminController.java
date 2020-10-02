@@ -37,7 +37,7 @@ import com.lti.dto.UserSignUp;
 @RestController
 @RequestMapping(path = "buy")
 @CrossOrigin
-public class MainController {
+public class AdminController {
 
 	@Autowired
 	private AdminService adminservice;
@@ -125,13 +125,30 @@ public class MainController {
 		}
 		return dto;
 	}
-	@PostMapping(path = "approveProduct/{aId}/{rqId}")
-	public boolean approveProduct(@PathVariable("aId") int aId,@PathVariable("rqId") int rqId){
-			return adminservice.approveProductByrqID(aId,rqId);
+	@PostMapping(path = "approveProduct/{aId}")
+	public boolean approveProduct(@PathVariable("aId") int aId,@RequestBody ProductForApprovalDTO pfa){
+		System.out.println(pfa.getpReqId());
+			return adminservice.approveProductByrqID(aId,pfa.getpReqId());
 	}
-	@PostMapping(path = "rejectProduct/{aId}/{rqId}")
-	public boolean rejectProduct(@PathVariable("aId") int aId,@PathVariable("rqId") int rqId){
-			return adminservice.rejectProductByrqID(aId,rqId);
+	@PostMapping(path = "rejectProduct/{aId}")
+	public boolean rejectProduct(@PathVariable("aId") int aId,@RequestBody ProductForApprovalDTO pfa){
+		System.out.println(pfa.getpReqId());
+			return adminservice.rejectProductByrqID(aId,pfa.getpReqId());
+	}
+	
+	@GetMapping(path = "getAllRetailers")
+	public List<Retailer> getAllRetailers(){
+		List<Retailer> dto=adminservice.viewAllRetailers();
+		return dto;
+	}
+	@GetMapping(path = "deleteRetailer/{rId}")
+	public List<Retailer> deleteRetailer(@PathVariable("rId") int rId){
+		List<Retailer> dto=adminservice.deleteRetailer(rId);
+		return dto;
+	}
+	@PostMapping(path = "addRetailer/{aId}")
+	public boolean addRetailer(@PathVariable("aId") int aId,@RequestBody RetailerSignUp retailer){
+		return adminservice.addRetailer(retailer);
 	}
 	/*
 	 * @GetMapping(path = "{aId}") public Admin cgetAdminById(@PathVariable("aId")

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lti.dto.RetailerSignUp;
 import com.lti.model.Admin;
 import com.lti.model.Product;
 import com.lti.model.ProductForApproval;
@@ -78,20 +79,15 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public List<ProductForApproval> getProductstobeApproved(int aId) {
 			String query = "SELECT E FROM ProductForApproval E WHERE E.admin.aId=:aId AND E.pStatus='P'";
-			System.out.println("DAO");
 			List<ProductForApproval> product = null;
 			TypedQuery<ProductForApproval> tquery = null;
-//			try {
-				System.out.println("INSIDE DAO");
+			try {
 				tquery = entityManager.createQuery(query, ProductForApproval.class);
 				tquery.setParameter("aId", aId);
 				product = tquery.getResultList();
-//				System.out.println(product);
-//				for(ProductForApproval p:product)
-//					System.out.println(p);
-//			} catch (Exception e) {
-//				System.out.println("No pending requests or some error");
-//			}
+			} catch (Exception e) {
+				System.out.println("No pending requests or some error");
+			}
 			return product;
 		
 	}
@@ -139,6 +135,40 @@ public class AdminDaoImpl implements AdminDao {
 		ProductForApproval pfa=entityManager.find(ProductForApproval.class,rqId);
 		pfa.setpStatus('R');
 		entityManager.merge(pfa);
+		return true;
+	}
+
+	@Override
+	public List<Retailer> getAllRetailers() {
+		String query = "SELECT E FROM Retailer E";
+		List<Retailer> retailers = null;
+		TypedQuery<Retailer> tquery = null;
+		try {
+			tquery = entityManager.createQuery(query, Retailer.class);
+			retailers = tquery.getResultList();
+		} catch (Exception e) {
+			System.out.println("No products or some error");
+		}
+		return retailers;
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public List<Retailer> removeRetailer(int rId) {
+		Retailer retailer=entityManager.find(Retailer.class,rId);
+		entityManager.remove(retailer);
+		return getAllRetailers();
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public boolean addRetailer(Retailer newRetailer) {
+		//SEND PASSWORD TO RETAILER//
+//		
+//		*
+//		*
+//		*
+		entityManager.persist(newRetailer);
 		return true;
 	}
 

@@ -1,8 +1,8 @@
 export class Retailer
 {
     rId : number;
-    uName : string;
-	uEmail : string;
-	uPassword : string;
-	uPhone : number;
+    rName : string;
+	rEmail : string;
+	rPassword : string;
+	rMobile : number;
 }

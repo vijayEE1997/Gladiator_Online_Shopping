@@ -1,0 +1,42 @@
+.Admin-Requests{
+    position: relative;
+    width: 100%;
+    height:calc(100% - 5rem);
+    border-radius: 0.25rem;
+    overflow: auto;
+}
+.Admin-Requests table{
+    width: 100%;
+}
+.Admin-Requests th,.Admin-Requests td{
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+}
+.Admin-Requests th{
+    background-color: #31353D;
+    color: rgba(255,255,255,0.9);
+    font-size: 0.85rem;
+}
+.Admin-Requests td{
+    color: rgba(0,0,0,0.9);
+    background-color: rgba(255,255,255,0.85);
+    font-size: 0.85rem;
+}
+.Admin-Button{
+    flex-grow: 1;
+    flex-shrink: 1;
+    background-color: #E35F21;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    color: rgba(0,0,0,0.85);
+    cursor: pointer;
+    text-align: center;
+}
+.APR{
+    display: flex;
+    padding: 0 0.25rem 1rem 0.25rem;
+}
+.Admin-Button:hover,.Admin-Button-click{
+    background-color: rgba(227,95,33,0.75);
+    font-weight: bolder;
+}

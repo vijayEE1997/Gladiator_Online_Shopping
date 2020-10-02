@@ -16,8 +16,10 @@ public interface RetailerDao {
 //	public boolean addProductForApproval(ProductForApproval product);
 //	public updateRea
 //	public boolean updateProduct()
-	public List<Product> showMyApprovedProducts(int rId);
+
 	public List<Retailer> showAllRetailers();
+	public List<ProductForApproval> showMyApprovedProducts(int rId);
 	public List<ProductForApproval> showMyRejectedProducts(int rId);
+	public List<ProductForApproval> showMyPendingProducts(int rId);
 	
 }

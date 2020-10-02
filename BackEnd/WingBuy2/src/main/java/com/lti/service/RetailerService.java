@@ -17,8 +17,9 @@ public interface RetailerService {
 //	public boolean addProductForApproval(ProductForApproval product);
 //	public updateRea
 //	public boolean updateProduct()
-	public List<Product> findshowMyApprovedProducts(int rId);
 	public List<Retailer> findshowAllRetailers();
+	public List<ProductForApproval> findshowMyApprovedProducts(int rId);
+	public List<ProductForApproval> findshowMyPendingProducts(int rId);
 	public List<ProductForApproval> findshowMyRejectedProducts(int rId);
 	
 }

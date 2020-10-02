@@ -14,37 +14,49 @@ export class MyProductsComponent implements OnInit {
   productsRejected: ProductForApproval[] = [];
   productsApproved: ProductForApproval[] = [];
 
+  approved:boolean=false;
+  rejected:boolean=false;
+  pending:boolean=true;
+
+  rId:number=3;
   constructor(private retailerService: RetailerService,
     private router: Router) { }
 
   ngOnInit(): void {
-    let rId = sessionStorage.getItem('retailer');
-    if (sessionStorage.getItem('retailer') == "null") {
-      alert("Retailer Not Logged In");
-      this.router.navigate(['home']);
-    }
+    this.getApprovedProducts()
+    this.getPendingProducts()
+    this.getRejectedProducts()
   }
 
-  // getRejectedProducts() {
-  //   let rId = sessionStorage.getItem('retailer');
-  //   if (rId != "null") {
-  //     this.retailerService.getRejectedProduct(rId)
-  //       .subscribe((data: ProductForApproval[]) => { console.log(data); this.productsRejected = data });
-  //   }
-  // }
-  // getApprovedProducts() {
-  //   let rId = sessionStorage.getItem('retailer');
-  //   if (rId != "null") {
-  //     this.retailerService.getApprovedProduct(rId)
-  //       .subscribe((data: ProductForApproval[]) => { console.log(data); this.productsApproved = data });
-  //   }
-  // }
-  // getPendingProducts() {
-  //   let rId = sessionStorage.getItem('retailer');
-  //   if (rId != "null") {
-  //     this.retailerService.getPendingProduct(rId)
-  //       .subscribe((data: ProductForApproval[]) => { console.log(data); this.productsPending = data });
-  //   }
-  // }
+  pendingF(){
+    this.approved=false;
+    this.rejected=false;
+    this.pending=true;
+  }
+
+  approvedF(){
+    this.approved=true;
+    this.rejected=false;
+    this.pending=false;
+  }
+
+  rejectedF(){
+    this.approved=false;
+    this.pending=false;
+    this.rejected=true;
+  }
+
+  getRejectedProducts() {
+      this.retailerService.getRejectedProduct(this.rId)
+        .subscribe((data: ProductForApproval[]) => {this.productsRejected = data });
+  }
+  getApprovedProducts() {
+      this.retailerService.getApprovedProduct(this.rId)
+        .subscribe((data: ProductForApproval[]) => {this.productsApproved = data });
+  }
+  getPendingProducts() {
+      this.retailerService.getPendingProduct(this.rId)
+        .subscribe((data: ProductForApproval[]) => {this.productsPending = data });
+  }
 
 }

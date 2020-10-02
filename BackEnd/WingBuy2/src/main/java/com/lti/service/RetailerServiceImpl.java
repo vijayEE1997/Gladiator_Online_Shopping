@@ -59,7 +59,7 @@ public class RetailerServiceImpl implements RetailerService{
 	}
 
 	@Override
-	public List<Product> findshowMyApprovedProducts(int rId) {
+	public List<ProductForApproval> findshowMyApprovedProducts(int rId) {
 		return retailerdao.showMyApprovedProducts(rId);
 	}
 
@@ -71,6 +71,11 @@ public class RetailerServiceImpl implements RetailerService{
 	@Override
 	public List<ProductForApproval> findshowMyRejectedProducts(int rId) {
 		return retailerdao.showMyRejectedProducts(rId);
+	}
+
+	@Override
+	public List<ProductForApproval> findshowMyPendingProducts(int rId) {
+		return retailerdao.showMyPendingProducts(rId);
 	}
 
 	

@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import com.lti.dto.ProductForApprovalDTO;
 import com.lti.dto.RetailerSignUp;
 import com.lti.model.Product;
 import com.lti.model.ProductForApproval;
@@ -109,14 +110,15 @@ public class RetailerDaoImpl implements RetailerDao {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public List<Product> showMyApprovedProducts(int rId) {
-		String query = "SELECT E FROM Product E WHERE E.rId=:rId";
-		List<Product> product = null;
-		TypedQuery<Product> tquery = null;
+	public List<ProductForApproval> showMyApprovedProducts(int rId) {
+		String query = "SELECT E FROM ProductForApproval E WHERE E.retailer.rId=:rId and E.pStatus='A'";
+		List<ProductForApproval> product = null;
+		TypedQuery<ProductForApproval> tquery = null;
 		try {
-			tquery = entityManager.createQuery(query, Product.class);
+			tquery = entityManager.createQuery(query, ProductForApproval.class);
 			tquery.setParameter("rId", rId);
 			product = tquery.getResultList();
+			System.out.println(product);
 		} catch (Exception e) {
 			System.out.println("Retailer not exists.");
 		}
@@ -142,6 +144,21 @@ public class RetailerDaoImpl implements RetailerDao {
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<ProductForApproval> showMyRejectedProducts(int rId) {
 		String query = "SELECT E FROM ProductForApproval E WHERE E.retailer.rId=:rId AND E.pStatus='R'";
+		List<ProductForApproval> product = null;
+		TypedQuery<ProductForApproval> tquery = null;
+		try {
+			tquery = entityManager.createQuery(query, ProductForApproval.class);
+			tquery.setParameter("rId", rId);
+			product = tquery.getResultList();
+		} catch (Exception e) {
+			System.out.println("Either approved or not requested");
+		}
+		return product;
+	}
+
+	@Override
+	public List<ProductForApproval> showMyPendingProducts(int rId) {
+		String query = "SELECT E FROM ProductForApproval E WHERE E.retailer.rId=:rId AND E.pStatus='P'";
 		List<ProductForApproval> product = null;
 		TypedQuery<ProductForApproval> tquery = null;
 		try {

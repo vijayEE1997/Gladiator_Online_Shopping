@@ -77,6 +77,7 @@ public class AdminServiceImpl implements AdminService{
 		newRetailer.setrMobile(retailer.getrMobile());
 		String password=retailer.getrName().substring(0,3)+"@"+"123";
 		newRetailer.setrPassword(password);
+		
 		return admindao.addRetailer(newRetailer);
 	}
 

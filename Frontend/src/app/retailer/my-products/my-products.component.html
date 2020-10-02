@@ -1,1 +1,53 @@
-<p>my-products works!</p>
+<div class="APR">
+    <div class="Admin-Button" [class.Admin-Button-click]="pending" (click)="pendingF()">Pending</div>
+    <div class="Admin-Button" [class.Admin-Button-click]="approved" (click)="approvedF()" style="margin: 0 1rem;">Approved</div>
+    <div class="Admin-Button" [class.Admin-Button-click]="rejected" (click)="rejectedF()">Rejected</div>
+</div>
+<div class="Admin-Requests">
+    <table>
+        <thead>
+            <tr>
+                <th>RqID</th>
+                <th>Category</th>
+                <th>Sub-Category</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Stock</th>
+                <th>Price/Unit</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="approved">
+            <tr *ngFor="let p of productsApproved">
+                <td>{{p.pReqId}}</td>
+                <td>{{p.pCategory}}</td>
+                <td>{{p.pSubCategory}}</td>
+                <td>{{p.pBrand}}</td>
+                <td>{{p.pName}}</td>
+                <td>{{p.pStock}}</td>
+                <td>{{p.pPrice}}</td>
+            </tr>
+        </tbody>
+        <tbody *ngIf="rejected">
+            <tr *ngFor="let p of productsRejected">
+                <td>{{p.pReqId}}</td>
+                <td>{{p.pCategory}}</td>
+                <td>{{p.pSubCategory}}</td>
+                <td>{{p.pBrand}}</td>
+                <td>{{p.pName}}</td>
+                <td>{{p.pStock}}</td>
+                <td>{{p.pPrice}}</td>
+            </tr>
+        </tbody>
+        <tbody *ngIf="pending">
+            <tr *ngFor="let p of productsPending">
+                <td>{{p.pReqId}}</td>
+                <td>{{p.pCategory}}</td>
+                <td>{{p.pSubCategory}}</td>
+                <td>{{p.pBrand}}</td>
+                <td>{{p.pName}}</td>
+                <td>{{p.pStock}}</td>
+                <td>{{p.pPrice}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

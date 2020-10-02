@@ -69,14 +69,13 @@ public class RetailerController {
 	}
 	
 	@GetMapping(path = "approved/{rId}")//-------------retailer approved prod-------------------------------
-	public List<ProductDTO> cfindshowMyApprovedProducts(@PathVariable("rId") int rId) {
-			List<Product> approvedProd = retailerservice.findshowMyApprovedProducts(rId);
-			List<ProductDTO> dto = new ArrayList<>();
-			for(Product p:approvedProd)
+	public List<ProductForApprovalDTO> cfindshowMyApprovedProducts(@PathVariable("rId") int rId) {
+			List<ProductForApproval> approvedProd = retailerservice.findshowMyApprovedProducts(rId);
+			List<ProductForApprovalDTO> dto = new ArrayList<>();
+			for(ProductForApproval p:approvedProd)
 			{
-				ProductDTO pdto = new ProductDTO();
-				
-				
+				ProductForApprovalDTO pdto = new ProductForApprovalDTO();
+				pdto.setpReqId(p.getpReqId());
 				pdto.setpName(p.getpName());
 				pdto.setpCategory(p.getpCategory());
 				pdto.setpBrand(p.getpBrand());
@@ -84,12 +83,37 @@ public class RetailerController {
 				pdto.setpPrice(p.getpPrice());
 				pdto.setpSubCategory(p.getpSubCategory());
 				pdto.setpImage(p.getpImage());
+				pdto.setpStatus(p.getpStatus());
 				pdto.setpStock(p.getpStock());
+				pdto.setrId(p.getRetailer().getrId());
 				dto.add(pdto);
 		
 	}
 			return dto;
 }
+	@GetMapping(path = "pending/{rId}")//-------------retailer pending prod-------------------------------
+	public List<ProductForApprovalDTO> cfindshowMyPendingProducts(@PathVariable("rId") int rId) {
+		List<ProductForApproval> rejectedProd = retailerservice.findshowMyPendingProducts(rId);
+		List<ProductForApprovalDTO> dto = new ArrayList<>();
+		for(ProductForApproval p:rejectedProd)
+		{
+			ProductForApprovalDTO pdto = new ProductForApprovalDTO();
+			pdto.setpReqId(p.getpReqId());
+			pdto.setpName(p.getpName());
+			pdto.setpCategory(p.getpCategory());
+			pdto.setpBrand(p.getpBrand());
+			pdto.setpDesc(p.getpDesc());
+			pdto.setpPrice(p.getpPrice());
+			pdto.setpSubCategory(p.getpSubCategory());
+			pdto.setpImage(p.getpImage());
+			pdto.setpStatus(p.getpStatus());
+			pdto.setpStock(p.getpStock());
+			pdto.setrId(p.getRetailer().getrId());
+			dto.add(pdto);
+		
+	}
+		return dto;
+	}
 	
 	/*@GetMapping(path="/")// doubt
 	public List<Product> cfindshowMyApprovedProducts(int rId) {

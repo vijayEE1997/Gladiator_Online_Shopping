@@ -1,5 +1,6 @@
 import { not } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
+import { CustomerService } from 'src/app/Service/customer.service';
 
 @Component({
   selector: 'user-cart',
@@ -14,7 +15,7 @@ export class UserCartComponent implements OnInit {
   buyProductButton: boolean = false;
   constructor
   (
-    //private _customerService : CustomerServiceService,
+    private customerservice : CustomerService,
     //private _router : Router
   ) { }
 
@@ -28,5 +29,22 @@ export class UserCartComponent implements OnInit {
       //this.router.navigate(['home']);
     }
   }
-
+  onAddUpdateClick(cId:number)
+  {
+    this.customerservice.updateMyCart(cId,1)
+    .subscribe((data:string)=>
+    {
+      //alert(data);
+      //this.reloadData();
+    });
+  }
+  onMinusUpdateClick(cId:number)
+  {
+    this.customerservice.updateMyCart(cId,0)
+    .subscribe((data:string)=>
+    {
+      //alert(data);
+     // this.reloadData();
+    });
+  }
 }

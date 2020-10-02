@@ -18,4 +18,5 @@ public interface AdminDao {
 	public boolean rejectProductByrqIdd(int aId, int rqId);
 	public List<Retailer> getAllRetailers();
 	public List<Retailer> removeRetailer(int rId);
+	public boolean addRetailer(Retailer newRetailer);
 }

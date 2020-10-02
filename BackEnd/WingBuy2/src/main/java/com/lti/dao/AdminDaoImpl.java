@@ -160,4 +160,16 @@ public class AdminDaoImpl implements AdminDao {
 		return getAllRetailers();
 	}
 
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public boolean addRetailer(Retailer newRetailer) {
+		//SEND PASSWORD TO RETAILER//
+//		
+//		*
+//		*
+//		*
+		entityManager.persist(newRetailer);
+		return true;
+	}
+
 }

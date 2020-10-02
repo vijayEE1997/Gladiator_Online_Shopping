@@ -23,12 +23,14 @@
                 <td>{{p.pName}}</td>
                 <td>{{p.pStock}}</td>
                 <td>{{p.pPrice}}</td>
-                <td id="Admin-Button-td"><div class="Admin-Button" (click)="viewDesc(p.pDesc)"><span style="margin-right: 0.5rem;"><i class="fa fa-eye" aria-hidden="true"></i></span>View</div></td>
+                <td id="Admin-Button-td"><div class="Admin-Button" (click)="viewDesc(p)"><span style="margin-right: 0.5rem;"><i class="fa fa-eye" aria-hidden="true"></i></span>View</div></td>
             </tr>
         </tbody>
     </table>
     <div *ngIf="descOpen" class="Description">
         <div class="Admin-Button" (click)="closeDesc()">Close</div>
         {{desc}}
+        <div class="Admin-Button" (click)="approveProductF()"><span style="margin-right: 0.5rem;"><i class="fa fa-plus-circle" aria-hidden="true"></i></span>Approve</div>
+        <div class="Admin-Button" (click)="rejectProductF()"><span style="margin-right: 0.5rem;"><i class="fa fa-minus-circle" aria-hidden="true"></i></span>Reject</div>
     </div>
 </div>

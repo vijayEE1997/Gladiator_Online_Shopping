@@ -19,4 +19,5 @@ public interface AdminService {
 	public boolean rejectProductByrqID(int aId, int rqId);
 	public List<Retailer> viewAllRetailers();
 	public List<Retailer> deleteRetailer(int rId);
+	public boolean addRetailer(RetailerSignUp retailer);
 }

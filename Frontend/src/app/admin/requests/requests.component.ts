@@ -9,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./requests.component.css']
 })
 export class RequestsComponent implements OnInit {
-  desc:any;
+  desc:string;
+  request:ProductForApproval;
   descOpen:boolean=false;
   productsforApproval:ProductForApproval[]=[];
 
@@ -23,11 +24,29 @@ export class RequestsComponent implements OnInit {
   }
 
   //for description
-  viewDesc(desc:any)
+  viewDesc(productforapproval:ProductForApproval)
   {
-    this.desc=desc;
+    this.desc=productforapproval.pDesc;
+    this.request=productforapproval;
     this.descOpen=true;
   }
+
+  //For Approval
+  approveProductF(){
+    this.adminService.approveProductCall(this.request).subscribe(data => { 
+      if(data)
+      this.productsforApproval = this.productsforApproval.filter(p=>p.pReqId!=this.request.pReqId)
+    });
+  }
+
+  //For Rejection
+  rejectProductF(){
+    this.adminService.rejectProductCall(this.request).subscribe(data => { 
+      if(data)
+      this.productsforApproval = this.productsforApproval.filter(p=>p.pReqId!=this.request.pReqId)
+    });
+  }
+
   closeDesc()
   {
     this.descOpen=false;

@@ -13,6 +13,10 @@ import { HomeComponent } from './Home/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerService } from './Service/customer.service';
 import { HttpClientModule } from '@angular/common/http';
+import { PaymentComponent } from './payment/payment.component';
+import { UserCartComponent } from './user/user-cart/user-cart.component';
+import { UserWishlistComponent } from './user/user-wishlist/user-wishlist.component';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +24,10 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     FooterComponent,
     ContainerComponent,
-    HomeComponent
+    HomeComponent,
+    PaymentComponent,
+    UserCartComponent,
+    UserWishlistComponent
   ],
   imports: [
     BrowserModule,

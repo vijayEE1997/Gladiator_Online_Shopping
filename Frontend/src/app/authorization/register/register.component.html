@@ -9,6 +9,10 @@
         <div class="form-group">
             <label for="username" class="form-control label-l">Username</label>
             <input type="text" formControlName="uName" id="username" class="form-control input-l"  />
+            <span class="text-danger"
+            *ngIf="(registerForm.uName.touched || submitted) && registerForm.uName.errors?.required">
+            User Name is required
+        </span>
             <!-- [ngClass]="{ 'is-invalid': submitted && f.username.errors }" -->
             <!-- <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                 <div *ngIf="f.username.errors.required">Username is required</div>
@@ -17,6 +21,14 @@
         <div class="form-group">
             <label for="email" class="form-control label-l">Email</label>
             <input type="email" formControlName="uEmail" id="email" class="form-control input-l"  />
+            <span class="text-danger"
+            *ngIf="(registerForm.uEmail.touched || submitted) && registerFormControl.uEmail.errors?.required">
+            Email is required
+            </span>
+            <span class="text-danger"
+            *ngIf="registerForm.uEmail.touched && registerFormControl.uEmail.errors?.email">
+            Enter a valid email address
+            </span>
             <!-- [ngClass]="{ 'is-invalid': submitted && f.username.errors }" -->
             <!-- <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                 <div *ngIf="f.username.errors.required">Username is required</div>
@@ -25,6 +37,15 @@
         <div class="form-group">
             <label for="password" class="form-control label-l" >Password</label>
             <input type="password" formControlName="uPassword" id="password" class="form-control input-l"  />
+            <span class="text-danger"
+            *ngIf="(registerForm.uPassword.touched || submitted) && registerFormControl.uPassword.errors?.required">
+            Password is required
+        </span>
+        <span class="text-danger"
+            *ngIf="registerForm.uPassword.touched && registerFormControl.uPassword.errors?.invalidPassword">
+            Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase
+            letter and 1 number
+        </span>
             <!-- [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                 <div *ngIf="f.password.errors.required">Password is required</div>
@@ -33,6 +54,16 @@
         <div class="form-group">
             <label for="mobile" class="form-control label-l">Mobile</label>
             <input type="text" formControlName="uMobile" id="mobile" class="form-control input-l"  />
+            <span class="text-danger"
+            *ngIf="(registerForm.uMobile.touched || submitted) && registerFormControl.uMobile.errors?.required">
+            Mobile Number is required
+        </span>
+        <!-- <span class="text-danger"
+            *ngIf="registerForm.password.touched && registerFormControl.password.errors?.invalidPassword">
+            Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase
+            letter and 1 number
+        </span> -->
+
             <!-- [ngClass]="{ 'is-invalid': submitted && f.username.errors }" -->
             <!-- <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                 <div *ngIf="f.username.errors.required">Username is required</div>

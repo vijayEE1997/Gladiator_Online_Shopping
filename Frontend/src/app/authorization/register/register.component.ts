@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/Service/customer.service';
 import { EncrDecrService } from 'src/app/Service/encr-decr.service';
+import { CustomvalidationService } from 'src/app/services/customvalidation.service';
 
 @Component({
   selector: 'register',
@@ -18,12 +19,18 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
-      uEmail: ['', Validators.required],
-      uPassword: ['', Validators.required],
+      uEmail: ['', Validators.required,Validators.email],
+      //uPassword: ['', Validators.compose([Validators.required, this.customValidator.patternValidator()])],
+      uPassword: ['',Validators.required],
       uName: ['', Validators.required],
-      uMobile: ['', Validators.required]
-    });
-  }
+      uMobile: ['', Validators.required],
+      //confirmPassword: ['', [Validators.required]],
+    },
+    // {
+    //   validator: this.customValidator.MatchPassword('password', 'confirmPassword'),
+    // }
+    );
+}
   register(){
     if(this.registerForm.invalid){
       return;

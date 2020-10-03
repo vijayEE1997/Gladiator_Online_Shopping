@@ -5,4 +5,5 @@ export class User
 	uEmail : string;
 	uPassword : string;
 	uPhone : number;
+	uAddress:string;
 }

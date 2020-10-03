@@ -221,6 +221,12 @@ public class Product {
 		this.carts.add(cart);
 	}
 	
+	public void addProductToWishList(WishList wishlist) {
+		if(this.wishlists==null)
+			this.wishlists=new HashSet<>();
+		this.wishlists.add(wishlist);
+	}
+	
 	@Override
 	public String toString() {
 		return "Product [pId=" + pId + ", pCategory=" + pCategory + ", pSubCategory=" + pSubCategory + ", pName="

@@ -33,7 +33,7 @@ export class SingleProductComponent implements OnInit {
       let uId = this.EncrDecr.get('123456$#@$^@1ERF', encr)
       this.customerService.addToCart(parseInt(uId), this.product.pId).subscribe(data => {
         if (data)
-          alert("success")
+          alert("success cart")
         else
           alert("try")
       })
@@ -46,9 +46,9 @@ export class SingleProductComponent implements OnInit {
     let encr = sessionStorage.getItem('user')
     if (encr != null) {
       let uId = this.EncrDecr.get('123456$#@$^@1ERF', encr)
-      this.customerService.addToCart(parseInt(uId), this.product.pId).subscribe(data => {
+      this.customerService.addToWishList(parseInt(uId), this.product.pId).subscribe(data => {
         if (data)
-          alert("success")
+          alert("success wish")
         else
           alert("try")
       })

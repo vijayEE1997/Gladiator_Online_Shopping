@@ -117,7 +117,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	 public User updateUser(int uId, User user) {	  
-	  return null; 
+	  return entityManager.merge(user); 
 	  }
 	 
 	@Override

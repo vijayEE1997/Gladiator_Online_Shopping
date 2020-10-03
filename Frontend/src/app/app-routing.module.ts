@@ -8,6 +8,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AllProductComponent } from './Products/all-product/all-product.component';
 import { SingleProductComponent } from './Products/single-product/single-product.component';
+import { UserCartComponent } from './user/user-cart/user-cart.component';
+import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   {path : '', redirectTo : '/home', pathMatch: 'full'},
@@ -18,7 +20,9 @@ const routes: Routes = [
   {path : 'profile-admin', component : ProfileAdminComponent},
   {path : 'profile-retailer', component : ProfileComponent},
   {path : 'allProducts/:keyword', component : AllProductComponent },
-  {path : 'product/:id', component : SingleProductComponent }
+  {path : 'product/:id', component : SingleProductComponent },
+  {path : 'MyCart', component : UserCartComponent },
+  {path : 'payment', component : PaymentComponent }
   
 ];
 

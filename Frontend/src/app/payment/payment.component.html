@@ -1,5 +1,10 @@
-<p>payment works!</p>
 <div class="container">
+    ADDRESS
+    <div *ngIf="address!=null">Address: {{address}}</div>
+    <label for="address">Address</label>
+    <input type="text" name="address" id="address" [class.hide]="hideInput">
+    <button *ngIf="address==null"  (click)="addAddressF()" [class.hide]="hideInput">Add address</button>
+    <button *ngIf="address!=null" (click)="updateAddressF()">Upadte address</button>
 <h3>Select The Payment Mode</h3>
 <div class="container py-5">
 <button class="btn btn-primary btn-sm" (click)="COD()">Cash On Delivery </button>

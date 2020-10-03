@@ -1,20 +1,19 @@
-<!-- <p>user-cart works!</p>
 <div class="container py-5">
-    <table border="2px">
-        <tr *ngFor =" let cart of userCart">
-            
-            <td>{{cart.pName}}</td>
-            <td>{{cart.pBrand}}</td>
-            <td>{{cart.pPrice}}</td>
+    <table>
+        <tr *ngFor =" let cart of cartMyDTO">
+            <td><img src="" alt="IMAGe" style="width:128px;height:128px;"></td>
+            <td>{{cart.productdto.pName}}</td>
+            <td>{{cart.productdto.pBrand}}</td>
+            <td>{{cart.productdto.pPrice}}</td>
             <td>
                 <button class="btn-warning" (click)="onMinusUpdateClick(cart.cId)">-</button> 
-                <button >{{cart.qty}}</button>
+                <button >{{cart.cartdto.qty}}</button>
                 <button  class="btn-warning"(click)="onAddUpdateClick(cart.cId)">+</button></td>
             <br>
-            <!-- <td>{{getTotalValue(cart.pPrice,cart.qty)}}</td>
-            <td><button class="btn btn-danger" (click)="onDeleteCartProductClick(cart.cId)">Delete item</button></td> -->
-        <!-- </tr>
+            <td>{{cart.productdto.pPrice*cart.cartdto.qty}}</td>
+            <td><button class="btn btn-danger">Delete item</button></td>
+        </tr>
     </table>
-    <button class="btn btn-warning my-2" [disabled]="buyProductButton" [routerLink]="['/user-placeorder']">Buy Products</button> &nbsp;
+    <button class="btn btn-warning my-2" [disabled]="buyProductButton" [routerLink]="['/payment']" >Buy Products</button> &nbsp;
     <strong>Your Total Cart Value is {{totalPrice}}</strong>
-</div> --> -->
+</div>

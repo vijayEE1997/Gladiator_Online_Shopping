@@ -28,6 +28,7 @@ public class CartDaoImpl implements CartDao {
 
 		User user = entityManager.find(User.class, uId);
 		Product product = entityManager.find(Product.class, pId);
+		
 		System.out.println(user);
 		System.out.println(product);
 		Cart cart = new Cart();

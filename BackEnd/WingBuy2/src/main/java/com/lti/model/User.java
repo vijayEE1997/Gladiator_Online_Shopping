@@ -20,10 +20,13 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Component
 @Scope(scopeName="prototype")
 @Entity
 @Table(name ="USER_T")
+@JsonIgnoreProperties({"hibernateLazyInitializer","wishlists","carts","payments","compares"})
 public class User {
 	
 	@Id
@@ -62,6 +65,11 @@ public class User {
 		if(this.carts==null)
 			this.carts=new HashSet<>();
 		this.carts.add(cart);
+	}
+	public void addProductToWishList(WishList wishlist) {
+		if(this.wishlists==null)
+			this.wishlists=new HashSet<>();
+		this.wishlists.add(wishlist);
 	}
 
 	public User() {

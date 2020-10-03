@@ -40,4 +40,8 @@ export class HeaderComponent implements OnInit {
       this.searchButton=value;
   }
 
+  myCartF(){
+    this.router.navigate(['/MyCart']);
+  }
+
 }

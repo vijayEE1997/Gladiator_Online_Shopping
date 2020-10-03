@@ -25,21 +25,16 @@ public class WishListDaoImpl implements WishListDao {
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public boolean addToWishList(int uId, int pId) {
-		try {
-			
-			User user = entityManager.find(User.class, uId);
-			Product product = entityManager.find(Product.class, pId);
-			WishList wishlist = new WishList();
-			wishlist.setwUser(user);
-			wishlist.setwProducts(product);
-			entityManager.persist(wishlist);
-			
-
-		}
-
-		catch (Exception e) {
-			System.out.println("no product added");
-		}
+		User user = entityManager.find(User.class, uId);
+		Product product = entityManager.find(Product.class, pId);
+		
+		WishList w=new WishList();// by default set qty as 1
+		w.setwUser(user);
+		w.setwProducts(product);
+		user.addProductToWishList(w);
+		product.addProductToWishList(w);
+		entityManager.persist(user);
+		entityManager.persist(product);
 		return true;
 	}
 

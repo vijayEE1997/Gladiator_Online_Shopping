@@ -14,5 +14,7 @@
       "path": "./tsconfig.spec.json"
     }
 ],
+"angularCompilerOptions": {
   "types" : ["node"]
+}
 }

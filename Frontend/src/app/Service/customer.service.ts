@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { Login } from '../DTO/Login';
 import { Registration } from '../DTO/Registration';
 import { HttpClient, HttpHeaderResponse, HttpErrorResponse } from '@angular/common/http';
+import { CartMyDTO } from '../DTO/CartMyDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -48,12 +49,27 @@ export class CustomerService {
     this.url += 'resetPassword';
     return this.http.post<number>(this.url,login);
   } 
-  //  getMyCart(uId : number) : Observable<Cart[]>
-  //  {
-  //    this.url = this.tempurl;
-  //    this.url += 'MyCart/' + uId;
-  //    return this.http.get<Cart[]>(this.url);
-  //  }
+   getMyCart(uId : number) : Observable<CartMyDTO[]>
+   {
+     console.log(uId)
+     this.url = this.baseurl;
+     this.url += 'getCart/' + uId;
+     return this.http.get<CartMyDTO[]>(this.url);
+   }
+   getAddress(uId : number) : Observable<User>
+   {
+     console.log(uId)
+     this.url = this.baseurl;
+     this.url += 'getAddress/' + uId;
+     return this.http.get<User>(this.url);
+   }
+   updateAddress(user:User) : Observable<User>
+   {
+     console.log(user)
+     this.url = this.baseurl;
+     this.url += 'updateAddress';
+     return this.http.put<User>(this.url,user);
+   }
   //  updateMyCart(cId:number, addOrMinus: number)
   //  {
   //   this.url = this.tempurl;
@@ -157,12 +173,15 @@ export class CustomerService {
 //   }
   
 
-//  addToMyWishlist(uId: string, pId: string)
-//   {
-//     this._url = this._tempurl;
-//     this.url += 'addToMyWishlist/' + uId + '/' + pId;
-//     return this.http.get(this._url,{responseType:'text'});
-//   }
+ addToWishList(uId: number, pId: number)
+  {
+    let wishlist=new Wishlist()
+    wishlist.pId=pId;
+    wishlist.uId=uId;
+    this.url = this.baseurl;
+    this.url += 'addToWishlist';
+    return this.http.post(this.url,wishlist);
+  }
 
   // // backend me ni bna ye wala
   // getCartTotalPrice(cId: string)

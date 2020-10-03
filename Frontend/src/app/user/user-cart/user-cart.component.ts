@@ -1,6 +1,11 @@
 import { not } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Cart } from 'src/app/DTO/Cart';
+import { Product } from 'src/app/DTO/Product';
+import { CartMyDTO } from 'src/app/DTO/CartMyDTO';
 import { CustomerService } from 'src/app/Service/customer.service';
+import { EncrDecrService } from 'src/app/Service/encr-decr.service';
 
 @Component({
   selector: 'user-cart',
@@ -10,24 +15,31 @@ import { CustomerService } from 'src/app/Service/customer.service';
 export class UserCartComponent implements OnInit {
 
   // userCart: Cart[];
-  uId;
+  uId:number;
+  cartMyDTO:CartMyDTO[];
   totalPrice: number = 0;
   buyProductButton: boolean = false;
-  constructor
-  (
-    private customerservice : CustomerService,
-    //private _router : Router
-  ) { }
+  constructor (private customerService : CustomerService,
+               private EncrDecr: EncrDecrService,
+               private router:Router
+              ) { }
 
   ngOnInit(): void {
-    // first check in the session storage if user is login or not
-    // if not loggined direct to home page.
-    this.uId = sessionStorage.getItem('user');
-    if(this.uId=="null")
-    {
-      alert("User Not Logged In");
-      //this.router.navigate(['home']);
-    }
+      let encr = sessionStorage.getItem('user')
+      if (encr != null) {
+        this.uId = parseInt(this.EncrDecr.get('123456$#@$^@1ERF', encr))
+        this.customerService.getMyCart(this.uId).subscribe(data=>{
+          this.cartMyDTO=data;
+          console.log(data)
+          this.cartMyDTO.map(data=>{
+                this.totalPrice+=(data.cartdto.qty*data.productdto.pPrice)
+            })
+        })
+      }
+      else{
+        alert("login kro")
+        this.router.navigate(['home']);
+      }
   }
   // onAddUpdateClick(cId:number)
   // {

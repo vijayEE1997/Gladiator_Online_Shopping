@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,11 +32,13 @@ import com.lti.service.RetailerService;
 import com.lti.service.UserService;
 import com.lti.service.WishListService;
 import com.lti.dto.CartDTO;
+import com.lti.dto.CartMyDTO;
 import com.lti.dto.Login;
 import com.lti.dto.ProductDTO;
 import com.lti.dto.ProductForApprovalDTO;
 import com.lti.dto.RetailerSignUp;
 import com.lti.dto.UserSignUp;
+import com.lti.dto.WishListDTO;
 
 @RestController
 @RequestMapping(path = "admin")
@@ -176,5 +179,25 @@ public class AdminController {
 	public boolean addToCart(@RequestBody CartDTO cart)
 	{
 		return cartservice.findaddToCart(cart.getuId(), cart.getpId());
+	}
+	@PostMapping(path = "/addToWishlist") //-------------generateOTP-------------------------------
+	public boolean addToWishList(@RequestBody WishListDTO wishlist)
+	{
+		return wishlistservice.findaddToWishList(wishlist.getuId(),wishlist.getpId());
+	}
+	
+	@GetMapping(path = "getCart/{uId}")
+	public List<CartMyDTO> getMyCart(@PathVariable("uId") int uId){
+		List<CartMyDTO> dto = cartservice.findviewCart(uId);
+		return dto;
+	}
+	@GetMapping(path = "getAddress/{uId}")
+	public User getAddress(@PathVariable("uId") int uId){
+		return userservice.findgetUserById(uId);
+	}
+	
+	@PutMapping(path = "updateAddress")
+	public User updateAddress(@RequestBody User user){
+		return userservice.findupdateUser(user.getuId(), user);
 	}
 }

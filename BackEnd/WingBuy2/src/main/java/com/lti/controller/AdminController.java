@@ -157,6 +157,13 @@ public class AdminController {
 		return userservice.generateOTP(email);
 	}
 	
+	@PostMapping(path = "/generateOTPById") //-------------generateOTP-------------------------------
+	public int generateOTP(@RequestBody int uId)
+	{
+		System.out.println(uId);
+		return userservice.generateOTPById(uId);
+	}
+	
 	@PostMapping(path = "/resetPassword") //-------------generateOTP-------------------------------
 	public int resetPassword(@RequestBody Login login)
 	{
@@ -200,4 +207,10 @@ public class AdminController {
 	public User updateAddress(@RequestBody User user){
 		return userservice.findupdateUser(user.getuId(), user);
 	}
+	
+//	@PostMapping(path = "makePayment") //-------------generateOTP-------------------------------
+//	public boolean makePayment(@RequestBody Payment payment)
+//	{
+//		return wishlistservice.findaddToWishList(wishlist.getuId(),wishlist.getpId());
+//	}
 }

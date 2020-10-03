@@ -41,6 +41,11 @@ export class UserCartComponent implements OnInit {
         this.router.navigate(['home']);
       }
   }
+
+  buyProductF(){
+    this.router.navigate(['/payment']);
+  }
+
   // onAddUpdateClick(cId:number)
   // {
   //   this.customerservice.updateMyCart(cId,1)

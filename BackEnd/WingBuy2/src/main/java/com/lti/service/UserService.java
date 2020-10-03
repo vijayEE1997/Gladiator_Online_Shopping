@@ -25,6 +25,8 @@ public interface UserService {
 	public int resetPass(Login login);
 	public List<Product> getAllProductByCat(String keyword);
 	public Product getAllProductByPID(int pId);
+	public int generateOTPById(int uId);
+	public double getCartAmount(int uId);
 	
 	//public User updateUser(UpdateUser updateUser);
 }

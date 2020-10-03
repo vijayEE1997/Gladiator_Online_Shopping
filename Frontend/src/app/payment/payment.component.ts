@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Subscriber } from 'rxjs';
 import { User } from '../DTO/User';
 import { CustomerService } from '../Service/customer.service';
@@ -13,13 +13,17 @@ import { EncrDecrService } from '../Service/encr-decr.service';
 export class PaymentComponent implements OnInit {
 
   payType:string;
+  amount:number;
+  otpB:number;
+  otpF:number;
   uId:number;
   user:User;
   address:string;
   hideInput:boolean=false;
   constructor(private customerService:CustomerService,
-              private EncrDecr: EncrDecrService,
-              private router:Router) { }
+              private router:Router,
+                // private route: ActivatedRoute,
+                private EncrDecr: EncrDecrService) { }
 
   ngOnInit(): void {
     let encr = sessionStorage.getItem('user')
@@ -35,6 +39,10 @@ export class PaymentComponent implements OnInit {
       alert("login kro")
       this.router.navigate(['home']);
     }
+
+    // this.route.paramMap.subscribe((params: ParamMap) => {
+    //   this.amount = parseInt(params.get('amount'));
+    // });
   }
 
   COD(){
@@ -66,6 +74,17 @@ export class PaymentComponent implements OnInit {
 
 payment(){
 
+  this.customerService.generateOTPById(this.uId).subscribe(
+    data=>{
+      this.otpB=data;
+      console.log(this.otpB)
+    }
+  )
+  // this.customerService.makePayment(this.payType,this.uId).subscribe(
+  //   data=>{
+
+  //   }
+  // )
 }
 
 }

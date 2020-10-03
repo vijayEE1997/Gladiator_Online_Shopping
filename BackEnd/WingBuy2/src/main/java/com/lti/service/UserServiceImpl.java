@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.lti.dao.RetailerDao;
 import com.lti.dao.UserDao;
+import com.lti.dto.CartMyDTO;
 import com.lti.dto.Login;
 import com.lti.dto.UserSignUp;
 import com.lti.model.Cart;
@@ -28,7 +29,9 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDao userdao = null;
 	
-
+	@Autowired 
+	private CartService cartservice=null;
+	
 	@Override
 	public int loginuser(Login login){
 			int id = this.userdao.getUserByEmailAndPassword(login.getEmail(),login.getPassword());
@@ -99,15 +102,15 @@ public class UserServiceImpl implements UserService {
 //				OTP=JavaMailUtil.sendMail("vijay1997dhakad@gmail.com");
 //				System.out.println(OTP);
 //				return OTP;
-//			OTP=(int)Math.ceil(Math.random()*1000000);
-//			String message="Dont Worry!!!"+"\nWe are here to help you\n"+"Your OTP is "+OTP+"\n";
-//			try {
-//				JavaSMSUtil.sendSMS(message+"\n"+ new Date().toLocaleString(),"8305940684");
-//			} catch (IOException e) {
-//				System.out.println("No. Not Exists");
-//			}
-			return 1;
-//			return OTP;
+			OTP=(int)Math.ceil(Math.random()*1000000);
+			String message="Dont Worry!!!"+"\nWe are here to help you\n"+"Your OTP is "+OTP+"\n";
+			try {
+				JavaSMSUtil.sendSMS(message+"\n"+ new Date().toLocaleString(),""+user.getuMobile());
+			} catch (IOException e) {
+				System.out.println("No. Not Exists");
+			}
+//			return 1;
+			return OTP;
 		}
 		
 	}
@@ -127,6 +130,42 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Product getAllProductByPID(int pId) {
 		return userdao.findAllProductByPID(pId);
+	}
+
+	@Override
+	public int generateOTPById(int uId) {
+		int OTP=0;
+		User user=userdao.getUserById(uId);
+		if(user==null)
+		return -1;
+		else
+		{
+			
+//				OTP=JavaMailUtil.sendMail("vijay1997dhakad@gmail.com");
+//				System.out.println(OTP);
+//				return OTP;
+			OTP=(int)Math.ceil(Math.random()*1000000);
+			String message="Your Payment of Amount"+getCartAmount(uId)+"Your OTP is "+OTP+"\n";
+			try {
+				JavaSMSUtil.sendSMS(message+"\n"+ new Date().toLocaleString(),""+user.getuMobile());
+			} catch (IOException e) {
+				System.out.println("No. Not Exists");
+			}
+			return OTP;
+		}
+		
+	}
+
+	@Override
+	public double getCartAmount(int uId) {
+		User user=userdao.getUserById(uId);
+		if(user==null)
+		return 0;
+		double amount=0;
+		List<CartMyDTO> dto=cartservice.findviewCart(uId);
+		for(CartMyDTO c:dto)
+			amount+=c.getCartdto().getQty()*c.getProductdto().getpPrice();
+		return amount;
 	}
 	
 

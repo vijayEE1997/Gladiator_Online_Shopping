@@ -2,6 +2,7 @@ import { Wishlist } from './../DTO/Wishlist';
 import { PlacedOrder } from './../DTO/PlacedOrder';
 import { ForgotPassword } from './../DTO/ForgotPassword';
 import { User } from './../DTO/User';
+import { Payment } from './../DTO/Payment';
 import { Cart } from './../DTO/Cart';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -9,6 +10,7 @@ import { Login } from '../DTO/Login';
 import { Registration } from '../DTO/Registration';
 import { HttpClient, HttpHeaderResponse, HttpErrorResponse } from '@angular/common/http';
 import { CartMyDTO } from '../DTO/CartMyDTO';
+import { PaymentComponent } from '../payment/payment.component';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +42,13 @@ export class CustomerService {
     this.url += 'generateOTP';
     return this.http.post<number>(this.url,email);
   }
+  generateOTPById(uId:number) : Observable<number>
+  {
+    console.log(uId)
+    this.url = this.baseurl;
+    this.url += 'generateOTPById';
+    return this.http.post<number>(this.url,uId);
+  }
   resetPassword(e:string,p:string): Observable<number>
   {
     let login=new Login() 
@@ -69,6 +78,15 @@ export class CustomerService {
      this.url = this.baseurl;
      this.url += 'updateAddress';
      return this.http.put<User>(this.url,user);
+   }
+   makePayment(payType:string,uId:number): Observable<number>{
+     let payment=new Payment()
+     payment.payType=payType;
+     payment.uId=uId;
+     console.log(payment)
+     this.url = this.baseurl;
+     this.url += 'makePayment';
+     return this.http.post<number>(this.url,payment);
    }
   //  updateMyCart(cId:number, addOrMinus: number)
   //  {

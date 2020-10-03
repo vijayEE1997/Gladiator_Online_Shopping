@@ -19,6 +19,7 @@ import { UserCartComponent } from './user/user-cart/user-cart.component';
 import { UserWishlistComponent } from './user/user-wishlist/user-wishlist.component';
 import { AllProductComponent } from './Products/all-product/all-product.component';
 import { SingleProductComponent } from './Products/single-product/single-product.component';
+import { SideHeaderComponent } from './Home/header/side-header/side-header.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { SingleProductComponent } from './Products/single-product/single-product
     UserCartComponent,
     UserWishlistComponent,
     AllProductComponent,
-    SingleProductComponent
+    SingleProductComponent,
+    SideHeaderComponent
   ],
   imports: [
     BrowserModule,

@@ -1,12 +1,61 @@
+.Products{
+    display: flex;
+}
+.Left-Container{
+    width: 300px;
+    margin-right: 1rem;
+
+}
+.Container-LR{
+    border-radius: 0.15rem;
+    background-color: white;
+}
+.Right-Container{
+    width: calc(100% - 284px);
+}
 .Product{
     display: flex;
-    height: 150px;
+    height: 250px;
+    padding: 1rem;
+    border-style: solid;
+    border-color: rgba(49,53,61,0.075);
+    border-width: 0 0 0.25px 0;
+    cursor: pointer;
+    outline: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 .Image{
-    height: 150px;
-    width: 30%;
+    height: 250px;
+    width: 250px;
+    background-color: #f1f3f6;
 }
+
 .Detail{
-    height: 150px;
-    width: 70%;
+    height: 250px;
+    width: calc(100% - 200px);
+    margin-left: 1rem;
+    display: flex;
+}
+.Detail-L{
+    width:calc(100% - 216px);
+}
+.Detail-R{
+    margin-left: 1rem;
+    width:200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+}
+.Product-Price{
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+.Button-Product{
+    background-color: rgba(146,205,214,0.75);
+    padding:0.75rem 1.25rem;
+    border-radius: 0.15rem;
+    font-size: 1.05rem;
+    font-weight: bolder;
+    color: rgba(0,0,0,0.85);
 }

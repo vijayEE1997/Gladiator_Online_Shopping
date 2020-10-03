@@ -43,7 +43,7 @@
                 <div class="Header-Content-Right Header-Content-LR">
                     <div class="Header-Link" (click)="searchButtonF(true)"><span style="margin-right: 0.5rem;"><i class="fa fa-search" aria-hidden="true"></i></span>Search</div>
                     <div class="Header-Link" (click)="myCartF()"><span style="margin-right: 0.5rem;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>Cart</div>
-                    <div  class="Header-Link Header-Button" (click)="goToLogin()"><span style="margin-right: 0.5rem;"><i class="fa fa-user" aria-hidden="true" [(ngModel)]="USER"></i></span>{{USER}}</div>
+                    <div  class="Header-Link Header-Button" (click)="goToLogin()"><span style="margin-right: 0.5rem;"><i class="fa fa-user" aria-hidden="true" ></i></span>{{USER}}</div>
                    
                 </div>
                 <div class="Header-Hamburger">
@@ -57,21 +57,15 @@
                 </div>
             </div>
             <div [class.Sidebar-Open]="active" [class.Sidebar-Closed]="!active">
-                <a href="" class="Sidebar-Link"><div class="Sidebar-Link-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-th-large" aria-hidden="true"></i></span>All Categories</div></a>
-                <a href="" class="Sidebar-Link"><div class="Sidebar-Link-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-database" aria-hidden="true"></i></span>My Orders</div></a>
-                <a href="/MyCart" class="Sidebar-Link"><div class="Sidebar-Link-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>My Cart</div></a>
-                <a href="" class="Sidebar-Link"><div class="Sidebar-Link-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-heart" aria-hidden="true"></i></span>My Wishlist</div></a>
-                <a href="" class="Sidebar-Link"><div class="Sidebar-Link-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-user" aria-hidden="true"></i></span>My Account</div></a>
-                <a href="/login" class="Sidebar-Link"><div class="Sidebar-Link-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></span>Sign-In</div></a>
-                <a href="" class="Sidebar-Link"><div class="Sidebar-Link-Button"><span style="margin-right: 0.5rem;"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></span>Sign-Out</div></a>
+                <side-header></side-header>
             </div>
         </div>
     </div>
     <div class="Sub-Header">
         <div class="Header-Wrapper Sub-Header-Wrapper">
-            <div class="Sub-Header-Link"><a href="/allProducts/Mobile">Mobiles</a></div>
-            <div class="Sub-Header-Link"><a href="/allProducts/Electronics">Electronics</a></div>
-            <div class="Sub-Header-Link"><a href="/allProducts/Appliances">Appliances</a></div>
+            <div class="Sub-Header-Link" [routerLink]="['/allProducts/Mobile']" >Mobiles</div>
+            <div class="Sub-Header-Link" [routerLink]="['/allProducts/Electronics']" >Electronics</div>
+            <div class="Sub-Header-Link" [routerLink]="['/allProducts/Appliances']">Appliances</div>
         </div>
     </div>
 </header>

@@ -1,14 +1,26 @@
 
- <div class="Right-Container">
-    <div class="Product" *ngFor="let product of products; let i of index">
-        <div class="Image">
-            <img [src]="product.pImage1" alt="pImage" style="width: 100px; height: 200px;">
+ <div class="Products">
+    <div class="Left-Container Container-LR"></div>
+    <div class="Right-Container Container-LR">
+        <div  *ngFor="let product of products; let i of index">
+            <div class="Product" [routerLink]="['/product/product.pId']">
+                <div class="Image" >
+                    <img src='../../../assets/Images/Products/{{product.pCategory}}/{{product.pSubCategory}}s/{{product.pBrand}}/{{product.pName}}/01_A' alt="pImage" style="width: 100px; height: 200px;">
+                </div>
+                <div class="Detail">
+                    <div class="Detail-L">
+                        <p style="font-weight: bolder;font-size: 1.5rem;">{{product.pBrand}} {{product.pName}}</p>
+                        <p style="font-weight: bolder;font-size: 1.25rem;">{{product.pSubCategory}}</p>
+                        <h3>{{product.pCategory}}</h3>
+                        <p>{{product.pDesc}}</p>
+                    </div>
+                    <div class="Detail-R">
+                        <div class="Product-Price">{{product.pPrice | currency:'INR'}}</div>
+                        <div class="Button-Product" (click)="showProductById(product)">View Product</div>
+                        <div class="Button-Product" (click)="onCompareClick(product)">Add to compare</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="Detail">
-                 <strong>{{product.pBrand}} {{product.pName}}</strong> <br>
-                 <strong>{{product.pPrice}}</strong> <br> 
-                 <button class="btn btn-outline-danger my-2" (click)="showProductById(product)">View Product</button> <br>
-                 <input type="checkbox" name="compare" id="compareProduct" (click)="onCompareClick(product)"> Compare
-        </div>
-    </div>
+     </div>
  </div>

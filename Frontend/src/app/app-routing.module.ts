@@ -6,6 +6,8 @@ import { HomeComponent } from './Home/home/home.component';
 import { LoginComponent } from './authorization/login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AllProductComponent } from './Products/all-product/all-product.component';
+import { SingleProductComponent } from './Products/single-product/single-product.component';
 
 const routes: Routes = [
   {path : '', redirectTo : '/home', pathMatch: 'full'},
@@ -14,7 +16,9 @@ const routes: Routes = [
   {path : 'register', component : RegisterComponent},
   {path : 'forgotpassword', component : ForgotPasswordComponent},
   {path : 'profile-admin', component : ProfileAdminComponent},
-  {path : 'profile-retailer', component : ProfileComponent}
+  {path : 'profile-retailer', component : ProfileComponent},
+  {path : 'allProducts/:keyword', component : AllProductComponent },
+  {path : 'product/:id', component : SingleProductComponent }
   
 ];
 

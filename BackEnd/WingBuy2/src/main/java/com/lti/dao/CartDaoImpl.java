@@ -34,9 +34,10 @@ public class CartDaoImpl implements CartDao {
 		cart.setpIdQty(1); // by default set qty as 1
 		cart.setcUser(user);
 		cart.setcProducts(product);
-
-		entityManager.persist(cart);
-
+		user.addProductToCart(cart);
+		product.addProductToCart(cart);
+		entityManager.persist(user);
+		entityManager.persist(product);
 		return true;
 	}
 

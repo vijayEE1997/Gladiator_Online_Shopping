@@ -7,6 +7,7 @@ import javax.mail.MessagingException;
 import com.lti.dto.Login;
 import com.lti.dto.UserSignUp;
 import com.lti.model.Cart;
+import com.lti.model.Product;
 import com.lti.model.User;
 import com.lti.model.WishList;
 
@@ -22,6 +23,8 @@ public interface UserService {
 	public List<WishList> findgetWishlistOfUser(int uId);
 	public int generateOTP(String email);
 	public int resetPass(Login login);
+	public List<Product> getAllProductByCat(String keyword);
+	public Product getAllProductByPID(int pId);
 	
 	//public User updateUser(UpdateUser updateUser);
 }

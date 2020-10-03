@@ -1,0 +1,20 @@
+<div class="col-md-7">
+    <p class="newarrival text-center">NEW</p>
+    <h2>{{product.pBrand}}</h2>
+    <p>{{product.pName}}</p>
+    <span class="fa fa-star checked"></span>
+   <span class="fa fa-star checked"></span>
+   <span class="fa fa-star checked"></span>
+   <span class="fa fa-star"></span>
+   <span class="fa fa-star"></span>
+    <p class="price">RS {{product.pPrice}}</p>
+    <p><b>Availability:</b> In stock</p>
+    <p><b>Condition:</b> New</p>
+    <p><b>Description</b></p>
+    <br>
+    <p>{{product.pDesc}}</p>
+   <button type="button" class="btn btn-default cart" (click)="addToCartF()">
+          Add To cart</button>
+    <button type="button" class="btn btn-success wishlist" (click)="addToWishListF()" >
+          Add To Wishlist</button>
+</div>

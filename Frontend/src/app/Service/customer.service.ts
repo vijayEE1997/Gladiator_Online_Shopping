@@ -75,12 +75,15 @@ export class CustomerService {
 //     this._url += 'deleteMyCart/' + cId;
 //     return this._http.delete(this._url,{responseType:'text'});
 //   }
-//   addToMyCart(uId: string, pId: string)
-//   {
-//     this._url = this._tempurl;
-//     this._url += 'addToMyCart/' + uId + '/' + pId;
-//     return this._http.get(this._url,{responseType:'text'});
-//   }
+  addToCart(uId: number, pId: number)
+  {
+    let cart=new Cart()
+    cart.pId=pId;
+    cart.uId=uId;
+    this.url = this.baseurl;
+    this.url += 'addToCart';
+    return this.http.post(this.url,cart);
+  }
 //   addNewUser(newUser:User)
 //   {
 //     this.url = this._tempurl;

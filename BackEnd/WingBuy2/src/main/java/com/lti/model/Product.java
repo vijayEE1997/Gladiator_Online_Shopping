@@ -1,5 +1,6 @@
 package com.lti.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -18,10 +19,13 @@ import javax.persistence.Table;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Component
 @Scope(scopeName = "prototype")
 @Entity
 @Table(name = "PRODUCT")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","wishlists","compares","carts","orderDetails","admin"})
 public class Product {
 
 	@Id
@@ -211,6 +215,12 @@ public class Product {
 		this.orderDetails = orderDetails;
 	}
 
+	public void addProductToCart(Cart cart) {
+		if(this.carts==null)
+			this.carts=new HashSet<>();
+		this.carts.add(cart);
+	}
+	
 	@Override
 	public String toString() {
 		return "Product [pId=" + pId + ", pCategory=" + pCategory + ", pSubCategory=" + pSubCategory + ", pName="

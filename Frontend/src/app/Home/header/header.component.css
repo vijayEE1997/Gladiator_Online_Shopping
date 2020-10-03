@@ -20,6 +20,19 @@
 }
 .Sub-Header-Wrapper{
     height: 40px;
+    color:#31353D;
+    font-size:0.95rem;
+    font-weight: bolder;
+    align-items: center;
+}
+.Sub-Header-Link{
+    padding: 0.5rem 1.25rem;
+    margin-right: 1rem;
+    background-color: #E35F21;
+    cursor: pointer;
+}
+.Sub-Header-Link:hover{
+    background-color: blue;
 }
 .Header-Logo{
     width:200px;

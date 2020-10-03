@@ -12,10 +12,13 @@ import { ContainerComponent } from './Home/container/container.component';
 import { HomeComponent } from './Home/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerService } from './Service/customer.service';
+import { ProductService } from './Service/product.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PaymentComponent } from './payment/payment.component';
 import { UserCartComponent } from './user/user-cart/user-cart.component';
 import { UserWishlistComponent } from './user/user-wishlist/user-wishlist.component';
+import { AllProductComponent } from './Products/all-product/all-product.component';
+import { SingleProductComponent } from './Products/single-product/single-product.component';
 
 
 @NgModule({
@@ -27,7 +30,9 @@ import { UserWishlistComponent } from './user/user-wishlist/user-wishlist.compon
     HomeComponent,
     PaymentComponent,
     UserCartComponent,
-    UserWishlistComponent
+    UserWishlistComponent,
+    AllProductComponent,
+    SingleProductComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +44,7 @@ import { UserWishlistComponent } from './user/user-wishlist/user-wishlist.compon
     RetailerModule,
     HttpClientModule
   ],
-  providers: [CustomerService],
+  providers: [CustomerService,ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

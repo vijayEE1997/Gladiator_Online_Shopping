@@ -1,5 +1,6 @@
 package com.lti.model;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -58,7 +59,9 @@ public class User {
 	private Set<Payment> payments;
 
 	public void addProductToCart(Cart cart) {
-		carts.add(cart);
+		if(this.carts==null)
+			this.carts=new HashSet<>();
+		this.carts.add(cart);
 	}
 
 	public User() {

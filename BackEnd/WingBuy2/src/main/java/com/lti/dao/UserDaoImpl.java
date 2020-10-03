@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 
 import com.lti.dto.UserSignUp;
 import com.lti.model.Cart;
+import com.lti.model.Product;
 import com.lti.model.Retailer;
 import com.lti.model.User;
 import com.lti.model.WishList;
@@ -168,6 +169,32 @@ public class UserDaoImpl implements UserDao {
 		{
 			return -1;
 		}
+	}
+
+	@Override
+	public List<Product> findAllProductByCat(String keyword) {
+		String query = "SELECT E FROM Product E WHERE E.pCategory=:keyword";
+		TypedQuery<Product> tquery = null;
+		List<Product> products = null;
+		try {
+
+			tquery = entityManager.createQuery(query, Product.class);
+			tquery.setParameter("keyword", keyword);
+			products = tquery.getResultList();
+			
+		} catch (Exception e) {
+			System.out.println("No data Available");
+
+		}
+		return products;
+
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public Product findAllProductByPID(int pId) {
+		Product product =entityManager.find(Product.class,pId);
+		return product;
 	}
 
 	

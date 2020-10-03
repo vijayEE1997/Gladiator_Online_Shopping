@@ -1,0 +1,12 @@
+.Product{
+    display: flex;
+    height: 150px;
+}
+.Image{
+    height: 150px;
+    width: 30%;
+}
+.Detail{
+    height: 150px;
+    width: 70%;
+}

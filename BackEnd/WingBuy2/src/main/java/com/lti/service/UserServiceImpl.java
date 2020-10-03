@@ -15,6 +15,7 @@ import com.lti.dao.UserDao;
 import com.lti.dto.Login;
 import com.lti.dto.UserSignUp;
 import com.lti.model.Cart;
+import com.lti.model.Product;
 import com.lti.model.User;
 import com.lti.model.WishList;
 import com.lti.utility.JavaMailUtil;
@@ -116,6 +117,16 @@ public class UserServiceImpl implements UserService {
 		User user=userdao.getUserByEmail(login.getEmail());
 		user.setuPassword(login.getPassword());
 		return userdao.resetPassword(user);
+	}
+
+	@Override
+	public List<Product> getAllProductByCat(String keyword) {
+		return userdao.findAllProductByCat(keyword);
+	}
+
+	@Override
+	public Product getAllProductByPID(int pId) {
+		return userdao.findAllProductByPID(pId);
 	}
 	
 

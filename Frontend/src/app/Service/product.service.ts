@@ -9,8 +9,8 @@ import { Product } from '../DTO/Product';
 export class ProductService {
 
  
-  private _tempurl =  'http://localhost:8090/';
-  private _url =      'http://localhost:8090/';
+  private _tempurl =  'http://localhost:8080/WingBuy/admin/';
+  private _url = '';
   constructor(private _http : HttpClient) { }
 
 

@@ -4,11 +4,4 @@ export class Cart
     uId : number;
 	pId : number;
     qty : number;
-    pImage1 : string;
-	pName : string;
-    pModel : string;
-    pCategory : string;
-    pSubCategory : string;
-	pPrice : number;
-	//totalPrice : number;
 }

@@ -19,6 +19,7 @@ public interface UserDao {
 	public User updateUser(int uId, User user);
 	public List<Cart> getCartOfUser(int uId);
 	public List<WishList> getWishlistOfUser(int uId);
+	public int resetPassword(User user);
 	
 	//public User updateUser(UpdateUser updateUser);
 }

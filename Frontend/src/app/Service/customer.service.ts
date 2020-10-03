@@ -14,57 +14,61 @@ import { HttpClient, HttpHeaderResponse, HttpErrorResponse } from '@angular/comm
 })
 export class CustomerService {
 
-  private tempurl =  'http://localhost:8080/WingBuy/buy/';
+  private baseurl =  'http://localhost:8080/WingBuy/admin/';
   private url ='';
 
   constructor(private http : HttpClient) { }
 
   login(login : Login) :Observable<number>
   {
-    this.url = this.tempurl;
+    this.url = this.baseurl;
     this.url += 'userlogin';
     return  this.http.post<number>(this.url,login);
   }
   register(register:Registration)
   {
     console.log(register)
-    this.url = this.tempurl;
+    this.url = this.baseurl;
     this.url += 'addNewUser';
     return  this.http.post<number>(this.url,register);
   }
-  // generateOTP() : Observable<number>
-  // {
+  generateOTP(email:string) : Observable<number>
+  {
+    console.log(email)
+    this.url = this.baseurl;
+    this.url += 'generateOTP';
+    return this.http.post<number>(this.url,email);
+  }
+  resetPassword(e:string,p:string): Observable<number>
+  {
+    let login=new Login() 
+    login.email=e
+    login.password=p
+    this.url = this.baseurl;
+    this.url += 'resetPassword';
+    return this.http.post<number>(this.url,login);
+  } 
+  //  getMyCart(uId : number) : Observable<Cart[]>
+  //  {
+  //    this.url = this.tempurl;
+  //    this.url += 'MyCart/' + uId;
+  //    return this.http.get<Cart[]>(this.url);
+  //  }
+  //  updateMyCart(cId:number, addOrMinus: number)
+  //  {
   //   this.url = this.tempurl;
-  //   this.url += 'generateOTP';
-  //   return this.http.get<number>(this.url);
-  // }
-  // forgotPassword(forgotPassword : ForgotPassword)
-  // {
-  //   this.url = this.tempurl;
-  //   this.url += 'forgotPassword';
-  //   return this.http.post(this.url,forgotPassword,{responseType:'text'});
-  // } 
-   getMyCart(uId : number) : Observable<Cart[]>
-   {
-     this.url = this.tempurl;
-     this.url += 'MyCart/' + uId;
-     return this.http.get<Cart[]>(this.url);
-   }
-   updateMyCart(cId:number, addOrMinus: number)
-   {
-    this.url = this.tempurl;
-     this.url += 'updateMyCart/' + cId;
-     if(addOrMinus==1)
-     {
-       this.url += '/' + 1;
-       return this.http.get(this.url,{responseType:'text'});
-     }
-     else
-     {
-       this.url += '/' + 0;
-       return this.http.get(this.url,{responseType:'text'});
-     }
-   }
+  //    this.url += 'updateMyCart/' + cId;
+  //    if(addOrMinus==1)
+  //    {
+  //      this.url += '/' + 1;
+  //      return this.http.get(this.url,{responseType:'text'});
+  //    }
+  //    else
+  //    {
+  //      this.url += '/' + 0;
+  //      return this.http.get(this.url,{responseType:'text'});
+  //    }
+  //  }
 //   deleteMyCart(cId: string)
 //   {
 //     this._url = this._tempurl;
@@ -157,13 +161,13 @@ export class CustomerService {
 //     return this.http.get(this._url,{responseType:'text'});
 //   }
 
-  // backend me ni bna ye wala
-  getCartTotalPrice(cId: string)
-  {
-    this.url = this.tempurl;
-    this.url += 'getCartTotalPrice/' + cId;
-    return this.http.delete(this.url,{responseType:'text'});
-  }
+  // // backend me ni bna ye wala
+  // getCartTotalPrice(cId: string)
+  // {
+  //   this.url = this.tempurl;
+  //   this.url += 'getCartTotalPrice/' + cId;
+  //   return this.http.delete(this.url,{responseType:'text'});
+  // }
 
 
 }

@@ -13,6 +13,7 @@ import com.lti.model.Cart;
 import com.lti.model.ProductForApproval;
 import com.lti.model.Retailer;
 import com.lti.model.User;
+import com.lti.utility.JavaMailUtil;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -49,7 +50,7 @@ public class Main {
 //		
 		
 		
-//		JavaMailUtil.sendMail("ANKAMGNAPIKA@gmail.com");
+//		JavaMailUtil.sendMail("vijay1997dhakad@gmail.com");
 //		JavaMailUtil.sendMail("vishalkumarsingh1010@gmail.com");
 //		JavaMailUtil.sendMail("www.rajfrostbhagat@gmail.com");
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("JPA-PU");
@@ -90,8 +91,8 @@ public class Main {
 		for (User u : ulist) {
 			entityManager.getTransaction().begin();
 			entityManager.persist(u);
-			entityManager.getTransaction().commit();
-		}
+			entityManager.getTransaction().commit();}
+//		}
 //		int i = 0;
 //		for (ProductForApproval p : list) {
 //			i++;

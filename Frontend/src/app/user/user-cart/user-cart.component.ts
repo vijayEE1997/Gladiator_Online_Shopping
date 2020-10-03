@@ -9,7 +9,7 @@ import { CustomerService } from 'src/app/Service/customer.service';
 })
 export class UserCartComponent implements OnInit {
 
-  //userCart: Cart[];
+  // userCart: Cart[];
   uId;
   totalPrice: number = 0;
   buyProductButton: boolean = false;
@@ -29,22 +29,22 @@ export class UserCartComponent implements OnInit {
       //this.router.navigate(['home']);
     }
   }
-  onAddUpdateClick(cId:number)
-  {
-    this.customerservice.updateMyCart(cId,1)
-    .subscribe((data:string)=>
-    {
-      //alert(data);
-      //this.reloadData();
-    });
-  }
-  onMinusUpdateClick(cId:number)
-  {
-    this.customerservice.updateMyCart(cId,0)
-    .subscribe((data:string)=>
-    {
-      //alert(data);
-     // this.reloadData();
-    });
-  }
+  // onAddUpdateClick(cId:number)
+  // {
+  //   this.customerservice.updateMyCart(cId,1)
+  //   .subscribe((data:string)=>
+  //   {
+  //     //alert(data);
+  //     //this.reloadData();
+  //   });
+  // }
+  // onMinusUpdateClick(cId:number)
+  // {
+  //   this.customerservice.updateMyCart(cId,0)
+  //   .subscribe((data:string)=>
+  //   {
+  //     //alert(data);
+  //    // this.reloadData();
+  //   });
+  // }
 }

@@ -1,30 +1,32 @@
 <div class="Login-Page">
   <div class="Login-Left Login-LR">
     <h2>Login</h2>
-    <p>Enjoy the Premium experience, Get access to your Orders, Wishlist and Cart</p>
+    <p *ngIf="AsUser">Enjoy the Premium experience, Get access to your Orders, Wishlist and Cart</p>
+    <p *ngIf="AsRetailer">Enjoy the Premium experience, Get access to your Requests, Products and Earnings</p>
     <img src="../assets/Images/LOGO.png">
   </div>
   <div class="Login-Right Login-LR">
-    <form class="Form-group" [formGroup]="loginForm" (ngSubmit)="onLogin()" >
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" formControlName="email" id="email">
-        <!-- <div *ngIf="submitted && loginForm.controls.email.errors" class="error">
-            <div class="text-danger" *ngIf="loginForm.controls.email.errors.required">Email is required</div>
-          </div> -->
-          
+    <div style="display: flex;justify-content: space-between;">
+      <div class="User User-User" [class.Button-Click]="AsUser" (click)="AsUserF()"><span style="margin-right: 0.5rem;"><i class="fa fa-shopping-bag" aria-hidden="true"></i></span>User</div>
+      <div class="User User-Admin" [class.Button-Click]="AsAdmin" (click)="AsAdminF()"><span style="margin-right: 0.5rem;"><i class="fa fa-lock" aria-hidden="true"></i></span>Admin</div>
+      <div class="User User-Retailer" [class.Button-Click]="AsRetailer" (click)="AsRetailerF()"><span style="margin-right: 0.5rem;"><i class="fa fa-truck" aria-hidden="true"></i></span>Retailer</div>
+    </div>
+    <form class="Form-group" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="error" [class.error-occur]="invalidLogin">*Invalid Credentials</div>
+      <div class="form">
+        <input type="email" class="form-control" formControlName="email" id="email" required>
+        <label for="email" class="label-name">
+          <span class="label-content">Email</span>
+        </label>
       </div>
-      <div class="form-group">
-        <label for="pwd">Password:</label>
-        <input type="password" class="form-control" formControlName="password" id="pwd">
-        <!-- <div *ngIf="submitted && loginForm.controls.password.errors" class="error">
-            <div class="text-danger" *ngIf="loginForm.controls.password.errors.required">Password is required</div>
-          </div> -->
+      <div class="form">
+        <input type="password" class="form-control" formControlName="password" id="pwd" required>
+        <label for="pwd" class="label-name">
+          <span class="label-content">Password</span>
+        </label>
       </div>
-      <div class="form-group">
-        <button class="Login-Page-LButton">
-          <!-- [disabled]="loading" -->
-          <!-- <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> -->
+      <div class="form-button">
+        <button class="Login-Page-LButton" >
           Login
         </button>&nbsp; &nbsp;
         <button class="Login-Page-LButton" (click)="goToRegister()">Register</button>

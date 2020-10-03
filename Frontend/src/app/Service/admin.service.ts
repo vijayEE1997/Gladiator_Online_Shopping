@@ -4,16 +4,25 @@ import { Injectable } from '@angular/core';
 import { Product } from '../DTO/Product';
 import { RetailerSignUp } from '../DTO/RetailerSignUp'
 import { Retailer } from '../DTO/Retailer';
+import { Observable } from 'rxjs';
+import { Login } from '../DTO/Login';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
 
-  baseurl="http://localhost:8080/WingBuy/buy/";
+  baseurl="http://localhost:8080/WingBuy/admin/";
   url='';
   
   constructor(private http:HttpClient) { }
+  
+  login(login : Login) :Observable<number>
+  {
+    this.url = this.baseurl;
+    this.url += 'adminlogin';
+    return  this.http.post<number>(this.url,login);
+  }
   
   getProductForApproval(){
     this.url=this.baseurl+'requests/1';

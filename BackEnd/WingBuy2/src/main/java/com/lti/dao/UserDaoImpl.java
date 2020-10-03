@@ -90,10 +90,11 @@ public class UserDaoImpl implements UserDao {
 			tquery = entityManager.createQuery(query, User.class);
 			tquery.setParameter("email", email);
 			user = tquery.getResultList().get(0);
+			return user;
 		} catch (Exception e) {
 			System.out.println("User not exists.");
 		}
-		return user;
+		return null;
 	}
 
 	@Override
@@ -156,7 +157,18 @@ public class UserDaoImpl implements UserDao {
 
 	}
 
-	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public int resetPassword(User user) {
+		try {
+			entityManager.persist(user);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return -1;
+		}
+	}
 
 	
 

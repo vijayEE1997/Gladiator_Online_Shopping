@@ -5,6 +5,8 @@ import { Login } from '../../DTO/Login'
 import { Observable } from 'rxjs';
 import { CustomerService } from 'src/app/Service/customer.service';
 import { EncrDecrService } from 'src/app/Service/encr-decr.service';
+import { RetailerService } from 'src/app/Service/retailer.service';
+import { AdminService } from 'src/app/Service/admin.service';
 
 
 @Component({
@@ -17,18 +19,38 @@ loginForm:FormGroup;
 submitted:boolean=false;
 invalidLogin: boolean = false;
 
+//////////////////
+AsUser:boolean=true;
+AsAdmin:boolean=false;
+AsRetailer:boolean=false;
+//////////////////
+
   login: Login;
   email: string = "";
   password: string = "";
   uId : number=-1;
+  rId : number=-1;
+  aId : number=-1;
 
   constructor(private formBuilder: FormBuilder,
               private router:Router,
               private customerService:CustomerService,
+              private retailerService:RetailerService,
+              private adminService:AdminService,
               private EncrDecr: EncrDecrService) { }
 
   ngOnInit(): void {
     if(sessionStorage.getItem('user')!=null)
+    {
+      alert("Already Logged In");
+      this.router.navigate(['home']);
+    }
+    if(sessionStorage.getItem('retailer')!=null)
+    {
+      alert("Already Logged In");
+      this.router.navigate(['home']);
+    }
+    if(sessionStorage.getItem('admin')!=null)
     {
       alert("Already Logged In");
       this.router.navigate(['home']);
@@ -38,6 +60,33 @@ invalidLogin: boolean = false;
       password: ['', Validators.required]
     });
   }
+  //////////////Switch?///////////////
+
+  AsUserF(){
+    this.AsAdmin=false;
+    this.AsRetailer=false;
+    this.invalidLogin=false;
+    this.AsUser=true;
+  }
+
+  AsAdminF(){
+    this.AsUser=false;
+    this.AsRetailer=false;
+    this.invalidLogin=false;
+    this.AsAdmin=true;
+  }
+
+  AsRetailerF(){
+    this.AsUser=false;
+    this.AsAdmin=false;
+    this.invalidLogin=false;
+    this.AsRetailer=true;
+  }
+
+  //////////////Switch?///////////////
+
+
+
   goToRegister(){
     this.router.navigate(['/register']);
   }
@@ -45,13 +94,27 @@ invalidLogin: boolean = false;
   onLogin(){
       this.submitted = true;
       if(this.loginForm.invalid){
-        return;
+        this.invalidLogin=true;
+        return
       }
       else{
-            this.customerService.login(this.loginForm.value).subscribe(data=>{
-              this.uId=data;
-              this.createSession()
-            });
+            if(this.AsUser){
+              this.customerService.login(this.loginForm.value).subscribe(data=>{
+                this.uId=data;
+                this.createSession()
+              });
+            }
+            else if(this.AsRetailer)
+            {
+              this.retailerService.login(this.loginForm.value).subscribe(data=>{
+                this.rId=data;
+                this.createSession()})
+            }
+            else{
+              this.adminService.login(this.loginForm.value).subscribe(data=>{
+                this.aId=data;
+                this.createSession()})
+            }
       }
   }
   createSession(){
@@ -66,5 +129,31 @@ invalidLogin: boolean = false;
       sessionStorage.setItem('user',encr);
       this.router.navigate(['home']);
     }
+   else if(this.rId!=-1)
+    {
+      /*Encription*/
+      let encr=this.EncrDecr.set('123456$#@$^@1ERF',this.rId.toString())
+      /*Encription*/
+      /*Decription*/
+      let decr=this.EncrDecr.get('123456$#@$^@1ERF',encr)
+      /*Decription*/
+      sessionStorage.setItem('retailer',encr);
+      this.router.navigate(['home']);
+    }
+   else if(this.aId!=-1)
+    {
+      /*Encription*/
+      let encr=this.EncrDecr.set('123456$#@$^@1ERF',this.aId.toString())
+      /*Encription*/
+      /*Decription*/
+      let decr=this.EncrDecr.get('123456$#@$^@1ERF',encr)
+      /*Decription*/
+      sessionStorage.setItem('admin',encr);
+      this.router.navigate(['home']);
+    }
+    else{
+      this.invalidLogin=true;
+    }
   }
-}
+ }
+  

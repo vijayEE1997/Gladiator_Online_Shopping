@@ -13,16 +13,16 @@ import { ProductForApproval } from '../DTO/ProductForApproval';
 export class RetailerService {
 
   
-  private baseurl =  'http://localhost:8080/WingBuy/Rbuy/';
+  private baseurl =  'http://localhost:8080/WingBuy/retailer/';
   private url = '';
   constructor(private http : HttpClient) { }
 
-  // login(login : Login) : Observable<number>
-  // {
-  //   this._url = this._tempurl;
-  //   this._url += 'retailerLogin';
-  //   return this._http.post<number>(this._url,login);
-  // }
+  login(login : Login) :Observable<number>
+  {
+    this.url = this.baseurl;
+    this.url += 'retailerlogin';
+    return  this.http.post<number>(this.url,login);
+  }
 
   // addProduct(newProduct:Product,rId: string)
   // {

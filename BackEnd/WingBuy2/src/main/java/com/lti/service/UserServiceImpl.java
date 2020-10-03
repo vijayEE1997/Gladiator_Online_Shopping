@@ -1,6 +1,10 @@
 package com.lti.service;
 
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
+
+import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -13,6 +17,8 @@ import com.lti.dto.UserSignUp;
 import com.lti.model.Cart;
 import com.lti.model.User;
 import com.lti.model.WishList;
+import com.lti.utility.JavaMailUtil;
+import com.lti.utility.JavaSMSUtil;
 
 @Service("userservice")
 @Scope(scopeName="singleton")
@@ -81,7 +87,36 @@ public class UserServiceImpl implements UserService {
 		return userdao.getWishlistOfUser(uId);
 	}
 
-	
+	@Override
+	public int generateOTP(String email){
+		int OTP=0;
+		User user=userdao.getUserByEmail(email);
+		if(user==null)
+		return -1;
+		else
+		{
+//				OTP=JavaMailUtil.sendMail("vijay1997dhakad@gmail.com");
+//				System.out.println(OTP);
+//				return OTP;
+//			OTP=(int)Math.ceil(Math.random()*1000000);
+//			String message="Dont Worry!!!"+"\nWe are here to help you\n"+"Your OTP is "+OTP+"\n";
+//			try {
+//				JavaSMSUtil.sendSMS(message+"\n"+ new Date().toLocaleString(),"8305940684");
+//			} catch (IOException e) {
+//				System.out.println("No. Not Exists");
+//			}
+			return 1;
+//			return OTP;
+		}
+		
+	}
+
+	@Override
+	public int resetPass(Login login) {
+		User user=userdao.getUserByEmail(login.getEmail());
+		user.setuPassword(login.getPassword());
+		return userdao.resetPassword(user);
+	}
 	
 
 }

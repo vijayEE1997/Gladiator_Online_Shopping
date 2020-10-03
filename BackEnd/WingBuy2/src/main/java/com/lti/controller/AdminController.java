@@ -3,6 +3,8 @@ package com.lti.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,7 +37,7 @@ import com.lti.dto.RetailerSignUp;
 import com.lti.dto.UserSignUp;
 
 @RestController
-@RequestMapping(path = "buy")
+@RequestMapping(path = "admin")
 @CrossOrigin
 public class AdminController {
 
@@ -58,12 +60,6 @@ public class AdminController {
 	public int userlogin(@RequestBody Login login) {
 		return this.userservice.loginuser(login);
 	} 
-
-	@PostMapping(path = "/retailerlogin")
-	public int retailerlogin(@RequestBody Login login) {
-		return this.retailerservice.loginRetailer(login.getEmail(), login.getPassword());
-
-	}
 
 	@PostMapping(path = "/adminlogin")
 	public int adminlogin(@RequestBody Login login) {
@@ -150,6 +146,19 @@ public class AdminController {
 	public boolean addRetailer(@PathVariable("aId") int aId,@RequestBody RetailerSignUp retailer){
 		return adminservice.addRetailer(retailer);
 	}
+	
+	@PostMapping(path = "/generateOTP") //-------------generateOTP-------------------------------
+	public int generateOTP(@RequestBody String email)
+	{
+		return userservice.generateOTP(email);
+	}
+	
+	@PostMapping(path = "/resetPassword") //-------------generateOTP-------------------------------
+	public int resetPassword(@RequestBody Login login)
+	{
+		return userservice.resetPass(login);
+	}
+	
 	/*
 	 * @GetMapping(path = "{aId}") public Admin cgetAdminById(@PathVariable("aId")
 	 * int aId) { Admin admin = adminservice.findAdminById(aId); return admin; }

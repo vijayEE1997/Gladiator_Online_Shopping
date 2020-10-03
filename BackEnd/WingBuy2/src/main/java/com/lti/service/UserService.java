@@ -2,6 +2,8 @@ package com.lti.service;
 
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 import com.lti.dto.Login;
 import com.lti.dto.UserSignUp;
 import com.lti.model.Cart;
@@ -18,6 +20,8 @@ public interface UserService {
 	public User findupdateUser(int uId, User user);
 	public List<Cart> findgetCartOfUser(int uId);
 	public List<WishList> findgetWishlistOfUser(int uId);
+	public int generateOTP(String email);
+	public int resetPass(Login login);
 	
 	//public User updateUser(UpdateUser updateUser);
 }

@@ -21,22 +21,18 @@ import com.lti.model.ProductForApproval;
 import com.lti.service.RetailerService;
 
 @RestController
-@RequestMapping(path ="Rbuy")
+@RequestMapping(path ="retailer")
 @CrossOrigin
 public class RetailerController {
 	
 	@Autowired
 	private RetailerService retailerservice;
 	
-	@PostMapping(path = "/retailerlogin") //-------------retailer login-------------------------------
-	public int retailerlogin(@RequestBody Login login)
-	{
-			return this.retailerservice.loginRetailer(login.getEmail(), login.getPassword());
-		} /*catch (CustomerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return -100;
-		}*/
+	@PostMapping(path = "/retailerlogin")
+	public int retailerlogin(@RequestBody Login login) {
+		return this.retailerservice.loginRetailer(login.getEmail(), login.getPassword());
+
+	}
 	
 	@PostMapping(path = "/addNewRetailer") //-------------retailer signup-------------------------------
 	public int addNewRetailer(@RequestBody RetailerSignUp newRetailer)
@@ -113,6 +109,13 @@ public class RetailerController {
 		
 	}
 		return dto;
+	}
+	
+	@PostMapping(path = "/generateOTP") //-------------retailer signup-------------------------------
+	public int generateOTP(@RequestBody String email)
+	{
+		System.out.println(email);
+		return 1;
 	}
 	
 	/*@GetMapping(path="/")// doubt

@@ -1,5 +1,7 @@
 package com.lti.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,11 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public Payment findgetPaymentById(long pay_Id) {
 		return paymentdao.getPaymentById(pay_Id);
+	}
+
+	@Override
+	public List<Payment> getallPayment(int uId) {
+		return paymentdao.getallPayments(uId);
 	}
 
 }

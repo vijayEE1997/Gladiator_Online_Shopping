@@ -3,6 +3,7 @@ import { PlacedOrder } from './../DTO/PlacedOrder';
 import { ForgotPassword } from './../DTO/ForgotPassword';
 import { User } from './../DTO/User';
 import { Payment } from './../DTO/Payment';
+import { OrderDetailDTO } from './../DTO/OrderDetailDTO';
 import { Cart } from './../DTO/Cart';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -34,6 +35,11 @@ export class CustomerService {
     this.url = this.baseurl;
     this.url += 'addNewUser';
     return  this.http.post<number>(this.url,register);
+  }
+  getUserById(uId:number):Observable<User>{
+    this.url=this.baseurl;
+    this.url+='getUserById/'+uId
+    return this.http.get<User>(this.url)
   }
   generateOTP(email:string) : Observable<number>
   {
@@ -95,6 +101,13 @@ export class CustomerService {
    return this.http.get<any[]>(this.url)
   }
 
+  getOrderDetailById(oId:number):Observable<OrderDetailDTO[]>
+  {
+    this.url=this.baseurl;
+    this.url+='getOrderDetails/'+oId;
+    return this.http.get<OrderDetailDTO[]>(this.url);
+  }
+  
   //  updateMyCart(cId:number, addOrMinus: number)
   //  {
   //   this.url = this.tempurl;

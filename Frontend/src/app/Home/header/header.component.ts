@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
     this.USER="Login";
   }
  }
-
+ 
   goToLogin(){
     this.router.navigate(['/login']);
   }

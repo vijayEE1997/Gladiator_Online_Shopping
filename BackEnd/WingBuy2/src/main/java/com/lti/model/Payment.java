@@ -10,10 +10,13 @@ import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Component
 @Scope(scopeName="prototype")
 @Entity
 @Table(name = "PAYMENT")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","order"})
 public class Payment {
 
 	@Id

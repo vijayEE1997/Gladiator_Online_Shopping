@@ -71,6 +71,11 @@ public class User {
 			this.wishlists=new HashSet<>();
 		this.wishlists.add(wishlist);
 	}
+	public void addPayIdToPayment(Payment payment) {
+		if(this.payments==null)
+			this.payments=new HashSet<>();
+		this.payments.add(payment);
+	}
 
 	public User() {
 

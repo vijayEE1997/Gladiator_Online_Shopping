@@ -10,12 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import com.lti.dao.OrderDao;
+import com.lti.dao.PaymentDao;
 import com.lti.dao.RetailerDao;
 import com.lti.dao.UserDao;
 import com.lti.dto.CartMyDTO;
 import com.lti.dto.Login;
+import com.lti.dto.PaymentDTO;
 import com.lti.dto.UserSignUp;
 import com.lti.model.Cart;
+import com.lti.model.Payment;
 import com.lti.model.Product;
 import com.lti.model.User;
 import com.lti.model.WishList;
@@ -31,6 +35,12 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired 
 	private CartService cartservice=null;
+	
+	@Autowired
+	private PaymentDao paymentdao = null;
+	
+	@Autowired
+	private OrderDao orderdao = null;
 	
 	@Override
 	public int loginuser(Login login){
@@ -166,6 +176,20 @@ public class UserServiceImpl implements UserService {
 		for(CartMyDTO c:dto)
 			amount+=c.getCartdto().getQty()*c.getProductdto().getpPrice();
 		return amount;
+	}
+
+	@Override
+	public long makePayment(PaymentDTO payment) {
+		int uId=payment.getuId();
+		long payId=paymentdao.makePayment(uId, payment.getPayType());
+		try {
+			orderdao.order(payId, uId);
+			return payId;
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return -1;
 	}
 	
 

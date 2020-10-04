@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { User } from 'src/app/DTO/User';
+import { CustomerService } from 'src/app/Service/customer.service';
 import { EncrDecrService } from 'src/app/Service/encr-decr.service';
 
 @Component({
@@ -8,10 +11,30 @@ import { EncrDecrService } from 'src/app/Service/encr-decr.service';
 })
 export class SideHeaderComponent implements OnInit {
 
-  constructor(private EncrDecr: EncrDecrService) { }
+  uId:number;
+  customer:User;
+  loginFlag:boolean;
+  constructor(private EncrDecr: EncrDecrService,
+              private customerService:CustomerService,
+              private router:Router) { }
 
   ngOnInit(): void {
-    
+    let encr = sessionStorage.getItem('user')
+    if (encr != null) {
+      this.uId = parseInt(this.EncrDecr.get('123456$#@$^@1ERF', encr))
+      this.customerService.getUserById(this.uId).subscribe(data=>{
+          this.customer=data;
+          this.loginFlag=true;
+        }
+      )
+    }
+
+  }
+  logout(){
+    sessionStorage.setItem('user',null);
+    sessionStorage.setItem('admin',null);
+    sessionStorage.setItem('retailer',null);
+    this.router.navigate(['home']);
   }
 
 }

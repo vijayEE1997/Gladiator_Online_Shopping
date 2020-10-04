@@ -21,6 +21,7 @@ import { AllProductComponent } from './Products/all-product/all-product.componen
 import { SingleProductComponent } from './Products/single-product/single-product.component';
 import { SideHeaderComponent } from './Home/header/side-header/side-header.component';
 import { OrdersComponent } from './orders/orders.component';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { OrdersComponent } from './orders/orders.component';
     AllProductComponent,
     SingleProductComponent,
     SideHeaderComponent,
-    OrdersComponent
+    OrdersComponent,
+    OrderDetailComponent
   ],
   imports: [
     BrowserModule,

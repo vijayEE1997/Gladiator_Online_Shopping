@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Login } from '../../DTO/Login'
 import { Observable } from 'rxjs';
@@ -15,9 +15,11 @@ import { AdminService } from 'src/app/Service/admin.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
 loginForm:FormGroup;
 submitted:boolean=false;
 invalidLogin: boolean = false;
+
 
 //////////////////
 AsUser:boolean=true;
@@ -40,17 +42,17 @@ AsRetailer:boolean=false;
               private EncrDecr: EncrDecrService) { }
 
   ngOnInit(): void {
-    if(sessionStorage.getItem('user')!=null)
+    if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
     {
       alert("Already Logged In");
       this.router.navigate(['home']);
     }
-    if(sessionStorage.getItem('retailer')!=null)
+    if(sessionStorage.getItem('retailer')!="null" && sessionStorage.getItem('admin')!=null)
     {
       alert("Already Logged In");
       this.router.navigate(['home']);
     }
-    if(sessionStorage.getItem('admin')!=null)
+    if(sessionStorage.getItem('admin')!="null" && sessionStorage.getItem('retailer')!=null)
     {
       alert("Already Logged In");
       this.router.navigate(['home']);
@@ -60,6 +62,8 @@ AsRetailer:boolean=false;
       password: ['', Validators.required]
     });
   }
+
+
   //////////////Switch?///////////////
 
   AsUserF(){

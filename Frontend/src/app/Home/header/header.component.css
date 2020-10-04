@@ -10,8 +10,8 @@
 }
 .Sub-Header{
     position: fixed;
-    background-color: #EEF8F7;
     width:100%;
+    background-color: #EEF8F7;
     top:65px;
     z-index: 140;
         -webkit-box-shadow: 0 8px 6px -6px#31353D;
@@ -26,16 +26,25 @@
     color: rgba(255,255,255,0.85);
 }
 .Sub-Header-Wrapper{
+    justify-content: space-between;
     height: 40px;
     color:#31353D;
     font-size:0.95rem;
     font-weight: bolder;
     align-items: center;
 }
-.Sub-Header-Link{
+.Sub-Header-Inner{
+    display: flex;
+}
+.Sub-Header-Inner .Sub-Header-Link{
     padding: 0.25rem 1.25rem;
-    margin-right: 1rem;
     cursor: pointer;
+}
+.Sub-Header-Inner-L .Sub-Header-Link{
+    margin-right: 1rem;
+}
+.Sub-Header-Inner-R .Sub-Header-Link{
+    margin-left: 1rem;
 }
 .Sub-Header-Link:hover,.Sub-Header-Link:focus{
     background-color: rgba(167, 211, 207, 0.5);

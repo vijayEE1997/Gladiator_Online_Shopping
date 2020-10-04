@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.model.Admin;
 import com.lti.model.Cart;
+import com.lti.model.Order;
 import com.lti.model.OrderDetail;
 import com.lti.model.Payment;
 import com.lti.model.Product;
@@ -34,6 +35,7 @@ import com.lti.service.WishListService;
 import com.lti.dto.CartDTO;
 import com.lti.dto.CartMyDTO;
 import com.lti.dto.Login;
+import com.lti.dto.PaymentDTO;
 import com.lti.dto.ProductDTO;
 import com.lti.dto.ProductForApprovalDTO;
 import com.lti.dto.RetailerSignUp;
@@ -198,6 +200,7 @@ public class AdminController {
 		List<CartMyDTO> dto = cartservice.findviewCart(uId);
 		return dto;
 	}
+	
 	@GetMapping(path = "getAddress/{uId}")
 	public User getAddress(@PathVariable("uId") int uId){
 		return userservice.findgetUserById(uId);
@@ -208,9 +211,30 @@ public class AdminController {
 		return userservice.findupdateUser(user.getuId(), user);
 	}
 	
-//	@PostMapping(path = "makePayment") //-------------generateOTP-------------------------------
-//	public boolean makePayment(@RequestBody Payment payment)
-//	{
-//		return wishlistservice.findaddToWishList(wishlist.getuId(),wishlist.getpId());
-//	}
+	@PostMapping(path = "makePayment") //-------------placing order-------------------------------
+	public long makePayment(@RequestBody PaymentDTO payment)
+	{
+		System.out.println(payment);
+		return userservice.makePayment(payment);
+	}
+	
+	@GetMapping(path = "getOrders/{uId}")
+	public List<Order> getOrders(@PathVariable("uId") int uId){
+		System.out.println(uId);
+		List<Order> dto = orderservice.getMyOrders(uId);
+		return dto;
+	}
+	
+	@GetMapping(path = "getOrderDetails/{oId}")
+	public List<OrderDetail> getOrderDetails(@PathVariable("oId") long oId){
+		System.out.println(oId);
+		List<OrderDetail> dto = orderservice.getOrderDetail(oId);
+		return dto;
+	}
+	@GetMapping(path = "getUserById/{uId}")
+	public User getUserById(@PathVariable("uId") int uId){
+		System.out.println(uId);
+		User dto = userservice.findgetUserById(uId);
+		return dto;
+	}
 }

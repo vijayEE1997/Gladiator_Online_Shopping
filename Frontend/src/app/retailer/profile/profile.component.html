@@ -11,6 +11,7 @@
         <h3  *ngIf="myProducts" style="margin-bottom: 0.5rem;">My Products<span style="margin-left: 0.5rem;"><i class="fa fa-caret-right" aria-hidden="true"></i></span></h3>
         <h3  *ngIf="myProfit" style="margin-bottom: 0.5rem;">My Profit<span style="margin-left: 0.5rem;"><i class="fa fa-caret-right" aria-hidden="true"></i></span></h3>
         <h3  *ngIf="myAccount" style="margin-bottom: 0.5rem;">My Account<span style="margin-left: 0.5rem;"><i class="fa fa-caret-right" aria-hidden="true"></i></span></h3>
+        <add-product *ngIf="addProduct"></add-product>
         <my-products *ngIf="myProducts"></my-products> 
     </div>  
  </div>

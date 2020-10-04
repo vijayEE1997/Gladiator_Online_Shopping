@@ -12,7 +12,7 @@ import { MyProductsComponent } from './my-products/my-products.component';
     CommonModule
   ],
   exports:[
-    ProfileComponent
+    ProfileComponent,AddProductComponent,MyProductsComponent
   ]
 })
 export class RetailerModule { }

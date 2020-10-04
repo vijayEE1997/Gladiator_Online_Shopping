@@ -11,6 +11,7 @@ import { SingleProductComponent } from './Products/single-product/single-product
 import { UserCartComponent } from './user/user-cart/user-cart.component';
 import { PaymentComponent } from './payment/payment.component';
 import { OrdersComponent } from './orders/orders.component';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
 
 const routes: Routes = [
   {path : '', redirectTo : '/home', pathMatch: 'full'},
@@ -24,7 +25,8 @@ const routes: Routes = [
   {path : 'product/:id', component : SingleProductComponent },
   {path : 'MyCart', component : UserCartComponent },
   {path : 'payment', component : PaymentComponent },
-  {path : 'orders', component : OrdersComponent }
+  {path : 'orders', component : OrdersComponent },
+  {path : 'order/:oId', component : OrderDetailComponent }
   
 ];
 

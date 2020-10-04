@@ -1,0 +1,17 @@
+<div class="Orders">
+    <div>
+        <h2>OID :O{{orderds[0].odOrder.oId}}</h2>
+        <h2>ODate :{{orderds[0].odOrder.oPurchaseDate}}</h2>
+        <h2>OPrice:{{orderds[0].odOrder.oPrice | currency:"INR"}}</h2>
+        <h2>Units:{{orderds[0].odOrder.oQty}}</h2>
+        <h2>Pay ID:P{{orderds[0].odOrder.payment.payId}}</h2>
+    </div>
+
+    <div *ngFor=" let p of orderds;let i=index"  style="margin-bottom:1rem;">
+        {{p.odProducts.pBrand}}{{p.odProducts.pName}}
+        {{p.odProducts.pPrice | currency:"INR"}}
+        {{p.odQty}}
+        {{(p.odQty*p.odProducts.pPrice)}}
+    </div>
+</div>
+<!-- [routerLink]="['/order/'+p.oId]" -->

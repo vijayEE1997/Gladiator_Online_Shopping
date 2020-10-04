@@ -1,4 +1,4 @@
-<div class="container py-5">
+<div class="container py-5" *ngIf="status">
     <table>
         <tr *ngFor =" let cart of cartMyDTO">
             <td><img src="" alt="IMAGe" style="width:128px;height:128px;"></td>
@@ -16,4 +16,7 @@
     </table>
     <button class="btn btn-warning my-2" [disabled]="buyProductButton" (click)="buyProductF()" >Buy Products</button> &nbsp;
     <strong>Your Total Cart Value is {{totalPrice}}</strong>
+</div>
+<div *ngIf="!status" style="width: 70px;height: 70px;margin: auto;">
+    EMPTY
 </div>

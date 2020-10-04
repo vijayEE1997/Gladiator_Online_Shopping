@@ -92,7 +92,9 @@ paymentConfirm(){
   this.customerService.makePayment(this.payType,this.uId).subscribe(
     data=>{
       if(data>0)
-      alert("order placed")
+      {
+        alert("order placed")
+      }
       else
       alert("Retry")
     }

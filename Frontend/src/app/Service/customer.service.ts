@@ -88,6 +88,13 @@ export class CustomerService {
      this.url += 'makePayment';
      return this.http.post<number>(this.url,payment);
    }
+
+   getOrders(uId:number):Observable<any[]>{
+    this.url=this.baseurl;
+    this.url+='getOrders/'+uId;
+   return this.http.get<any[]>(this.url)
+  }
+
   //  updateMyCart(cId:number, addOrMinus: number)
   //  {
   //   this.url = this.tempurl;

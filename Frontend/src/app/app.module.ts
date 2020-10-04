@@ -20,6 +20,7 @@ import { UserWishlistComponent } from './user/user-wishlist/user-wishlist.compon
 import { AllProductComponent } from './Products/all-product/all-product.component';
 import { SingleProductComponent } from './Products/single-product/single-product.component';
 import { SideHeaderComponent } from './Home/header/side-header/side-header.component';
+import { OrdersComponent } from './orders/orders.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { SideHeaderComponent } from './Home/header/side-header/side-header.compo
     UserWishlistComponent,
     AllProductComponent,
     SingleProductComponent,
-    SideHeaderComponent
+    SideHeaderComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,7 @@ import { AllProductComponent } from './Products/all-product/all-product.componen
 import { SingleProductComponent } from './Products/single-product/single-product.component';
 import { UserCartComponent } from './user/user-cart/user-cart.component';
 import { PaymentComponent } from './payment/payment.component';
+import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
   {path : '', redirectTo : '/home', pathMatch: 'full'},
@@ -22,7 +23,8 @@ const routes: Routes = [
   {path : 'allProducts/:keyword', component : AllProductComponent },
   {path : 'product/:id', component : SingleProductComponent },
   {path : 'MyCart', component : UserCartComponent },
-  {path : 'payment', component : PaymentComponent }
+  {path : 'payment', component : PaymentComponent },
+  {path : 'orders', component : OrdersComponent }
   
 ];
 

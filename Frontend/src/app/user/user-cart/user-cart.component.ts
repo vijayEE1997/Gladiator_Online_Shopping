@@ -15,6 +15,7 @@ import { EncrDecrService } from 'src/app/Service/encr-decr.service';
 export class UserCartComponent implements OnInit {
 
   // userCart: Cart[];
+  status:boolean=false;
   uId:number;
   cartMyDTO:CartMyDTO[];
   totalPrice: number = 0;
@@ -31,6 +32,13 @@ export class UserCartComponent implements OnInit {
         this.customerService.getMyCart(this.uId).subscribe(data=>{
           this.cartMyDTO=data;
           console.log(data)
+          
+          //////CHECKING CART IS EMPTY OR NOT //////
+          if(this.cartMyDTO.length!=0)
+          this.status=true
+          //////CHECKING CART IS EMPTY OR NOT //////
+          console.log(this.status)
+
           this.cartMyDTO.map(data=>{
                 this.totalPrice+=(data.cartdto.qty*data.productdto.pPrice)
             })

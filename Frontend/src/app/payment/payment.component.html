@@ -11,5 +11,9 @@
 </div>
 <div class="container py-5">
 <button class="btn btn-primary btn-sm" (click)="DEBITCARD()">Debit Card </button>
+<div *ngIf="otpField">
+    <label for="OTP">Enter OTP</label><input type="text" name="otpF" id="OTP">
+    <button (click)="paymentConfirm()">Pay</button>
+</div>
 </div>
 </div>

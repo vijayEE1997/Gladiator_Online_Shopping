@@ -16,6 +16,7 @@ export class PaymentComponent implements OnInit {
   amount:number;
   otpB:number;
   otpF:number;
+  otpField:boolean;
   uId:number;
   user:User;
   address:string;
@@ -80,11 +81,27 @@ payment(){
       console.log(this.otpB)
     }
   )
-  // this.customerService.makePayment(this.payType,this.uId).subscribe(
-  //   data=>{
 
-  //   }
-  // )
+  this.otpField=true;
+}
+paymentConfirm(){
+  this.otpF=parseInt((<HTMLInputElement>(document.getElementById("OTP"))).value);
+  if(this.otpF==this.otpB)
+  {
+    
+  this.customerService.makePayment(this.payType,this.uId).subscribe(
+    data=>{
+      if(data>0)
+      alert("order placed")
+      else
+      alert("Retry")
+    }
+  )
+  }
+  else
+  {
+    alert("incorrect OTP")
+  }
 }
 
 }

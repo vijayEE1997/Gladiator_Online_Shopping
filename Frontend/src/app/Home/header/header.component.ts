@@ -9,6 +9,8 @@ import { EncrDecrService } from 'src/app/Service/encr-decr.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+
+  public loginFlag:boolean;
   public active:boolean;
   public innerWidth:any;
   public searchButton:boolean;
@@ -26,6 +28,7 @@ export class HeaderComponent implements OnInit {
   {
     console.log(this.encrdecr.get('123456$#@$^@1ERF',sessionStorage.getItem('user')))
     this.USER=this.encrdecr.get('123456$#@$^@1ERF',sessionStorage.getItem('user'));
+    
   }
   else
   {

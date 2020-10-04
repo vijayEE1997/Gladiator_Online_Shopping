@@ -1,0 +1,15 @@
+.Product{
+    width:calc(100% - 2rem);
+    padding: 1rem;
+    height: calc(100vh - 232px);border-radius: 0.15rem;
+    background-color: white;
+    display: flex;
+}
+.Image{
+    width: 400px;
+    margin-right:1rem;
+    background-color: #f1f3f6;
+}
+.Details{
+    width: calc(100% - 416px);
+}

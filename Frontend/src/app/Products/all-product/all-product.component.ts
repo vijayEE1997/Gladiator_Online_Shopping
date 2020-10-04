@@ -10,7 +10,6 @@ import { ProductService } from 'src/app/Service/product.service';
 })
 export class AllProductComponent implements OnInit {
 
-  src="../../../assets/Images/Products/"
   products:Product[];
   constructor(private router:Router,
               private route:ActivatedRoute,

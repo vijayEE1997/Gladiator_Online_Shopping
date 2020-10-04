@@ -14,6 +14,6 @@
             <td><button class="btn btn-danger">Delete item</button></td>
         </tr>
     </table>
-    <button class="btn btn-warning my-2" [disabled]="buyProductButton" [routerLink]="['/payment']" >Buy Products</button> &nbsp;
+    <button class="btn btn-warning my-2" [disabled]="buyProductButton" (click)="buyProductF()" >Buy Products</button> &nbsp;
     <strong>Your Total Cart Value is {{totalPrice}}</strong>
 </div>

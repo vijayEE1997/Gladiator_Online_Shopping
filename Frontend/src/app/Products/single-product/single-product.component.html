@@ -1,20 +1,16 @@
-<div class="col-md-7">
-    <p class="newarrival text-center">NEW</p>
-    <h2>{{product.pBrand}}</h2>
-    <p>{{product.pName}}</p>
-    <span class="fa fa-star checked"></span>
-   <span class="fa fa-star checked"></span>
-   <span class="fa fa-star checked"></span>
-   <span class="fa fa-star"></span>
-   <span class="fa fa-star"></span>
-    <p class="price">RS {{product.pPrice}}</p>
-    <p><b>Availability:</b> In stock</p>
-    <p><b>Condition:</b> New</p>
-    <p><b>Description</b></p>
-    <br>
-    <p>{{product.pDesc}}</p>
-   <button type="button" class="btn btn-default cart" (click)="addToCartF()">
-          Add To cart</button>
-    <button type="button" class="btn btn-success wishlist" (click)="addToWishListF()" >
-          Add To Wishlist</button>
+<div class="Product">
+      <div class="Image">
+
+      </div>
+      <div class="Details">
+            <p class="Product-Brand" style="font-weight: bolder;font-size: 1.5rem;">{{product.pBrand}} {{product.pName}}</p>
+            <p style="font-weight: bolder;font-size: 1.25rem;">{{product.pSubCategory}}</p>
+            <h3>{{product.pCategory}}</h3>
+            <!-- <p>{{product.pDesc}}</p> -->
+            <p style="margin: 1.5rem 0;">A product description is the marketing copy used to describe a product's value proposition to potential customers. A compelling product description provides customers with details around features, problems it solves and other benefits to help generate a sale</p>
+            <button type="button" class="btn btn-default cart" (click)="addToCartF()">
+            Add To cart</button>
+            <button type="button" class="btn btn-success wishlist" (click)="addToWishListF()" >
+            Add To Wishlist</button>
+      </div>
 </div>

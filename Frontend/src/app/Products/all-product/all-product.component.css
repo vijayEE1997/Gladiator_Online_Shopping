@@ -32,7 +32,7 @@
 
 .Detail{
     height: 250px;
-    width: calc(100% - 200px);
+    width: calc(100% - 250px);
     margin-left: 1rem;
     display: flex;
 }
@@ -46,6 +46,9 @@
     flex-direction: column;
     justify-content: space-around;
     text-align: center;
+}
+.Product:hover .Product-Brand{
+    color: coral;
 }
 .Product-Price{
     font-size: 1.5rem;

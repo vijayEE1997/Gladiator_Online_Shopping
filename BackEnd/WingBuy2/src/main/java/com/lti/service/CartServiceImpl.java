@@ -28,7 +28,7 @@ public class CartServiceImpl implements CartService {
 	private UserDao userdao=null; 
 
 	@Override
-	public boolean findaddToCart(int uId, int pId) {
+	public int findaddToCart(int uId, int pId) {
 		return cartdao.addToCart(uId, pId);
 	}
 

@@ -138,6 +138,11 @@ export class CustomerService {
     this.url += 'addToCart';
     return this.http.post(this.url,cart);
   }
+  deleteFromCart(cId:number){
+    this.url = this.baseurl;
+    this.url += 'deleteFromCart/'+cId;
+    return this.http.get(this.url);
+  }
 //   addNewUser(newUser:User)
 //   {
 //     this.url = this._tempurl;
@@ -162,21 +167,12 @@ export class CustomerService {
 //     this._url += 'getMyPlacedOrders/' + uId;
 //     return this._http.get<PlacedOrder[]>(this._url);
 //   }
-//   updateMyCart(cId: string, addOrMinus: string)
-//   {
-//     this._url = this._tempurl;
-//     this._url += 'updateMyCart/' + cId;
-//     if(addOrMinus==='1')
-//     {
-//       this._url += '/' + '1';
-//       return this._http.get(this._url,{responseType:'text'});
-//     }
-//     else
-//     {
-//       this._url += '/' + '0';
-//       return this._http.get(this._url,{responseType:'text'});
-//     }
-//   }
+  updateMyCart(cId: number,addOrMinus:number)
+  {
+    this.url = this.baseurl;
+    this.url += 'updateMyCart/' + cId +"/"+addOrMinus;
+      return this.http.get(this.url);
+  }
 //   deleteMyCart(cId: string)
 //   {
 //     this._url = this._tempurl;

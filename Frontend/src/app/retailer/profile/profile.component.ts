@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'profile',
@@ -12,9 +13,18 @@ export class ProfileComponent implements OnInit {
   myProfit:boolean=false;
   myAccount:boolean=false;
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
+
+    if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
+    {
+      this.router.navigate(['home']);
+    }
+    if(sessionStorage.getItem('admin')!="null" && sessionStorage.getItem('admin')!=null)
+    {
+      this.router.navigate(['home']);
+    }
   }
   addProductF(){
     this.myProducts=false;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'profile-admin',
@@ -10,9 +11,17 @@ export class ProfileAdminComponent implements OnInit {
   requests:boolean=false;
   retailers:boolean=true;
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
+    if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
+    {
+      this.router.navigate(['home']);
+    }
+   else if(sessionStorage.getItem('retailer')!="null" && sessionStorage.getItem('retailer')!=null)
+    {
+      this.router.navigate(['home']);
+    }
   }
 
   productsF(){

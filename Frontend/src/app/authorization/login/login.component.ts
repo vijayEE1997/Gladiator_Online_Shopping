@@ -106,6 +106,7 @@ AsRetailer:boolean=false;
               this.customerService.login(this.loginForm.value).subscribe(data=>{
                 this.uId=data;
                 this.createSession()
+                this.router.navigate(['home']);
               });
             }
             else if(this.AsRetailer)
@@ -113,11 +114,13 @@ AsRetailer:boolean=false;
               this.retailerService.login(this.loginForm.value).subscribe(data=>{
                 this.rId=data;
                 this.createSession()})
+                this.router.navigate(['/profile-retailer']);
             }
             else{
               this.adminService.login(this.loginForm.value).subscribe(data=>{
                 this.aId=data;
                 this.createSession()})
+                this.router.navigate(['/profile-admin']);
             }
       }
   }
@@ -131,7 +134,6 @@ AsRetailer:boolean=false;
       let decr=this.EncrDecr.get('123456$#@$^@1ERF',encr)
       /*Decription*/
       sessionStorage.setItem('user',encr);
-      this.router.navigate(['home']);
     }
    else if(this.rId!=-1)
     {
@@ -142,7 +144,6 @@ AsRetailer:boolean=false;
       let decr=this.EncrDecr.get('123456$#@$^@1ERF',encr)
       /*Decription*/
       sessionStorage.setItem('retailer',encr);
-      this.router.navigate(['home']);
     }
    else if(this.aId!=-1)
     {
@@ -153,7 +154,6 @@ AsRetailer:boolean=false;
       let decr=this.EncrDecr.get('123456$#@$^@1ERF',encr)
       /*Decription*/
       sessionStorage.setItem('admin',encr);
-      this.router.navigate(['home']);
     }
     else{
       this.invalidLogin=true;

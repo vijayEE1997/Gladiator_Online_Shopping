@@ -7,7 +7,7 @@ import com.lti.dto.CartMyDTO;
 import com.lti.model.Cart;
 
 public interface CartService {
-	public boolean findaddToCart(int uId, int pId);
+	public int findaddToCart(int uId, int pId);
 	public boolean findupdateCart(int cId, int addOrMinus);
 	public boolean finddeleteCartBycId(int cId); //throws CartException;//to remove product from cart
 	//public boolean buycart

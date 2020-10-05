@@ -19,12 +19,22 @@ export class AddRetailerComponent implements OnInit {
               private EncrDecr: EncrDecrService) {  }
 
 ngOnInit(): void {
- this.GETALL();
- this.addRetailerForm = this.formBuilder.group({
-  rEmail: ['', Validators.required],
-  rName: ['', Validators.required],
-  rMobile: ['', Validators.required],
-});
+  if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
+  {
+    this.router.navigate(['home']);
+  }
+ else if(sessionStorage.getItem('retailer')!="null" && sessionStorage.getItem('retailer')!=null)
+  {
+    this.router.navigate(['home']);
+  }
+else{
+  this.GETALL();
+  this.addRetailerForm = this.formBuilder.group({
+   rEmail: ['', Validators.required],
+   rName: ['', Validators.required],
+   rMobile: ['', Validators.required],
+ });
+}
 }
 //////GETING DATA//////////
 GETALL(){

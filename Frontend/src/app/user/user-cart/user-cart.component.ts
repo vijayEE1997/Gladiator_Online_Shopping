@@ -29,24 +29,10 @@ export class UserCartComponent implements OnInit {
       let encr = sessionStorage.getItem('user')
       if (encr != null) {
         this.uId = parseInt(this.EncrDecr.get('123456$#@$^@1ERF', encr))
-        this.customerService.getMyCart(this.uId).subscribe(data=>{
-          this.cartMyDTO=data;
-          console.log(data)
-          
-          //////CHECKING CART IS EMPTY OR NOT //////
-          if(this.cartMyDTO.length!=0)
-          this.status=true
-          //////CHECKING CART IS EMPTY OR NOT //////
-          console.log(this.status)
-
-          this.cartMyDTO.map(data=>{
-                this.totalPrice+=(data.cartdto.qty*data.productdto.pPrice)
-            })
-        })
+        this.CARTDETAIL()
       }
       else{
-        alert("login kro")
-        this.router.navigate(['home']);
+        this.router.navigate(['/login']);
       }
   }
 
@@ -54,22 +40,53 @@ export class UserCartComponent implements OnInit {
     this.router.navigate(['/payment']);
   }
 
-  // onAddUpdateClick(cId:number)
-  // {
-  //   this.customerservice.updateMyCart(cId,1)
-  //   .subscribe((data:string)=>
-  //   {
-  //     //alert(data);
-  //     //this.reloadData();
-  //   });
-  // }
-  // onMinusUpdateClick(cId:number)
-  // {
-  //   this.customerservice.updateMyCart(cId,0)
-  //   .subscribe((data:string)=>
-  //   {
-  //     //alert(data);
-  //    // this.reloadData();
-  //   });
-  // }
+  delete(cId){
+    console.log(cId)
+    this.customerService.deleteFromCart(cId).subscribe(data=>{
+      console.log(data)
+      if(data){
+        alert("deleted")
+        this.CARTDETAIL()
+      }
+      else{
+        alert("Retry")
+      }
+    })
+  }
+
+
+  onAddUpdateClick(cId:number)
+  {
+    this.customerService.updateMyCart(cId,1)
+    .subscribe((data)=>
+    {
+      this.CARTDETAIL()
+    });
+  }
+  onMinusUpdateClick(cId:number)
+  {
+    this.customerService.updateMyCart(cId,-1)
+    .subscribe((data)=>
+    {
+      this.CARTDETAIL()
+    });
+  }
+
+  
+  CARTDETAIL(){
+    this.customerService.getMyCart(this.uId).subscribe(data=>{
+      this.cartMyDTO=data;
+      console.log(data)
+      this.totalPrice= 0;
+      //////CHECKING CART IS EMPTY OR NOT //////
+      if(this.cartMyDTO.length!=0)
+      this.status=true
+      //////CHECKING CART IS EMPTY OR NOT //////
+      console.log(this.status)
+
+      this.cartMyDTO.map(data=>{
+            this.totalPrice+=(data.cartdto.qty*data.productdto.pPrice)
+        })
+    })
+  }
 }

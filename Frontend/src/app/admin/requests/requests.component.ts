@@ -2,6 +2,7 @@ import { ProductForApproval } from '../../DTO/ProductForApproval';
 import { AdminService } from './../../Service/admin.service';
 import { RetailerService } from './../../Service/retailer.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'requests',
@@ -14,13 +15,23 @@ export class RequestsComponent implements OnInit {
   descOpen:boolean=false;
   productsforApproval:ProductForApproval[]=[];
 
-  constructor(private adminService:AdminService) {  }
+  constructor(private adminService:AdminService,
+              private router:Router) {  }
 
   ngOnInit(): void {
+    if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
+    {
+      this.router.navigate(['home']);
+    }
+   else if(sessionStorage.getItem('retailer')!="null" && sessionStorage.getItem('retailer')!=null)
+    {
+      this.router.navigate(['home']);
+    }
+    else{
    this.adminService.getProductForApproval().subscribe(data => { 
       this.productsforApproval = data 
     });
-
+  }
   }
 
   //for description

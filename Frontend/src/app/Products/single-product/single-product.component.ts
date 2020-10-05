@@ -32,14 +32,17 @@ export class SingleProductComponent implements OnInit {
     if (encr != null) {
       let uId = this.EncrDecr.get('123456$#@$^@1ERF', encr)
       this.customerService.addToCart(parseInt(uId), this.product.pId).subscribe(data => {
-        if (data)
-          alert("success cart")
-        else
-          alert("try")
+        if (data==1)
+          alert("Added Successfully")
+        else if(data==0)
+          alert("Already")
+          else{
+            alert("Retry")
+          }
       })
     }
     else{
-      alert("Login krke aao")
+      this.router.navigate(['/login']);
     }
   }
   addToWishListF() {
@@ -54,7 +57,7 @@ export class SingleProductComponent implements OnInit {
       })
     }
     else{
-      alert("Login krke aao")
+      this.router.navigate(['/login']);
     }
   }
 

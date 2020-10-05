@@ -1,4 +1,8 @@
 <div class="Orders" *ngIf="status">
+
+    <h1>Orders</h1>
+    <br>
+
     <table>
         <th>Order</th>
         <th>OId</th>
@@ -9,7 +13,7 @@
         <th>Pay Id</th>
         <th>Pay Type</th>
         <th>Address</th>
-        <tr *ngFor =" let p of orders;let i=index" [routerLink]="['/order/'+p.oId]">
+        <tr *ngFor =" let p of orders;let i=index" [routerLink]="['/order/'+p.oId]" style="cursor: pointer;">
             <td>{{i+1}}</td>
             <td>O{{p.oId}}</td>
             <td>{{p.oPurchaseDate}}</td>

@@ -12,6 +12,7 @@ import { ContainerComponent } from './Home/container/container.component';
 import { HomeComponent } from './Home/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerService } from './Service/customer.service';
+// import { UploadService } from './Services_X/upload.service'
 import { ProductService } from './Service/product.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PaymentComponent } from './payment/payment.component';

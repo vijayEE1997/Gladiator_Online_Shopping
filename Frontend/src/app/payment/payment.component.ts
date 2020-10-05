@@ -69,7 +69,6 @@ export class PaymentComponent implements OnInit {
     this.user.uAddress=(<HTMLInputElement>(document.getElementById("address"))).value;
     this.customerService.updateAddress(this.user).subscribe(data=>{
       console.log(data)
-      alert("hogaya kaam console dekh")
     })
   }
 
@@ -94,6 +93,7 @@ paymentConfirm(){
       if(data>0)
       {
         alert("order placed")
+        this.router.navigate(['/orders']);
       }
       else
       alert("Retry")

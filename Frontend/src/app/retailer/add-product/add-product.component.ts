@@ -2,7 +2,7 @@ import { ProductForApproval } from './../../DTO/ProductForApproval';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RetailerService } from 'src/app/Service/retailer.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'add-product',
@@ -13,7 +13,8 @@ export class AddProductComponent implements OnInit {
   
   pCategories=[{"pCategory":{"Mobile":{"pSubCategory":{"Android":"","Keypad":""}}}},{"pCategory":"Electronics"},{"pCategory":"Appliances"}]
   pSubCategories=""
-  addProduct:FormGroup
+
+  addProductForm:FormGroup
   constructor
   (
     private retailerService : RetailerService,
@@ -22,7 +23,31 @@ export class AddProductComponent implements OnInit {
   ) { }
   
   ngOnInit(): void {
-
+    if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
+    {
+      this.router.navigate(['home']);
+    }
+   else if(sessionStorage.getItem('admin')!="null" && sessionStorage.getItem('admin')!=null)
+    {
+      this.router.navigate(['home']);
+    }
+   else{
+    this.addProductForm=this.formBuilder.group({
+      pCategory:['',Validators.required],
+      subCategory:['',Validators.required],
+      pBrand:['',Validators.required],
+      pName:['',Validators.required],
+      pPrice:['',Validators.required],
+      pDesc:['',Validators.required],
+      pImage1:['',Validators.required],
+      pImage2:['',Validators.required],
+      pStock:['',Validators.required]
+    })
+  }
   }
 
+  addPF(){
+    alert(this.addProductForm.controls.pBrand.value)
+    console.log(this.addProductForm.controls.pBrand.value)
+  }
 }

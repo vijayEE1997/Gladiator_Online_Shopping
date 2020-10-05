@@ -5,7 +5,7 @@ import java.util.List;
 import com.lti.model.Cart;
 
 public interface CartDao {
-	public boolean addToCart(int uId, int pId);
+	public int addToCart(int uId, int pId);
 	public boolean updateCart(int cId, int addOrMinus);
 	public boolean deleteCartBycId(int cId); //throws CartException;//to remove product from cart
 	//public boolean buycart

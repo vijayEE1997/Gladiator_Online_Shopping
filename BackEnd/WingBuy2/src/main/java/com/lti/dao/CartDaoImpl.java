@@ -1,6 +1,7 @@
 package com.lti.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -24,22 +25,34 @@ public class CartDaoImpl implements CartDao {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public boolean addToCart(int uId, int pId) {
+	public int addToCart(int uId, int pId) {
 
-		User user = entityManager.find(User.class, uId);
-		Product product = entityManager.find(Product.class, pId);
-		
-		System.out.println(user);
-		System.out.println(product);
-		Cart cart = new Cart();
-		cart.setpIdQty(1); // by default set qty as 1
-		cart.setcUser(user);
-		cart.setcProducts(product);
-		user.addProductToCart(cart);
-		product.addProductToCart(cart);
-		entityManager.persist(user);
-		entityManager.persist(product);
-		return true;
+		try {
+			User user = entityManager.find(User.class, uId);
+			
+			Set<Cart> check=user.getCarts();
+			for(Cart c:check)
+			{
+				if(c.getcUser().getuId()==uId && c.getcProducts().getpId()==pId)
+					return 0;
+			}
+			
+			Product product = entityManager.find(Product.class, pId);
+
+			Cart cart = new Cart();
+			cart.setpIdQty(1); // by default set qty as 1
+			cart.setcUser(user);
+			cart.setcProducts(product);
+			user.addProductToCart(cart);
+			product.addProductToCart(cart);
+			entityManager.persist(user);
+			entityManager.persist(product);
+			
+			return 1;
+		}
+		catch(Exception e) {
+			return -1;
+		}
 	}
 
 	@Override

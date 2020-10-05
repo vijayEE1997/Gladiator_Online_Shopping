@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/Service/customer.service';
 import { EncrDecrService } from 'src/app/Service/encr-decr.service';
-import { CustomvalidationService } from 'src/app/services/customvalidation.service';
+// import { CustomvalidationService } from 'src/app/services/customvalidation.service';
 
 @Component({
   selector: 'register',

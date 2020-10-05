@@ -185,7 +185,7 @@ public class AdminController {
 	}
 
 	@PostMapping(path = "/addToCart") //-------------generateOTP-------------------------------
-	public boolean addToCart(@RequestBody CartDTO cart)
+	public int addToCart(@RequestBody CartDTO cart)
 	{
 		return cartservice.findaddToCart(cart.getuId(), cart.getpId());
 	}
@@ -236,5 +236,14 @@ public class AdminController {
 		System.out.println(uId);
 		User dto = userservice.findgetUserById(uId);
 		return dto;
+	}
+	@GetMapping(path = "deleteFromCart/{cId}")
+	public boolean deleteFromCart(@PathVariable("cId") int cId){
+		return cartservice.finddeleteCartBycId(cId);
+	}
+	
+	@GetMapping(path = "updateMyCart/{cId}/{addOrMinus}")
+	public boolean updateCart(@PathVariable("cId") int cId,@PathVariable("addOrMinus") int addOrMinus){
+		return cartservice.findupdateCart(cId, addOrMinus);
 	}
 }

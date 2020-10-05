@@ -1,6 +1,7 @@
 package com.lti.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -24,18 +25,33 @@ public class WishListDaoImpl implements WishListDao {
 
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
-	public boolean addToWishList(int uId, int pId) {
-		User user = entityManager.find(User.class, uId);
-		Product product = entityManager.find(Product.class, pId);
-		
-		WishList w=new WishList();// by default set qty as 1
-		w.setwUser(user);
-		w.setwProducts(product);
-		user.addProductToWishList(w);
-		product.addProductToWishList(w);
-		entityManager.persist(user);
-		entityManager.persist(product);
-		return true;
+	public int addToWishList(int uId, int pId) {
+		try {
+			User user = entityManager.find(User.class, uId);
+			
+			Set<WishList> check=user.getWishlists();
+			for(WishList c:check)
+			{
+				if(c.getwUser().getuId()==uId && c.getwProducts().getpId()==pId)
+					return 0;
+			}
+			
+			Product product = entityManager.find(Product.class, pId);
+			
+			WishList w=new WishList();// by default set qty as 1
+			w.setwUser(user);
+			w.setwProducts(product);
+			user.addProductToWishList(w);
+			product.addProductToWishList(w);
+			entityManager.persist(user);
+			entityManager.persist(product);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+			return -1;
+		}
 	}
 
 	@Override

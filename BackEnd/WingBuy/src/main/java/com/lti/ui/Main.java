@@ -82,9 +82,9 @@ public class Main {
 		entityManager.persist(retailer1);
 		entityManager.persist(retailer2);
 		entityManager.getTransaction().commit();
-		CSVReader csvreader = new CSVReader();
+//		CSVReader csvreader = new CSVReader();
 		CSVReaderUser csvreaderuser = new CSVReaderUser();
-		csvreader.load(admin1, admin2, retailer1, retailer2,entityManager);
+//		csvreader.load(admin1, admin2, retailer1, retailer2,entityManager);
 	
 
 		List<User> ulist = csvreaderuser.load();

@@ -1,1 +1,19 @@
 <p>user-wishlist works!</p>
+<div class="container py-5">
+    <table>
+        <tr *ngFor=" let wishlist of wishMyDTO">
+            <td><img src={{wishlist.productdto.pImage}}_1 style="width:100px;height:128px;"></td>
+            <td>{{wishlist.productdto.pName}}</td>
+            <td>{{wishlist.productdto.pBrand}}</td>
+            <td>{{wishlist.productdto.pPrice}}</td>
+
+<td>
+            <button class="btn-warning" (click)="addToCartF(wishlist)">Add To Cart</button>
+
+            <button class="btn-warning" (click)="deleteF(wishlist)">Delete Product</button>
+            </td>
+
+        </tr>
+    </table>
+
+</div>

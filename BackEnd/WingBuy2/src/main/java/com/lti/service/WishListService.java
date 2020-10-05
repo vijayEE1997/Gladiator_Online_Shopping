@@ -2,10 +2,11 @@ package com.lti.service;
 
 import java.util.List;
 
+import com.lti.dto.WishMyDTO;
 import com.lti.model.WishList;
 
 public interface WishListService {
-	public boolean findaddToWishList(int uId, int pId);
+	public int findaddToWishList(int uId, int pId);
 	public boolean finddeleteWishList(int wId);
-	public List<WishList> findviewWishList(int uId);
+	public List<WishMyDTO> findviewWishList(int uId);
 }

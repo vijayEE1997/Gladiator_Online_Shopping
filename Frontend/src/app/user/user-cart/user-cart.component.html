@@ -1,7 +1,7 @@
 <div class="container py-5" *ngIf="status">
     <table>
         <tr *ngFor =" let cart of cartMyDTO">
-            <td><img src="" alt="IMAGe" style="width:128px;height:128px;"></td>
+            <td><img src={{cart.productdto.pImage}}_1 alt="IMAGE" style="width:128px;height:128px;"></td>
             <td>{{cart.productdto.pName}}</td>
             <td>{{cart.productdto.pBrand}}</td>
             <td>{{cart.productdto.pPrice}}</td>

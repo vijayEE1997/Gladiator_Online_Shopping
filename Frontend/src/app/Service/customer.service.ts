@@ -2,6 +2,7 @@ import { Wishlist } from './../DTO/Wishlist';
 import { PlacedOrder } from './../DTO/PlacedOrder';
 import { ForgotPassword } from './../DTO/ForgotPassword';
 import { User } from './../DTO/User';
+import { WishMyDTO } from './../DTO/WishMyDTO';
 import { Payment } from './../DTO/Payment';
 import { OrderDetailDTO } from './../DTO/OrderDetailDTO';
 import { Cart } from './../DTO/Cart';
@@ -107,28 +108,7 @@ export class CustomerService {
     this.url+='getOrderDetails/'+oId;
     return this.http.get<OrderDetailDTO[]>(this.url);
   }
-  
-  //  updateMyCart(cId:number, addOrMinus: number)
-  //  {
-  //   this.url = this.tempurl;
-  //    this.url += 'updateMyCart/' + cId;
-  //    if(addOrMinus==1)
-  //    {
-  //      this.url += '/' + 1;
-  //      return this.http.get(this.url,{responseType:'text'});
-  //    }
-  //    else
-  //    {
-  //      this.url += '/' + 0;
-  //      return this.http.get(this.url,{responseType:'text'});
-  //    }
-  //  }
-//   deleteMyCart(cId: string)
-//   {
-//     this._url = this._tempurl;
-//     this._url += 'deleteMyCart/' + cId;
-//     return this._http.delete(this._url,{responseType:'text'});
-//   }
+ 
   addToCart(uId: number, pId: number)
   {
     let cart=new Cart()
@@ -161,53 +141,30 @@ export class CustomerService {
 //     this._url += 'updateUser';
 //     return this._http.put<User>(this._url,updateUser);
 //   }
-//   getMyPlacedOrders(uId: string) : Observable<PlacedOrder[]>
-//   {
-//     this._url = this._tempurl;
-//     this._url += 'getMyPlacedOrders/' + uId;
-//     return this._http.get<PlacedOrder[]>(this._url);
-//   }
+
   updateMyCart(cId: number,addOrMinus:number)
   {
     this.url = this.baseurl;
     this.url += 'updateMyCart/' + cId +"/"+addOrMinus;
       return this.http.get(this.url);
   }
-//   deleteMyCart(cId: string)
-//   {
-//     this._url = this._tempurl;
-//     this._url += 'deleteMyCart/' + cId;
-//     return this._http.delete(this._url,{responseType:'text'});
-//   }
-//   addToMyCart(uId: string, pId: string)
-//   {
-//     this._url = this._tempurl;
-//     this._url += 'addToMyCart/' + uId + '/' + pId;
-//     return this._http.get(this._url,{responseType:'text'});
-//   }
-//   placeOrder(cart:Cart[],type:string)
-//   {
-//     this._url = this._tempurl;
-//     this._url += 'placeOrder' + '/' + type;
-//     return this._http.post(this._url,cart,{responseType:'text'});
-//   }
-//   getMyWishlist(uId : string) : Observable<Wishlist[]> 
-//   {
-//     this._url = this._tempurl;
-//     this._url += 'getMyWishlist/' + uId;
-//     return this._http.get<Wishlist[]>(this._url);
-//   }
+
+  getMyWishlist(uId : number) : Observable<WishMyDTO[]> 
+  {
+    this.url = this.baseurl;
+    this.url += 'getWishlist/' + uId;
+    return this.http.get<WishMyDTO[]>(this.url);
+  }
   
 
-// deleteMyWishlist(cId: string)
-//   {
-//     this._url = this._tempurl;
-//     this._url += 'deleteMyWishlist/' + cId;
-//     return this._http.delete(this._url,{responseType:'text'});
-//   }
-  
-
- addToWishList(uId: number, pId: number)
+  delete(wId: number)
+      {
+        this.url = this.baseurl;
+        this.url += 'deleteFromWishlist/' + wId;
+        return this.http.delete(this.url);
+      }
+    
+   addToWishList(uId: number, pId: number)
   {
     let wishlist=new Wishlist()
     wishlist.pId=pId;
@@ -216,14 +173,5 @@ export class CustomerService {
     this.url += 'addToWishlist';
     return this.http.post(this.url,wishlist);
   }
-
-  // // backend me ni bna ye wala
-  // getCartTotalPrice(cId: string)
-  // {
-  //   this.url = this.tempurl;
-  //   this.url += 'getCartTotalPrice/' + cId;
-  //   return this.http.delete(this.url,{responseType:'text'});
-  // }
-
 
 }

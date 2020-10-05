@@ -64,7 +64,7 @@ export class AddProductComponent implements OnInit {
   addPF(){
    if(this.uploadF1 && this.uploadF2)
     {
-      this.pImage="https://wingbuy.s3.ap-south-1.amazonaws.com/Product/"+(<HTMLInputElement>(document.getElementById('#'))).value+"/"+this.addProductForm.controls.pName.value
+      this.pImage="https://wingbuy.s3.ap-south-1.amazonaws.com/Product/"+(<HTMLInputElement>(document.getElementById('#'))).value+"/"+this.addProductForm.controls.pBrand.value+"/"+this.addProductForm.controls.pName.value
       this.product.pCategory=(<HTMLInputElement>(document.getElementById('#'))).value
       this.product.pSubCategory=this.addProductForm.controls.pSubCategory.value
       this.product.pBrand=this.addProductForm.controls.pBrand.value
@@ -89,7 +89,7 @@ export class AddProductComponent implements OnInit {
   upload1() {
     const file = this.selectedFiles1.item(0);
     this.uploadF1=true;
-    this.uploadService.uploadFile(file,(<HTMLInputElement>(document.getElementById('#'))).value,this.addProductForm.controls.pName.value+"_1")
+    this.uploadService.uploadFile(file,(<HTMLInputElement>(document.getElementById('#'))).value,this.addProductForm.controls.pBrand.value,this.addProductForm.controls.pName.value+"_1")
     }
     
     selectFile1(event) {
@@ -98,7 +98,7 @@ export class AddProductComponent implements OnInit {
     upload2() {
       const file = this.selectedFiles2.item(0);
       this.uploadF2=true;
-      this.uploadService.uploadFile(file,(<HTMLInputElement>(document.getElementById('#'))).value,this.addProductForm.controls.pName.value+"_2");
+      this.uploadService.uploadFile(file,(<HTMLInputElement>(document.getElementById('#'))).value,this.addProductForm.controls.pBrand.value,this.addProductForm.controls.pName.value+"_2");
       }
       
       selectFile2(event) {

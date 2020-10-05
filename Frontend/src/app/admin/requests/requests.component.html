@@ -2,8 +2,7 @@
     <table>
         <thead>
             <tr>
-                <th>RqID</th>
-                <th>RID</th>
+                <th>S.No.</th>
                 <th>Category</th>
                 <th>Sub-Category</th>
                 <th>Brand</th>
@@ -14,9 +13,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let p of productsforApproval">
-                <td>{{p.pReqId}}</td>
-                <td>{{p.rId}}</td>
+            <tr *ngFor="let p of productsforApproval;let i=index;">
+                <td>{{i+1}}</td>
                 <td>{{p.pCategory}}</td>
                 <td>{{p.pSubCategory}}</td>
                 <td>{{p.pBrand}}</td>

@@ -12,6 +12,7 @@ import { UserCartComponent } from './user/user-cart/user-cart.component';
 import { PaymentComponent } from './payment/payment.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { UserWishlistComponent } from './user/user-wishlist/user-wishlist.component';
 
 const routes: Routes = [
   {path : '', redirectTo : '/home', pathMatch: 'full'},
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path : 'allProducts/:keyword', component : AllProductComponent },
   {path : 'product/:id', component : SingleProductComponent },
   {path : 'MyCart', component : UserCartComponent },
+  {path : 'MyWishlist', component : UserWishlistComponent },
   {path : 'payment', component : PaymentComponent },
   {path : 'orders', component : OrdersComponent },
   {path : 'order/:oId', component : OrderDetailComponent }

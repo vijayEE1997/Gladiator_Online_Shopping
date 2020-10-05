@@ -30,14 +30,14 @@ export class AllProductComponent implements OnInit {
     this.router.navigate(['product/'+product.pId]);
   }
 
-  brands = ['Samsung', 'Nokia'];
-  filteredByBrand() {
-                    this.prodsfilteredByBrand = this.products
-                    .filter(p =>{
-                      for (let i = 0; i < this.brands.length; i++) {
-                        (this.brands[i] == p.pBrand) 
-                        }})
-      .sort((c1,c2)=>c1.pPrice-c2.pPrice);
-  }
+  // brands = ['Samsung', 'Nokia'];
+  // filteredByBrand() {
+  //                   this.prodsfilteredByBrand = this.products
+  //                   .filter(p =>{
+  //                     for (let i = 0; i < this.brands.length; i++) {
+  //                       (this.brands[i] == p.pBrand) 
+  //                       }})
+  //     .sort((c1,c2)=>c1.pPrice-c2.pPrice);
+  // }
 
 }

@@ -4,7 +4,6 @@
         <table>
             <thead>
                 <tr>
-                    <th>RID</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Mobile</th>
@@ -14,15 +13,14 @@
             <tbody>
                 <tr style="height:1rem;"></tr>
                 <tr>
-                    <td style="background-color: #31353D;color: rgba(255,255,255,0.9);font-size: 0.85rem;font-weight: bolder;text-align: center;">ADD</td>
+                    <!-- <td style="background-color: #31353D;color: rgba(255,255,255,0.9);font-size: 0.85rem;font-weight: bolder;text-align: center;">ADD</td> -->
                     <td><input class="Input" type="text" formControlName="rName" placeholder="Retailer's Name"></td>
                     <td><input class="Input" type="email" formControlName="rEmail" placeholder="Email"></td>
                     <td><input class="Input" type="text" formControlName="rMobile"placeholder="Mobile No."></td>
-                    <td id="Admin-Button-td"><div class="Admin-Button" (click)="addRetailerF()"><span style="margin-left: 0.5rem;"><i class="fa fa-user-plus" aria-hidden="true"></i></span></div></td>                
+                    <td id="Admin-Button-td"><div class="Admin-Button" (click)="addRetailerF()" style="background-color:#31353D;color: beige;"><span style="margin-left: 0.5rem;"><i class="fa fa-user-plus" aria-hidden="true"></i></span></div></td>                
                 </tr>
                 <tr style="height:0.5rem;"></tr>
                 <tr *ngFor="let p of retailers">
-                    <td>{{p.rId}}</td>
                     <td>{{p.rName}}</td>
                     <td>{{p.rEmail}}</td>
                     <td>{{p.rMobile}}</td>

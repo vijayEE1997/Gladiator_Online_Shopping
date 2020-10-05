@@ -189,11 +189,7 @@ public class AdminController {
 	{
 		return cartservice.findaddToCart(cart.getuId(), cart.getpId());
 	}
-	@PostMapping(path = "/addToWishlist") //-------------generateOTP-------------------------------
-	public boolean addToWishList(@RequestBody WishListDTO wishlist)
-	{
-		return wishlistservice.findaddToWishList(wishlist.getuId(),wishlist.getpId());
-	}
+
 	
 	@GetMapping(path = "getCart/{uId}")
 	public List<CartMyDTO> getMyCart(@PathVariable("uId") int uId){

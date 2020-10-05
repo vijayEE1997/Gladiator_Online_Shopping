@@ -8,7 +8,6 @@
 .Image{
     width: 400px;
     margin-right:1rem;
-    background-color: #f1f3f6;
 }
 .Details{
     width: calc(100% - 416px);

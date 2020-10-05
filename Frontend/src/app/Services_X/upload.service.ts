@@ -10,17 +10,17 @@ export class UploadService {
 
   constructor() { }
 
-  uploadFile(file,Category,Name){
+  uploadFile(file,Category,Brand,Name){
 
     const contentType = file.type;
     const bucket = new S3(
           {
-              
+      
           }
       );
       const params = {
           Bucket: 'wingbuy',
-          Key:"Product/"+Category+"/"+Name,
+          Key:"Product/"+Category+"/"+Brand+"/"+Name,
           Body: file,
           ACL: 'public-read',
           ContentType: contentType

@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 
 import com.lti.dto.ProductForApprovalDTO;
 import com.lti.dto.RetailerSignUp;
+import com.lti.model.Admin;
 import com.lti.model.Product;
 import com.lti.model.ProductForApproval;
 import com.lti.model.Retailer;
@@ -169,6 +170,37 @@ public class RetailerDaoImpl implements RetailerDao {
 			System.out.println("Either approved or not requested");
 		}
 		return product;
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public boolean addProduct(ProductForApprovalDTO pfa) {
+		try {
+			ProductForApproval p=new ProductForApproval();
+			
+			Admin admin=entityManager.find(Admin.class,1);
+			System.out.println(pfa);
+			p.setAdmin(admin);
+			p.setpBrand(pfa.getpBrand());
+			p.setpCategory(pfa.getpCategory());
+			p.setpDesc(pfa.getpDesc());
+			p.setpImage(pfa.getpImage());
+			p.setpName(pfa.getpName());
+			p.setpPrice(pfa.getpPrice());
+			p.setpStatus('P');
+			p.setpStock(pfa.getpStock());
+			p.setpSubCategory(pfa.getpSubCategory());
+			p.setRetailer(entityManager.find(Retailer.class,pfa.getrId()));
+			System.out.println(p);
+			admin.addProductForA(p);
+			entityManager.persist(admin);
+			return true;
+			
+		}
+		catch(Exception e) {
+			System.out.println("Error while adding");
+		}
+		return false;
 	}
 
 	

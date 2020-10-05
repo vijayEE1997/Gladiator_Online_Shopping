@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class RequestsComponent implements OnInit {
   desc:string;
+  src="";
   request:ProductForApproval;
   descOpen:boolean=false;
   productsforApproval:ProductForApproval[]=[];
@@ -40,6 +41,7 @@ export class RequestsComponent implements OnInit {
     this.desc=productforapproval.pDesc;
     this.request=productforapproval;
     this.descOpen=true;
+    this.src=productforapproval.pImage;
   }
 
   //For Approval

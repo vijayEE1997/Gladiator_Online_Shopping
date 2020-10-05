@@ -24,12 +24,12 @@ export class RetailerService {
     return  this.http.post<number>(this.url,login);
   }
 
-  // addProduct(newProduct:Product,rId: string)
-  // {
-  //   this._url = this._tempurl;
-  //   this._url += 'addProduct/' + rId;
-  //   return this._http.post(this._url,newProduct);
-  // }
+  addProduct(newProduct:ProductForApproval,rId:number)
+  {
+    this.url = this.baseurl;
+    this.url += 'addProduct/'+rId;
+    return this.http.post(this.url,newProduct);
+  }
   // getMyProduct(rId: string) : Observable<Product[]>
   // {
   //   this._url = this._tempurl;

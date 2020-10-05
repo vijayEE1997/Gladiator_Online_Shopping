@@ -11,6 +11,7 @@ import { ProductService } from 'src/app/Service/product.service';
 export class AllProductComponent implements OnInit {
 
   products:Product[];
+  prodsfilteredByBrand:Product[];
   constructor(private router:Router,
               private route:ActivatedRoute,
               private productService:ProductService) { }
@@ -20,10 +21,23 @@ export class AllProductComponent implements OnInit {
     {
       let keyword = params.get('keyword');
       this.productService.getProductBySearch(keyword)
-      .subscribe((data: Product[])=>{console.log(data);this.products=data});
+      .subscribe((data: Product[])=>{this.products=data
+        this.prodsfilteredByBrand=data;
+      });
     });
   }
   showProductById(product){
     this.router.navigate(['product/'+product.pId]);
   }
+
+  brands = ['Samsung', 'Nokia'];
+  filteredByBrand() {
+                    this.prodsfilteredByBrand = this.products
+                    .filter(p =>{
+                      for (let i = 0; i < this.brands.length; i++) {
+                        (this.brands[i] == p.pBrand) 
+                        }})
+      .sort((c1,c2)=>c1.pPrice-c2.pPrice);
+  }
+
 }

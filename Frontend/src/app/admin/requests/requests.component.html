@@ -30,6 +30,7 @@
     <div *ngIf="descOpen" class="Description">
         <div class="Admin-Button" (click)="closeDesc()">Close</div>
         {{desc}}
+        <img src={{src}}_1>
         <div class="Admin-Button" (click)="approveProductF()"><span style="margin-right: 0.5rem;"><i class="fa fa-plus-circle" aria-hidden="true"></i></span>Approve</div>
         <div class="Admin-Button" (click)="rejectProductF()"><span style="margin-right: 0.5rem;"><i class="fa fa-minus-circle" aria-hidden="true"></i></span>Reject</div>
     </div>

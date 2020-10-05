@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.lti.dao.AdminDao;
 import com.lti.dao.RetailerDao;
+import com.lti.dto.ProductForApprovalDTO;
 import com.lti.dto.RetailerSignUp;
 import com.lti.model.Product;
 import com.lti.model.ProductForApproval;
@@ -76,6 +77,11 @@ public class RetailerServiceImpl implements RetailerService{
 	@Override
 	public List<ProductForApproval> findshowMyPendingProducts(int rId) {
 		return retailerdao.showMyPendingProducts(rId);
+	}
+
+	@Override
+	public boolean addProductFA(ProductForApprovalDTO pfa) {
+		return retailerdao.addProduct(pfa);
 	}
 
 	

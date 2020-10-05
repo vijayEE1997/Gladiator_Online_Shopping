@@ -1,8 +1,10 @@
 
  <div class="Products">
-    <div class="Left-Container Container-LR"></div>
+    <div class="Left-Container Container-LR">
+        <button (click)="filteredByBrand()">B</button>
+    </div>
     <div class="Right-Container Container-LR">
-        <div  *ngFor="let product of products; let i of index">
+        <div  *ngFor="let product of prodsfilteredByBrand; let i of index">
             <div class="Product" [routerLink]="['/product/'+product.pId]">
                 <div class="Image" >
                     <img src='../../../assets/Images/Products/{{product.pCategory}}/{{product.pSubCategory}}s/{{product.pBrand}}/{{product.pName}}/01_A' alt="pImage" style="width: 100px; height: 200px;">

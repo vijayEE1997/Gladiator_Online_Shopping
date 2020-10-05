@@ -2,6 +2,7 @@ package com.lti.dao;
 
 import java.util.List;
 
+import com.lti.dto.ProductForApprovalDTO;
 import com.lti.dto.RetailerSignUp;
 import com.lti.model.Product;
 import com.lti.model.ProductForApproval;
@@ -21,5 +22,6 @@ public interface RetailerDao {
 	public List<ProductForApproval> showMyApprovedProducts(int rId);
 	public List<ProductForApproval> showMyRejectedProducts(int rId);
 	public List<ProductForApproval> showMyPendingProducts(int rId);
+	public boolean addProduct(ProductForApprovalDTO pfa);
 	
 }

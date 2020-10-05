@@ -113,7 +113,10 @@ AsRetailer:boolean=false;
             {
               this.retailerService.login(this.loginForm.value).subscribe(data=>{
                 this.rId=data;
-                this.createSession()})
+                console.log("jih")
+                console.log(this.rId)
+                this.createSession()
+              })
                 this.router.navigate(['/profile-retailer']);
             }
             else{
@@ -157,6 +160,7 @@ AsRetailer:boolean=false;
     }
     else{
       this.invalidLogin=true;
+      this.router.navigate(['/home']);
     }
   }
  }

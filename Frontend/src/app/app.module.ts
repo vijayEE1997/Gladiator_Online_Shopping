@@ -23,7 +23,7 @@ import { SingleProductComponent } from './Products/single-product/single-product
 import { SideHeaderComponent } from './Home/header/side-header/side-header.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
-
+import { UploadService } from './Services_X/upload.service'
 
 @NgModule({
   declarations: [
@@ -51,7 +51,7 @@ import { OrderDetailComponent } from './order-detail/order-detail.component';
     RetailerModule,
     HttpClientModule
   ],
-  providers: [CustomerService,ProductService],
+  providers: [CustomerService,ProductService,UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,16 +1,23 @@
 <div>
-    <form [formGroup]="addProductForm" (submit)="addPF()">
-        <div class = "validate" *ngIf = "addProductForm.controls.pCategory.errors && (addProductForm.controls.pCategory.touched ||addProductForm.controls.pCategory.dirty)">galat</div>
-        <label for="pCategory">Category</label>
-        <select name="pCategory" id="pCategory" formControlName="pCategory">
-            <option *ngFor="let p of pCategories;let i=index" [selected]="i==0" value={{p.Category}}>{{p.pCategory}}</option>
-        </select>
+    <form [formGroup]="addProductForm" (ngSubmit)="addPF()">
+        <!-- <div class = "validate" *ngIf = "addProductForm.controls.pCategory.errors && (addProductForm.controls.pCategory.touched ||addProductForm.controls.pCategory.dirty)">galat</div>
+       
         
         <div class = "validate" *ngIf = "addProductForm.controls.subCategory.errors && (addProductForm.controls.subCategory.touched ||addProductForm.controls.subCategory.dirty)">galat</div>
         <label for="subCategory">Sub Category</label>
         <select name="subCategory" id="subCategory" formControlName="subCategory">
             <option *ngFor="let p of pCategories;let i=index" [selected]="i==0" value={{p.Category}}>{{p.pCategory}}</option>
+        </select> -->
+        <label for="#">Category</label>
+        <select name="Category" id="#">
+            <option selected="selected" value="Mobile">Mobile</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Appliances">Appliances</option>
         </select>
+        <!-- <label>Category</label>
+        <input type="text" formControlName="pCategory"> -->
+        <label>Sub Category</label>
+        <input type="text" formControlName="pSubCategory">
         <label>Brand</label>
         <input type="text" formControlName="pBrand">
         <label>Model</label>
@@ -22,9 +29,14 @@
         <label>Stock</label>
         <input type="number" formControlName="pStock">
         <label>Image 1</label>
-        <input type="file" formControlName="pImage1">
+        <input type="file" (change)="selectFile1($event)" formControlName="pImage1">
+        
         <label>Image 2</label>
-        <input type="file" formControlName="pImage2">
-        <button>Add</button>
+        <input type="file" (change)="selectFile2($event)" formControlName="pImage2">
+        
+        
     </form>
+    <button class="btn btn-success" [disabled]="!selectedFiles1" (click)="upload1()">Upload</button>
+    <button class="btn btn-success" [disabled]="!selectedFiles2" (click)="upload2()">Upload</button>
+    <button (click)="addPF()" [disabled]="addProductForm.invalid">Add</button>
 </div>

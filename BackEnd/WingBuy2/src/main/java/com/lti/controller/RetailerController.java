@@ -118,6 +118,14 @@ public class RetailerController {
 		return 1;
 	}
 	
+	@PostMapping(path = "/addProduct/{rId}") //-------------retailer signup-------------------------------
+	public boolean addProduct(@RequestBody ProductForApprovalDTO pfa,@PathVariable("rId") int rId)
+	{
+		pfa.setrId(rId);
+		System.out.println(pfa);
+		return retailerservice.addProductFA(pfa);
+	}
+	
 	/*@GetMapping(path="/")// doubt
 	public List<Product> cfindshowMyApprovedProducts(int rId) {
 		List<Product> approvedProd = retailerservice.findshowMyApprovedProducts(rId);

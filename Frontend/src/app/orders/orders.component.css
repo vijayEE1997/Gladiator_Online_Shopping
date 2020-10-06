@@ -1,0 +1,25 @@
+.Orders{
+    border-radius: 0.15rem;
+    background-color: white;
+    width: 100%;
+    max-height: calc(100vh - 232px);
+    padding: 1rem;
+}
+.Order{
+    width: 100%;
+    text-align: center;
+}
+.Order th,.Order td{
+    padding: 0.15rem 0.45rem;
+    border-radius: 0.15rem;
+}
+.Order th{
+    background-color: #31353D;
+    color: rgba(255,255,255,0.85);
+    font-size: 1.05rem;
+}
+.Order td{
+    background-color: #EEF8F7;
+    padding: 0.25rem 0.45rem;
+    font-size: 0.95rem;
+}

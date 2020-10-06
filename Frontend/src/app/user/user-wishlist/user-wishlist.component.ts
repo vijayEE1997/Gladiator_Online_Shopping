@@ -23,15 +23,28 @@ export class UserWishlistComponent implements OnInit {
   ngOnInit(): void {
 
     this.sessionService.checkSession()
+    
+    if(sessionStorage.getItem('retailer')!="null" && sessionStorage.getItem('retailer')!=null)
+     {
+       this.router.navigate(['/home']);
+     }
+     else if(sessionStorage.getItem('admin')!="null" && sessionStorage.getItem('admin')!=null)
+     {
+       this.router.navigate(['/home']);
+     }
+     else if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
+     {
+        let encr = sessionStorage.getItem('user')
+        this.uId = parseInt(this.EncrDecr.get('123456$#@$^@1ERF', encr))
+        this.WISHDETAIL()
+     }
+     else{
+         this.router.navigate(['/login']);
+     }
 
-    let encr = sessionStorage.getItem('user')
-    if (encr != null) {
-      this.uId = parseInt(this.EncrDecr.get('123456$#@$^@1ERF', encr))
-      this.WISHDETAIL()
-    }
-    else{
-      this.router.navigate(['/login']);
-    }
+   
+
+    
   }
   WISHDETAIL(){
     this.customerService.getMyWishlist(this.uId).subscribe(data=>{

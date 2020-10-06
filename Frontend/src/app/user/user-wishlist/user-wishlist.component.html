@@ -1,19 +1,15 @@
-<p>user-wishlist works!</p>
-<div class="container py-5">
-    <table>
-        <tr *ngFor=" let wishlist of wishMyDTO">
-            <td><img src={{wishlist.productdto.pImage}}_1 style="width:100px;height:128px;"></td>
-            <td>{{wishlist.productdto.pName}}</td>
-            <td>{{wishlist.productdto.pBrand}}</td>
-            <td>{{wishlist.productdto.pPrice}}</td>
-
-<td>
-            <button class="btn-warning" (click)="addToCartF(wishlist)">Add To Cart</button>
-
-            <button class="btn-warning" (click)="deleteF(wishlist)">Delete Product</button>
-            </td>
-
-        </tr>
-    </table>
-
+<div class="Products">
+    <div class="Product" *ngFor=" let wishlist of wishMyDTO">
+        <div class="Image">
+            <img src={{wishlist.productdto.pImage}}_1 style="max-height: 100%;max-width: 100%;object-fit:contain;">
+        </div>
+        <div class="Detail">
+            <p style="font-size: 1.5rem;font-weight: bolder;">{{wishlist.productdto.pBrand}} {{wishlist.productdto.pName}}</p>
+            <p style="font-size: 1.5rem;font-weight: bolder;margin: 1rem 0;">{{wishlist.productdto.pPrice | currency:"INR"}}</p>
+            <div style="display: flex;justify-content: flex-end;">
+                <div class="Button-Product" (click)="addToCartF(wishlist)"><span style="margin-right: 0.5rem;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>Add To Cart</div>
+                <div class="Button-Product" (click)="deleteF(wishlist)"><span style="margin-right: 0.25rem;"><i class="fa fa-trash" aria-hidden="true"></i></span>Delete Item</div>
+            </div>
+        </div>        
+    </div>
 </div>

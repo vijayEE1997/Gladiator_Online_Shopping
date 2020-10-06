@@ -7,50 +7,29 @@
   </div>
   <div class="Login-Right Login-LR">
     <div style="display: flex;justify-content: space-between;">
-      <div class="User User-User" [class.Button-Click]="AsUser" (click)="AsUserF()"><span
-          style="margin-right: 0.5rem;"><i class="fa fa-shopping-bag" aria-hidden="true"></i></span>User</div>
-      <div class="User User-Admin" [class.Button-Click]="AsAdmin" (click)="AsAdminF()"><span
-          style="margin-right: 0.5rem;"><i class="fa fa-lock" aria-hidden="true"></i></span>Admin</div>
-      <div class="User User-Retailer" [class.Button-Click]="AsRetailer" (click)="AsRetailerF()"><span
-          style="margin-right: 0.5rem;"><i class="fa fa-truck" aria-hidden="true"></i></span>Retailer</div>
+      <div class="User User-User" [class.Button-Click]="AsUser" (click)="AsUserF()"><span style="margin-right: 0.5rem;"><i class="fa fa-shopping-bag" aria-hidden="true"></i></span>User</div>
+      <div class="User User-Admin" [class.Button-Click]="AsAdmin" (click)="AsAdminF()"><span style="margin-right: 0.5rem;"><i class="fa fa-lock" aria-hidden="true"></i></span>Admin</div>
+      <div class="User User-Retailer" [class.Button-Click]="AsRetailer" (click)="AsRetailerF()"><span style="margin-right: 0.5rem;"><i class="fa fa-truck" aria-hidden="true"></i></span>Retailer</div>
     </div>
-    <form class="form-group" [formGroup]="loginForm" (ngSubmit)="onLogin()">
-
+    <form class="Form-group" [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <div class="error" [class.error-occur]="invalidLogin">*Invalid Credentials</div>
-
-      <div class="form-group">
-        <input type="email" class="form-control" formControlName="email" id="email" ngModel [email]="true" required>
-        <div *ngIf="submitted && loginForm.controls.email.errors" class="error">
-          <div class="text-danger" *ngIf="loginForm.controls.email.errors.required  "><i> Email is required</i></div>
-        </div>
-        <div style="background-color:red;" *ngIf= "loginForm.controls.email.hasError('pattern') && (loginForm.controls.email.touched||loginForm.controls.email.dirty )">
-          <p> <i>Please enter valid Email </i> </p>
-        </div>
+      <div class="form">
+        <input type="email" class="form-control" formControlName="email" id="email" required>
         <label for="email" class="label-name">
           <span class="label-content">Email</span>
         </label>
       </div>
-
-
-      <div class="form-group">
+      <div class="form">
         <input type="password" class="form-control" formControlName="password" id="pwd" required>
-        <div *ngIf="submitted && loginForm.controls.password.errors" class="error">
-          <div class="text-danger" *ngIf="loginForm.controls.password.errors.required"> <i> Password is required </i>
-          </div>
-          <div style="background-color:red;" *ngIf="loginForm.controls.password.hasError('minLength') && (loginForm.controls.password.touched || loginForm.controls.password.dirty)">
-            <p> <i>Please enter valid Password </i></p>
-          </div>
-        </div>
         <label for="pwd" class="label-name">
           <span class="label-content">Password</span>
         </label>
       </div>
-
       <div class="form-button">
-        <button class="Login-Page-LButton">
+        <button class="Login-Page-LButton" >
           Login
         </button>&nbsp; &nbsp;
-        <button class="Login-Page-LButton"  (click)="goToRegister()">Register</button>
+        <button class="Login-Page-LButton" (click)="goToRegister()">Register</button>
         <a href="/forgotpassword" class="Login-Page-Link">Forgot Password?</a>
       </div>
     </form>

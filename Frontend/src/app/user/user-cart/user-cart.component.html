@@ -1,21 +1,28 @@
-<div class="container py-5" *ngIf="status">
-    <table>
-        <tr *ngFor =" let cart of cartMyDTO">
-            <td><img src={{cart.productdto.pImage}}_1 alt="IMAGE" style="width:128px;height:128px;"></td>
-            <td>{{cart.productdto.pName}}</td>
-            <td>{{cart.productdto.pBrand}}</td>
-            <td>{{cart.productdto.pPrice}}</td>
-            <td>
-                <button class="btn-warning" (click)="onMinusUpdateClick(cart.cartdto.cId)" [disabled]="cart.cartdto.qty==1">-</button> 
-                <button >{{cart.cartdto.qty}}</button>
-                <button  class="btn-warning"(click)="onAddUpdateClick(cart.cartdto.cId)" [disabled]="cart.cartdto.qty==cart.productdto.pStock">+</button></td>
-            <br>
-            <td>{{cart.productdto.pPrice*cart.cartdto.qty}}</td>
-            <td><button class="btn btn-danger" (click)="delete(cart.cartdto.cId)">Delete item</button></td>
-        </tr>
-    </table>
-    <button class="btn btn-warning my-2" [disabled]="buyProductButton" (click)="buyProductF()" >Buy Products</button> &nbsp;
-    <strong>Your Total Cart Value is {{totalPrice}}</strong>
+ <div class="Container-LR">
+    <div class="Products" *ngIf="status">
+        <div  class="Product-Main" *ngFor =" let cart of cartMyDTO">
+            <div class="Product">
+                <div class="Image" style="display: flex;justify-content: center;">
+                    <img src={{cart.productdto.pImage}}_1 alt="IMAGE" style="max-height: 100%;max-width: 100%;object-fit:contain;">
+                </div>
+                <div class="Detail">
+                    <p style="font-size: 1.5rem;font-weight: bolder;">{{cart.productdto.pName}}</p>
+                    <p style="font-size: 1.25rem;font-weight: bolder;">{{cart.productdto.pBrand}}</p>
+                    <div class="Q">
+                        <div class="Quantity" (click)="onMinusUpdateClick(cart.cartdto.cId)" [disabled]="cart.cartdto.qty==1">-</div> 
+                        <div class="Quantity">{{cart.cartdto.qty}}</div>
+                        <div class="Quantity"(click)="onAddUpdateClick(cart.cartdto.cId)" [disabled]="cart.cartdto.qty==cart.productdto.pStock">+</div>
+                        </div>
+                    <p style="font-size: 1.15rem;font-weight: bolder;margin: 0.5rem 0;text-align: right;">{{cart.productdto.pPrice*cart.cartdto.qty | currency:"INR"}}</p>
+                    <div class="Button" (click)="delete(cart.cartdto.cId)"><span style="margin-right: 0.5rem;"><i class="fa fa-trash" aria-hidden="true"></i></span>Delete Item</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="display: flex;justify-content: flex-end;align-items: center;margin:1rem">
+        <div style="margin-right:2rem;font-size: 1.45rem;">Amount to Pay:  <strong>{{totalPrice | currency:"INR" }}</strong></div>
+        <button class="Button-Buy" [disabled]="buyProductButton" (click)="buyProductF()" >Buy Products</button> &nbsp;
+    </div>
 </div>
 <div *ngIf="!status" style="width: 70px;height: 70px;margin: auto;">
     EMPTY

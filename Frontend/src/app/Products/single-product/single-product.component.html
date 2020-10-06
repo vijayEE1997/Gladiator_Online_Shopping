@@ -1,16 +1,23 @@
 <div class="Product">
       <div class="Image" style="display: flex;justify-content: center;">
-            <img src={{product.pImage}}_1 alt="pImage" style="height: 100%;object-fit: cover;">
+            <img src={{product.pImage}}_1 alt="pImage" style="max-height: 100%;max-width: 100%;object-fit:contain;">
       </div>
       <div class="Details">
-            <p class="Product-Brand" style="font-weight: bolder;font-size: 1.5rem;">{{product.pBrand}} {{product.pName}}</p>
-            <p style="font-weight: bolder;font-size: 1.25rem;">{{product.pSubCategory}}</p>
-            <h3>{{product.pCategory}}</h3>
-            <p>{{product.pDesc}}</p>
-            <!-- <p style="margin: 1.5rem 0;">A product description is the marketing copy used to describe a product's value proposition to potential customers. A compelling product description provides customers with details around features, problems it solves and other benefits to help generate a sale</p> -->
-            <button type="button" class="btn btn-default cart" (click)="addToCartF()">
-            Add To cart</button>
-            <button type="button" class="btn btn-success wishlist" (click)="addToWishListF()" >
-            Add To Wishlist</button>
+            <p class="Product-Brand" style="font-weight: bolder;font-size: 1.75rem;">{{product.pBrand }} {{product.pName}}</p>
+            <p style="font-weight: bolder;font-size: 1.45rem;">{{product.pSubCategory}}</p>
+            <p style="font-weight: bolder;font-size: 1.25rem;">{{product.pCategory}}</p>
+            <p style="margin: 1.5rem 0;font-family: Arial, Helvetica, sans-serif;">{{product.pDesc}}</p>
+            <p style="font-size: 1.85rem;font-weight: bolder;margin: 2rem;">{{product.pPrice | currency:"INR"}}</p>
+            <div class="Product-Button">
+                  <div type="button" class="Button-Product" (click)="addToCartF()">
+                        <span style="margin-right: 0.5rem;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>Add To Cart
+                  </div>
+                  <div type="button" class="Button-Product" (click)="addToWishListF()" >
+                        <span style="margin-right: 0.5rem;"><i class="fa fa-heart" aria-hidden="true"></i></span>Add To Wishlist
+                  </div>
+                  <!-- <div type="button" class="Button-Product" (click)="addToWishListF()" >
+                        <span style="margin-right: 0.5rem;"><i class="fa fa-square" aria-hidden="true"></i></span>Add To Compare
+                  </div> -->
+            </div>
       </div>
 </div>

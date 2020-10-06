@@ -7,6 +7,8 @@ import { CustomerService } from 'src/app/Service/customer.service';
 import { EncrDecrService } from 'src/app/Service/encr-decr.service';
 import { RetailerService } from 'src/app/Service/retailer.service';
 import { AdminService } from 'src/app/Service/admin.service';
+import { AuthService } from 'src/app/Services_X/auth.service';
+import { SessionService } from 'src/app/Services_X/session.service';
 
 
 @Component({
@@ -35,15 +37,28 @@ AsRetailer:boolean=false;
   uId : number=-1;
   rId : number=-1;
   aId : number=-1;
-
+ 
   constructor(private formBuilder: FormBuilder,
               private router:Router,
               private customerService:CustomerService,
               private retailerService:RetailerService,
               private adminService:AdminService,
-              private EncrDecr: EncrDecrService) { }
+              private EncrDecr: EncrDecrService,
+              private authService:AuthService,
+              private sessionService:SessionService) { }
 
   ngOnInit(): void {
+
+      this.sessionService.checkSession()
+      this.checkSession()
+    
+    this.loginForm = this.formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
+
+  checkSession(){
     if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
     {
       alert("Already Logged In");
@@ -63,9 +78,8 @@ AsRetailer:boolean=false;
       email: new FormControl('',[ Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
       password: ['', Validators.required  , Validators.minLength(8)]
     });
+
   }
-
-
   //////////////Switch?///////////////
 
   AsUserF(){
@@ -107,25 +121,48 @@ AsRetailer:boolean=false;
             if(this.AsUser){
               this.customerService.login(this.loginForm.value).subscribe(data=>{
                 this.uId=data;
-                this.createSession()
-                this.router.navigate(['home']);
+                if(data!=-1)
+                {
+                  this.createSession()
+                  this.customerService.getUserById(this.uId).subscribe(data=>{
+                  this.authService.login(data.uName)})
+                  this.router.navigate(['home']);
+                }
+                else{
+                  this.invalidLogin=true;
+                }
               });
             }
             else if(this.AsRetailer)
             {
               this.retailerService.login(this.loginForm.value).subscribe(data=>{
                 this.rId=data;
-                console.log("jih")
-                console.log(this.rId)
-                this.createSession()
+                if(data!=-1)
+                {
+                  this.createSession()
+                  this.retailerService.getRetailerById(this.rId).subscribe(data=>{
+                  this.authService.login(data.rName)})
+                  this.router.navigate(['/profile-retailer']);
+                }
+                else{
+                  this.invalidLogin=true;
+                }
               })
-                this.router.navigate(['/profile-retailer']);
             }
             else{
               this.adminService.login(this.loginForm.value).subscribe(data=>{
                 this.aId=data;
-                this.createSession()})
-                this.router.navigate(['/profile-admin']);
+                if(data!=-1)
+                {
+                  this.createSession()
+                  this.adminService.getAdminById(this.aId).subscribe(data=>{
+                  this.authService.login(data.aName)})
+                  this.router.navigate(['/profile-admin']);
+                }
+                else{
+                  this.invalidLogin=true;
+                }
+                })
             }
       }
   }

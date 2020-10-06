@@ -1,13 +1,13 @@
 
  <div class="Products">
     <div class="Left-Container Container-LR">
-        <!-- <button (click)="filteredByBrand()">B</button> -->
+        <button (click)="filteredByBrand()">B</button>
     </div>
     <div class="Right-Container Container-LR">
         <div  *ngFor="let product of prodsfilteredByBrand; let i of index">
             <div class="Product" [routerLink]="['/product/'+product.pId]">
                 <div class="Image" style="display: flex;justify-content: center;">
-                    <img src={{product.pImage}}_1 alt="pImage" style="height: 250px;object-fit: cover;">
+                    <img src={{product.pImage}}_1 alt="pImage" style="max-height: 100%;max-width: 100%;object-fit:contain;">
                 </div>
                 <div class="Detail">
                     <div class="Detail-L">

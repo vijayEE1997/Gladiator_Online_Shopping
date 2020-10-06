@@ -69,6 +69,7 @@ public class AdminController {
 
 	@PostMapping(path = "/adminlogin")
 	public int adminlogin(@RequestBody Login login) {
+		System.out.println(login);
 		return this.adminservice.loginadmin(login.getEmail(), login.getPassword());
 	}
 
@@ -81,7 +82,13 @@ public class AdminController {
 	public int addNewRetailer(@RequestBody RetailerSignUp newRetailer) {
 		return this.retailerservice.addRetailer(newRetailer);
 	}
-
+	
+	@GetMapping(path="/getAdmin/{aId}")
+	public Admin getAdminById(@PathVariable("aId") int aId) {
+		System.out.println(aId);
+		return adminservice.findAdminById(aId);
+	}
+	
 	@GetMapping(path = "/requests/{aId}")
 	public List<ProductForApprovalDTO> cviewProductstobeApproved(@PathVariable("aId") int aId)
 	{
@@ -231,6 +238,7 @@ public class AdminController {
 	public User getUserById(@PathVariable("uId") int uId){
 		System.out.println(uId);
 		User dto = userservice.findgetUserById(uId);
+		System.out.println(dto);
 		return dto;
 	}
 	@GetMapping(path = "deleteFromCart/{cId}")

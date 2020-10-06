@@ -6,6 +6,7 @@ import { Product } from 'src/app/DTO/Product';
 import { CartMyDTO } from 'src/app/DTO/CartMyDTO';
 import { CustomerService } from 'src/app/Service/customer.service';
 import { EncrDecrService } from 'src/app/Service/encr-decr.service';
+import { SessionService } from 'src/app/Services_X/session.service';
 
 @Component({
   selector: 'user-cart',
@@ -22,15 +23,30 @@ export class UserCartComponent implements OnInit {
   buyProductButton: boolean = false;
   constructor (private customerService : CustomerService,
                private EncrDecr: EncrDecrService,
-               private router:Router
+               private router:Router,
+               private sessionService:SessionService
               ) { }
 
   ngOnInit(): void {
+
+    this.sessionService.checkSession()
+    
+   if(sessionStorage.getItem('retailer')!="null" && sessionStorage.getItem('retailer')!=null)
+    {
+      this.router.navigate(['/home']);
+    }
+    else if(sessionStorage.getItem('admin')!="null" && sessionStorage.getItem('admin')!=null)
+    {
+      this.router.navigate(['/home']);
+    }
+    else if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
+    {
       let encr = sessionStorage.getItem('user')
       if (encr != null) {
         this.uId = parseInt(this.EncrDecr.get('123456$#@$^@1ERF', encr))
         this.CARTDETAIL()
       }
+    }
       else{
         this.router.navigate(['/login']);
       }

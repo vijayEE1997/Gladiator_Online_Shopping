@@ -58,4 +58,9 @@ export class AdminService {
     return this.http.post<boolean>(this.url,newRetailer);
   }
 
+  getAdminById(aId:number):Observable<any>{
+    this.url=this.baseurl+'getAdmin/'+aId;
+    return this.http.get<any>(this.url);
+  }
+
 }

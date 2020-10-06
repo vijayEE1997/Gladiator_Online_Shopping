@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/Service/admin.service';
 import { EncrDecrService } from 'src/app/Service/encr-decr.service';
+import { SessionService } from 'src/app/Services_X/session.service';
 
 @Component({
   selector: 'add-retailer',
@@ -16,7 +17,8 @@ export class AddRetailerComponent implements OnInit {
   constructor(private adminService:AdminService, 
               private formBuilder: FormBuilder,
               private router:Router,
-              private EncrDecr: EncrDecrService) {  }
+              private EncrDecr: EncrDecrService,
+              private sessionService:SessionService) {  }
 
 ngOnInit(): void {
   if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)

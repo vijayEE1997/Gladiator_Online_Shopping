@@ -30,6 +30,12 @@ export class RetailerService {
     this.url += 'addProduct/'+rId;
     return this.http.post(this.url,newProduct);
   }
+
+  getRetailerById(rId:number):Observable<any>{
+    this.url=this.baseurl+'getRetailer/'+rId;
+    return this.http.get<any>(this.url);
+  }
+
   // getMyProduct(rId: string) : Observable<Product[]>
   // {
   //   this._url = this._tempurl;

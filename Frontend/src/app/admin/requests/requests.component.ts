@@ -48,7 +48,10 @@ export class RequestsComponent implements OnInit {
   approveProductF(){
     this.adminService.approveProductCall(this.request).subscribe(data => { 
       if(data)
-      this.productsforApproval = this.productsforApproval.filter(p=>p.pReqId!=this.request.pReqId)
+      {
+        this.productsforApproval = this.productsforApproval.filter(p=>p.pReqId!=this.request.pReqId)
+        this.descOpen=false;
+      }
     });
   }
 
@@ -56,7 +59,10 @@ export class RequestsComponent implements OnInit {
   rejectProductF(){
     this.adminService.rejectProductCall(this.request).subscribe(data => { 
       if(data)
-      this.productsforApproval = this.productsforApproval.filter(p=>p.pReqId!=this.request.pReqId)
+      {
+        this.productsforApproval = this.productsforApproval.filter(p=>p.pReqId!=this.request.pReqId)
+        this.descOpen=false;
+      }
     });
   }
 

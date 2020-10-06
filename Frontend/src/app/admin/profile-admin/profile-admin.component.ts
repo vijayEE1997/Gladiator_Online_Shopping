@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SessionService } from 'src/app/Services_X/session.service';
 
 @Component({
   selector: 'profile-admin',
@@ -11,9 +12,14 @@ export class ProfileAdminComponent implements OnInit {
   requests:boolean=false;
   retailers:boolean=true;
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,
+              private sessionService:SessionService,
+              ) { }
 
   ngOnInit(): void {
+
+    this.sessionService.checkSession()
+    
     if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
     {
       this.router.navigate(['home']);

@@ -16,8 +16,10 @@ import com.lti.dto.Login;
 import com.lti.dto.ProductDTO;
 import com.lti.dto.ProductForApprovalDTO;
 import com.lti.dto.RetailerSignUp;
+import com.lti.model.Admin;
 import com.lti.model.Product;
 import com.lti.model.ProductForApproval;
+import com.lti.model.Retailer;
 import com.lti.service.RetailerService;
 
 @RestController
@@ -32,6 +34,11 @@ public class RetailerController {
 	public int retailerlogin(@RequestBody Login login) {
 		return this.retailerservice.loginRetailer(login.getEmail(), login.getPassword());
 
+	}
+	
+	@GetMapping(path="/getRetailer/{rId}")
+	public Retailer getRetailerById(@PathVariable("rId") int rId) {
+		return retailerservice.findgetRetailerById(rId);
 	}
 	
 	@PostMapping(path = "/addNewRetailer") //-------------retailer signup-------------------------------

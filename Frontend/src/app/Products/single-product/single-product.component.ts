@@ -4,6 +4,7 @@ import { Product } from 'src/app/DTO/Product';
 import { CustomerService } from 'src/app/Service/customer.service';
 import { EncrDecrService } from 'src/app/Service/encr-decr.service';
 import { ProductService } from 'src/app/Service/product.service';
+import { SessionService } from 'src/app/Services_X/session.service';
 
 @Component({
   selector: 'single-product',
@@ -17,9 +18,11 @@ export class SingleProductComponent implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductService,
     private customerService: CustomerService,
+    private sessionService:SessionService,
     private EncrDecr: EncrDecrService) { }
 
   ngOnInit(): void {
+    this.sessionService.checkSession()
     this.route.paramMap.subscribe((params: ParamMap) => {
       let id = params.get('id');
       this.productService.getProductById(parseInt(id))
@@ -28,8 +31,9 @@ export class SingleProductComponent implements OnInit {
   }
 
   addToCartF() {
-    let encr = sessionStorage.getItem('user')
-    if (encr != null) {
+    if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
+    {
+      let encr = sessionStorage.getItem('user')
       let uId = this.EncrDecr.get('123456$#@$^@1ERF', encr)
       this.customerService.addToCart(parseInt(uId), this.product.pId).subscribe(data => {
         if (data==1)
@@ -40,14 +44,17 @@ export class SingleProductComponent implements OnInit {
             alert("Retry")
           }
       })
-    }
-    else{
-      this.router.navigate(['/login']);
-    }
+    }     
+      else{
+        alert("Login as a User")
+        this.router.navigate(['/home']);
+      }
   }
+  
   addToWishListF() {
-    let encr = sessionStorage.getItem('user')
-    if (encr != null) {
+      if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
+    {
+      let encr = sessionStorage.getItem('user')
       let uId = this.EncrDecr.get('123456$#@$^@1ERF', encr)
       this.customerService.addToWishList(parseInt(uId), this.product.pId).subscribe(data => {
         if (data)
@@ -55,10 +62,13 @@ export class SingleProductComponent implements OnInit {
         else
           alert("try")
       })
+    }else{
+      alert("Login as a User")
+      this.router.navigate(['/home']);
     }
-    else{
-      this.router.navigate(['/login']);
-    }
+      
+  
   }
+
 
 }

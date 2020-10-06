@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/Service/customer.service';
 import { EncrDecrService } from 'src/app/Service/encr-decr.service';
+import { SessionService } from '../Services_X/session.service';
 
 @Component({
   selector: 'orders',
@@ -15,14 +16,27 @@ export class OrdersComponent implements OnInit {
   orders:any[];
   constructor(private customerService:CustomerService,
               private EncrDecr:EncrDecrService,
-              private router:Router
+              private router:Router,
+              private sessionService:SessionService
               ) { }
 
   ngOnInit(): void { 
-  let encr = sessionStorage.getItem('user')
-  if (encr != null) {
-    this.uId = parseInt(this.EncrDecr.get('123456$#@$^@1ERF', encr))
-    this.customerService.getOrders(this.uId).subscribe(data=>{
+
+  this.sessionService.checkSession()
+    
+  if(sessionStorage.getItem('retailer')!="null" && sessionStorage.getItem('retailer')!=null)
+   {
+     this.router.navigate(['/home']);
+   }
+   else if(sessionStorage.getItem('admin')!="null" && sessionStorage.getItem('admin')!=null)
+   {
+     this.router.navigate(['/home']);
+   }
+   else if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
+   {      
+      let encr = sessionStorage.getItem('user')
+      this.uId = parseInt(this.EncrDecr.get('123456$#@$^@1ERF', encr))
+      this.customerService.getOrders(this.uId).subscribe(data=>{
       this.orders=data;
       console.log(data)
       
@@ -34,8 +48,7 @@ export class OrdersComponent implements OnInit {
     })
   }
   else{
-    alert("login kro")
-    this.router.navigate(['home']);
+    this.router.navigate(['/login']);
   }
   }
 

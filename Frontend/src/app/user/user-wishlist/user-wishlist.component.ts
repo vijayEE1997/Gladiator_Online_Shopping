@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { WishMyDTO } from 'src/app/DTO/WishMyDTO';
 import { CustomerService } from 'src/app/Service/customer.service';
 import { EncrDecrService } from 'src/app/Service/encr-decr.service';
+import { SessionService } from 'src/app/Services_X/session.service';
 
 @Component({
   selector: 'user-wishlist',
@@ -16,9 +17,13 @@ export class UserWishlistComponent implements OnInit {
   status:boolean;
   constructor(private customerService: CustomerService,
               private EncrDecr:EncrDecrService,
+              private sessionService:SessionService,
               private router:Router ) { }
 
   ngOnInit(): void {
+
+    this.sessionService.checkSession()
+
     let encr = sessionStorage.getItem('user')
     if (encr != null) {
       this.uId = parseInt(this.EncrDecr.get('123456$#@$^@1ERF', encr))

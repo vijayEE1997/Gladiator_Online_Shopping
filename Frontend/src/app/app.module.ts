@@ -24,6 +24,9 @@ import { SideHeaderComponent } from './Home/header/side-header/side-header.compo
 import { OrdersComponent } from './orders/orders.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { UploadService } from './Services_X/upload.service'
+import { AuthService } from './Services_X/auth.service'
+import { SessionService } from './Services_X/session.service';
+import { ProfileUserComponent } from './profile-user/profile-user.component'
 
 @NgModule({
   declarations: [
@@ -39,7 +42,8 @@ import { UploadService } from './Services_X/upload.service'
     SingleProductComponent,
     SideHeaderComponent,
     OrdersComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    ProfileUserComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,7 @@ import { UploadService } from './Services_X/upload.service'
     RetailerModule,
     HttpClientModule
   ],
-  providers: [CustomerService,ProductService,UploadService],
+  providers: [CustomerService,ProductService,UploadService,AuthService,SessionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

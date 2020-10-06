@@ -17,7 +17,7 @@ public class CSVReader {
 
 	public static void load(Admin admin1, Admin admin2, Retailer retailer1, Retailer retailer2,EntityManager em) {
 
-		String csvFile = "C:/Users/91830/Downloads/v.csv";/// likh bhai
+		String csvFile = "C:/Users/KIRITIRAJ/Downloads/v.csv";/// likh bhai
 		String line = "";
 		String cvsSplitBy = ",";
 		List<ProductForApproval> list = new ArrayList<>();

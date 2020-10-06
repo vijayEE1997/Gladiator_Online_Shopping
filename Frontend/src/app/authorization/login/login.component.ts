@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Login } from '../../DTO/Login'
 import { Observable } from 'rxjs';
 import { CustomerService } from 'src/app/Service/customer.service';
@@ -14,6 +14,8 @@ import { AdminService } from 'src/app/Service/admin.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
+
 export class LoginComponent implements OnInit {
 
 loginForm:FormGroup;
@@ -58,8 +60,8 @@ AsRetailer:boolean=false;
       this.router.navigate(['home']);
     }
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      email: new FormControl('',[ Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+      password: ['', Validators.required  , Validators.minLength(8)]
     });
   }
 

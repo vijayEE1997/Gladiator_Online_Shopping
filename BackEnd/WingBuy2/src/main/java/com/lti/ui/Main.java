@@ -218,13 +218,13 @@ public class Main {
 		}*/	
 		
 		
-		CartDao cart1 = new CartDaoImpl();
-		CartDao cart2 = new CartDaoImpl();
-		cart1.addToCart(52,69);
-		cart2.addToCart(52,68);		
-		System.out.println(cart1);
-		System.out.println(cart2);
-		
-		
-		
+//		CartDao cart1 = new CartDaoImpl();
+//		CartDao cart2 = new CartDaoImpl();
+//		cart1.addToCart(52,69);
+//		cart2.addToCart(52,68);		
+//		System.out.println(cart1);
+//		System.out.println(cart2);
+//		
+//		
+//		
 }}

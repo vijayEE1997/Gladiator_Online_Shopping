@@ -1,7 +1,14 @@
 
  <div class="Products">
     <div class="Left-Container Container-LR">
-        <button (click)="filteredByBrand()">B</button>
+        <button *ngFor ="let Sub of SubCategory" (click)="filteredByBrand(Sub)">{{Sub}}</button>
+        <input   type="number" placeholder="higher range" id ="hr" value="200000">
+        <input type="number" placeholder="lower range" id="lr"value="0">
+        <button (click)="range()">Apply</button>
+        <button (click)="reset()">Reset</button>
+        <button (click)="sortasc()">Sort Asc</button>
+        <button (click)="sortdesc()">Sort Desc</button>
+        <!-- <button (click)=" filteredByBrand()">FilterbyBrand</button> -->
     </div>
     <div class="Right-Container Container-LR">
         <div  *ngFor="let product of prodsfilteredByBrand; let i of index">

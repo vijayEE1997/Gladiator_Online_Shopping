@@ -13,6 +13,12 @@ export class ProductService {
   private _url = '';
   constructor(private _http : HttpClient) { }
 
+  getSubCategoryByCategory(pCategory:string)
+  {
+    this._url = this._tempurl;
+    this._url += 'getSubCatByCat/'+ pCategory;
+    return this._http.get<string[]>(this._url);
+  }
 
   getProductById(id : number) : Observable<Product>
   {
@@ -21,12 +27,20 @@ export class ProductService {
     return this._http.get<Product>(this._url);
   }
 
-  getProductBySearch(keyword: string) : Observable<Product[]>
+  getProductBySubCategory(keyword: string) : Observable<Product[]>
+  {
+    this._url = this._tempurl;
+    this._url += 'getProductBySubCategory/' + keyword;
+    return this._http.get<Product[]>(this._url);
+  }
+
+  getProductByCategory(keyword: string) : Observable<Product[]>
   {
     this._url = this._tempurl;
     this._url += 'getProductBySearch/' + keyword;
     return this._http.get<Product[]>(this._url);
   }
+
   sortProduct(by :string, order : number) : Observable<Product[]>
   {
     this._url = this._tempurl;

@@ -12,7 +12,10 @@ import { SessionService } from 'src/app/Services_X/session.service';
 export class AllProductComponent implements OnInit {
 
   products:Product[];
+  SubCategory:string[];
   prodsfilteredByBrand:Product[];
+  SubCategoryflag=false;
+  keyword:string;
   constructor(private router:Router,
               private route:ActivatedRoute,
               private productService:ProductService,
@@ -23,25 +26,52 @@ export class AllProductComponent implements OnInit {
     this.sessionService.checkSession()
     this.route.paramMap.subscribe((params: ParamMap)=>
     {
-      let keyword = params.get('keyword');
-      this.productService.getProductBySearch(keyword)
-      .subscribe((data: Product[])=>{this.products=data
-        this.prodsfilteredByBrand=data;
-      });
+      this.keyword = params.get('keyword');
+     this.getall()
+            
     });
+
   }
   showProductById(product){
     this.router.navigate(['product/'+product.pId]);
   }
 
-  brands = ['Samsung', 'Nokia'];
-  filteredByBrand() {
+  filteredByBrand(Sub) {
                     this.prodsfilteredByBrand = this.products
-                    .filter(p =>{
-                      for (let i = 0; i < this.brands.length; i++) {
-                        (this.brands[i] == p.pBrand) 
-                        }})
-      .sort((c1,c2)=>c1.pPrice-c2.pPrice);
+                    .filter(p =>p.pSubCategory==Sub                      
+                    )
   }
+getall(){
+  this.productService.getProductByCategory(this.keyword)
+  .subscribe((data: Product[])=>{this.products=data
+    this.prodsfilteredByBrand=data;
+    this.productService.getSubCategoryByCategory(this.keyword).subscribe(data=>{this.SubCategory=data})
+          });
+}
+
+   filter( Sub: string) {
+    this.SubCategoryflag=!this.SubCategoryflag
+     if(this.SubCategoryflag) 
+     {
+       this.productService.getProductBySubCategory(Sub).subscribe(data=>{this.prodsfilteredByBrand=data})
+     }
+else{
+  this.getall()
+ }
+      }
+      range(){
+        let lr=(<HTMLInputElement>(document.getElementById("lr"))).value
+        let hr=(<HTMLInputElement>(document.getElementById("hr"))).value
+        this.prodsfilteredByBrand=this.prodsfilteredByBrand.filter(p=>{return (p.pPrice >parseInt(lr)) && (p.pPrice<parseInt(hr))})
+      }
+reset(){
+  this.prodsfilteredByBrand=this.products
+}
+sortasc(){
+  this.prodsfilteredByBrand=this.products.sort((a,b)=>(a.pPrice)-(b.pPrice))
+}
+sortdesc(){
+  this.prodsfilteredByBrand=this.products.sort((a,b)=>(b.pPrice)-(a.pPrice))
+}
 
 }

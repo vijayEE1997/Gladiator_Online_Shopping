@@ -29,6 +29,7 @@ import com.lti.service.AdminService;
 import com.lti.service.CartService;
 import com.lti.service.OrderService;
 import com.lti.service.PaymentService;
+import com.lti.service.ProductService;
 import com.lti.service.RetailerService;
 import com.lti.service.UserService;
 import com.lti.service.WishListService;
@@ -61,7 +62,35 @@ public class AdminController {
 	private PaymentService paymentservice;
 	@Autowired
 	private OrderService orderservice;
+	@Autowired
+	private ProductService productservice;
+	
+	@GetMapping(path = "/getSubCatByCat/{Category}") 
+	public List<String> fCategoryBySubCategory(@PathVariable String Category)
+	{
+		return this.productservice.findSubCategoryByCategory(Category);
+	}
+	
+	@GetMapping(path = "/getProductBySubCategory/{pSubCategory}") 
+	public List<Product> getProductBySubCategory(@PathVariable String pSubCategory)
+	{
+		return this.productservice.getProductBySearch(pSubCategory);
+	}
 
+	@GetMapping(path = "/getProductBySearch/{pCategory}") 
+	public List<Product> getProductByCategory(@PathVariable String pCategory)
+	{
+		return this.productservice.findCategory(pCategory);
+	}
+	
+	
+
+	@GetMapping(path = "/getProductByBrand/{pBrand}/{pCategory}") 
+	public List<Product> getProductByBrand(@PathVariable String pBrand,@PathVariable String pCategory)
+	{
+		return this.productservice.findgetProductByBrand(pBrand, pCategory);
+	}
+	
 	@PostMapping(path = "/userlogin")
 	public int userlogin(@RequestBody Login login) {
 		return this.userservice.loginuser(login);
@@ -179,11 +208,11 @@ public class AdminController {
 		return userservice.resetPass(login);
 	}
 	
-	@GetMapping(path = "getProductBySearch/{keyword}")
+	/*@GetMapping(path = "getProductBySearch/{keyword}")
 	public List<Product> getAllProduct(@PathVariable("keyword") String keyword){
 		List<Product> dto=userservice.getAllProductByCat(keyword);
 		return dto;
-	}
+	}*/
 	
 	@GetMapping(path = "getProductById/{pId}")
 	public Product getAllProduct(@PathVariable("pId") int pId){

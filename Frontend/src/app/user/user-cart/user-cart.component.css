@@ -32,6 +32,10 @@
     display: flex;
     justify-content: center;
 }
+.Image:focus{
+    border: none;
+    outline: none;
+}
 .Detail{
     height: 200px;
     width: calc(100% - 200px);

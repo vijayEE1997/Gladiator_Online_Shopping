@@ -7,7 +7,7 @@
                 <div class="OUTOFSTOCK" *ngIf="cart.productdto.pStock==0">
                     <p>*Out of Stock</p>
                 </div>
-                <div class="Image" style="display: flex;justify-content: center;">
+                <div class="Image" style="display: flex;justify-content: center;" [routerLink]="['/product/'+cart.productdto.pId]">
                     <img src={{cart.productdto.pImage}}_1 alt="IMAGE" style="max-height: 100%;max-width: 100%;object-fit:contain;">
                 </div>
                 <div class="Detail">
@@ -24,7 +24,7 @@
             </div>
         </div>
     </div>
-    <div style="display: flex;justify-content: flex-end;align-items: center;margin:1rem">
+    <div style="display: flex;justify-content: flex-end;align-items: center;padding:1rem">
         <div style="margin-right:2rem;font-size: 1.45rem;">Amount to Pay:  <strong>{{totalPrice | currency:"INR" }}</strong></div>
         <button class="Button-Buy" [disabled]="buyProductButton" (click)="buyProductF()" >Buy Products</button> &nbsp;
     </div>

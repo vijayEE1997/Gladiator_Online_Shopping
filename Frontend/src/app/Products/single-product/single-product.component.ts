@@ -99,9 +99,12 @@ export class SingleProductComponent implements OnInit {
        alert("added")
        else if(data==0)
        alert("already added")
-       else{
-       alert("choose same category or remove product from Compare")
-       }
+       else if(data== -1){
+        alert("choose same category or remove product from Compare")
+        }
+        else{
+          alert("Cannot add more than 4")
+        }
      })
    }
    else{

@@ -17,6 +17,11 @@
     height: 200px;
     display: flex;
     justify-content: center;
+    cursor: pointer;
+}
+.Image:focus{
+    border: none;
+    outline: none;
 }
 .Detail{
     margin-left: 1rem;

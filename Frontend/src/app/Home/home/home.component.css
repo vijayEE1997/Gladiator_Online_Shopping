@@ -1,3 +1,20 @@
 img{
     border-radius: 0.25rem;
 }
+.Large-Flex,.small-Flex{
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    margin-bottom:1rem;
+}
+.Large-Flex img,.Small-Flex img{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+.small-Flex{
+    justify-content: space-between;
+}
+.small{
+    width:30%;
+}

@@ -50,20 +50,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public int addUser(UserSignUp newUser) {
-		//first check if user is present or not!
-				int id = 0;
-				try
-				{
-					User user = this.userdao.getUserByEmail(newUser.getuEmail());
-					System.out.println(user);
-					if(user==null)
-						return this.userdao.addUser(newUser);
-				}
-				catch(Exception e)
-				{
-					System.out.println(e.getMessage());
-				}
-				return -100;
+		return userdao.addUser(newUser);
 	}
 
 	@Override

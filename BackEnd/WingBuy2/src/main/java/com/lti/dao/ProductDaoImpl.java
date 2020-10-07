@@ -37,6 +37,26 @@ public class ProductDaoImpl implements ProductDao {
 		}
 		return products;
 	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public List<String> readBrandByCategory(String Category) {
+		List<String> products = new ArrayList<String>();
+		String query = "Select e from Product e where e.pCategory=:x";
+		//pBrand=:x or pCategory=:x or pName like :y
+		Query q = (Query)this.entityManager.createQuery(query);
+		q.setParameter("x",Category);
+		//q.setParameter("y", "%"+SubCategory+"%");
+		List<Product> prod = q.getResultList();
+		for(Product p : prod)
+		{
+			if(!products.contains(p.getpBrand()))
+			{
+				products.add(p.getpBrand());
+			}
+		}
+		return products;
+	}
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)

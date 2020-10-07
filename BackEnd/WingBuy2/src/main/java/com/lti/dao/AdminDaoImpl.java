@@ -1,5 +1,7 @@
 package com.lti.dao;
 
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -17,6 +19,7 @@ import com.lti.model.Admin;
 import com.lti.model.Product;
 import com.lti.model.ProductForApproval;
 import com.lti.model.Retailer;
+import com.lti.utility.JavaSMSUtil;
 
 @Repository("admindao")
 public class AdminDaoImpl implements AdminDao {
@@ -163,12 +166,22 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public boolean addRetailer(Retailer newRetailer) {
-		//SEND PASSWORD TO RETAILER//
-//		
-//		*
-//		*
-//		*
-		entityManager.persist(newRetailer);
+		try {
+			entityManager.persist(newRetailer);
+			
+			String message="You are now a Retailer for WingBuy\n ID: "+newRetailer.getrEmail()+"\n Password : "+newRetailer.getrPassword();
+			try {
+				JavaSMSUtil.sendSMS(message+"\n"+ new Date().toLocaleString(),""+newRetailer.getrMobile());
+			} catch (IOException e) {
+				System.out.println("No. Not Exists");
+			}
+			
+		}
+		catch(Exception e)
+		{
+			System.out.println("Unable to add");
+			return false;
+		}
 		return true;
 	}
 

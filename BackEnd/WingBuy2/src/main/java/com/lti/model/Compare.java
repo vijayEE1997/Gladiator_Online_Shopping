@@ -23,9 +23,12 @@ public class Compare implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int compId;
 
+	
+	/****SHOUL NOT BE HERE********/
 	@Column(name = "P_ID_QTY")
 	private int pIdQty;
-
+	/****SHOUL NOT BE HERE********/
+	
 	// bi-directional many-to-one association to ProductTable
 
 	@ManyToOne

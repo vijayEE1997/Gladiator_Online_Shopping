@@ -23,5 +23,6 @@ public interface RetailerDao {
 	public List<ProductForApproval> showMyRejectedProducts(int rId);
 	public List<ProductForApproval> showMyPendingProducts(int rId);
 	public boolean addProduct(ProductForApprovalDTO pfa);
+	public int resetPassword(Retailer retailer);
 	
 }

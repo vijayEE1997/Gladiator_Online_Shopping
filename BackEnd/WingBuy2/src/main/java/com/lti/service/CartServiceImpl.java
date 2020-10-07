@@ -2,6 +2,7 @@ package com.lti.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -16,6 +17,7 @@ import com.lti.dto.CartDTO;
 import com.lti.dto.CartMyDTO;
 import com.lti.dto.ProductDTO;
 import com.lti.model.Cart;
+import com.lti.model.Compare;
 import com.lti.model.Product;
 @Service("cartservice")
 @Scope(scopeName="singleton")
@@ -80,6 +82,21 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public boolean finddeleteCartByuId(int uId) {
 		return cartdao.deleteCartByuId(uId);
+	}
+
+	@Override
+	public int addToCompare(int uId, int pId) {
+		return cartdao.addToCompare(uId,pId);
+	}
+
+	@Override
+	public Set<Compare> getCompare(int uId) {
+		return cartdao.getCompare(uId);
+	}
+
+	@Override
+	public Set<Compare> deleteFromComp(int compId) {
+		return cartdao.removeFromComp(compId);
 	}
 
 }

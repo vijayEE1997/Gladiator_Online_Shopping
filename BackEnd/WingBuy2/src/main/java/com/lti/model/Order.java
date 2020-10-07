@@ -1,5 +1,6 @@
 package com.lti.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -40,12 +41,12 @@ public class Order {
 	private int oQty;
 
 	@Column(name = "O_PURCHASE_DATE")
-	@Temporal(TemporalType.DATE)
-	private Date oPurchaseDate;
+//	@Temporal(TemporalType.DATE)
+	private LocalDate oPurchaseDate;
 
 	@Column(name = "O_DELIVERY_DATE")
-	@Temporal(TemporalType.DATE)
-	private Date oDeliveryDate;
+//	@Temporal(TemporalType.DATE)
+	private LocalDate oDeliveryDate;
 
 	@Column(name = "O_ADDRESS")
 	private String oAddress;
@@ -61,7 +62,7 @@ public class Order {
 
 	}
 
-	public Order(double oPrice, int oQty, Date oPurchaseDate, Date oDeliveryDate, String oAddress) {
+	public Order(double oPrice, int oQty, LocalDate oPurchaseDate, LocalDate oDeliveryDate, String oAddress) {
 		super();
 		this.oPrice = oPrice;
 		this.oQty = oQty;
@@ -94,17 +95,17 @@ public class Order {
 	public void setoQty(int oQty) {
 		this.oQty = oQty;
 	}
-	public Date getoPurchaseDate() {
+	public LocalDate getoPurchaseDate() {
 		return oPurchaseDate;
 	}
-	public void setoPurchaseDate(Date oPurchaseDate) {
-		this.oPurchaseDate = oPurchaseDate;
+	public void setoPurchaseDate(LocalDate localDate) {
+		this.oPurchaseDate = localDate;
 	}
-	public Date getoDeliveryDate() {
+	public LocalDate getoDeliveryDate() {
 		return oDeliveryDate;
 	}
-	public void setoDeliveryDate(Date oDeliveryDate) {
-		this.oDeliveryDate = oDeliveryDate;
+	public void setoDeliveryDate(LocalDate localDate) {
+		this.oDeliveryDate = localDate;
 	}
 	public String getoAddress() {
 		return oAddress;

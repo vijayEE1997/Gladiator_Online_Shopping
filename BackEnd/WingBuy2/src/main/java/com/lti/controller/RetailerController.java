@@ -121,9 +121,15 @@ public class RetailerController {
 	@PostMapping(path = "/generateOTP") //-------------retailer signup-------------------------------
 	public int generateOTP(@RequestBody String email)
 	{
-		System.out.println(email);
-		return 1;
+		return retailerservice.generateOTP(email);
 	}
+	
+	@PostMapping(path = "/resetPassword") //-------------generateOTP-------------------------------
+	public int resetPassword(@RequestBody Login login)
+	{
+		return retailerservice.resetPass(login);
+	}
+	
 	
 	@PostMapping(path = "/addProduct/{rId}") //-------------retailer signup-------------------------------
 	public boolean addProduct(@RequestBody ProductForApprovalDTO pfa,@PathVariable("rId") int rId)
@@ -133,17 +139,5 @@ public class RetailerController {
 		return retailerservice.addProductFA(pfa);
 	}
 	
-	/*@GetMapping(path="/")// doubt
-	public List<Product> cfindshowMyApprovedProducts(int rId) {
-		List<Product> approvedProd = retailerservice.findshowMyApprovedProducts(rId);
-		return approvedProd;
-	}
 	
-	
-}
-	@GetMapping(path="/")//doubt
-	public List<ProductForApproval> cfindshowMyRejectedProducts(int rId) {
-		List<ProductForApproval> rejectedProd = retailerservice.findshowMyRejectedProducts(rId);
-		return rejectedProd;
-	}*/
 }

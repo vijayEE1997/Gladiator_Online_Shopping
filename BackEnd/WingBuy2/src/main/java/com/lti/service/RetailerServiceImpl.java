@@ -1,5 +1,7 @@
 package com.lti.service;
 
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +10,14 @@ import org.springframework.stereotype.Service;
 
 import com.lti.dao.AdminDao;
 import com.lti.dao.RetailerDao;
+import com.lti.dto.Login;
 import com.lti.dto.ProductForApprovalDTO;
 import com.lti.dto.RetailerSignUp;
 import com.lti.model.Product;
 import com.lti.model.ProductForApproval;
 import com.lti.model.Retailer;
+import com.lti.model.User;
+import com.lti.utility.JavaSMSUtil;
 @Service("retailerservice")
 @Scope(scopeName="singleton")
 public class RetailerServiceImpl implements RetailerService{
@@ -84,8 +89,37 @@ public class RetailerServiceImpl implements RetailerService{
 		return retailerdao.addProduct(pfa);
 	}
 
-	
+	@Override
+	public int generateOTP(String email) {
+		int OTP=0;
+		Retailer retailer=retailerdao.getRetailerByEmail(email);
+		if(retailer==null)
+		return -1;
+		else
+		{
+//				OTP=JavaMailUtil.sendMail("vijay1997dhakad@gmail.com");
+//				System.out.println(OTP);
+//				return OTP;
+			OTP=(int)Math.ceil(Math.random()*1000000);
+			String message="Dont Worry!!!"+"\nWe are here to help you\n"+"Your OTP is "+OTP+"\n";
+			try {
+				JavaSMSUtil.sendSMS(message+"\n"+ new Date().toLocaleString(),""+retailer.getrMobile());
+			} catch (IOException e) {
+				System.out.println("No. Not Exists");
+			}
+//			return 1;
+			return OTP;
+		}
+		
+	}
 
+	
+	@Override
+	public int resetPass(Login login) {
+		Retailer retailer=retailerdao.getRetailerByEmail(login.getEmail());
+		retailer.setrPassword(login.getPassword());
+		return retailerdao.resetPassword(retailer);
+	}
 	
 
 }

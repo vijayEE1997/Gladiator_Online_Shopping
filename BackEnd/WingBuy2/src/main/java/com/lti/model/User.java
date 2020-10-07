@@ -76,6 +76,12 @@ public class User {
 			this.payments=new HashSet<>();
 		this.payments.add(payment);
 	}
+	
+	public void addCompare(Compare c) {
+		if(this.compares==null)
+			this.compares=new HashSet<>();
+		this.compares.add(c);
+	}
 
 	public User() {
 

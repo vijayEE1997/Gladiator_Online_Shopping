@@ -15,5 +15,6 @@ public List<Product> getProductByBrand(String pBrand,String pCategory);
 public List<Product> filterProductByPrice(String pBrand, int min, int max);
 public List<String> readSubCategoryByCategory(String Category);
 public List<Product> readCategory(String Category);
+List<String> readBrandByCategory(String Category);
 
 }

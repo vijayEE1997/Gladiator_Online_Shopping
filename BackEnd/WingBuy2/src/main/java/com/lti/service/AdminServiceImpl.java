@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.lti.dao.AdminDao;
+import com.lti.dao.RetailerDao;
 import com.lti.dto.RetailerSignUp;
 import com.lti.model.Admin;
 import com.lti.model.Product;
@@ -18,6 +19,9 @@ public class AdminServiceImpl implements AdminService{
 
 	@Autowired
 	private AdminDao admindao = null;
+	
+	@Autowired
+	private RetailerDao retailerdao = null;
 	
 	@Override
 	public int loginadmin(String aEmail, String aPassword) {
@@ -71,13 +75,15 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public boolean addRetailer(RetailerSignUp retailer) {
-		Retailer newRetailer=new Retailer();
+		Retailer newRetailer=retailerdao.getRetailerByEmail(retailer.getrEmail());
+		if(newRetailer!=null)
+		return false;
+		newRetailer=new Retailer();
 		newRetailer.setrName(retailer.getrName());
 		newRetailer.setrEmail(retailer.getrEmail());
 		newRetailer.setrMobile(retailer.getrMobile());
 		String password=retailer.getrName().substring(0,3)+"@"+"123";
 		newRetailer.setrPassword(password);
-		
 		return admindao.addRetailer(newRetailer);
 	}
 

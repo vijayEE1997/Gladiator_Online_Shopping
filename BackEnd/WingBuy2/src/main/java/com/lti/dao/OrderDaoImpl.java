@@ -60,8 +60,12 @@ public class OrderDaoImpl implements OrderDao {
 		order.setPayment(payment);
 		order.setoPrice(psum);
 		order.setoQty(qsum);
-		order.setoDeliveryDate(new Date());
-		order.setoPurchaseDate(new Date());
+		order.setoPurchaseDate(LocalDate.now());
+		
+		LocalDate date2 =  LocalDate.now().plusDays(7);
+		//--------------to test-------------------------------------
+		System.out.println("Adding days to the current date: "+date2);
+		order.setoDeliveryDate(date2);
 		order.setoAddress(userdao.getUserById(uId).getuAddress());
 		
 		List<OrderDetail> list=addOrderDetail(order,cart);

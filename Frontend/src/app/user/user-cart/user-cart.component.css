@@ -15,6 +15,7 @@
     border-width: 0.25px;
 }
 .Product{
+    position: relative;
     display: flex;
     height: 200px;
     padding: 1rem;
@@ -64,8 +65,29 @@
 .Button-Buy{
     border:none;
     outline: none;
+    cursor: pointer;
 }
 .Button-Buy:hover{
     border:none;
     outline: none;
+}
+.Button-Buy:hover,.Quantity:hover,.Button:hover{
+    background-color: rgba(124, 208, 221,1);
+}
+.OUTOFSTOCK{
+    position: absolute;
+    width:calc(100% - 2rem);
+    height:calc(100% - 2rem);
+    background-color: rgba(255,255,255,0.45);
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+}
+.OUTOFSTOCK p{
+    width:100%;
+    color: red;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    text-align: center;
 }

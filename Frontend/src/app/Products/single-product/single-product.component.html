@@ -3,21 +3,24 @@
             <img src={{product.pImage}}_1 alt="pImage" style="max-height: 100%;max-width: 100%;object-fit:contain;">
       </div>
       <div class="Details">
-            <p class="Product-Brand" style="font-weight: bolder;font-size: 1.75rem;">{{product.pBrand }} {{product.pName}}</p>
+            <p class="Product-Brand" style="font-weight: bolder;font-size: 1.75rem;color:coral">{{product.pBrand }} {{product.pName}}</p>
             <p style="font-weight: bolder;font-size: 1.45rem;">{{product.pSubCategory}}</p>
             <p style="font-weight: bolder;font-size: 1.25rem;">{{product.pCategory}}</p>
             <p style="margin: 1.5rem 0;font-family: Arial, Helvetica, sans-serif;">{{product.pDesc}}</p>
             <p style="font-size: 1.85rem;font-weight: bolder;margin: 2rem;">{{product.pPrice | currency:"INR"}}</p>
+            <p style="font-size: 1.5rem;font-weight: bolder;margin: 2rem;color: red;" *ngIf="product.pStock==0">*Out of stock</p>
+            <p style="font-size: 1.25rem;font-weight: bolder;margin: 2rem;color: green;" *ngIf="product.pStock!=0">*Available</p>
+            <p style="font-size: 0.95rem;font-weight: bolder;color: red;margin-left:10rem" *ngIf="outOfStock">*Cannot be added</p>
             <div class="Product-Button">
-                  <div type="button" class="Button-Product" (click)="addToCartF()">
+                  <div type="button" class="Button-Product" (click)="addToCartF(product.pStock)">
                         <span style="margin-right: 0.5rem;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>Add To Cart
                   </div>
                   <div type="button" class="Button-Product" (click)="addToWishListF()" >
                         <span style="margin-right: 0.5rem;"><i class="fa fa-heart" aria-hidden="true"></i></span>Add To Wishlist
                   </div>
-                  <!-- <div type="button" class="Button-Product" (click)="addToWishListF()" >
+                  <div type="button" class="Button-Product" (click)="addToCompareF(product.pId)" >
                         <span style="margin-right: 0.5rem;"><i class="fa fa-square" aria-hidden="true"></i></span>Add To Compare
-                  </div> -->
+                  </div>
             </div>
       </div>
 </div>

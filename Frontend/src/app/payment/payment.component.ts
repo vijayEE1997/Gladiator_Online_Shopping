@@ -77,6 +77,11 @@ export class PaymentComponent implements OnInit {
     this.user.uAddress=(<HTMLInputElement>(document.getElementById("address"))).value;
     this.customerService.updateAddress(this.user).subscribe(data=>{
       console.log(data)
+      this.customerService.getAddress(this.uId).subscribe(data=>{
+        this.user=data;
+        this.address=data.uAddress;
+        console.log(data)
+      })
     })
   }
 

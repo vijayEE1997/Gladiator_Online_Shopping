@@ -13,7 +13,7 @@ import { SessionService } from 'src/app/Services_X/session.service';
 export class AddRetailerComponent implements OnInit {
   retailers:any[];
   addRetailerForm:FormGroup;
-  
+  already:boolean;
   constructor(private adminService:AdminService, 
               private formBuilder: FormBuilder,
               private router:Router,
@@ -49,6 +49,8 @@ GETALL(){
   addRetailerF()
   {
     this.adminService.addRetailerCall(this.addRetailerForm.value).subscribe(data=>{
+      if(!data)
+      this.already=true;
       this.GETALL()
     });
 

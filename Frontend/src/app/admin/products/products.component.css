@@ -1,7 +1,8 @@
 .Admin-Products{
     width: 100%;
     border-radius: 0.25rem;
-    overflow-x: auto;
+    height:calc(100vh - 232px);
+    overflow: auto;
 }
 .Admin-Products table{
     width: 100%;

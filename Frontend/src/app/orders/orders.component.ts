@@ -37,7 +37,7 @@ export class OrdersComponent implements OnInit {
       let encr = sessionStorage.getItem('user')
       this.uId = parseInt(this.EncrDecr.get('123456$#@$^@1ERF', encr))
       this.customerService.getOrders(this.uId).subscribe(data=>{
-      this.orders=data;
+      this.orders=data.sort((a,b)=>parseInt(b.oId)-parseInt(a.oId))
       console.log(data)
       
       //////CHECKING ORDERS ARE THERE OR NOT //////

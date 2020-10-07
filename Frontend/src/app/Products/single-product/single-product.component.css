@@ -30,4 +30,10 @@
     margin:0 1rem;
     text-align: center;
     width:200px;
+    border:none;
+    outline: none;
+    cursor: pointer;
+}
+.Button-Product:hover,.Button-Product:focus{
+    background-color: rgba(124, 208, 221,1);
 }

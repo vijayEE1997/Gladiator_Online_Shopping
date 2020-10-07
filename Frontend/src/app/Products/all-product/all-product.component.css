@@ -4,7 +4,7 @@
 .Left-Container{
     width: 300px;
     margin-right: 1rem;
-
+    padding: 1rem;
 }
 .Container-LR{
     border-radius: 0.15rem;
@@ -27,8 +27,20 @@
 .Image{
     height: 250px;
     width: 250px;
+    position: relative;
 }
-
+.Image p{
+    position: absolute;
+    height: 40px;
+    background-color: rgba(255,255,255,0.35);
+    color:red;
+    width:250px;
+    text-align: center;
+    top:calc(50% - 20px);
+    font-size: 1.25rem;
+    font-weight: bolder;
+    padding:1rem 0;
+}
 .Detail{
     height: 250px;
     width: calc(100% - 250px);
@@ -37,6 +49,10 @@
 }
 .Detail-L{
     width:calc(100% - 216px);
+}
+.Detail-L,.Image:focus{
+    outline: none;
+    border: none;
 }
 .Detail-R{
     margin-left: 1rem;
@@ -60,4 +76,44 @@
     font-size: 1.05rem;
     font-weight: bolder;
     color: rgba(0,0,0,0.85);
+}
+.Left-Container button{
+  padding:0.25rem 0.75rem;
+  background-color: rgba(133,218,233,0.35);
+  border: none;
+  outline: none;
+  border-radius: 0.15rem;
+}
+.Left-Container button:hover{
+    background-color: rgba(133,218,233,0.5);
+}
+.Left-Container button:focus{
+    background-color: rgb(108, 191, 206);
+}
+.Left-Container button{
+    font-size: 0.75rem;
+    font-weight: bolder;
+    color: rgba(0,0,0,0.75);
+}
+#Reset{
+    padding: 0.6rem 1rem;
+    background-color:rgba(49,53,61,0.75);
+    color:rgba(255,255,255,0.75);
+}
+#Reset:hover{
+    background-color:rgba(49,53,61,0.5);
+}
+
+#Reset:focus{
+    background-color:rgba(49,53,61,1);
+}
+.Left-Container input{
+    border:none;
+    background-color: rgb(228, 236, 238);
+    border-radius: 0.15rem;
+}
+.Left-Container input:focus{
+    border-style: solid;
+    border-color: rgba(49,53,61,0.25);
+    border-width: 0.25px;
 }

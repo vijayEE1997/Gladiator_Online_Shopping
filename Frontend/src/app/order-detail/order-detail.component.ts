@@ -36,13 +36,13 @@ export class OrderDetailComponent implements OnInit {
      else if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
      {  
         let encr = sessionStorage.getItem('user')
-        if (encr != null) {
         this.uId = parseInt(this.EncrDecr.get('123456$#@$^@1ERF', encr))
         this.route.paramMap.subscribe((params: ParamMap) => {
         let id = params.get('oId');
         console.log(id)
         this.customerService.getOrderDetailById(parseInt(id))
-          .subscribe((data) => {  this.orderds = data ;console.log(this.orderds);
+          .subscribe((data) => {  this.orderds = data
+            console.log(this.orderds);
           });
       });
     }
@@ -50,5 +50,4 @@ export class OrderDetailComponent implements OnInit {
       this.router.navigate(['/login']);
     }
   }
-}
 }

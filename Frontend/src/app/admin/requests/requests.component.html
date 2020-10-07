@@ -25,10 +25,21 @@
             </tr>
         </tbody>
     </table>
-    <div *ngIf="descOpen" class="Description">
-        <div class="Admin-Button" (click)="closeDesc()">Close</div>
-        {{desc}}
-        <img src={{src}}_1>
+</div>
+
+<div *ngIf="descOpen" class="Description">
+    <div style="display: flex;justify-content: flex-end;">
+        <div class="Admin-Button" style="width:100px" (click)="closeDesc()">
+            Close
+        </div>
+    </div>
+    <div class="Desc">
+        <div class="Desc-Image"><img src={{src}}_1></div>
+        <div class="Desc-Image">
+            {{desc}}
+        </div>
+    </div>
+    <div>
         <div class="Admin-Button" (click)="approveProductF()"><span style="margin-right: 0.5rem;"><i class="fa fa-plus-circle" aria-hidden="true"></i></span>Approve</div>
         <div class="Admin-Button" (click)="rejectProductF()"><span style="margin-right: 0.5rem;"><i class="fa fa-minus-circle" aria-hidden="true"></i></span>Reject</div>
     </div>

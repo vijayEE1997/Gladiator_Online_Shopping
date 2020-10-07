@@ -27,7 +27,7 @@
                 <th>Price</th>
             </tr>
             <tr class="Product" *ngFor=" let p of orderds;let i=index"  style="margin-bottom:1rem;" [routerLink]="['/product/'+p.odProducts.pId]">
-                <td>{{p.odProducts.pBrand}}<span style="width: 0.5rem;"></span>{{p.odProducts.pName}}</td>
+                <td>{{p.odProducts.pBrand}}&nbsp;{{p.odProducts.pName}}</td>
                 <td>{{p.odProducts.pPrice | currency:"INR"}}</td>
                 <td>{{p.odQty}}</td>
                 <td>{{(p.odQty*p.odProducts.pPrice)| currency:"INR"}}</td>

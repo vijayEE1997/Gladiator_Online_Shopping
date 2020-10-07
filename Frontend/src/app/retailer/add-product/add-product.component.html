@@ -1,4 +1,4 @@
-<div>
+<div class="Add-Retailer">
     <form [formGroup]="addProductForm" (ngSubmit)="addPF()">
         <!-- <div class = "validate" *ngIf = "addProductForm.controls.pCategory.errors && (addProductForm.controls.pCategory.touched ||addProductForm.controls.pCategory.dirty)">galat</div>
        
@@ -8,35 +8,58 @@
         <select name="subCategory" id="subCategory" formControlName="subCategory">
             <option *ngFor="let p of pCategories;let i=index" [selected]="i==0" value={{p.Category}}>{{p.pCategory}}</option>
         </select> -->
-        <label for="#">Category</label>
-        <select name="Category" id="#">
-            <option selected="selected" value="Mobile">Mobile</option>
-            <option value="Electronics">Electronics</option>
-            <option value="Appliances">Appliances</option>
-        </select>
-        <!-- <label>Category</label>
-        <input type="text" formControlName="pCategory"> -->
-        <label>Sub Category</label>
-        <input type="text" formControlName="pSubCategory">
-        <label>Brand</label>
-        <input type="text" formControlName="pBrand">
-        <label>Model</label>
-        <input type="text" formControlName="pName">
-        <label>Price</label>
-        <input type="number" formControlName="pPrice">
-        <label>Desc</label>
-        <textarea formControlName="pDesc" rows="4" cols="50"></textarea>
-        <label>Stock</label>
-        <input type="number" formControlName="pStock">
-        <label>Image 1</label>
-        <input type="file" (change)="selectFile1($event)" formControlName="pImage1">
-        
-        <label>Image 2</label>
-        <input type="file" (change)="selectFile2($event)" formControlName="pImage2">
-        
-        
+        <table class="table-1">
+            <tr>
+                <td><label for="#">Category</label></td>
+                <td>
+                    <select name="Category" id="#">
+                        <option selected="selected" value="Mobile">Mobile</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Appliances">Appliances</option>
+                    </select>
+                </td>
+                <td><label>Sub Category</label></td>
+                <td><input type="text" formControlName="pSubCategory"></td>
+            </tr>
+            <tr>
+                <td><label>Brand</label></td>
+                <td>
+                    <input type="text" formControlName="pBrand">
+                </td>
+                <td><label>Model</label></td>
+                <td><input type="text" formControlName="pName"></td>
+            </tr>
+            <tr>
+                <td><label>Price</label></td>
+                <td>
+                    <input type="number" formControlName="pPrice">
+                </td>
+                <td><label>Stock</label></td>
+                <td><input type="number" formControlName="pStock"></td>
+            </tr>
+            <tr>
+                <td><label>Image 1</label></td>
+                <td>
+                    <input type="file" (change)="selectFile1($event)" formControlName="pImage1">
+                </td>
+                <td><label>Image 2</label></td>
+                <td>
+                    <input type="file" (change)="selectFile2($event)" formControlName="pImage2">
+                </td>
+            </tr>
+    </table>
+    <table class="table-2">
+        <tr>
+            <td><label>Description</label></td>
+        </tr>
+        <tr>            
+            <td><textarea formControlName="pDesc" rows="4" cols="50"></textarea></td>
+        </tr>
+    </table>
     </form>
-    <button class="btn btn-success" [disabled]="!selectedFiles1" (click)="upload1()">Upload</button>
-    <button class="btn btn-success" [disabled]="!selectedFiles2" (click)="upload2()">Upload</button>
-    <button (click)="addPF()" [disabled]="addProductForm.invalid">Add</button>
+   <div class="Button-Container">
+    <button class="Button" [disabled]="!selectedFiles1" (click)="upload1()">Upload</button>
+    <button class="Button" [disabled]="!selectedFiles2" (click)="upload2()">Upload</button>
+    <button class="Button"(click)="addPF()" [disabled]="addProductForm.invalid">Add</button>
+   </div>
 </div>

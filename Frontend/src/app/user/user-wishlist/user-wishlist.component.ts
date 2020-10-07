@@ -58,18 +58,24 @@ export class UserWishlistComponent implements OnInit {
     })
   }
   addToCartF(wishlist) {
-      this.customerService.addToCart(wishlist.wishlistdto.uId,wishlist.productdto.pId).subscribe(data => {
-        if (data==1)
-          {
-            alert("Added Successfully")
-            this.deleteF(wishlist);
-          }
-        else if(data==0)
-          alert("Already")
-          else{
-            alert("Retry")
-          }
-      })
+      if(wishlist.productdto.pStock!=0)
+      {
+        this.customerService.addToCart(wishlist.wishlistdto.uId,wishlist.productdto.pId).subscribe(data => {
+          if (data==1)
+            {
+              alert("Added Successfully")
+              this.deleteF(wishlist);
+            }
+          else if(data==0)
+            alert("Already")
+            else{
+              alert("Retry")
+            }
+        })
+      }
+      else{
+        alert("Cannot be added")
+      }
     }
     deleteF(wishlist){
       this.customerService.delete(wishlist.wishlistdto.wId).subscribe(data => {

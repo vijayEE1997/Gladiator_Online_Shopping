@@ -12,6 +12,7 @@ import { EncrDecrService } from 'src/app/Service/encr-decr.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm:FormGroup;
+  already:boolean;
   constructor(private formBuilder: FormBuilder,
               private router:Router,
               private customerService:CustomerService,
@@ -31,6 +32,11 @@ export class RegisterComponent implements OnInit {
     // }
     );
 }
+  login(){
+    
+    this.router.navigate(['/login']);
+  }
+
   register(){
     if(this.registerForm.invalid){
       return;
@@ -38,6 +44,16 @@ export class RegisterComponent implements OnInit {
     else{
           this.customerService.register(this.registerForm.value).subscribe(data=>{
             console.log(data)
+            if(data==1)
+            this.router.navigate(['/login']);
+            else if(data==0)
+            {
+              this.already=true;
+            }
+            else{
+              alert("Retry")
+              this.router.navigate(['/register']);
+            }
           });
     }
 }

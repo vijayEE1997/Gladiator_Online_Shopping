@@ -39,39 +39,79 @@
 .Login-Right{
     width:60%;
     background-color: rgb(255,255,255,0.9);
-}
-.Form-group{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: calc(500px - 2.5rem);
-}
-.form-group{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.form-control{
-    width:80%;
-}
-.label-l{
-    margin-top: 1rem;
-    font-size: 0.9rem;
-    padding: 0.25rem 0.5rem;
-}
-.input-l{
-    border: none;
+}.Form-group{
+    padding: 2rem 1rem;
+    height: calc(500px - 8rem);
     border-radius: 0.25rem;
-    padding:0.5rem 0.5rem;
+    background-color: rgb(232, 240, 254);
+}
+.form{
+    position: relative;
+    height: 50px;
+    width:100%;
+    margin-bottom: 1rem;
+}
+.error{
+    background-color: rgb(232, 240, 254);
+    text-align: center;
     font-size: 0.75rem;
-    outline:none;
+    color:  rgb(232, 240, 254);
+}
+.error-occur{
+    color:red;
+}
+.form input{
+    width:100%;
+    height: 100%;
+    color:black;
+    padding-top: 10px;
+    border:none;
+    outline: none;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: rgb(232, 240, 254);
+}
+.form label{
+    position: absolute;
+    bottom: 0;
+    left:0;
+    width:100%;
+    height: 100%;
+    pointer-events: none;
+    border-bottom: 1px solid #E35F21;
+    overflow: hidden;
+}
+.form label::after{
+    content:"";
+    position: absolute;
+    height: 100%;
+    width:100%;
+    border-bottom: 3px solid #E35F21;
+    bottom: -1px;
+    left:0;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+.label-content{
+    position: relative;
+    font-size: 0.85rem;
+    font-weight: bolder;
+    bottom:0;
+    left:0;
+    transition: all 0.3s ease;
+}
+.form input:focus + .label-name .label-content,.form input:valid + .label-name .label-content{
+    transform: translateY(-150%);
+    font-size: 0.65rem;
+    color:#E35F21;
+}
+.form input:focus + .label-name::after, .form input:valid + .label-name::after{
+    transform: translateX(0);
 }
 .Login-Page-LButton{
     margin:1rem auto 0 auto;
     padding: 0.5rem 1.25rem;
-    width:85%;
+    width:100%;
     border:none;
     border-radius: 0.25rem;
     background-color: #E35F21;

@@ -11,7 +11,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr style="height:1rem;"></tr>
+                <tr style="height:1rem;"><p *ngIf="already" style="color: red;font-size: 0.75rem;">*Already Exixts</p></tr>
                 <tr>
                     <!-- <td style="background-color: #31353D;color: rgba(255,255,255,0.9);font-size: 0.85rem;font-weight: bolder;text-align: center;">ADD</td> -->
                     <td><input class="Input" type="text" formControlName="rName" placeholder="Retailer's Name"></td>

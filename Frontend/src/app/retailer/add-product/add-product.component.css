@@ -1,0 +1,52 @@
+.Add-Retailer table{
+    width:100%
+}
+.table-1 td{
+    width:25%;
+}
+.table-2 td{
+    width:100%;
+}
+.table-1 td input,.table-1 td select{
+    width:80%;
+}
+.table-2 textarea{
+    width: 95%;
+}
+.Button-Container{
+    display: flex;
+    justify-content:flex-end;
+    margin:1rem 0;
+}
+.Button{
+    background-color: #E35F21;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.25rem;
+    color: rgba(0,0,0,0.85);
+    cursor: pointer;
+    text-align: center;
+    border: none;
+    outline: none;
+    margin-left: 1rem;
+    margin-right:3rem;
+    width: 150px;
+}
+.Button:hover{
+    background-color: rgba(227,95,33,0.75);
+    font-weight: bolder;
+    border: none;
+    outline: none;
+}
+.Add-Retailer input,.Add-Retailer textarea,.Add-Retailer select{
+    border:none;
+    border-radius: 0.15rem;
+    background-color: white;
+    padding: 0.5rem ;
+}
+.table-1 td select{
+    width:calc(80% + 1rem);
+}
+label{
+    font-size: 0.95rem;
+    font-weight: bolder;
+}

@@ -11,13 +11,13 @@
             <div style="display: flex;justify-content: space-between;align-items: center;">
                 <textarea type="text" name="street" id="address" [class.hide]="hideInput" placeholder="Enter Address"></textarea>
                 <button *ngIf="address==null" (click)="addAddressF()" [class.hide]="hideInput">Add address</button>
-                <button *ngIf="address!=null" (click)="updateAddressF()">Upadte address</button>
+                <button *ngIf="address!=null" (click)="updateAddressF()">Update address</button>
             </div>
         </div>
-        <div class="container py-5">
+        <div class="container py-5" *ngIf="address!=null">
             <p style="font-size: 0.95rem;font-weight: bolder;">Select The Payment Mode</p>
             <div style="display: flex;flex-direction: column;">
-                <button style="padding: 0.35rem 10.5rem;margin:0.5rem 0;display: flex;centre: space-between;align-items: center;" (click)="COD()">
+                <button style="padding: 0.35rem 10.5rem;margin:0.5rem 0;display: flex;justify-content: center;align-items: center;" (click)="COD()">
                     <span style="padding-right: 0.35rem;"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash-stack" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14 3H1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1h-1z"/>
                         <path fill-rule="evenodd" d="M15 5H1v8h14V5zM1 4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H1z"/>

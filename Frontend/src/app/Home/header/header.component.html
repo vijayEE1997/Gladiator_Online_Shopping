@@ -49,6 +49,7 @@
                 <div class="Sub-Header-Link" [routerLink]="['/allProducts/Appliances']">Appliances</div>
             </div>
             <div class="Sub-Header-Inner Sub-Header-Inner-R">
+                <div class="Sub-Header-Link" *ngIf="CUSTOMER" [routerLink]="['/MyCompare']">Compare</div>
                 <div class="Sub-Header-Link" *ngIf="CUSTOMER" [routerLink]="['/MyWishlist']">My Wishlist</div>
                 <div class="Sub-Header-Link" *ngIf="CUSTOMER" [routerLink]="['/orders']">My Orders</div>
                 <div class="Sub-Header-Link" *ngIf="ADMIN" [routerLink]="['/profile-admin']">My Dashboard</div>

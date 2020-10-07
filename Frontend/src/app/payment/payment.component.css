@@ -45,4 +45,5 @@ button:focus{
 }
 .Payment textarea{
     width:60%;
+    height: 75px;
 }

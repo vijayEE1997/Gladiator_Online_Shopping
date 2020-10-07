@@ -118,6 +118,14 @@ export class CustomerService {
     this.url += 'addToCart';
     return this.http.post(this.url,cart);
   }
+
+  addToCompare(uId: number, pId: number)
+  {
+    this.url = this.baseurl;
+    this.url += 'addToCompare/'+uId+"/"+pId;
+    return this.http.get(this.url);
+  }
+
   deleteFromCart(cId:number){
     this.url = this.baseurl;
     this.url += 'deleteFromCart/'+cId;

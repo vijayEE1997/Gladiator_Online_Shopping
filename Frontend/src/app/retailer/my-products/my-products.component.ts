@@ -2,6 +2,7 @@ import { ProductForApproval } from './../../DTO/ProductForApproval';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RetailerService } from 'src/app/Service/retailer.service';
+import { EncrDecrService } from 'src/app/Service/encr-decr.service';
 
 @Component({
   selector: 'my-products',
@@ -18,9 +19,10 @@ export class MyProductsComponent implements OnInit {
   rejected:boolean=false;
   pending:boolean=true;
 
-  rId:number=3;
+  rId:number=-1;
   constructor(private retailerService: RetailerService,
-    private router: Router) { }
+              private router: Router,
+              private EncrDecr:EncrDecrService) { }
 
   ngOnInit(): void {
     if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
@@ -32,6 +34,7 @@ export class MyProductsComponent implements OnInit {
       this.router.navigate(['home']);
     }
    else{
+     this.rId=parseInt(this.EncrDecr.get('123456$#@$^@1ERF',sessionStorage.getItem('retailer')))
     this.getApprovedProducts()
     this.getPendingProducts()
     this.getRejectedProducts()
@@ -57,14 +60,17 @@ export class MyProductsComponent implements OnInit {
   }
 
   getRejectedProducts() {
+    console.log(this.rId)
       this.retailerService.getRejectedProduct(this.rId)
         .subscribe((data: ProductForApproval[]) => {this.productsRejected = data });
   }
   getApprovedProducts() {
+    console.log(this.rId)
       this.retailerService.getApprovedProduct(this.rId)
         .subscribe((data: ProductForApproval[]) => {this.productsApproved = data });
   }
   getPendingProducts() {
+    console.log(this.rId)
       this.retailerService.getPendingProduct(this.rId)
         .subscribe((data: ProductForApproval[]) => {this.productsPending = data });
   }

@@ -1,27 +1,42 @@
 
  <div class="Products">
     <div class="Left-Container Container-LR">
-        <button *ngFor ="let Sub of SubCategory" (click)="filteredByBrand(Sub)">{{Sub}}</button>
-        <input   type="number" placeholder="higher range" id ="hr" value="200000">
-        <input type="number" placeholder="lower range" id="lr"value="0">
-        <button (click)="range()">Apply</button>
-        <button (click)="reset()">Reset</button>
-        <button (click)="sortasc()">Sort Asc</button>
-        <button (click)="sortdesc()">Sort Desc</button>
+        <h3 style="margin-bottom: 0.5rem;border-color: rgba(0,0,0,0.25);border-style: solid;border-width: 0 0 0.25px 0;padding-bottom: 0.5rem;">{{keyword}}<span style="margin-left: 0.5rem;"><i class="fa fa-caret-right" aria-hidden="true"></i></span></h3>
+        <!-- <h4 style="margin-bottom: 0.5rem;border-color: rgba(0,0,0,0.25);border-style: solid;border-width: 0 0 0.25px 0;padding-bottom: 0.5rem;">Sub-Category<span style="margin-left: 0.5rem;"><i class="fa fa-caret-right" aria-hidden="true"></i></span></h4> -->
+        <div class="Sub-Button" style="display: flex;flex-direction: column;align-items: center;">
+            <h4 style="margin-bottom: 0.5rem;;padding-bottom: 0.5rem;align-self: flex-start;">Sub-Category</h4>
+            <button style="width: 70%;margin-bottom: 0.5rem;" *ngFor ="let Sub of SubCategory" (click)="filteredByBrand(Sub)">{{Sub}}</button>
+            <h4 style="margin-bottom: 0.5rem;;padding-bottom: 0.5rem;align-self: flex-start;">Brand</h4>
+            <button style="width: 70%;margin-bottom: 0.5rem;" *ngFor ="let brand of Brand" (click)="filteredByCat(brand)">{{brand}}</button>
+            <h4 style="margin-bottom: 0.5rem;;padding-bottom: 0.5rem;align-self: flex-start;">Price Range</h4>
+            
+            <div style="display: flex;justify-content: center;">
+                <input style="width: 29%;margin:0 0.25rem 0.5rem 0.25rem" type="number" placeholder="lower" id="lr">
+                <input  style="width: 29%;margin:0 0.25rem 0.5rem 0.25rem" type="number" placeholder="higher" id ="hr">
+            </div>
+            <p *ngIf="Range" style="color: red;">*Check Range</p>
+            <button style="width: 70%;margin-bottom: 0.5rem;" (click)="range()">Apply</button>
+            <h4 style="margin-bottom: 0.5rem;;padding-bottom: 0.5rem;align-self: flex-start;">Sort</h4>
+            <button style="width: 70%;margin-bottom: 0.5rem;" (click)="sortasc()">Low to High</button>
+            <button style="width: 70%;margin-bottom: 0.5rem;" (click)="sortdesc()">High to Low</button>
+            <button id="Reset" style="width: 70%;margin:1rem 0;" (click)="reset()">Reset</button>
+        </div>
         <!-- <button (click)=" filteredByBrand()">FilterbyBrand</button> -->
     </div>
     <div class="Right-Container Container-LR">
         <div  *ngFor="let product of prodsfilteredByBrand; let i of index">
-            <div class="Product" [routerLink]="['/product/'+product.pId]">
-                <div class="Image" style="display: flex;justify-content: center;">
+            <div class="Product" >
+                <div class="Image" style="display: flex;justify-content: center;" [routerLink]="['/product/'+product.pId]">
                     <img src={{product.pImage}}_1 alt="pImage" style="max-height: 100%;max-width: 100%;object-fit:contain;">
+                    <p *ngIf="product.pStock==0">Out of Stock</p>
                 </div>
                 <div class="Detail">
-                    <div class="Detail-L">
+                    <div class="Detail-L" [routerLink]="['/product/'+product.pId]">
                         <p class="Product-Brand" style="font-weight: bolder;font-size: 1.5rem;">{{product.pBrand}} {{product.pName}}</p>
                         <p style="font-weight: bolder;font-size: 1.25rem;">{{product.pSubCategory}}</p>
                         <h3>{{product.pCategory}}</h3>
                         <p style="margin: 1.5rem 0;">{{product.pDesc}}</p>
+                        <p style="font-size: 1.25rem;font-weight: bolder;margin: 2rem;color: green;" *ngIf="product.pStock!=0">*Available</p>
                         <!-- <p style="margin: 1.5rem 0;">A product description is the marketing copy used to describe a product's value proposition to potential customers. A compelling product description provides customers with details around features, problems it solves and other benefits to help generate a sale</p> -->
                     </div>
                     <div class="Detail-R">

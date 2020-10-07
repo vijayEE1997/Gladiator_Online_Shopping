@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Product } from 'src/app/DTO/Product';
+import { CustomerService } from 'src/app/Service/customer.service';
+import { EncrDecrService } from 'src/app/Service/encr-decr.service';
 import { ProductService } from 'src/app/Service/product.service';
 import { SessionService } from 'src/app/Services_X/session.service';
 
@@ -13,13 +15,18 @@ export class AllProductComponent implements OnInit {
 
   products:Product[];
   SubCategory:string[];
+  Brand:string[];
   prodsfilteredByBrand:Product[];
   SubCategoryflag=false;
   keyword:string;
+  Range:boolean;
+  uId:number;
   constructor(private router:Router,
               private route:ActivatedRoute,
               private productService:ProductService,
               private sessionService:SessionService,
+              private customerService:CustomerService,
+              private EncrDecr:EncrDecrService
               ) { }
 
   ngOnInit(): void {
@@ -30,7 +37,6 @@ export class AllProductComponent implements OnInit {
      this.getall()
             
     });
-
   }
   showProductById(product){
     this.router.navigate(['product/'+product.pId]);
@@ -41,11 +47,21 @@ export class AllProductComponent implements OnInit {
                     .filter(p =>p.pSubCategory==Sub                      
                     )
   }
+  filteredByCat(brand) {
+    this.prodsfilteredByBrand = this.products
+    .filter(p =>p.pBrand== brand                    
+    )
+}
 getall(){
   this.productService.getProductByCategory(this.keyword)
-  .subscribe((data: Product[])=>{this.products=data
+  .subscribe((data: Product[])=>{this.products=data.sort((a,b)=>(b.pPrice)-(a.pPrice))
     this.prodsfilteredByBrand=data;
-    this.productService.getSubCategoryByCategory(this.keyword).subscribe(data=>{this.SubCategory=data})
+    this.productService.getSubCategoryByCategory(this.keyword).subscribe(data=>{this.SubCategory=data
+    
+      this.productService.getBrandByCategory(this.keyword).subscribe(data=>{
+        this.Brand=data
+      })
+    })
           });
 }
 
@@ -62,16 +78,51 @@ else{
       range(){
         let lr=(<HTMLInputElement>(document.getElementById("lr"))).value
         let hr=(<HTMLInputElement>(document.getElementById("hr"))).value
-        this.prodsfilteredByBrand=this.prodsfilteredByBrand.filter(p=>{return (p.pPrice >parseInt(lr)) && (p.pPrice<parseInt(hr))})
+        if(lr<hr)
+        {
+          this.prodsfilteredByBrand=this.prodsfilteredByBrand.filter(p=>{return (p.pPrice >parseInt(lr)) && (p.pPrice<parseInt(hr))})
+          this.Range=false;
+        }
+        else
+        this.Range=true;
       }
 reset(){
   this.prodsfilteredByBrand=this.products
 }
 sortasc(){
-  this.prodsfilteredByBrand=this.products.sort((a,b)=>(a.pPrice)-(b.pPrice))
+  this.prodsfilteredByBrand=this.prodsfilteredByBrand.sort((a,b)=>(a.pPrice)-(b.pPrice))
 }
 sortdesc(){
-  this.prodsfilteredByBrand=this.products.sort((a,b)=>(b.pPrice)-(a.pPrice))
+  this.prodsfilteredByBrand=this.prodsfilteredByBrand.sort((a,b)=>(b.pPrice)-(a.pPrice))
+}
+
+onCompareClick(product){
+    
+   if(sessionStorage.getItem('retailer')!="null" && sessionStorage.getItem('retailer')!=null)
+    {
+      this.router.navigate(['/home']);
+    }
+    else if(sessionStorage.getItem('admin')!="null" && sessionStorage.getItem('admin')!=null)
+    {
+      this.router.navigate(['/home']);
+    }
+    else if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
+    {
+      let encr = sessionStorage.getItem('user')
+      this.uId = parseInt(this.EncrDecr.get('123456$#@$^@1ERF', encr))
+      this.customerService.addToCompare(this.uId,product.pId).subscribe(data=>{
+        if(data==1)
+        alert("added")
+        else if(data==0)
+        alert("already added")
+        else{
+        alert("choose same category or remove product from Compare")
+        }
+      })
+    }
+    else{
+      this.router.navigate(['/login']);
+    }
 }
 
 }

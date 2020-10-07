@@ -36,3 +36,10 @@
 .Order-Sub th{
     background-color: rgba(49,53,61,0.75);
 }
+.Product:hover,.Product:focus{
+    outline: none;
+    border:none;
+}
+.Product:hover td,.Product:focus td{
+    background-color: #c2f7f1;
+}

@@ -23,3 +23,10 @@
     padding: 0.25rem 0.45rem;
     font-size: 0.95rem;
 }
+.Order-ID:hover,.Order-ID:focus{
+    outline: none;
+    border:none;
+}
+.Order-ID:hover td,.Order-ID:focus td{
+    background-color: #c2f7f1;
+}

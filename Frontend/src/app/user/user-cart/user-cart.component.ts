@@ -100,6 +100,7 @@ export class UserCartComponent implements OnInit {
       console.log(this.status)
 
       this.cartMyDTO.map(data=>{
+            if(data.productdto.pStock!=0)
             this.totalPrice+=(data.cartdto.qty*data.productdto.pPrice)
         })
     })

@@ -2,7 +2,11 @@
 <div class="Container-LR" *ngIf="status">
     <div class="Products" >
         <div  class="Product-Main" *ngFor =" let cart of cartMyDTO">
-            <div class="Product" >
+            <div class="Product">
+                <!-- //Removing Out of Stock -->
+                <div class="OUTOFSTOCK" *ngIf="cart.productdto.pStock==0">
+                    <p>*Out of Stock</p>
+                </div>
                 <div class="Image" style="display: flex;justify-content: center;">
                     <img src={{cart.productdto.pImage}}_1 alt="IMAGE" style="max-height: 100%;max-width: 100%;object-fit:contain;">
                 </div>

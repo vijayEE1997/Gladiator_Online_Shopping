@@ -36,6 +36,24 @@ export class RetailerService {
     return this.http.get<any>(this.url);
   }
 
+  generateOTP(email:string) : Observable<number>
+  {
+    console.log(email)
+    this.url = this.baseurl;
+    this.url += 'generateOTP';
+    return this.http.post<number>(this.url,email);
+  }
+
+  resetPassword(e:string,p:string): Observable<number>
+  {
+    let login=new Login() 
+    login.email=e
+    login.password=p
+    this.url = this.baseurl;
+    this.url += 'resetPassword';
+    return this.http.post<number>(this.url,login);
+  } 
+
   // getMyProduct(rId: string) : Observable<Product[]>
   // {
   //   this._url = this._tempurl;

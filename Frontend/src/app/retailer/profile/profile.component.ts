@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SessionService } from 'src/app/Services_X/session.service';
 
 @Component({
   selector: 'profile',
@@ -13,9 +14,13 @@ export class ProfileComponent implements OnInit {
   myProfit:boolean=false;
   myAccount:boolean=false;
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,
+              private sessionService:SessionService
+              ) { }
 
   ngOnInit(): void {
+
+    this.sessionService.checkSession()
 
     if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
     {

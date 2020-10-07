@@ -4,6 +4,7 @@ import { Subscriber } from 'rxjs';
 import { User } from '../DTO/User';
 import { CustomerService } from '../Service/customer.service';
 import { EncrDecrService } from '../Service/encr-decr.service';
+import { SessionService } from '../Services_X/session.service';
 
 @Component({
   selector: 'payment',
@@ -23,27 +24,34 @@ export class PaymentComponent implements OnInit {
   hideInput:boolean=false;
   constructor(private customerService:CustomerService,
               private router:Router,
-                // private route: ActivatedRoute,
-                private EncrDecr: EncrDecrService) { }
+              private sessionService:SessionService,
+              private EncrDecr: EncrDecrService) { }
 
   ngOnInit(): void {
-    let encr = sessionStorage.getItem('user')
-    if (encr != null) {
-      this.uId = parseInt(this.EncrDecr.get('123456$#@$^@1ERF', encr))
-      this.customerService.getAddress(this.uId).subscribe(data=>{
-        this.user=data;
-        this.address=data.uAddress;
-        console.log(data)
-      })
-    }
-    else{
-      alert("login kro")
-      this.router.navigate(['home']);
-    }
 
-    // this.route.paramMap.subscribe((params: ParamMap) => {
-    //   this.amount = parseInt(params.get('amount'));
-    // });
+    this.sessionService.checkSession()
+    
+    if(sessionStorage.getItem('retailer')!="null" && sessionStorage.getItem('retailer')!=null)
+     {
+       this.router.navigate(['/home']);
+     }
+     else if(sessionStorage.getItem('admin')!="null" && sessionStorage.getItem('admin')!=null)
+     {
+       this.router.navigate(['/home']);
+     }
+     else if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
+     {  
+       let encr = sessionStorage.getItem('user')
+       this.uId = parseInt(this.EncrDecr.get('123456$#@$^@1ERF', encr))
+       this.customerService.getAddress(this.uId).subscribe(data=>{
+         this.user=data;
+         this.address=data.uAddress;
+         console.log(data)
+       })
+     }
+    else{
+         this.router.navigate(['/login']);
+    }
   }
 
   COD(){

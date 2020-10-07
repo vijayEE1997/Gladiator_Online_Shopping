@@ -1,5 +1,6 @@
-<div class="Products">
-    <div class="Product" *ngFor=" let wishlist of wishMyDTO">
+<h3 style="margin-bottom: 0.5rem;">Wishlist<span style="margin-left: 0.5rem;"><i class="fa fa-caret-right" aria-hidden="true"></i></span></h3>
+<div class="Products" *ngIf="status">
+    <div class="Product" *ngFor=" let wishlist of wishMyDTO" >
         <div class="Image">
             <img src={{wishlist.productdto.pImage}}_1 style="max-height: 100%;max-width: 100%;object-fit:contain;">
         </div>
@@ -12,4 +13,7 @@
             </div>
         </div>        
     </div>
+</div>
+<div *ngIf="!status" style="width: 150px;height: 70px;left:48%;top:45%;position: absolute;">
+    <p>Nothing to Show</p>
 </div>

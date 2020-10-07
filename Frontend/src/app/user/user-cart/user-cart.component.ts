@@ -42,10 +42,9 @@ export class UserCartComponent implements OnInit {
     else if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
     {
       let encr = sessionStorage.getItem('user')
-      if (encr != null) {
-        this.uId = parseInt(this.EncrDecr.get('123456$#@$^@1ERF', encr))
-        this.CARTDETAIL()
-      }
+      this.uId = parseInt(this.EncrDecr.get('123456$#@$^@1ERF', encr))
+      this.CARTDETAIL()
+      
     }
       else{
         this.router.navigate(['/login']);

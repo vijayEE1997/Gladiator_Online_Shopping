@@ -1,19 +1,43 @@
-<div class="container">
-    ADDRESS
-    <div *ngIf="address!=null">Address: {{address}}</div>
-    <label for="address">Address</label>
-    <input type="text" name="address" id="address" [class.hide]="hideInput">
-    <button *ngIf="address==null"  (click)="addAddressF()" [class.hide]="hideInput">Add address</button>
-    <button *ngIf="address!=null" (click)="updateAddressF()">Upadte address</button>
-<h3>Select The Payment Mode</h3>
-<div class="container py-5">
-<button class="btn btn-primary btn-sm" (click)="COD()">Cash On Delivery </button>
-</div>
-<div class="container py-5">
-<button class="btn btn-primary btn-sm" (click)="DEBITCARD()">Debit Card </button>
-<div *ngIf="otpField">
-    <label for="OTP">Enter OTP</label><input type="text" name="otpF" id="OTP">
-    <button (click)="paymentConfirm()">Pay</button>
-</div>
-</div>
+<div class="Payment-Page">
+    <h3 style="margin-bottom: 0.5rem;">Payment<span style="margin-left: 0.5rem;"><i class="fa fa-caret-right" aria-hidden="true"></i></span></h3>
+    <div class="Payment">
+        <div *ngIf="address!=null">
+            <p style="font-size: 0.95rem;font-weight: bolder;">Address:</p>
+            <p style="font-size: 0.95rem;margin:0.25rem 0">{{address}}</p> 
+        </div>
+        <div style="margin: 1rem 0;">
+            <p *ngIf="address!=null" style="font-size: 0.95rem;font-weight: bolder;"><label for="address">Change Delivery Address</label></p>
+            <p *ngIf="address==null" style="font-size: 0.95rem;font-weight: bolder;"><label for="address">Add Delivery Address</label></p>
+            <div style="display: flex;justify-content: space-between;align-items: center;">
+                <textarea type="text" name="street" id="address" [class.hide]="hideInput" placeholder="Enter Address"></textarea>
+                <button *ngIf="address==null" (click)="addAddressF()" [class.hide]="hideInput">Add address</button>
+                <button *ngIf="address!=null" (click)="updateAddressF()">Upadte address</button>
+            </div>
+        </div>
+        <div class="container py-5">
+            <p style="font-size: 0.95rem;font-weight: bolder;">Select The Payment Mode</p>
+            <div style="display: flex;flex-direction: column;">
+                <button style="padding: 0.35rem 10.5rem;margin:0.5rem 0;display: flex;centre: space-between;align-items: center;" (click)="COD()">
+                    <span style="padding-right: 0.35rem;"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash-stack" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 3H1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1h-1z"/>
+                        <path fill-rule="evenodd" d="M15 5H1v8h14V5zM1 4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H1z"/>
+                        <path d="M13 5a2 2 0 0 0 2 2V5h-2zM3 5a2 2 0 0 1-2 2V5h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 13a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+                      </svg></span>
+                    Cash On Delivery </button>
+                <button style="padding: 0.35rem 10.5rem;margin:0.5rem 0;display: flex;justify-content: centre;align-items: center;" (click)="DEBITCARD()">
+                    <span style="padding-right: 0.35rem;">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-credit-card-2-back-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5H0V4zm11.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-2z"/>
+                            <path d="M0 11v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1H0z"/>
+                          </svg>
+                    </span>
+                    Debit Card </button>
+            </div>
+        </div>
+        <div *ngIf="otpField" style="display: flex;flex-direction: column; align-items: center;">
+            <p style="font-size: 0.95rem;margin:0.5rem 0 0 0;width:50%;font-weight: bolder;"><label for="OTP">Enter OTP</label></p>
+            <p style="font-size: 0.95rem;margin:0.5rem 0;width:50%;"><input style="width:calc(100% - 0.5rem)" type="text" name="otpF" id="OTP"></p>
+            <button style="padding: 0.5rem 1.25rem;" (click)="paymentConfirm()">Pay</button>
+        </div>
+    </div>
 </div>

@@ -27,7 +27,8 @@ import { UploadService } from './Services_X/upload.service'
 import { AuthService } from './Services_X/auth.service'
 import { SessionService } from './Services_X/session.service';
 import { ProfileUserComponent } from './profile-user/profile-user.component';
-import { CompareComponent } from './compare/compare.component'
+import { CompareComponent } from './compare/compare.component';
+import { AboutUsComponent } from './Home/about-us/about-us.component'
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { CompareComponent } from './compare/compare.component'
     OrdersComponent,
     OrderDetailComponent,
     ProfileUserComponent,
-    CompareComponent
+    CompareComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,

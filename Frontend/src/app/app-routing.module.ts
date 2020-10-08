@@ -1,3 +1,4 @@
+import { AboutUsComponent } from './Home/about-us/about-us.component';
 import { ProfileComponent } from './retailer/profile/profile.component';
 import { ProfileAdminComponent } from './admin/profile-admin/profile-admin.component';
 import { ForgotPasswordComponent } from './authorization/forgot-password/forgot-password.component';
@@ -30,7 +31,8 @@ const routes: Routes = [
   {path : 'payment', component : PaymentComponent },
   {path : 'orders', component : OrdersComponent },
   {path : 'order/:oId', component : OrderDetailComponent },
-  {path : 'MyCompare', component : CompareComponent }
+  {path : 'MyCompare', component : CompareComponent },
+  {path : 'about-us', component : AboutUsComponent }
   
 ];
 

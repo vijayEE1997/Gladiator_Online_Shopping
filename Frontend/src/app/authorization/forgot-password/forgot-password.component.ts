@@ -105,6 +105,7 @@ export class ForgotPasswordComponent implements OnInit {
   resetPassword(){
     if(this.forgotForm.controls.password.value===this.forgotForm.controls.cpassword.value)
     {
+      this.mismatchPass=false;
       if(this.option==='user')
       {
         this.Password=this.forgotForm.controls.password.value

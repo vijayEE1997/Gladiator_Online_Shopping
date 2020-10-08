@@ -61,18 +61,15 @@ AsRetailer:boolean=false;
   checkSession(){
     if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
     {
-      alert("Already Logged In");
-      this.router.navigate(['home']);
+      this.router.navigate(['/profile-user']);
     }
-    if(sessionStorage.getItem('retailer')!="null" && sessionStorage.getItem('admin')!=null)
+    if(sessionStorage.getItem('retailer')!="null" && sessionStorage.getItem('retailer')!=null)
     {
-      alert("Already Logged In");
-      this.router.navigate(['home']);
+      this.router.navigate(['/profile-retailer']);
     }
-    if(sessionStorage.getItem('admin')!="null" && sessionStorage.getItem('retailer')!=null)
+    if(sessionStorage.getItem('admin')!="null" && sessionStorage.getItem('admin')!=null)
     {
-      alert("Already Logged In");
-      this.router.navigate(['home']);
+      this.router.navigate(['/profile-admin']);
     }
     this.loginForm = this.formBuilder.group({
       email: new FormControl('',[ Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),

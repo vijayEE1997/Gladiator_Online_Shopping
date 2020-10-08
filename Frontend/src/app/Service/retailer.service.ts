@@ -36,6 +36,11 @@ export class RetailerService {
     return this.http.get<any>(this.url);
   }
 
+  getProfit(rId:number):Observable<any[]>{
+    this.url=this.baseurl+'getProfit/'+rId;
+    return this.http.get<any[]>(this.url);
+  }
+
   generateOTP(email:string) : Observable<number>
   {
     console.log(email)

@@ -13,13 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.dto.Login;
+import com.lti.dto.OderDetailP;
 import com.lti.dto.ProductDTO;
 import com.lti.dto.ProductForApprovalDTO;
 import com.lti.dto.RetailerSignUp;
 import com.lti.model.Admin;
+import com.lti.model.OrderDetail;
 import com.lti.model.Product;
 import com.lti.model.ProductForApproval;
 import com.lti.model.Retailer;
+import com.lti.service.OrderService;
 import com.lti.service.RetailerService;
 
 @RestController
@@ -29,6 +32,9 @@ public class RetailerController {
 	
 	@Autowired
 	private RetailerService retailerservice;
+	
+	@Autowired
+	private OrderService orderservice;
 	
 	@PostMapping(path = "/retailerlogin")
 	public int retailerlogin(@RequestBody Login login) {
@@ -138,6 +144,5 @@ public class RetailerController {
 		System.out.println(pfa);
 		return retailerservice.addProductFA(pfa);
 	}
-	
-	
+		
 }

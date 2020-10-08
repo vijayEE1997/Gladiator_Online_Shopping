@@ -10,6 +10,7 @@ public interface OrderDao {
 //	public List<Order> getOrders()
 	public void order(long pay_Id, int uId);
 	public List<Order> getOrders(int uId);
+	public List<OrderDetail> getProfit(int rId);
 	
 
 }

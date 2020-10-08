@@ -1,0 +1,25 @@
+.Admin-Requests{
+    position: absolute;
+    left:calc(50% - 200px);
+    top:calc(50% - 200px);
+    width:400px;
+    height:250px;
+    padding:1rem;
+    border-radius: 0.15rem;
+}
+.Retailer{
+    width:100%;
+}
+.Retailer table{
+    width:50%;
+}
+.Retailer td{
+    width:25%;
+}
+.label{
+    font-size: 0.95rem;
+    font-weight: bolder;
+}
+.content{
+    font-size: 0.95rem;
+}

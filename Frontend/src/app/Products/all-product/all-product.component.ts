@@ -89,7 +89,7 @@ else{
         if(lr<hr)
         {
           this.Range=false;
-          this.prodsfilteredByBrand=this.prodsfilteredByBrand.filter(p=>{return (p.pPrice >parseInt(lr)) && (p.pPrice<parseInt(hr))})
+          this.prodsfilteredByBrand=this.products.filter(p=>{return (p.pPrice >parseInt(lr)) && (p.pPrice<parseInt(hr))})
         }
         else
         {

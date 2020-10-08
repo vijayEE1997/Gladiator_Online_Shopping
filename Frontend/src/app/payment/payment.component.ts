@@ -115,6 +115,7 @@ payment(){
 paymentConfirm(){
   this.otpF=parseInt((<HTMLInputElement>(document.getElementById("OTP"))).value);
   this.popUp=true;
+  this.error=false;
   if(this.otpF==this.otpB)
   {
     this.customerService.makePayment(this.payType,this.uId).subscribe(

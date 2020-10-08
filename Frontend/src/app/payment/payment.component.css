@@ -47,3 +47,13 @@ button:focus{
     width:60%;
     height: 75px;
 }
+.Error,.success{
+    font-size: 0.75rem;
+    font-weight: bolder;
+}
+.Error{
+    color: red;
+}
+.success{
+    color: green;
+}

@@ -10,7 +10,9 @@
             <p style="font-size: 1.85rem;font-weight: bolder;margin: 2rem;">{{product.pPrice | currency:"INR"}}</p>
             <p style="font-size: 1.5rem;font-weight: bolder;margin: 2rem;color: red;" *ngIf="product.pStock==0">*Out of stock</p>
             <p style="font-size: 1.25rem;font-weight: bolder;margin: 2rem;color: green;" *ngIf="product.pStock!=0">*Available</p>
-            <p style="font-size: 0.95rem;font-weight: bolder;color: red;margin-left:10rem" *ngIf="outOfStock">*Cannot be added</p>
+            <div style="height: 1rem;padding: 0.25rem;">
+                  <p style="text-align: center;" *ngIf="popUp" [ngClass]="{'Error':error,'success':!error}"><label for="OTP">{{message}}</label></p>
+            </div>
             <div class="Product-Button">
                   <div type="button" class="Button-Product" (click)="addToCartF(product.pStock)">
                         <span style="margin-right: 0.5rem;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>Add To Cart

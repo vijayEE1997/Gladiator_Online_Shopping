@@ -35,6 +35,7 @@
             </div>
         </div>
         <div *ngIf="otpField" style="display: flex;flex-direction: column; align-items: center;">
+            <p *ngIf="popUp" [ngClass]="{'Error':error,'success':!error}"><label for="OTP">{{message}}</label></p>
             <p style="font-size: 0.95rem;margin:0.5rem 0 0 0;width:50%;font-weight: bolder;"><label for="OTP">Enter OTP</label></p>
             <p style="font-size: 0.95rem;margin:0.5rem 0;width:50%;"><input style="width:calc(100% - 0.5rem)" type="text" name="otpF" id="OTP"></p>
             <button style="padding: 0.5rem 1.25rem;" (click)="paymentConfirm()">Pay</button>

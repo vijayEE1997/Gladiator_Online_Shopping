@@ -99,3 +99,69 @@
     pointer-events: none;
     background-color: rgba(124, 208, 221,0.15);
 }
+
+.Pop-Container{
+    position: fixed;
+    top:120px;
+    left:calc(50% - 625px);
+    background-color: rgba(0,0,0,0.2);
+    height:calc(100vh - 232px);
+    width:1250px;
+}
+
+.Pop-container{
+    width:50%;
+    height:170px;
+    margin:auto;
+    margin-top:165px;
+    background-color: #f1f2f6;
+    border-radius: 0.25rem;
+    padding:2rem;
+    text-align: center;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.popButton{
+    width:150px;
+    background-color: rgba(146,205,214,0.75);
+    border-radius: 0.15rem;
+    padding: 0.5rem 1.25rem;
+    font-size: 1.05rem;
+    font-weight: bolder;
+    border:none;
+    outline: none;
+    margin:1rem 0;
+}
+.popButton:hover{
+    background-color: rgba(146,205,214,1);
+    transform: scale(1.05);
+    border:none;
+    outline: none;
+}
+
+.Message{
+    position: absolute;
+    width:300px;
+    height: 75px;
+    top:calc(50% - 37.5px);
+    left:calc(50% - 150px);
+    background-color: #EEF8F7;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+}
+.Message p{
+    font-size: 1.15rem;
+    font-weight: bolder;
+    text-align: center;
+}
+.Error{
+    color:rgba(221, 37, 37, 0.85)
+}
+.success{
+    color:rgba(111, 228, 130, 0.85);
+}

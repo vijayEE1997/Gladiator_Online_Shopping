@@ -76,9 +76,9 @@ export class AddProductComponent implements OnInit {
       console.log(this.product)
       this.retailerService.addProduct(this.product,this.rId).subscribe(data=>{
         if(data)
-        alert("added")
+        alert("Successfully Added!!!")
         else
-        alert("retry")
+        alert("Retry")
       })
     }
     else{

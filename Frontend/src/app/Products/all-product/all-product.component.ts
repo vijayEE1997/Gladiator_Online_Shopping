@@ -21,6 +21,11 @@ export class AllProductComponent implements OnInit {
   keyword:string;
   Range:boolean;
   uId:number;
+
+  popUp:boolean;
+  message:string
+  error:boolean;
+
   constructor(private router:Router,
               private route:ActivatedRoute,
               private productService:ProductService,
@@ -120,16 +125,17 @@ onCompareClick(product){
       this.uId = parseInt(this.EncrDecr.get('123456$#@$^@1ERF', encr))
       this.customerService.addToCompare(this.uId,product.pId).subscribe(data=>{
         if(data==1)
-        alert("added")
+        alert("Successfully Added !!!")
         else if(data==0)
-        alert("already added")
+        alert("Alread added to Compare.")
         else if(data== -1){
-        alert("choose same category or remove product from Compare")
+        alert("Choose product from same Sub-Category to Compare.")
         }
         else{
-          alert("Cannot add more than 4")
+          alert("Cannot compare more than 4 products.")
         }
       })
+      setTimeout(()=>{this.popUp=false,this.error=false}, 1000);
     }
     else{
       this.router.navigate(['/login']);

@@ -37,3 +37,13 @@
 .Button-Product:hover,.Button-Product:focus{
     background-color: rgba(124, 208, 221,1);
 }
+.Error,.success{
+    font-size: 0.75rem;
+    font-weight: bolder;
+}
+.Error{
+    color: red;
+}
+.success{
+    color: green;
+}

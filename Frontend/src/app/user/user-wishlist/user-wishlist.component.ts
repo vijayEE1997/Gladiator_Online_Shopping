@@ -15,6 +15,9 @@ export class UserWishlistComponent implements OnInit {
   uId:number;
   wishMyDTO:WishMyDTO[];
   status:boolean;
+  popUp:boolean;
+  message:string
+  error:boolean;
   constructor(private customerService: CustomerService,
               private EncrDecr:EncrDecrService,
               private sessionService:SessionService,
@@ -60,22 +63,29 @@ export class UserWishlistComponent implements OnInit {
   addToCartF(wishlist) {
       if(wishlist.productdto.pStock!=0)
       {
+        this.popUp=true;
         this.customerService.addToCart(wishlist.wishlistdto.uId,wishlist.productdto.pId).subscribe(data => {
           if (data==1)
             {
-              alert("Added Successfully")
+              this.message="Added";
               this.deleteF(wishlist);
             }
-          else if(data==0)
-            alert("Already")
+            else if(data==0)
+            {
+              this.message="Already in Cart";
+              this.error=true;
+            }
             else{
-              alert("Retry")
+            this.message="Try Again";
+            this.error=true;
             }
         })
       }
       else{
-        alert("Cannot be added")
+        this.message="Cannot be Added";
+        this.error=true;
       }
+      setTimeout(()=>{this.popUp=false,this.error=false}, 1000);
     }
     deleteF(wishlist){
       this.customerService.delete(wishlist.wishlistdto.wId).subscribe(data => {
@@ -83,12 +93,16 @@ export class UserWishlistComponent implements OnInit {
           {
             this.WISHDETAIL()
           }
-        else if(data==0)
-          alert("Already")
+          else if(data==0)
+          {
+            this.message="Already";
+          }
           else{
-            alert("Retry")
+            this.message="Retry";
+            this.error=true;
           }
       })
+      setTimeout(()=>{this.popUp=false,this.error=false}, 1000);
     }
   
 }

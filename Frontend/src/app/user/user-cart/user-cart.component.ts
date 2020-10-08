@@ -21,6 +21,9 @@ export class UserCartComponent implements OnInit {
   cartMyDTO:CartMyDTO[];
   totalPrice: number = 0;
   buyProductButton: boolean = false;
+  popUp:boolean;
+  message:string
+  error:boolean;
   constructor (private customerService : CustomerService,
                private EncrDecr: EncrDecrService,
                private router:Router,
@@ -69,17 +72,18 @@ export class UserCartComponent implements OnInit {
   }
 
   delete(cId){
-    console.log(cId)
     this.customerService.deleteFromCart(cId).subscribe(data=>{
       console.log(data)
       if(data){
-        alert("deleted")
         this.CARTDETAIL()
       }
       else{
-        alert("Retry")
+        this.popUp=true;
+        this.message="Retry"
+        this.error=true;
       }
     })
+    setTimeout(()=>{this.popUp=false,this.error=false}, 1000);
   }
 
 
@@ -117,5 +121,10 @@ export class UserCartComponent implements OnInit {
             this.totalPrice+=(data.cartdto.qty*data.productdto.pPrice)
         })
     })
+  }
+
+
+  removePopUp(){
+    this.router.navigate(['/home']);
   }
 }

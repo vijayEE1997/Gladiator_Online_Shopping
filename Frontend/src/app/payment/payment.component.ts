@@ -23,6 +23,11 @@ export class PaymentComponent implements OnInit {
   address:string;
   hideInput:boolean=false;
   paymentAmount:number;
+
+  error:boolean;
+  message:string;
+  popUp:boolean;
+
   constructor(private customerService:CustomerService,
               private router:Router,
               private sessionService:SessionService,
@@ -109,24 +114,29 @@ payment(){
 }
 paymentConfirm(){
   this.otpF=parseInt((<HTMLInputElement>(document.getElementById("OTP"))).value);
+  this.popUp=true;
   if(this.otpF==this.otpB)
   {
-    
-  this.customerService.makePayment(this.payType,this.uId).subscribe(
+    this.customerService.makePayment(this.payType,this.uId).subscribe(
     data=>{
       if(data>0)
       {
-        alert("order placed")
-        this.router.navigate(['/orders']);
+        this.message="*Order placed succesfully!!!"
+        setTimeout(()=>{this.router.navigate(['/orders']);}, 2000);
+        
       }
       else
-      alert("Retry")
+      {
+        this.error=true;
+        this.message="*Retry"
+      }
     }
   )
   }
   else
   {
-    alert("incorrect OTP")
+    this.error=true;
+    this.message="*Incorrect OTP"
   }
 }
 

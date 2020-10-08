@@ -9,12 +9,12 @@
     height: 250px;
 }
 .Image{
-    height: 100%;
+    height: 250px;
     width:calc(100% - 1rem);
     margin-right:1rem;
 }
 .Image img{
-    max-height: 100%;
+    max-height: 230px;
     max-width:100%;
     object-fit: contain;
 }

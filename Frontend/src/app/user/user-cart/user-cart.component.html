@@ -32,3 +32,12 @@
 <div *ngIf="!status" style="width: 150px;height: 70px;left:48%;top:45%;position: absolute;">
     <p>Nothing to Show</p>
 </div>
+<!-- <div class = "Pop-Container" *ngIf = "popUp">
+    <div class = "Pop-container">
+            <p style = "text-align: center; font-size: 1.25rem; color:rgb(5, 21, 44)">{{message}}</p><br>
+            <button class = "popButton" (click) = "removePopUp()">Click OK!</button>
+    </div> 
+</div> -->
+<div class="Message" *ngIf="popUp" [ngClass]="{'success':!error,'Error':error}">
+    <p  style="text-align: center;width:100%">{{message}}</p>
+</div>

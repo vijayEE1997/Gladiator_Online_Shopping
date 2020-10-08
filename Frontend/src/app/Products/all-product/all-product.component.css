@@ -117,3 +117,27 @@
     border-color: rgba(49,53,61,0.25);
     border-width: 0.25px;
 }
+
+.Message{
+    position: absolute;
+    width:300px;
+    height: 75px;
+    top:calc(50% - 37.5px);
+    left:calc(50% - 150px);
+    background-color: #EEF8F7;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    z-index: 200;
+}
+.Message p{
+    font-size: 1.15rem;
+    font-weight: bolder;
+    text-align: center;
+}
+.Error{
+    color:rgba(221, 37, 37, 0.85)
+}
+.success{
+    color:rgba(111, 228, 130, 0.85);
+}

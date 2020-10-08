@@ -29,7 +29,7 @@ export class UserCartComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.sessionService.checkSession()
+   this.sessionService.checkSession()
     
    if(sessionStorage.getItem('retailer')!="null" && sessionStorage.getItem('retailer')!=null)
     {
@@ -52,7 +52,20 @@ export class UserCartComponent implements OnInit {
   }
 
   buyProductF(){
+
+    if(this.totalPrice==0)
+    {
+      
+    }
+    else{
+      
+     /*Encription*/
+     let encr=this.EncrDecr.set('123456$#@$^@1ERF',this.totalPrice.toString())
+     /*Encription*/
+     sessionStorage.setItem('pay',encr);
+
     this.router.navigate(['/payment']);
+    }
   }
 
   delete(cId){

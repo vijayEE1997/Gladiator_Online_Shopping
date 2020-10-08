@@ -22,6 +22,7 @@ export class PaymentComponent implements OnInit {
   user:User;
   address:string;
   hideInput:boolean=false;
+  paymentAmount:number;
   constructor(private customerService:CustomerService,
               private router:Router,
               private sessionService:SessionService,
@@ -41,13 +42,23 @@ export class PaymentComponent implements OnInit {
      }
      else if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
      {  
-       let encr = sessionStorage.getItem('user')
-       this.uId = parseInt(this.EncrDecr.get('123456$#@$^@1ERF', encr))
-       this.customerService.getAddress(this.uId).subscribe(data=>{
+        let pay =sessionStorage.getItem('pay')
+        if(pay!="null" && pay!=null)
+        {
+          this.paymentAmount=parseInt(this.EncrDecr.get('123456$#@$^@1ERF', pay))
+          sessionStorage.setItem('pay',null);
+          let encr = sessionStorage.getItem('user')
+          this.uId = parseInt(this.EncrDecr.get('123456$#@$^@1ERF', encr))
+          this.customerService.getAddress(this.uId).subscribe(data=>{
          this.user=data;
          this.address=data.uAddress;
          console.log(data)
        })
+        }
+        else{
+          this.router.navigate(['/MyCart']);
+        }
+        
      }
     else{
          this.router.navigate(['/login']);

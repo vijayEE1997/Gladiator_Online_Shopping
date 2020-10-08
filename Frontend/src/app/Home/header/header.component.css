@@ -111,6 +111,11 @@
 .Header-Button:hover{
     background-color: rgba(227,95,33,0.75);
 }
+.Header-Button:focus{
+    background-color: rgba(227,95,33,0.75);
+    border:none;
+    outline:none;
+}
 .Sidebar-Open,.Sidebar-Closed{
     display: none;
 }

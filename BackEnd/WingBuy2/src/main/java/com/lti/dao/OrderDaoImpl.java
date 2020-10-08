@@ -48,6 +48,10 @@ public class OrderDaoImpl implements OrderDao {
 		double psum = 0;
 		List<Cart> cart = cartdao.viewCart(uId);
 		for (Cart c : cart) {
+			if(c.getcProducts().getpStock()==0)
+			{
+				continue;
+			}
 			System.out.println(c);
 			qsum += c.getpIdQty();
 			psum += (c.getpIdQty() * c.getcProducts().getpPrice());
@@ -70,7 +74,12 @@ public class OrderDaoImpl implements OrderDao {
 		
 		List<OrderDetail> list=addOrderDetail(order,cart);
 		for(OrderDetail od:list)
-			order.addProductToOrder(od);
+		{
+			if(od.getOdProducts().getpStock()==0){
+				continue;
+			}
+		order.addProductToOrder(od);
+		}
 		entityManager.persist(order);
 		
 	}
@@ -94,10 +103,16 @@ public class OrderDaoImpl implements OrderDao {
 		for (Cart c : cart) {
 			OrderDetail orderdetail = new OrderDetail();
 			
-			orderdetail.setOdOrder(order);
-			orderdetail.setOdProducts(c.getcProducts());
-			orderdetail.setOdQty(c.getpIdQty());
-			
+			if(c.getcProducts().getpStock()!=0)
+			{
+				orderdetail.setOdOrder(order);
+				orderdetail.setOdProducts(c.getcProducts());
+				orderdetail.setOdQty(c.getpIdQty());
+				
+			}
+			else {
+				continue;
+			}
 			Product product = c.getcProducts();
 			// updating product table
 			product.setpStock(product.getpStock() - c.getpIdQty());
@@ -129,6 +144,4 @@ public class OrderDaoImpl implements OrderDao {
 		}
 		return ol;
 	}
-
-
 }

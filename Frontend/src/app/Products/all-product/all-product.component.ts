@@ -65,7 +65,6 @@ export class AllProductComponent implements OnInit {
         this.prodsfilteredByBrand = data;
         this.productService.getSubCategoryByCategory(this.keyword).subscribe(data => {
           this.SubCategory = data
-
           this.productService.getBrandByCategory(this.keyword).subscribe(data => {
             this.Brand = data
           })
@@ -106,6 +105,7 @@ export class AllProductComponent implements OnInit {
     this.prodsfilteredByBrand = this.prodsfilteredByBrand.sort((a, b) => (b.pPrice) - (a.pPrice))
     this.Range = false;
   }
+
 
   onCompareClick(product) {
 

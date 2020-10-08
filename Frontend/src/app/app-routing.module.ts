@@ -4,7 +4,7 @@ import { ForgotPasswordComponent } from './authorization/forgot-password/forgot-
 import { RegisterComponent } from './authorization/register/register.component';
 import { HomeComponent } from './Home/home/home.component';
 import { LoginComponent } from './authorization/login/login.component';
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AllProductComponent } from './Products/all-product/all-product.component';
 import { SingleProductComponent } from './Products/single-product/single-product.component';
@@ -14,6 +14,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { UserWishlistComponent } from './user/user-wishlist/user-wishlist.component';
 import { CompareComponent } from './compare/compare.component';
+import { ProfileUserComponent } from './user/profile-user/profile-user.component';
 
 const routes: Routes = [
   {path : '', redirectTo : '/home', pathMatch: 'full'},
@@ -30,7 +31,8 @@ const routes: Routes = [
   {path : 'payment', component : PaymentComponent },
   {path : 'orders', component : OrdersComponent },
   {path : 'order/:oId', component : OrderDetailComponent },
-  {path : 'MyCompare', component : CompareComponent }
+  {path : 'MyCompare', component : CompareComponent },
+  {path : 'profile-user', component : ProfileUserComponent }
   
 ];
 

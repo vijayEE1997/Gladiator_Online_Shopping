@@ -12,11 +12,7 @@
 }
 .table-2 textarea{
     width: 95%;
-}
-.Button-Container{
-    display: flex;
-    justify-content:flex-end;
-    margin:1rem 0;
+    height: 250px;
 }
 .Button{
     background-color: #E35F21;
@@ -27,15 +23,15 @@
     text-align: center;
     border: none;
     outline: none;
-    margin-left: 1rem;
-    margin-right:3rem;
-    width: 150px;
 }
 .Button:hover{
     background-color: rgba(227,95,33,0.75);
     font-weight: bolder;
     border: none;
     outline: none;
+}
+.upload{
+    width: calc(100% - 2rem);
 }
 .Add-Retailer input,.Add-Retailer textarea,.Add-Retailer select{
     border:none;
@@ -49,4 +45,7 @@
 label{
     font-size: 0.95rem;
     font-weight: bolder;
+}
+.addProductD{
+    pointer-events: none;
 }

@@ -157,13 +157,21 @@ public class CartDaoImpl implements CartDao {
 		Set<Compare> list=user.getCompares();
 		if(list.size()==4)
 			return 2;
+		if(list.size()==0)
+		{
+			System.out.println("In");
+			Compare compare=new Compare();
+			compare.setCompUser(user);
+			compare.setCompProducts(product);
+			user.addCompare(compare);
+			product.addCompare(compare);
+			entityManager.persist(compare);
+			return 1;
+		}
 		for(Compare c:list)
 		{
 			if(c.getCompProducts()==product)
 				return 0;
-			System.out.print(c.getCompProducts().getpSubCategory());
-			System.out.print(product.getpSubCategory());
-			System.out.println();
 			if((c.getCompProducts().getpSubCategory()).equals(product.getpSubCategory()))
 			{
 				System.out.println("In");

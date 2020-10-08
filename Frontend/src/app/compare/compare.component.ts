@@ -40,6 +40,7 @@ export class CompareComponent implements OnInit {
 
         if(data.length==0)
         this.status=true;
+
        })
        
      }

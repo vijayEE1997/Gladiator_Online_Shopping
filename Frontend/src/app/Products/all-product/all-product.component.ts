@@ -43,11 +43,13 @@ export class AllProductComponent implements OnInit {
   }
 
   filteredByBrand(Sub) {
+                     this.Range=false;
                     this.prodsfilteredByBrand = this.products
                     .filter(p =>p.pSubCategory==Sub                      
                     )
   }
   filteredByCat(brand) {
+    this.Range=false;
     this.prodsfilteredByBrand = this.products
     .filter(p =>p.pBrand== brand                    
     )
@@ -69,6 +71,7 @@ getall(){
     this.SubCategoryflag=!this.SubCategoryflag
      if(this.SubCategoryflag) 
      {
+      this.Range=false;
        this.productService.getProductBySubCategory(Sub).subscribe(data=>{this.prodsfilteredByBrand=data})
      }
 else{
@@ -80,20 +83,25 @@ else{
         let hr=(<HTMLInputElement>(document.getElementById("hr"))).value
         if(lr<hr)
         {
-          this.prodsfilteredByBrand=this.prodsfilteredByBrand.filter(p=>{return (p.pPrice >parseInt(lr)) && (p.pPrice<parseInt(hr))})
           this.Range=false;
+          this.prodsfilteredByBrand=this.prodsfilteredByBrand.filter(p=>{return (p.pPrice >parseInt(lr)) && (p.pPrice<parseInt(hr))})
         }
         else
-        this.Range=true;
+        {
+          this.Range=true;
+        }
       }
 reset(){
   this.prodsfilteredByBrand=this.products
+  this.Range=false;
 }
 sortasc(){
   this.prodsfilteredByBrand=this.prodsfilteredByBrand.sort((a,b)=>(a.pPrice)-(b.pPrice))
+  this.Range=false;
 }
 sortdesc(){
   this.prodsfilteredByBrand=this.prodsfilteredByBrand.sort((a,b)=>(b.pPrice)-(a.pPrice))
+  this.Range=false;
 }
 
 onCompareClick(product){

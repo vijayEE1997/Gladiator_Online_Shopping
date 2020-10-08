@@ -1,10 +1,46 @@
-<p>profile-user works!</p>
+<div class="Payment-Page">
+    <h3 style="margin-bottom: 0.5rem;">My Profile<span style="margin-left: 0.5rem;"><i class="fa fa-caret-right" aria-hidden="true"></i></span></h3>
+    <div class="Payment">
+        <div class="profile-pic">
+            <img src="../../../assets/Images/profile.png">
+        </div>
+        <table>
+            <tr>
+                <td class="label">Name</td>
+                <td class="content">{{user.uName}}</td>
+            </tr>
+            <tr>
+                <td class="label">Email</td>
+                <td class="content">{{user.uEmail}}</td>
+            </tr>
+            <tr>
+                <td class="label">Mobile No.</td>
+                <td class="content">{{user.uMobile}}</td>
+            </tr>
+            <tr>
+                <td class="label">Address</td>
+                <td class="content">{{user.uAddress}}</td>
+            </tr>
+        </table>
+        <div class="Button-Container">
+            <div class="Button" [routerLink]="['/MyCart']">
+                My Cart
+            </div>
+            <div class="Button" [routerLink]="['/orders']">
+                My Orders
+            </div>
+            <div class="Button" [routerLink]="['/MyWishlist']">
+                My Wishlist
+            </div>
+        </div>
+    </div>
+</div>
 
-<div class="container py-5">
+<!-- <div class="container py-5">
     <h2></h2>
     <h4>User Name :<b>{{User.uname}}</b><br></h4>
     <h4>User Email :<b>{{User.uemail}}</b><br></h4>
     <h4>User Mobile No :<b>{{User.umobile}}</b><br></h4>
     <h4>User Address :<b>{{User.uaddress}}</b><br></h4>
     <button class="btn btn-primary btn-sm" (click)="onEditProfileClick()">Edit Profile </button>
-</div>
+</div> -->

@@ -38,13 +38,13 @@
                 <td><input type="number" formControlName="pStock"></td>
             </tr>
             <tr>
-                <td><label>Image 1</label></td>
+                <td><label><input type="file" (change)="selectFile1($event)" formControlName="pImage1"></label></td>
                 <td>
-                    <input type="file" (change)="selectFile1($event)" formControlName="pImage1">
+                    <button type="button" class="Button upload" [disabled]="!selectedFiles1" (click)="upload1()"><span style="margin-right: 0.5rem;"><i class="fa fa-upload" aria-hidden="true"></i></span>Image 1</button>
                 </td>
-                <td><label>Image 2</label></td>
+                <td><label><input type="file" (change)="selectFile2($event)" formControlName="pImage2"></label></td>
                 <td>
-                    <input type="file" (change)="selectFile2($event)" formControlName="pImage2">
+                    <button type="button" class="Button upload" [disabled]="!selectedFiles2" (click)="upload2()"><span style="margin-right: 0.5rem;"><i class="fa fa-upload" aria-hidden="true"></i></span>Image 2</button>
                 </td>
             </tr>
     </table>
@@ -56,10 +56,6 @@
             <td><textarea formControlName="pDesc" rows="4" cols="50"></textarea></td>
         </tr>
     </table>
+    <button type="submit" class="Button" (click)="addPF()" [ngClass]="{'addProductD':addProductForm.invalid}">Add Product</button>
     </form>
-   <div class="Button-Container">
-    <button class="Button" [disabled]="!selectedFiles1" (click)="upload1()">Upload</button>
-    <button class="Button" [disabled]="!selectedFiles2" (click)="upload2()">Upload</button>
-    <button class="Button"(click)="addPF()" [disabled]="addProductForm.invalid">Add</button>
-   </div>
 </div>

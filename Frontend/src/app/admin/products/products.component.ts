@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class ProductsComponent implements OnInit {
 desc:any;
 descOpen:boolean=false;
-
+src:string;
 products:Product[]=[];
 constructor(private adminService:AdminService,
             private router:Router) {  }
@@ -34,10 +34,11 @@ else{
 }
 }
 
-  viewDesc(desc:any)
+  viewDesc(p:Product)
   {
-    this.desc=desc;
+    this.desc=p.pDesc;
     this.descOpen=true;
+    this.src=p.pImage;
   }
   closeDesc()
   {

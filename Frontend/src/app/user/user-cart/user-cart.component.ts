@@ -55,7 +55,7 @@ export class UserCartComponent implements OnInit {
 
     if(this.totalPrice==0)
     {
-      
+      return;
     }
     else{
       

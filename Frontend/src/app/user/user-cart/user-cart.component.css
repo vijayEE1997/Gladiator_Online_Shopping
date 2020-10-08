@@ -95,3 +95,7 @@
     font-weight: bolder;
     text-align: center;
 }
+.buyProductsD{
+    pointer-events: none;
+    background-color: rgba(124, 208, 221,0.15);
+}

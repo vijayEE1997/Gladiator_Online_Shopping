@@ -32,9 +32,9 @@ ngOnInit(): void {
 else{
   this.GETALL();
   this.addRetailerForm = this.formBuilder.group({
-   rEmail: ['', Validators.required],
+   rEmail: ['',[ Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
    rName: ['', Validators.required],
-   rMobile: ['', Validators.required],
+   rMobile: ['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
  });
 }
 }

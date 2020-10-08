@@ -125,3 +125,13 @@
     color: #E35F21;
     margin:0.75rem;
 }
+.Invalid{
+    pointer-events: none;
+}
+.validate{
+    height: 0.75rem;
+}
+.validate p{
+    color: red;
+    font-size: 0.65rem;
+}

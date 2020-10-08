@@ -141,3 +141,34 @@
 .success{
     color:rgba(111, 228, 130, 0.85);
 }
+
+@media (max-width:1300px){
+    .Left-Container{
+        width: 200px;
+        margin-right: 0.5rem;
+    }
+    .Right-Container{
+        width: calc(100% - 184px);
+    }
+    .Image{
+        width: 220px;
+    }
+    .Detail{
+        width:calc(100% - 236px);
+    }
+    .Detail-R{
+        width:150px;
+    }
+    .Detail-L{
+        width:calc(100% - 166px);
+    }
+    .Product-Price{
+        font-size: 1.25rem;
+    }
+    .Button-Product{
+        padding:0.5rem 1rem;
+        border-radius: 0.15rem;
+        font-size: 0.85rem;
+        font-weight: bolder;
+    }
+}

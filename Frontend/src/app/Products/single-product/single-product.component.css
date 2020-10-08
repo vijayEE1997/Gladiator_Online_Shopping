@@ -47,3 +47,10 @@
 .success{
     color: green;
 }
+@media (max-width:1300px){
+    .Button-Product{
+        padding:0.35rem 1rem;
+        font-size: 0.95rem;
+        margin:0 0.5rem;
+    }
+}

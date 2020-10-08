@@ -1,9 +1,10 @@
 .Orders{
     border-radius: 0.15rem;
     background-color: white;
-    width: 100%;
+    width:calc(100% - 2rem);
     max-height: calc(100vh - 232px);
     padding: 1rem;
+    overflow: auto;
 }
 .Order{
     width: 100%;

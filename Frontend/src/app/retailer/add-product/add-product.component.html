@@ -56,6 +56,8 @@
             <td><textarea formControlName="pDesc" rows="4" cols="50"></textarea></td>
         </tr>
     </table>
-    <button type="submit" class="Button" (click)="addPF()" [ngClass]="{'addProductD':addProductForm.invalid}">Add Product</button>
+    <p *ngIf="error" style="color: green;font-size: 0.95rem;font-weight: bolder;text-align: center;"></p>
+    <p *ngIf="!error" style="color: green;font-size: 0.95rem;font-weight: bolder;text-align: center;">Successfully Added!!!</p>
+    <button type="submit" class="Button"  [ngClass]="{'addProductD':addProductForm.invalid}">Add Product</button>
     </form>
 </div>

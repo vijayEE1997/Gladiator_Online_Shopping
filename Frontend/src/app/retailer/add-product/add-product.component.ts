@@ -25,6 +25,8 @@ export class AddProductComponent implements OnInit {
   pImage:string="";
   uploadF1:boolean;
   uploadF2:boolean;
+
+  error:boolean=true;
   constructor
   (
     private retailerService : RetailerService,
@@ -76,7 +78,7 @@ export class AddProductComponent implements OnInit {
       console.log(this.product)
       this.retailerService.addProduct(this.product,this.rId).subscribe(data=>{
         if(data)
-        alert("Successfully Added!!!")
+        this.error=false;
         else
         alert("Retry")
       })
@@ -84,6 +86,7 @@ export class AddProductComponent implements OnInit {
     else{
       alert("Upload Both Images")
     }
+    setTimeout(()=>{this.error=true},1500)
   }
 
   upload1() {

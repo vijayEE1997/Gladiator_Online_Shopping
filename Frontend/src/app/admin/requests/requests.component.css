@@ -1,6 +1,6 @@
 .Admin-Requests{
     width: 100%;
-    height:calc(100vh - 232px);
+    height:calc(100vh - 300px);
     border-radius: 0.25rem;
     overflow: auto;
 }

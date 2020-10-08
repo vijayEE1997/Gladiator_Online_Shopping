@@ -1,0 +1,40 @@
+.Container-LR{
+    border-radius: 0.15rem;
+    background-color: white;
+    width: 100%;
+    min-height: calc(100vh - 232px);
+    padding: 1rem;
+}
+.Product{
+    height: 250px;
+}
+.Image{
+    height: 250px;
+    width:calc(100% - 1rem);
+    margin-right:1rem;
+}
+.Image img{
+    max-height: 230px;
+    max-width:100%;
+    object-fit: contain;
+}
+.Button{
+    padding:0.5rem 1.25rem;
+    border:none;
+    outline:none;
+    background-color: rgba(146,205,214,0.75);
+    cursor: pointer;
+    border-radius: 0.15rem;
+}
+.Button:hover,.Button:focus{
+    border:none;
+    outline:none;
+    background-color: rgba(146,205,214,1);
+}
+.Product td{
+    text-align: center;
+    font-size: 0.95rem;
+}
+.th{
+    font-size: 1.05rem;
+}

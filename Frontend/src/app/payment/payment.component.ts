@@ -22,6 +22,12 @@ export class PaymentComponent implements OnInit {
   user:User;
   address:string;
   hideInput:boolean=false;
+  paymentAmount:number;
+
+  error:boolean;
+  message:string;
+  popUp:boolean;
+
   constructor(private customerService:CustomerService,
               private router:Router,
               private sessionService:SessionService,
@@ -41,13 +47,23 @@ export class PaymentComponent implements OnInit {
      }
      else if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
      {  
-       let encr = sessionStorage.getItem('user')
-       this.uId = parseInt(this.EncrDecr.get('123456$#@$^@1ERF', encr))
-       this.customerService.getAddress(this.uId).subscribe(data=>{
+        let pay =sessionStorage.getItem('pay')
+        if(pay!="null" && pay!=null)
+        {
+          this.paymentAmount=parseInt(this.EncrDecr.get('123456$#@$^@1ERF', pay))
+          sessionStorage.setItem('pay',null);
+          let encr = sessionStorage.getItem('user')
+          this.uId = parseInt(this.EncrDecr.get('123456$#@$^@1ERF', encr))
+          this.customerService.getAddress(this.uId).subscribe(data=>{
          this.user=data;
          this.address=data.uAddress;
          console.log(data)
        })
+        }
+        else{
+          this.router.navigate(['/MyCart']);
+        }
+        
      }
     else{
          this.router.navigate(['/login']);
@@ -98,24 +114,30 @@ payment(){
 }
 paymentConfirm(){
   this.otpF=parseInt((<HTMLInputElement>(document.getElementById("OTP"))).value);
+  this.popUp=true;
+  this.error=false;
   if(this.otpF==this.otpB)
   {
-    
-  this.customerService.makePayment(this.payType,this.uId).subscribe(
+    this.customerService.makePayment(this.payType,this.uId).subscribe(
     data=>{
       if(data>0)
       {
-        alert("order placed")
-        this.router.navigate(['/orders']);
+        this.message="*Order placed succesfully!!!"
+        setTimeout(()=>{this.router.navigate(['/orders']);}, 2000);
+        
       }
       else
-      alert("Retry")
+      {
+        this.error=true;
+        this.message="*Retry"
+      }
     }
   )
   }
   else
   {
-    alert("incorrect OTP")
+    this.error=true;
+    this.message="*Incorrect OTP"
   }
 }
 

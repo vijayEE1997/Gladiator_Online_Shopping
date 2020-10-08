@@ -29,18 +29,18 @@
 
 <div *ngIf="descOpen" class="Description">
     <div style="display: flex;justify-content: flex-end;">
-        <div class="Admin-Button" style="width:100px" (click)="closeDesc()">
-            Close
+        <div class="Admin-Button" (click)="closeDesc()">
+            <span><i class="fa fa-times" aria-hidden="true"></i></span>
         </div>
     </div>
     <div class="Desc">
         <div class="Desc-Image"><img src={{src}}_1></div>
-        <div class="Desc-Image">
+        <div class="Desc-Detail">
             {{desc}}
         </div>
     </div>
-    <div>
-        <div class="Admin-Button" (click)="approveProductF()"><span style="margin-right: 0.5rem;"><i class="fa fa-plus-circle" aria-hidden="true"></i></span>Approve</div>
-        <div class="Admin-Button" (click)="rejectProductF()"><span style="margin-right: 0.5rem;"><i class="fa fa-minus-circle" aria-hidden="true"></i></span>Reject</div>
+    <div class="Button-Desc">
+        <div class="Admin-Button Button-Desc-b" (click)="approveProductF()"><span style="margin-right: 0.5rem;"><i class="fa fa-plus-circle" aria-hidden="true"></i></span>Approve</div>
+        <div class="Admin-Button Button-Desc-b" (click)="rejectProductF()"><span style="margin-right: 0.5rem;"><i class="fa fa-minus-circle" aria-hidden="true"></i></span>Reject</div>
     </div>
 </div>

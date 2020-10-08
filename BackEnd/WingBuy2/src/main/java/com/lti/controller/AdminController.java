@@ -2,6 +2,7 @@ package com.lti.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.mail.MessagingException;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.model.Admin;
 import com.lti.model.Cart;
+import com.lti.model.Compare;
 import com.lti.model.Order;
 import com.lti.model.OrderDetail;
 import com.lti.model.Payment;
@@ -85,10 +87,10 @@ public class AdminController {
 	
 	
 
-	@GetMapping(path = "/getProductByBrand/{pBrand}/{pCategory}") 
-	public List<Product> getProductByBrand(@PathVariable String pBrand,@PathVariable String pCategory)
+	@GetMapping(path = "/getProductByBrand/{pCategory}") 
+	public List<String> getProductByBrand(@PathVariable String pCategory)
 	{
-		return this.productservice.findgetProductByBrand(pBrand, pCategory);
+		return this.productservice.findSubBrandByCategory(pCategory);
 	}
 	
 	@PostMapping(path = "/userlogin")
@@ -104,6 +106,7 @@ public class AdminController {
 
 	@PostMapping(path = "/addNewUser")
 	public int addNewUser(@RequestBody UserSignUp newUser) {
+		System.out.println(newUser);
 		return this.userservice.addUser(newUser);
 	}
 
@@ -225,6 +228,12 @@ public class AdminController {
 	{
 		return cartservice.findaddToCart(cart.getuId(), cart.getpId());
 	}
+	
+	@GetMapping(path = "/addToCompare/{uId}/{pId}") //-------------generateOTP-------------------------------
+	public int addToCompare(@PathVariable("pId") int pId,@PathVariable("uId") int uId)
+	{
+		return cartservice.addToCompare(uId,pId);
+	}
 
 	
 	@GetMapping(path = "getCart/{uId}")
@@ -270,6 +279,7 @@ public class AdminController {
 		System.out.println(dto);
 		return dto;
 	}
+	
 	@GetMapping(path = "deleteFromCart/{cId}")
 	public boolean deleteFromCart(@PathVariable("cId") int cId){
 		return cartservice.finddeleteCartBycId(cId);
@@ -278,5 +288,16 @@ public class AdminController {
 	@GetMapping(path = "updateMyCart/{cId}/{addOrMinus}")
 	public boolean updateCart(@PathVariable("cId") int cId,@PathVariable("addOrMinus") int addOrMinus){
 		return cartservice.findupdateCart(cId, addOrMinus);
+	}
+	
+	@GetMapping(path = "getCompare/{uId}")
+	public Set<Compare> getCompare(@PathVariable("uId") int uId){
+		System.out.println(uId);
+		return cartservice.getCompare(uId);
+	}
+	
+	@GetMapping(path = "removeFromComp/{compId}")
+	public Set<Compare> deleteFromComp(@PathVariable("compId") int compId){
+		return cartservice.deleteFromComp(compId);
 	}
 }

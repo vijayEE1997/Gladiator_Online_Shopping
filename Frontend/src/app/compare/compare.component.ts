@@ -12,6 +12,8 @@ import { SessionService } from '../Services_X/session.service';
 export class CompareComponent implements OnInit {
 
   uId:number;
+  compares:any[]
+  status:boolean;
   constructor(private customerService:CustomerService,
               private sessionService:SessionService,
               private router:Router,
@@ -32,11 +34,28 @@ export class CompareComponent implements OnInit {
      {
        let encr = sessionStorage.getItem('user')
        this.uId = parseInt(this.EncrDecr.get('123456$#@$^@1ERF', encr))
+       this.customerService.getCompare(this.uId).subscribe(data=>{
+        this.compares=data;
+        console.log(data)
+
+        if(data.length==0)
+        this.status=true;
+
+       })
        
      }
        else{
          this.router.navigate(['/login']);
        }
+  }
+
+  removeFromComp(comp){
+    this.customerService.removeFromCompare(comp.compId).subscribe(data=>{
+      this.compares=data;
+      console.log(data)
+      if(data.length==0)
+        this.status=true;
+    })
   }
 
 }

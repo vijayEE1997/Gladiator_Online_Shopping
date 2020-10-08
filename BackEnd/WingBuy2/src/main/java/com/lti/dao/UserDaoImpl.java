@@ -31,19 +31,27 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public int addUser(UserSignUp newUser) {
-
-		User user = new User();
-		user.setuName(newUser.getuName());
-		user.setuPassword(newUser.getuPassword());
-		user.setuAddress(newUser.getuAddress());
-		user.setuEmail(newUser.getuEmail());
-		user.setuMobile(newUser.getuMobile());
-		this.entityManager.persist(user);
-		String q1 = "select max(uid) from user_t";
-		Query query1 = (Query) this.entityManager.createNativeQuery(q1);
-		Number id = (Number) query1.getSingleResult();
-		int uId = id.intValue();
-		return uId;
+		User user = getUserByEmail(newUser.getuEmail());
+		if(user!=null)
+			return 0;
+		else
+		{
+			try {
+				user = new User();
+				user.setuName(newUser.getuName());
+				user.setuPassword(newUser.getuPassword());
+				user.setuAddress(newUser.getuAddress());
+				user.setuEmail(newUser.getuEmail());
+				user.setuMobile(newUser.getuMobile());
+				this.entityManager.persist(user);
+			}
+			catch(Exception e)
+			{
+				System.out.println("Unable to add");
+				return -1;
+			}
+			return 1;
+		}
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.lti.service;
 
 import java.util.List;
 
+import com.lti.dto.Login;
 import com.lti.dto.ProductForApprovalDTO;
 import com.lti.dto.RetailerSignUp;
 import com.lti.model.Product;
@@ -23,5 +24,7 @@ public interface RetailerService {
 	public List<ProductForApproval> findshowMyPendingProducts(int rId);
 	public List<ProductForApproval> findshowMyRejectedProducts(int rId);
 	public boolean addProductFA(ProductForApprovalDTO pfa);
+	public int generateOTP(String email);
+	public int resetPass(Login login);
 	
 }

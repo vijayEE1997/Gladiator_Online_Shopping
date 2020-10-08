@@ -131,6 +131,19 @@ export class CustomerService {
     this.url += 'deleteFromCart/'+cId;
     return this.http.get(this.url);
   }
+
+  getCompare(uId:number):Observable<any[]>{
+    this.url=this.baseurl;
+    this.url+='getCompare/'+uId;
+   return this.http.get<any[]>(this.url)
+  }
+
+  removeFromCompare(compId:number):Observable<any[]>{
+    this.url = this.baseurl;
+    this.url += 'removeFromComp/'+compId;
+    return this.http.get<any[]>(this.url);
+  }
+
 //   addNewUser(newUser:User)
 //   {
 //     this.url = this._tempurl;

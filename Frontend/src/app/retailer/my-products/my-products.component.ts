@@ -35,9 +35,9 @@ export class MyProductsComponent implements OnInit {
     }
    else{
      this.rId=parseInt(this.EncrDecr.get('123456$#@$^@1ERF',sessionStorage.getItem('retailer')))
-    this.getApprovedProducts()
-    this.getPendingProducts()
-    this.getRejectedProducts()
+      this.getApprovedProducts()
+      this.getPendingProducts()
+      this.getRejectedProducts()
    }
   }
 

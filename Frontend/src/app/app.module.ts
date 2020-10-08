@@ -1,3 +1,4 @@
+import { AboutUsComponent } from './Home/about-us/about-us.component';
 import { RetailerModule } from './retailer/retailer.module';
 import { AdminModule } from './admin/admin.module';
 import { AuthorizationModule } from './authorization/authorization.module';
@@ -26,9 +27,10 @@ import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { UploadService } from './Services_X/upload.service'
 import { AuthService } from './Services_X/auth.service'
 import { SessionService } from './Services_X/session.service';
-import { ProfileUserComponent } from './profile-user/profile-user.component';
+
+import { ProfileUserComponent } from './user/profile-user/profile-user.component';
 import { CompareComponent } from './compare/compare.component';
-import { AboutUsComponent } from './Home/about-us/about-us.component'
+
 
 @NgModule({
   declarations: [
@@ -48,7 +50,7 @@ import { AboutUsComponent } from './Home/about-us/about-us.component'
     ProfileUserComponent,
     CompareComponent,
     AboutUsComponent
-  ],
+],
   imports: [
     BrowserModule,
     AppRoutingModule,

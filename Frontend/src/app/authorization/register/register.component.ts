@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/Service/customer.service';
 import { EncrDecrService } from 'src/app/Service/encr-decr.service';
-// import { CustomvalidationService } from 'src/app/services/customvalidation.service';
+import { CustomvalidationService } from 'src/app/Services_X/customvalidation.service';
 
 @Component({
   selector: 'register',
@@ -16,15 +16,16 @@ export class RegisterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private router:Router,
               private customerService:CustomerService,
-              private EncrDecr: EncrDecrService) { }
+              private EncrDecr: EncrDecrService,
+              private customvalidation:CustomvalidationService) { }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
-      uEmail: ['', Validators.required,],
-      //uPassword: ['', Validators.compose([Validators.required, this.customValidator.patternValidator()])],
-      uPassword: ['',],
-      uName: ['', ],
-      uMobile: ['', ],
+      uEmail: ['', [ Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+      uPassword: ['', Validators.compose([Validators.required, this.customvalidation.patternValidator()])],
+      // uPassword: ['',Validators.compose([Validators.required,this.customvalidation.patternValidator()])],
+      uName: ['', Validators.required],
+      uMobile: ['',  [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       //confirmPassword: ['', [Validators.required]],
     },
     // {
@@ -57,4 +58,16 @@ export class RegisterComponent implements OnInit {
           });
     }
 }
+
+// patternValidator(): ValidatorFn {
+//   return (control: AbstractControl): { [key: string]: any } => {
+//     if (!control.value) {
+//       return null;
+//     }
+//     const regex = new RegExp('^(?=.?[A-Z])(?=.?[a-z])(?=.*?[0-9]).{8,}$');
+//     const valid = regex.test(control.value);
+//     return valid ? null : { invalidPassword: true };
+//   };
+// }
+
 }

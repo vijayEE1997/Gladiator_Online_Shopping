@@ -21,6 +21,9 @@ export class UserCartComponent implements OnInit {
   cartMyDTO:CartMyDTO[];
   totalPrice: number = 0;
   buyProductButton: boolean = false;
+  popUp:boolean;
+  message:string
+  error:boolean;
   constructor (private customerService : CustomerService,
                private EncrDecr: EncrDecrService,
                private router:Router,
@@ -29,7 +32,7 @@ export class UserCartComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.sessionService.checkSession()
+   this.sessionService.checkSession()
     
    if(sessionStorage.getItem('retailer')!="null" && sessionStorage.getItem('retailer')!=null)
     {
@@ -52,21 +55,35 @@ export class UserCartComponent implements OnInit {
   }
 
   buyProductF(){
+
+    if(this.totalPrice==0)
+    {
+      return;
+    }
+    else{
+      
+     /*Encription*/
+     let encr=this.EncrDecr.set('123456$#@$^@1ERF',this.totalPrice.toString())
+     /*Encription*/
+     sessionStorage.setItem('pay',encr);
+
     this.router.navigate(['/payment']);
+    }
   }
 
   delete(cId){
-    console.log(cId)
     this.customerService.deleteFromCart(cId).subscribe(data=>{
       console.log(data)
       if(data){
-        alert("deleted")
         this.CARTDETAIL()
       }
       else{
-        alert("Retry")
+        this.popUp=true;
+        this.message="Retry"
+        this.error=true;
       }
     })
+    setTimeout(()=>{this.popUp=false,this.error=false}, 1000);
   }
 
 
@@ -104,5 +121,10 @@ export class UserCartComponent implements OnInit {
             this.totalPrice+=(data.cartdto.qty*data.productdto.pPrice)
         })
     })
+  }
+
+
+  removePopUp(){
+    this.router.navigate(['/home']);
   }
 }

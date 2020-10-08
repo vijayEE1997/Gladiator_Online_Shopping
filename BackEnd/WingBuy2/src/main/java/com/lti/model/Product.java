@@ -227,6 +227,12 @@ public class Product {
 		this.wishlists.add(wishlist);
 	}
 	
+	public void addCompare(Compare c) {
+		if(this.compares==null)
+			this.compares=new HashSet<>();
+		this.compares.add(c);
+	}
+	
 	@Override
 	public String toString() {
 		return "Product [pId=" + pId + ", pCategory=" + pCategory + ", pSubCategory=" + pSubCategory + ", pName="

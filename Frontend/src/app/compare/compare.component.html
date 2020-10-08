@@ -1,1 +1,24 @@
-<p>compare works!</p>
+<h3 style="margin-bottom: 0.5rem;">Compare<span style="margin-left: 0.5rem;"><i class="fa fa-caret-right" aria-hidden="true"></i></span></h3>
+<div class="Container-LR" *ngIf="!status">
+    <table>
+        <tr>
+            <th style="width: 30%;"></th>
+            <th style="width: 10%;">Brand</th>
+            <th style="width: 10%;">Model</th>
+            <th style="width: 10%;">Price</th>
+            <th style="width: 30%;">Description</th>
+            <th style="width: 10%;"></th>
+        </tr>
+        <tr *ngFor="let comp of compares" class="Product">
+            <td style="width: 30%;"><div class="Image"><img src={{comp.compProducts.pImage}}_1></div></td>
+            <td style="width: 10%;">{{comp.compProducts.pBrand}}</td>
+            <td style="width: 10%;">{{comp.compProducts.pName}}</td>
+            <td style="width: 10%;">{{comp.compProducts.pPrice | currency:"INR"}}</td>
+            <td style="width: 30%; padding:0.5rem 1rem;">{{comp.compProducts.pDesc}}</td>
+            <td style="width: 10%;"><button class="Button" (click)="removeFromComp(comp)"><span style="margin-right: 0.5rem;"><i class="fa fa-trash" aria-hidden="true"></i></span>Remove</button></td>
+        </tr>
+    </table>
+</div>
+<div *ngIf="status" style="width: 150px;height: 70px;left:48%;top:45%;position: absolute;">
+    <p>Nothing to Show</p>
+</div>

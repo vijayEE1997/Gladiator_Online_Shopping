@@ -10,6 +10,7 @@ public interface ProductService {
 	public List<Product> findProductByPrice(String pBrand, int min, int max);
 	public List<String> findSubCategoryByCategory(String Category);
 	public List<Product> findCategory(String Category);
+	List<String> findSubBrandByCategory(String Category);
 
 
 }

@@ -3,6 +3,7 @@ import {Router} from '@angular/router'
 import { Login } from 'src/app/DTO/Login';
 import { EncrDecrService } from 'src/app/Service/encr-decr.service';
 import { AuthService } from 'src/app/Services_X/auth.service';
+import { SessionService } from 'src/app/Services_X/session.service';
 
 @Component({
   selector: 'Aheader',
@@ -22,10 +23,12 @@ export class HeaderComponent implements OnInit {
   RETAILER:boolean=false;
   constructor(private router:Router,
               private encrdecr:EncrDecrService,
-              private authService:AuthService) { 
+              private authService:AuthService,
+              private sessionService:SessionService) { 
   }
 
   ngOnInit(): void {
+    this.sessionService.checkSession();
     // this.USERF()
     this.authService.getLoggedInName.subscribe(name =>{
       this.USER = name

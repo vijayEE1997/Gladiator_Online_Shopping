@@ -18,6 +18,8 @@ export class ForgotPasswordComponent implements OnInit {
   recievedOTP: number;
   invalidEmail:boolean=false;
   incorrectOTP:boolean=false;
+  mismatchPass:boolean=false;
+  success:boolean=false;
   Email="";
   Password="";
   option:string;
@@ -114,9 +116,10 @@ export class ForgotPasswordComponent implements OnInit {
           }
           else
           {  
-            alert("success")
-            this.router.navigate(['login']);
+            this.success=true;
+            // this.router.navigate(['login']);
           }
+          setTimeout(()=>{this.router.navigate(['login']);}, 2000);
         })
       }
       else if(this.option==='retailer')
@@ -125,19 +128,20 @@ export class ForgotPasswordComponent implements OnInit {
         this.retailerService.resetPassword(this.Email,this.Password).subscribe(data=>{
           if(data==-1)
           {
-            alert("Plz Retry")
+            alert("Please Retry")
             return
           }
           else
           {  
-            alert("success")
-            this.router.navigate(['login']);
+            this.success=true;
+            // alert("Successfully updated!!!")
           }
+          setTimeout(()=>{this.router.navigate(['login']);}, 2000);
         })
       }
     }
     else{
-      alert("Password Mismatch")
+      this.mismatchPass=true;
       return
     }
   }

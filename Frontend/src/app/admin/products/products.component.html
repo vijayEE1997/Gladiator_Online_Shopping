@@ -21,12 +21,21 @@
                 <td>{{p.pName}}</td>
                 <td>{{p.pStock}}</td>
                 <td>{{p.pPrice}}</td>
-                <td id="Admin-Button-td"><div class="Admin-Button" (click)="viewDesc(p.desc)">View<span style="margin-left: 0.5rem;"><i class="fa fa-eye" aria-hidden="true"></i></span></div></td>
+                <td id="Admin-Button-td"><div class="Admin-Button" (click)="viewDesc(p)">View<span style="margin-left: 0.5rem;"><i class="fa fa-eye" aria-hidden="true"></i></span></div></td>
             </tr>
         </tbody>
     </table>
-    <div *ngIf="descOpen" class="Description">
-        <div class="Admin-Button" (click)="closeDesc()">Close</div>
-        {{desc}}
+</div>
+<div *ngIf="descOpen" class="Description">
+    <div style="display: flex;justify-content: flex-end;">
+        <div class="Admin-Button" (click)="closeDesc()">
+            <span><i class="fa fa-times" aria-hidden="true"></i></span>
+        </div>
+    </div>
+    <div class="Desc">
+        <div class="Desc-Image"><img src={{src}}_1></div>
+        <div class="Desc-Detail">
+            {{desc}}
+        </div>
     </div>
 </div>

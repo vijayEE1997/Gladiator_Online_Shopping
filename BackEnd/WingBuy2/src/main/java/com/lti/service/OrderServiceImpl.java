@@ -34,4 +34,9 @@ public class OrderServiceImpl implements OrderService{
 		return orderdao.getOrderDetailById(oId);
 	}
 
+//	@Override
+//	public List<OrderDetail> getOrderProfit(int rId) {
+//		return orderdao.getProfit(rId);
+//	}
+
 }

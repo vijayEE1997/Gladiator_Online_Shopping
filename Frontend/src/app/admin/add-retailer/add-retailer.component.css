@@ -47,3 +47,11 @@
     outline: none;
     border: none;
 }
+.Invalid{
+    pointer-events: none;
+}
+.validate{
+    color: red;
+    font-size: 0.65rem;
+    margin-right: 1rem;
+}

@@ -10,9 +10,12 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import com.lti.model.Cart;
+import com.lti.model.Compare;
 import com.lti.model.Product;
 import com.lti.model.User;
 import com.lti.util.JpaUtility;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +25,12 @@ public class CartDaoImpl implements CartDao {
 
 	@PersistenceContext
 	private EntityManager entityManager;
+	
+	@Autowired
+	private UserDao userdao=null;
+	
+	@Autowired
+	private ProductDao productdao=null;
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
@@ -138,6 +147,59 @@ public class CartDaoImpl implements CartDao {
 		}
 		return true;
 
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public int addToCompare(int uId, int pId) {
+		User user=userdao.getUserById(uId);
+		Product product=entityManager.find(Product.class,pId);
+		Set<Compare> list=user.getCompares();
+		if(list.size()==4)
+			return 2;
+		if(list.size()==0)
+		{
+			System.out.println("In");
+			Compare compare=new Compare();
+			compare.setCompUser(user);
+			compare.setCompProducts(product);
+			user.addCompare(compare);
+			product.addCompare(compare);
+			entityManager.persist(compare);
+			return 1;
+		}
+		for(Compare c:list)
+		{
+			if(c.getCompProducts()==product)
+				return 0;
+			if((c.getCompProducts().getpSubCategory()).equals(product.getpSubCategory()))
+			{
+				System.out.println("In");
+				Compare compare=new Compare();
+				compare.setCompUser(user);
+				compare.setCompProducts(product);
+				user.addCompare(compare);
+				product.addCompare(compare);
+				entityManager.persist(compare);
+				return 1;
+			}
+		}
+		return -1;
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public Set<Compare> getCompare(int uId) {
+		User user=entityManager.find(User.class,uId);
+		return user.getCompares();
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public Set<Compare> removeFromComp(int compId) {
+		Compare c=entityManager.find(Compare.class,compId);
+		entityManager.remove(c);
+		return c.getCompUser().getCompares();
 	}
 
 	

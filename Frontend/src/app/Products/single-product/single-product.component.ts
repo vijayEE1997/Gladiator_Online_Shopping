@@ -14,8 +14,12 @@ import { SessionService } from 'src/app/Services_X/session.service';
 export class SingleProductComponent implements OnInit {
 
   product: Product;
-  outOfStock:boolean;
   uId:number;
+
+  error:boolean;
+  message:string;
+  popUp:boolean;
+
   constructor(private router: Router,
     private route: ActivatedRoute,
     private productService: ProductService,
@@ -35,26 +39,35 @@ export class SingleProductComponent implements OnInit {
   addToCartF(stock) {
     if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
     {
+      this.popUp=true;
       if(stock!=0)
       {
         let encr = sessionStorage.getItem('user')
         let uId = this.EncrDecr.get('123456$#@$^@1ERF', encr)
         this.customerService.addToCart(parseInt(uId), this.product.pId).subscribe(data => {
           if (data==1)
-            alert("Added Successfully")
+          {
+            this.message="*Succesfully added to Cart!!!"
+          }
           else if(data==0)
-            alert("Already")
-            else{
-              alert("Retry")
+          {
+            this.message="*Already added to Cart."
+            this.error=true
+          }
+          else{
+            this.message="*Retry"
+            this.error=true
             }
         })
       }
       else{
-        this.outOfStock=true;
+        this.message="*Item is out of stock"
+        this.error=true
       }
+      setTimeout(()=>{this.popUp=false;this.error=false}, 1000);
     }     
       else{
-        alert("Login as a User")
+        alert("Please, Login as a User")
         this.router.navigate(['/home']);
       }
   }
@@ -62,19 +75,27 @@ export class SingleProductComponent implements OnInit {
   addToWishListF() {
       if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
     {
+      this.popUp=true;
       let encr = sessionStorage.getItem('user')
       let uId = this.EncrDecr.get('123456$#@$^@1ERF', encr)
       this.customerService.addToWishList(parseInt(uId), this.product.pId).subscribe(data => {
         if (data==1)
-        alert("Added Successfully")
-      else if(data==0)
-        alert("Already")
-        else{
-          alert("Retry")
+        {
+          this.message="*Succesfully added to Wishlist!!!"
         }
+      else if(data==0)
+      {
+        this.message="*Already added to Wishlist."
+        this.error=true
+      }
+        else{
+          this.message="*Retry"
+          this.error=true
+          }
       })
+      setTimeout(()=>{this.popUp=false;this.error=false}, 1000);
     }else{
-      alert("Login as a User")
+      alert("Please, Login as a User")
       this.router.navigate(['/home']);
     }
       
@@ -92,17 +113,29 @@ export class SingleProductComponent implements OnInit {
    }
    else if(sessionStorage.getItem('user')!="null" && sessionStorage.getItem('user')!=null)
    {
+    this.popUp=true;
      let encr = sessionStorage.getItem('user')
      this.uId = parseInt(this.EncrDecr.get('123456$#@$^@1ERF', encr))
      this.customerService.addToCompare(this.uId,pId).subscribe(data=>{
        if(data==1)
-       alert("added")
+       {
+        this.message="*Succesfully added to Compare!!!"
+      }
        else if(data==0)
-       alert("already added")
-       else{
-       alert("choose same category or remove product from Compare")
-       }
+       {
+        this.message="*Already added to Compare."
+        this.error=true
+      }
+       else if(data== -1){
+        this.message="Choose product from same Sub-Category to Compare."
+        this.error=true
+      }
+      else{
+        this.message="Cannot compare more than 4 products."
+        this.error=true
+      }
      })
+     setTimeout(()=>{this.popUp=false;this.error=false}, 1000);
    }
    else{
      this.router.navigate(['/login']);

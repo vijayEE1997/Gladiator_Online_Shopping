@@ -1,0 +1,61 @@
+.Payment-Page{
+    width:500px;
+    height: 500px;
+    position: absolute;
+    top:calc(50% - 250px);
+    left:calc(50% - 250px);
+}
+.Payment{
+    background-color: white;
+    padding:1rem;
+    border-radius: 0.15rem;
+}
+table{
+    width:calc(100% - 2rem);
+    font-size: 0.95rem;
+    margin: 1rem 1rem 0 1rem;
+}
+table td{
+    width:50%;
+}
+table tr{
+    margin:0.25rem 0;
+}
+.label{
+    font-weight: bolder;
+}
+.content{
+    background-color: rgba(45, 145, 160, 0.05);
+    padding:0.25rem;
+}
+.profile-pic{
+    width:150px;
+    height: 150px;
+    margin:0 auto;
+    border-radius: 75px;
+}
+.profile-pic img{
+    width:150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 75px;
+}
+.Button-Container{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1rem 0;
+}
+.Button{
+    width:75px;
+    text-align: center;
+    margin: 0.5rem auto;
+    padding:0.5rem 1.25rem;
+    cursor: pointer;
+    background-color: rgba(124, 208, 221,0.75);
+    border-radius: 0.15rem;
+}
+.Button:hover,.Button:focus{
+    background-color: rgba(124, 208, 221,1);
+    border: none;
+    outline: none;
+}

@@ -109,7 +109,6 @@
     transform: translateX(0);
 }
 .Login-Page-LButton{
-    margin:1rem auto 0 auto;
     padding: 0.5rem 1.25rem;
     width:100%;
     border:none;
@@ -124,4 +123,14 @@
     text-decoration: none;
     color: #E35F21;
     margin:0.75rem;
+}
+.Invalid{
+    pointer-events: none;
+}
+.validate{
+    height: 0.75rem;
+}
+.validate p{
+    color: red;
+    font-size: 0.65rem;
 }

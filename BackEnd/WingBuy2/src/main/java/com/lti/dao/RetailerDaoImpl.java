@@ -203,6 +203,19 @@ public class RetailerDaoImpl implements RetailerDao {
 		return false;
 	}
 
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public int resetPassword(Retailer retailer) {
+		try {
+			entityManager.persist(retailer);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return -1;
+		}
+	}
+
 	
 
 }

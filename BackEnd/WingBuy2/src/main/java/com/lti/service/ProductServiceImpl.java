@@ -31,6 +31,12 @@ public class ProductServiceImpl implements ProductService {
 	public List<String> findSubCategoryByCategory(String Category) {
 		return productdao.readSubCategoryByCategory(Category);
 	}
+	
+	@Override
+	public List<String> findSubBrandByCategory(String Category) {
+		return productdao.readBrandByCategory(Category);
+	}
+	
 	@Override
 	public List<Product> findCategory(String Category) {
 		return productdao.readCategory(Category);

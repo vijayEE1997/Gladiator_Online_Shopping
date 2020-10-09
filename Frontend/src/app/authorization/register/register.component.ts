@@ -13,6 +13,7 @@ import { CustomvalidationService } from 'src/app/Services_X/customvalidation.ser
 export class RegisterComponent implements OnInit {
   registerForm:FormGroup;
   already:boolean;
+  success:boolean =false;
   constructor(private formBuilder: FormBuilder,
               private router:Router,
               private customerService:CustomerService,
@@ -46,10 +47,15 @@ export class RegisterComponent implements OnInit {
           this.customerService.register(this.registerForm.value).subscribe(data=>{
             console.log(data)
             if(data==1)
-            this.router.navigate(['/login']);
+            {
+
+              this.success=true;
+              setTimeout(()=>{this.router.navigate(['login']);}, 2000);
+            }
             else if(data==0)
             {
               this.already=true;
+              setTimeout(()=>{this.already=false}, 2000);
             }
             else{
               alert("Retry")

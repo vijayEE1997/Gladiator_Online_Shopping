@@ -15,7 +15,7 @@ export class UploadService {
     const contentType = file.type;
     const bucket = new S3(
           {
-              
+           
           }
       );
       const params = {

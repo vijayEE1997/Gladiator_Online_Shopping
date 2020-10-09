@@ -7,6 +7,7 @@
     <div class="Login-Right Login-LR">
       <form  [formGroup]="registerForm" class="Form-group" (ngSubmit)="register()">
         <p *ngIf="already" style="font-size:0.65rem;color:red;text-align: center;">*Email already Exists</p>
+        <p *ngIf="success" style="color: green;font-size: 0.75rem;text-align: center;font-weight: bolder;">*Successfully Registered!!!</p>
         <div class="form">  
             <input type="text" formControlName="uName" id="username"  autocomplete="off" class="form-control"/>
             <label for="username" class="label-name">

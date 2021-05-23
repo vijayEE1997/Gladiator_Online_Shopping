@@ -29,6 +29,7 @@ export class CustomerService {
   {
     this.url = this.baseurl;
     this.url += 'userlogin';
+    console.log(this.url)
     return  this.http.post<number>(this.url,login);
   }
   register(register:Registration)

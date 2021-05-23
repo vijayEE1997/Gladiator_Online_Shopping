@@ -45,6 +45,7 @@ export class ProductService {
   {
     this._url = this._tempurl;
     this._url += 'getProductBySearch/' + keyword;
+    console.log(this._url);
     return this._http.get<Product[]>(this._url);
   }
 

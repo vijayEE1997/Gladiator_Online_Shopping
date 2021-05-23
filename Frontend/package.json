@@ -10,6 +10,9 @@
     "e2e": "ng e2e"
   },
   "private": true,
+  "browser": {
+    "fs": false
+  },
   "dependencies": {
     "@angular/animations": "~10.0.14",
     "@angular/common": "~10.0.14",
@@ -22,9 +25,11 @@
     "@types/crypto-js": "^3.1.47",
     "aws-sdk": "^2.766.0",
     "crypto-js": "^4.0.0",
+    "dotenv": "^10.0.0",
     "json-server": "^0.16.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
+    "yargs": "^17.0.1",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {

@@ -1,21 +1,24 @@
 import { Injectable } from '@angular/core';
 import * as AWS from 'aws-sdk/global';
 import * as S3 from 'aws-sdk/clients/s3';
+// require('dotenv').config()
 
 @Injectable({
   providedIn: 'root'
 })
 export class UploadService {
 
-
-  constructor() { }
+  constructor() { 
+  }
 
   uploadFile(file,Category,Brand,Name){
 
     const contentType = file.type;
     const bucket = new S3(
           {
-           
+        //    accessKeyId:process.env.ACCESS_KEY_ID,
+        //    secretAccessKey:process.env.SECRET_ACCESS_KEY,
+        //    region:process.env.REGION
           }
       );
       const params = {

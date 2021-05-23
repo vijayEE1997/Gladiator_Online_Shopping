@@ -1,4 +1,4 @@
-import { ProductForApproval } from './../DTO/ProductForApproval';
+ import { ProductForApproval } from './../DTO/ProductForApproval';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../DTO/Product';
@@ -6,13 +6,14 @@ import { RetailerSignUp } from '../DTO/RetailerSignUp'
 import { Retailer } from '../DTO/Retailer';
 import { Observable } from 'rxjs';
 import { Login } from '../DTO/Login';
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
 
-  baseurl="http://localhost:8080/WingBuy/admin/";
+  baseurl=environment.BASE_URL+"/WingBuy/admin/";
   url='';
   
   constructor(private http:HttpClient) { }

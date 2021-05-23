@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Login } from '../DTO/Login';
 import { Retailer } from '../DTO/Retailer';
 import { ProductForApproval } from '../DTO/ProductForApproval';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ import { ProductForApproval } from '../DTO/ProductForApproval';
 export class RetailerService {
 
   
-  private baseurl =  'http://localhost:8080/WingBuy/retailer/';
+  private baseurl=environment.BASE_URL+'/WingBuy/retailer/';
   private url = '';
   constructor(private http : HttpClient) { }
 

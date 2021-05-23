@@ -13,13 +13,14 @@ import { Registration } from '../DTO/Registration';
 import { HttpClient, HttpHeaderResponse, HttpErrorResponse } from '@angular/common/http';
 import { CartMyDTO } from '../DTO/CartMyDTO';
 import { PaymentComponent } from '../payment/payment.component';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
 
-  private baseurl =  'http://localhost:8080/WingBuy/admin/';
+  private baseurl=environment.BASE_URL+"/WingBuy/admin/";
   private url ='';
 
   constructor(private http : HttpClient) { }

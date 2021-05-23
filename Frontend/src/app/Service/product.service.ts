@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Product } from '../DTO/Product';
 
 @Injectable({
@@ -9,7 +10,7 @@ import { Product } from '../DTO/Product';
 export class ProductService {
 
  
-  private _tempurl =  'http://localhost:8080/WingBuy/admin/';
+  private _tempurl=environment.BASE_URL+"/WingBuy/admin/";
   private _url = '';
   constructor(private _http : HttpClient) { }
 
